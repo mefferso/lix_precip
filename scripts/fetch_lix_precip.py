@@ -43,7 +43,6 @@ STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/County/s_16ap26.zip"
 
 TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 SUBTITLE = "Estimated 24 Hour Rainfall"
-PREPARED_BY = "Graphic prepared by: WFO New Orleans/Baton Rouge"
 DESCRIPTION = (
     "Liquid precipitation observed over the specified 24 hour period. "
     "Rainfall shading is from official NWPS / RFC Stage IV multi-sensor QPE."
@@ -332,12 +331,38 @@ def plot_map(
     # LIX boundary bold
     lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4)
 
-    # City dots and labels
+    # City dots, sampling, and labels
+    rx_min, rx_max, ry_min, ry_max = raster_extent_3857
+    height, width = raster_arr.shape
+
     for idx, row in cities.iterrows():
         x, y = row.geometry.x, row.geometry.y
+        
+        # Default to 0.00" if out of bounds or missing
+        val_str = "0.00"
+        
+        # Verify point falls within the raster array bounds
+        if rx_min <= x <= rx_max and ry_min <= y <= ry_max:
+            # Map spatial coordinates to array indices
+            col_idx = int((x - rx_min) / (rx_max - rx_min) * width)
+            row_idx = int((ry_max - y) / (ry_max - ry_min) * height)
+            
+            # Clamp indices to ensure we don't hit an IndexError due to floating point rounding
+            col_idx = max(0, min(col_idx, width - 1))
+            row_idx = max(0, min(row_idx, height - 1))
+            
+            val = raster_arr[row_idx, col_idx]
+            
+            # Format value if present and > 0
+            if np.isfinite(val) and val > 0:
+                val_str = f"{val:.2f}"
+                
+        # Format the label with multi-line text (city name + amount)
+        label_text = f"{row['name']}\n{val_str}\""
+        
         ax.plot(x, y, 'o', color='white', markeredgecolor='black', markersize=5, zorder=5)
         ax.text(
-            x, y + 8000, row['name'],  # Offset y by ~8km in Web Mercator
+            x, y + 8000, label_text,  # Offset y by ~8km in Web Mercator
             color='black', fontsize=11, fontweight='bold', ha='center', va='bottom',
             path_effects=[pe.withStroke(linewidth=2.5, foreground="white")],
             zorder=6
