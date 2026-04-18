@@ -155,6 +155,10 @@ def fetch_stageiv_qpe(window: TimeWindow) -> Path:
         tif_path = RAW_DIR / f"nws_precip_1day_{window.end.strftime('%Y%m%d')}_conus.tif"
 
     return download(tif_url, tif_path)
+    path = download(tif_url, tif_path)
+    print(f"Using TIFF: {path}")
+    print(f"Source URL: {tif_url}")
+    return path
 
 
 def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
