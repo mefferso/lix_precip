@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       map_date:
-        description: 'Map date in MM/DD/YYYY format (example: 04/18/2026). Leave blank for latest available 12Z cycle.'
+        description: 'Map date in MM/DD/YYYY format (example: 04/18/2026). Leave blank for latest available cycle.'
         required: false
         default: ''
   schedule:
@@ -41,27 +41,25 @@ jobs:
       - name: Build date argument
         id: build_date
         shell: bash
+        env:
+          INPUT_DATE: ${{ github.event.inputs.map_date }}
         run: |
-          INPUT_DATE="${{ github.event.inputs.map_date }}"
-
           if [ -z "$INPUT_DATE" ]; then
-            echo "date_arg=" >> $GITHUB_OUTPUT
+            echo "date_arg=" >> "$GITHUB_OUTPUT"
             echo "No manual date provided. Script will use default latest cycle."
           else
-            DATE_ARG=$(python - <<'PY'
+            DATE_ARG=$(python - "$INPUT_DATE" <<'PY'
           from datetime import datetime
-          import os
+          import sys
           
-          s = os.environ["INPUT_DATE"].strip()
+          s = sys.argv[1].strip()
           dt = datetime.strptime(s, "%m/%d/%Y")
           print(dt.strftime("%Y%m%d") + "1200")
           PY
           )
-                      echo "date_arg=$DATE_ARG" >> $GITHUB_OUTPUT
+                      echo "date_arg=$DATE_ARG" >> "$GITHUB_OUTPUT"
                       echo "Using manual date: $INPUT_DATE -> $DATE_ARG"
                     fi
-                  env:
-                    INPUT_DATE: ${{ github.event.inputs.map_date }}
           
                 - name: Generate map
                   run: |
@@ -75,8 +73,15 @@ jobs:
                   run: |
                     git config user.name "github-actions[bot]"
                     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
                     git add docs/ data/
-                    git diff --cached --quiet && echo "No changes to commit" && exit 0
+          
+                    if git diff --cached --quiet; then
+                      echo "No changes to commit."
+                      exit 0
+                    fi
+          
                     git commit -m "Update latest LIX precip map"
+          
                     git pull --rebase origin main
                     git push origin main
