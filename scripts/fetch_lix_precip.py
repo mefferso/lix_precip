@@ -336,29 +336,29 @@ def plot_map(
     # LIX boundary bold
     lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4)
 
-    # North Arrow
+    # North Arrow (Moved to bottom left so it doesn't overlap the inset)
     ax.text(
-        0.04, 0.96, 'N',
+        0.05, 0.16, 'N',
         ha='center', va='center', fontsize=26, fontweight='bold',
         transform=ax.transAxes, zorder=10, 
         path_effects=[pe.withStroke(linewidth=4, foreground="white")]
     )
     ax.annotate(
-        '', xy=(0.04, 0.93), xytext=(0.04, 0.85),
+        '', xy=(0.05, 0.13), xytext=(0.05, 0.05),
         arrowprops=dict(facecolor='black', edgecolor='white', width=8, headwidth=20, headlength=18),
         xycoords='axes fraction', textcoords='axes fraction', zorder=10
     )
 
-    # Inset Map (Locator Map)
-    ax_in = fig.add_axes([0.04, 0.09, 0.18, 0.18])
-    ax_in.set_facecolor("#eef8ff")
+    # Inset Map (Locator Map) - Polished and positioned top-left
+    ax_in = fig.add_axes([0.045, 0.635, 0.16, 0.16])
+    ax_in.set_facecolor("#d4e6f1")  # Clean water blue to contrast land
     for s in ax_in.spines.values():
-        s.set_linewidth(1.5)
+        s.set_linewidth(2.0)
         s.set_color("black")
     
-    # Plot states and LIX boundary on inset
-    states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#333333", linewidth=0.8)
-    lix.plot(ax=ax_in, facecolor="orange", edgecolor="black", linewidth=1.5)
+    # Plot states and LIX boundary on inset (Light gray land for contrast)
+    states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=1.0, zorder=1)
+    lix.plot(ax=ax_in, facecolor="#ff9900", edgecolor="black", linewidth=1.5, zorder=2)
     
     # Add state labels to inset
     lbls = gpd.GeoDataFrame(
@@ -370,7 +370,7 @@ def plot_map(
     for _, row in lbls.iterrows():
         ax_in.text(
             row.geometry.x, row.geometry.y, row['name'], 
-            ha='center', va='center', fontsize=10, fontweight='bold', color='#444444'
+            ha='center', va='center', fontsize=10, fontweight='bold', color='#444444', zorder=3
         )
         
     index_domain = gpd.GeoDataFrame(geometry=[box(*INDEX_BBOX)], crs=4326).to_crs(plot_domain.crs)
@@ -437,7 +437,7 @@ def plot_map(
     ax_leg.text(0.5, 0.77, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold")
 
     labels = [
-        "Greater than 15",
+        "Greater than or equal to 15",
         "10 to 15",
         "8 to 10",
         "6 to 8",
@@ -470,9 +470,6 @@ def plot_map(
         plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color="#8f8f8f", transform=ax_leg.transAxes, clip_on=False)
     )
     ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left")
-
-    # Source Text
-    #ax_leg.text(0.5, 0.02, "Source:\nwater.noaa.gov", ha="center", va="bottom", fontsize=11, fontweight="bold", color="#333333")
 
     png_path = OUT_DIR / "lix_24h_precip_latest.png"
     fig.savefig(png_path, dpi=170, bbox_inches="tight")
