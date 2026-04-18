@@ -2,6 +2,11 @@ name: Build WFO LIX 24-hour precipitation map
 
 on:
   workflow_dispatch:
+    inputs:
+      map_date:
+        description: 'Map date in MM/DD/YYYY format (example: 04/18/2026). Leave blank for latest available 12Z cycle.'
+        required: false
+        default: ''
   schedule:
     - cron: '45 14 * * *'
 
@@ -33,9 +38,38 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Build date argument
+        id: build_date
+        shell: bash
+        run: |
+          INPUT_DATE="${{ github.event.inputs.map_date }}"
+
+          if [ -z "$INPUT_DATE" ]; then
+            echo "date_arg=" >> $GITHUB_OUTPUT
+            echo "No manual date provided. Script will use default latest cycle."
+          else
+            DATE_ARG=$(python - <<'PY'
+from datetime import datetime
+import os
+
+s = os.environ["INPUT_DATE"].strip()
+dt = datetime.strptime(s, "%m/%d/%Y")
+print(dt.strftime("%Y%m%d") + "1200")
+PY
+)
+            echo "date_arg=$DATE_ARG" >> $GITHUB_OUTPUT
+            echo "Using manual date: $INPUT_DATE -> $DATE_ARG"
+          fi
+        env:
+          INPUT_DATE: ${{ github.event.inputs.map_date }}
+
       - name: Generate map
         run: |
-          python scripts/fetch_lix_precip.py
+          if [ -n "${{ steps.build_date.outputs.date_arg }}" ]; then
+            python scripts/fetch_lix_precip.py "${{ steps.build_date.outputs.date_arg }}"
+          else
+            python scripts/fetch_lix_precip.py
+          fi
 
       - name: Commit updated outputs
         run: |
