@@ -14,6 +14,9 @@ import numpy as np
 import rasterio
 import requests
 from matplotlib.colors import BoundaryNorm, ListedColormap
+from rasterio.enums import Resampling
+from rasterio.transform import array_bounds
+from rasterio.warp import calculate_default_transform, reproject
 from shapely.geometry import box
 
 # -----------------------------
@@ -29,6 +32,7 @@ RAW_DIR.mkdir(parents=True, exist_ok=True)
 SHAPE_DIR.mkdir(parents=True, exist_ok=True)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
+# Plot extent around WFO LIX CWA, in lon/lat
 PLOT_BBOX = (-91.9, 28.8, -87.6, 31.8)
 
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
@@ -100,7 +104,6 @@ def build_time_window(end_dt: datetime) -> TimeWindow:
 def download(url: str, dest: Path) -> Path:
     if dest.exists():
         return dest
-
     r = requests.get(url, timeout=180)
     r.raise_for_status()
     dest.write_bytes(r.content)
@@ -111,7 +114,6 @@ def unzip(zip_path: Path, out_dir: Path) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(zip_path) as zf:
         zf.extractall(out_dir)
-
     shp_files = list(out_dir.glob("*.shp"))
     if not shp_files:
         raise FileNotFoundError(f"No .shp found in {zip_path}")
@@ -176,28 +178,63 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
 
 
 def read_raster_for_plotting(tif_path: Path):
+    target_crs = "EPSG:3857"
+
+    # Build the target crop box in the plotting CRS.
+    plot_box_4326 = gpd.GeoDataFrame(geometry=[box(*PLOT_BBOX)], crs=4326)
+    plot_box_3857 = plot_box_4326.to_crs(target_crs)
+    xmin, ymin, xmax, ymax = plot_box_3857.total_bounds
+
     with rasterio.open(tif_path) as src:
         print(f"Raster CRS: {src.crs}")
         print(f"Raster bounds: {src.bounds}")
 
-        arr = src.read(1).astype("float32")
+        dst_transform, dst_width, dst_height = calculate_default_transform(
+            src.crs,
+            target_crs,
+            src.width,
+            src.height,
+            *src.bounds,
+        )
 
-        if src.nodata is not None:
-            arr = np.where(arr == src.nodata, np.nan, arr)
+        dst_array = np.full((dst_height, dst_width), np.nan, dtype=np.float32)
 
-        arr = np.where(arr < 0, np.nan, arr)
+        reproject(
+            source=rasterio.band(src, 1),
+            destination=dst_array,
+            src_transform=src.transform,
+            src_crs=src.crs,
+            src_nodata=src.nodata,
+            dst_transform=dst_transform,
+            dst_crs=target_crs,
+            dst_nodata=np.nan,
+            resampling=Resampling.nearest,
+        )
 
-        left, bottom, right, top = src.bounds
+    full_left, full_bottom, full_right, full_top = array_bounds(
+        dst_height, dst_width, dst_transform
+    )
 
-        raster_bounds_gdf = gpd.GeoDataFrame(
-            geometry=[box(left, bottom, right, top)],
-            crs=src.crs,
-        ).to_crs(3857)
+    # Compute crop indices in reprojected raster coordinates.
+    xres = dst_transform.a
+    yres = abs(dst_transform.e)
 
-        rb = raster_bounds_gdf.total_bounds
-        extent_3857 = [rb[0], rb[2], rb[1], rb[3]]
+    col0 = max(0, int((xmin - full_left) / xres))
+    col1 = min(dst_width, int(np.ceil((xmax - full_left) / xres)))
+    row0 = max(0, int((full_top - ymax) / yres))
+    row1 = min(dst_height, int(np.ceil((full_top - ymin) / yres)))
 
-    return arr, extent_3857
+    cropped = dst_array[row0:row1, col0:col1]
+
+    crop_left = full_left + col0 * xres
+    crop_right = full_left + col1 * xres
+    crop_top = full_top - row0 * yres
+    crop_bottom = full_top - row1 * yres
+
+    cropped = np.where(cropped < 0, np.nan, cropped)
+
+    extent_3857 = [crop_left, crop_right, crop_bottom, crop_top]
+    return cropped, extent_3857
 
 
 def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, raster_arr: np.ndarray, raster_extent_3857: list[float]) -> None:
