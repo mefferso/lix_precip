@@ -16,7 +16,7 @@ import requests
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from rasterio.enums import Resampling
 from rasterio.vrt import WarpedVRT
-from rasterio.windows import bounds as window_bounds
+from rasterio.windows import Window, bounds as window_bounds
 from rasterio.windows import from_bounds
 from shapely.geometry import box
 
@@ -205,10 +205,13 @@ def read_raster_for_plotting(tif_path: Path):
         print(f"Raster bounds: {src.bounds}")
 
         with WarpedVRT(src, crs=target_crs, resampling=Resampling.nearest) as vrt:
-            window = from_bounds(xmin, ymin, xmax, ymax, transform=vrt.transform)
-            window = window.round_offsets().round_lengths()
+            requested_window = from_bounds(xmin, ymin, xmax, ymax, transform=vrt.transform)
+            requested_window = requested_window.round_offsets().round_lengths()
 
-            arr = vrt.read(1, window=window, boundless=True, fill_value=np.nan).astype(np.float32)
+            full_window = Window(0, 0, vrt.width, vrt.height)
+            window = requested_window.intersection(full_window)
+
+            arr = vrt.read(1, window=window).astype(np.float32)
 
             nodata_value = vrt.nodata
             if nodata_value is not None and not np.isnan(nodata_value):
