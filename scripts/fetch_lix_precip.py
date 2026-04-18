@@ -15,8 +15,9 @@ import rasterio
 import requests
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from rasterio.enums import Resampling
-from rasterio.transform import array_bounds
-from rasterio.warp import calculate_default_transform, reproject
+from rasterio.vrt import WarpedVRT
+from rasterio.windows import bounds as window_bounds
+from rasterio.windows import from_bounds
 from shapely.geometry import box
 
 # -----------------------------
@@ -86,6 +87,8 @@ class TimeWindow:
 def infer_default_end(now_utc: datetime | None = None) -> datetime:
     now_utc = now_utc or datetime.now(timezone.utc)
     today_12z = now_utc.replace(hour=12, minute=0, second=0, microsecond=0)
+
+    # Wait until 14:30 UTC so latest daily product has time to show up.
     if now_utc >= today_12z + timedelta(hours=2, minutes=30):
         return today_12z
     return today_12z - timedelta(days=1)
@@ -109,10 +112,21 @@ def download(url: str, dest: Path) -> Path:
     return dest
 
 
+def download_if_missing(url: str, dest: Path) -> Path:
+    if dest.exists():
+        return dest
+    print(f"Downloading: {url}")
+    r = requests.get(url, timeout=180)
+    r.raise_for_status()
+    dest.write_bytes(r.content)
+    return dest
+
+
 def unzip(zip_path: Path, out_dir: Path) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(zip_path) as zf:
         zf.extractall(out_dir)
+
     shp_files = list(out_dir.glob("*.shp"))
     if not shp_files:
         raise FileNotFoundError(f"No .shp found in {zip_path}")
@@ -120,8 +134,8 @@ def unzip(zip_path: Path, out_dir: Path) -> Path:
 
 
 def load_shapes() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
-    cwa_zip = download(CWA_URL, RAW_DIR / "w_16ap26.zip")
-    county_zip = download(COUNTY_URL, RAW_DIR / "c_16ap26.zip")
+    cwa_zip = download_if_missing(CWA_URL, RAW_DIR / "w_16ap26.zip")
+    county_zip = download_if_missing(COUNTY_URL, RAW_DIR / "c_16ap26.zip")
 
     cwa_shp = unzip(cwa_zip, SHAPE_DIR / "cwa")
     county_shp = unzip(county_zip, SHAPE_DIR / "county")
@@ -154,10 +168,8 @@ def fetch_stageiv_qpe(window: TimeWindow) -> Path:
         tif_url = stageiv_archive_url(window.end)
         tif_path = RAW_DIR / f"nws_precip_1day_{window.end.strftime('%Y%m%d')}_conus.tif"
 
-    return download(tif_url, tif_path)
     path = download(tif_url, tif_path)
-    print(f"Using TIFF: {path}")
-    print(f"Source URL: {tif_url}")
+    print(f"Used source raster: {path}")
     return path
 
 
@@ -183,7 +195,7 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
 def read_raster_for_plotting(tif_path: Path):
     target_crs = "EPSG:3857"
 
-    # Build the target crop box in the plotting CRS.
+    # Build plot box in target CRS
     plot_box_4326 = gpd.GeoDataFrame(geometry=[box(*PLOT_BBOX)], crs=4326)
     plot_box_3857 = plot_box_4326.to_crs(target_crs)
     xmin, ymin, xmax, ymax = plot_box_3857.total_bounds
@@ -192,59 +204,37 @@ def read_raster_for_plotting(tif_path: Path):
         print(f"Raster CRS: {src.crs}")
         print(f"Raster bounds: {src.bounds}")
 
-        dst_transform, dst_width, dst_height = calculate_default_transform(
-            src.crs,
-            target_crs,
-            src.width,
-            src.height,
-            *src.bounds,
-        )
+        with WarpedVRT(src, crs=target_crs, resampling=Resampling.nearest) as vrt:
+            window = from_bounds(xmin, ymin, xmax, ymax, transform=vrt.transform)
+            window = window.round_offsets().round_lengths()
 
-        dst_array = np.full((dst_height, dst_width), np.nan, dtype=np.float32)
+            arr = vrt.read(1, window=window, boundless=True, fill_value=np.nan).astype(np.float32)
 
-        reproject(
-            source=rasterio.band(src, 1),
-            destination=dst_array,
-            src_transform=src.transform,
-            src_crs=src.crs,
-            src_nodata=src.nodata,
-            dst_transform=dst_transform,
-            dst_crs=target_crs,
-            dst_nodata=np.nan,
-            resampling=Resampling.nearest,
-        )
+            nodata_value = vrt.nodata
+            if nodata_value is not None and not np.isnan(nodata_value):
+                arr = np.where(arr == nodata_value, np.nan, arr)
 
-    full_left, full_bottom, full_right, full_top = array_bounds(
-        dst_height, dst_width, dst_transform
-    )
+            arr = np.where(arr < 0, np.nan, arr)
 
-    # Compute crop indices in reprojected raster coordinates.
-    xres = dst_transform.a
-    yres = abs(dst_transform.e)
+            left, bottom, right, top = window_bounds(window, vrt.transform)
 
-    col0 = max(0, int((xmin - full_left) / xres))
-    col1 = min(dst_width, int(np.ceil((xmax - full_left) / xres)))
-    row0 = max(0, int((full_top - ymax) / yres))
-    row1 = min(dst_height, int(np.ceil((full_top - ymin) / yres)))
+    print(f"Cropped shape: {arr.shape}")
+    print(f"Crop extent 3857: left={left}, right={right}, bottom={bottom}, top={top}")
+    print(f"Crop min/max: min={np.nanmin(arr)}, max={np.nanmax(arr)}")
 
-    cropped = dst_array[row0:row1, col0:col1]
-    print(f"Cropped shape: {cropped.shape}")
-    print(f"Crop extent 3857: left={crop_left}, right={crop_right}, bottom={crop_bottom}, top={crop_top}")
-    print(f"Crop min/max: min={np.nanmin(cropped)}, max={np.nanmax(cropped)}")
-
-    crop_left = full_left + col0 * xres
-    crop_right = full_left + col1 * xres
-    crop_top = full_top - row0 * yres
-    crop_bottom = full_top - row1 * yres
-
-    cropped = np.where(cropped < 0, np.nan, cropped)
-
-    extent_3857 = [crop_left, crop_right, crop_bottom, crop_top]
+    extent_3857 = [left, right, bottom, top]
     print(f"Final extent_3857: {extent_3857}")
-    return cropped, extent_3857
+
+    return arr, extent_3857
 
 
-def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, raster_arr: np.ndarray, raster_extent_3857: list[float]) -> None:
+def plot_map(
+    window: TimeWindow,
+    lix: gpd.GeoDataFrame,
+    counties: gpd.GeoDataFrame,
+    raster_arr: np.ndarray,
+    raster_extent_3857: list[float],
+) -> None:
     minx, miny, maxx, maxy = counties.total_bounds
 
     fig = plt.figure(figsize=(15.5, 11.5), facecolor="#f2f2f2")
@@ -283,7 +273,7 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
     ax.imshow(
         raster_arr,
         extent=raster_extent_3857,
-        origin="lower",
+        origin="upper",
         cmap=CMAP,
         norm=NORM,
         interpolation="nearest",
@@ -298,7 +288,7 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
     ax.set_xticks([])
     ax.set_yticks([])
 
-    # Legend / info panel
+    # Legend panel
     ax_leg = fig.add_axes([0.86, 0.07, 0.11, 0.75])
     ax_leg.set_facecolor("white")
     for s in ax_leg.spines.values():
@@ -373,7 +363,6 @@ def main() -> None:
     write_outputs(window, tif_path)
 
     print(f"Saved map to {OUT_DIR / 'lix_24h_precip_latest.png'}")
-    print(f"Used source raster: {tif_path}")
 
 
 if __name__ == "__main__":
