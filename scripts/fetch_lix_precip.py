@@ -33,11 +33,12 @@ RAW_DIR.mkdir(parents=True, exist_ok=True)
 SHAPE_DIR.mkdir(parents=True, exist_ok=True)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Expanded plot extent: all of LA, MS, AL + nearby Gulf waters
-PLOT_BBOX = (-95.5, 27.2, -84.6, 35.3)
+# Zoomed-in plot extent centered on LIX (LA/MS)
+PLOT_BBOX = (-92.5, 28.5, -88.5, 32.0)
 
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
 COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
+STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/State/s_16ap26.zip"
 
 TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 SUBTITLE = "Estimated 24 Hour Rainfall"
@@ -134,16 +135,20 @@ def unzip(zip_path: Path, out_dir: Path) -> Path:
     return shp_files[0]
 
 
-def load_shapes() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
+def load_shapes() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame, gpd.GeoDataFrame]:
     cwa_zip = download_if_missing(CWA_URL, RAW_DIR / "w_16ap26.zip")
     county_zip = download_if_missing(COUNTY_URL, RAW_DIR / "c_16ap26.zip")
+    state_zip = download_if_missing(STATE_URL, RAW_DIR / "s_16ap26.zip")
 
     cwa_shp = unzip(cwa_zip, SHAPE_DIR / "cwa")
     county_shp = unzip(county_zip, SHAPE_DIR / "county")
+    state_shp = unzip(state_zip, SHAPE_DIR / "state")
 
     cwa = gpd.read_file(cwa_shp)
     counties = gpd.read_file(county_shp)
-    return cwa, counties
+    states = gpd.read_file(state_shp)
+    
+    return cwa, counties, states
 
 
 def stageiv_current_url() -> str:
@@ -174,16 +179,18 @@ def fetch_stageiv_qpe(window: TimeWindow) -> Path:
     return path
 
 
-def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
+def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, states: gpd.GeoDataFrame):
     lix = cwa[cwa["CWA"] == "LIX"].copy()
     if lix.empty:
         raise RuntimeError("Could not find CWA=LIX in CWA shapefile.")
 
     counties = counties.to_crs(4326)
+    states = states.to_crs(4326)
     lix = lix.to_crs(4326)
 
     plot_bounds = box(*PLOT_BBOX)
     counties = counties[counties.intersects(plot_bounds)].copy()
+    states = states[states.intersects(plot_bounds)].copy()
     counties["in_lix"] = counties["CWA"].astype(str).str[:3].eq("LIX")
 
     plot_domain = gpd.GeoDataFrame(geometry=[plot_bounds], crs=4326)
@@ -192,6 +199,7 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
     return (
         lix.to_crs(target_crs),
         counties.to_crs(target_crs),
+        states.to_crs(target_crs),
         plot_domain.to_crs(target_crs),
     )
 
@@ -243,6 +251,7 @@ def plot_map(
     window: TimeWindow,
     lix: gpd.GeoDataFrame,
     counties: gpd.GeoDataFrame,
+    states: gpd.GeoDataFrame,
     plot_domain: gpd.GeoDataFrame,
     raster_arr: np.ndarray,
     raster_extent_3857: list[float],
@@ -299,9 +308,12 @@ def plot_map(
 
     # County outlines over the top
     counties.plot(ax=ax, facecolor="none", edgecolor="#b7b7b7", linewidth=0.55, zorder=2)
+    
+    # State outlines
+    states.plot(ax=ax, facecolor="none", edgecolor="#555555", linewidth=1.5, zorder=3)
 
     # LIX boundary bold
-    lix.boundary.plot(ax=ax, color="black", linewidth=2.2, zorder=3)
+    lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4)
 
     ax.set_xlim(minx, maxx)
     ax.set_ylim(miny, maxy)
@@ -383,13 +395,13 @@ def main() -> None:
     end_dt = parse_end_arg()
     window = build_time_window(end_dt)
 
-    cwa, counties = load_shapes()
-    lix, counties_p, plot_domain = prepare_geodata(cwa, counties)
+    cwa, counties, states = load_shapes()
+    lix, counties_p, states_p, plot_domain = prepare_geodata(cwa, counties, states)
 
     tif_path = fetch_stageiv_qpe(window)
     raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path)
 
-    plot_map(window, lix, counties_p, plot_domain, raster_arr, raster_extent_3857)
+    plot_map(window, lix, counties_p, states_p, plot_domain, raster_arr, raster_extent_3857)
     write_outputs(window, tif_path)
 
     print(f"Saved map to {OUT_DIR / 'lix_24h_precip_latest.png'}")
