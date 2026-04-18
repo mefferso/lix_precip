@@ -304,7 +304,7 @@ def plot_map(
     )
 
     # Main map
-    ax = fig.add_axes([0.03, 0.07, 0.82, 0.75])
+    ax = fig.add_axes([0.03, 0.07, 0.78, 0.75])
     ax.set_facecolor("white")
     for s in ax.spines.values():
         s.set_linewidth(1.8)
@@ -424,7 +424,7 @@ def plot_map(
     ax.set_yticks([])
 
     # Legend panel
-    ax_leg = fig.add_axes([0.86, 0.07, 0.11, 0.75])
+    ax_leg = fig.add_axes([0.82, 0.07, 0.15, 0.75])
     ax_leg.set_facecolor("white")
     for s in ax_leg.spines.values():
         s.set_linewidth(1.8)
