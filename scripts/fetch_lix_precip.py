@@ -437,7 +437,7 @@ def plot_map(
     ax_leg.text(0.5, 0.77, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold")
 
     labels = [
-        "Greater than or equal to 15",
+        "Greater than 15",
         "10 to 15",
         "8 to 10",
         "6 to 8",
