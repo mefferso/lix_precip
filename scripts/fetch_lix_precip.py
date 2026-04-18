@@ -291,7 +291,7 @@ def plot_map(
     ax_head.set_yticks([])
 
     ax_head.text(0.5, 0.78, SUBTITLE, ha="center", va="center", fontsize=24, fontweight="bold")
-    ax_head.text(0.5, 0.50, "Data Source: water.noaa.gov", ha="center", va="center", fontsize=17, fontweight="bold")
+    ax_head.text(0.5, 0.60, "Data Source: water.noaa.gov", ha="center", va="center", fontsize=17, fontweight="bold")
     ax_head.text(0.5, 0.34, TITLE_OFFICE, ha="center", va="center", fontsize=17, fontweight="bold")
     ax_head.text(
         0.5,
