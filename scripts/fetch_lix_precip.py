@@ -167,7 +167,7 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
 
 def read_and_clip_raster(tif_path: Path, lix_3857: gpd.GeoDataFrame):
     with rasterio.open(tif_path) as src:
-        # Reproject the LIX polygon to the raster's CRS before clipping.
+        print(f"Raster CRS: {src.crs}")
         lix_in_raster_crs = lix_3857.to_crs(src.crs)
 
         clipped_data, clipped_transform = mask(
