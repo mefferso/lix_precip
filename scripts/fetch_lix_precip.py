@@ -356,16 +356,6 @@ def plot_map(
     )
     ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left")
 
-    ax_leg.text(
-        0.5,
-        0.03,
-        "Sources: NWPS/RFC Stage IV QPE + NWS GIS basemaps",
-        ha="center",
-        va="bottom",
-        fontsize=8.5,
-        color="#444444",
-    )
-
     png_path = OUT_DIR / "lix_24h_precip_latest.png"
     fig.savefig(png_path, dpi=170, bbox_inches="tight")
     plt.close(fig)
