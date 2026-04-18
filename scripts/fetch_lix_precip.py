@@ -271,7 +271,7 @@ def plot_map(
         s.set_linewidth(1.8)
         s.set_color("black")
 
-    counties.plot(ax=ax, facecolor="#ffffff", edgecolor="#b7b7b7", linewidth=0.6, zorder=1)
+    counties.plot(ax=ax, facecolor="none", edgecolor="#b7b7b7", linewidth=0.6, zorder=1)
 
     ax.imshow(
         raster_arr,
