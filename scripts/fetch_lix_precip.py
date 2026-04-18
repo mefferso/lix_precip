@@ -37,6 +37,9 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 # Zoomed-in plot extent centered on LIX (LA/MS)
 PLOT_BBOX = (-92.5, 28.5, -88.0, 32.0)
 
+# Wider extent for the index (locator) map
+INDEX_BBOX = (-95.0, 28.5, -84.0, 35.0)
+
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
 COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
 STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/County/s_16ap26.zip"
@@ -197,8 +200,10 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, states: g
     lix = lix.to_crs(4326)
 
     plot_bounds = box(*PLOT_BBOX)
+    index_bounds = box(*INDEX_BBOX)
+    
     counties = counties[counties.intersects(plot_bounds)].copy()
-    states = states[states.intersects(plot_bounds)].copy()
+    states = states[states.intersects(index_bounds)].copy()
     counties["in_lix"] = counties["CWA"].astype(str).str[:3].eq("LIX")
 
     plot_domain = gpd.GeoDataFrame(geometry=[plot_bounds], crs=4326)
@@ -330,6 +335,51 @@ def plot_map(
     # LIX boundary bold
     lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4)
 
+    # North Arrow
+    ax.text(
+        0.04, 0.96, 'N',
+        ha='center', va='center', fontsize=26, fontweight='bold',
+        transform=ax.transAxes, zorder=10, 
+        path_effects=[pe.withStroke(linewidth=4, foreground="white")]
+    )
+    ax.annotate(
+        '', xy=(0.04, 0.93), xytext=(0.04, 0.85),
+        arrowprops=dict(facecolor='black', edgecolor='white', width=8, headwidth=20, headlength=18),
+        xycoords='axes fraction', textcoords='axes fraction', zorder=10
+    )
+
+    # Inset Map (Locator Map)
+    ax_in = fig.add_axes([0.04, 0.09, 0.18, 0.18])
+    ax_in.set_facecolor("#eef8ff")
+    for s in ax_in.spines.values():
+        s.set_linewidth(1.5)
+        s.set_color("black")
+    
+    # Plot states and LIX boundary on inset
+    states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#333333", linewidth=0.8)
+    lix.plot(ax=ax_in, facecolor="orange", edgecolor="black", linewidth=1.5)
+    
+    # Add state labels to inset
+    lbls = gpd.GeoDataFrame(
+        {"name": ["LA", "MS", "AL", "TX", "AR"]},
+        geometry=gpd.points_from_xy([-92.2, -89.6, -86.8, -94.2, -92.5], [31.2, 32.8, 32.8, 31.5, 34.5]),
+        crs=4326
+    ).to_crs(plot_domain.crs)
+    
+    for _, row in lbls.iterrows():
+        ax_in.text(
+            row.geometry.x, row.geometry.y, row['name'], 
+            ha='center', va='center', fontsize=10, fontweight='bold', color='#444444'
+        )
+        
+    index_domain = gpd.GeoDataFrame(geometry=[box(*INDEX_BBOX)], crs=4326).to_crs(plot_domain.crs)
+    inx_minx, inx_miny, inx_maxx, inx_maxy = index_domain.total_bounds
+    
+    ax_in.set_xlim(inx_minx, inx_maxx)
+    ax_in.set_ylim(inx_miny, inx_maxy)
+    ax_in.set_xticks([])
+    ax_in.set_yticks([])
+
     # City dots, sampling, and labels
     rx_min, rx_max, ry_min, ry_max = raster_extent_3857
     height, width = raster_arr.shape
@@ -419,6 +469,9 @@ def plot_map(
         plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color="#8f8f8f", transform=ax_leg.transAxes, clip_on=False)
     )
     ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left")
+
+    # Source Text
+    ax_leg.text(0.5, 0.02, "Source:\nwater.noaa.gov", ha="center", va="bottom", fontsize=11, fontweight="bold", color="#333333")
 
     png_path = OUT_DIR / "lix_24h_precip_latest.png"
     fig.savefig(png_path, dpi=170, bbox_inches="tight")
