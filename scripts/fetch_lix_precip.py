@@ -102,8 +102,7 @@ def build_time_window(end_dt: datetime) -> TimeWindow:
 
 
 def download(url: str, dest: Path) -> Path:
-    if dest.exists():
-        return dest
+    print(f"Downloading: {url}")
     r = requests.get(url, timeout=180)
     r.raise_for_status()
     dest.write_bytes(r.content)
