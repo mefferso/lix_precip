@@ -338,27 +338,27 @@ def plot_map(
 
     # North Arrow (Moved to bottom left so it doesn't overlap the inset)
     ax.text(
-        0.05, 0.16, 'N',
+        0.04, 0.14, 'N',
         ha='center', va='center', fontsize=26, fontweight='bold',
         transform=ax.transAxes, zorder=10, 
         path_effects=[pe.withStroke(linewidth=4, foreground="white")]
     )
     ax.annotate(
-        '', xy=(0.05, 0.13), xytext=(0.05, 0.05),
+        '', xy=(0.04, 0.11), xytext=(0.04, 0.03),
         arrowprops=dict(facecolor='black', edgecolor='white', width=8, headwidth=20, headlength=18),
         xycoords='axes fraction', textcoords='axes fraction', zorder=10
     )
 
-    # Inset Map (Locator Map) - Polished and positioned top-left
-    ax_in = fig.add_axes([0.045, 0.635, 0.16, 0.16])
+    # Inset Map (Locator Map) - Polished and locked strictly INSIDE the main axes
+    ax_in = ax.inset_axes([0.02, 0.74, 0.24, 0.24])
     ax_in.set_facecolor("#d4e6f1")  # Clean water blue to contrast land
     for s in ax_in.spines.values():
-        s.set_linewidth(2.0)
+        s.set_linewidth(1.5)
         s.set_color("black")
     
     # Plot states and LIX boundary on inset (Light gray land for contrast)
-    states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=1.0, zorder=1)
-    lix.plot(ax=ax_in, facecolor="#ff9900", edgecolor="black", linewidth=1.5, zorder=2)
+    states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=0.8, zorder=1)
+    lix.plot(ax=ax_in, facecolor="#ff9900", edgecolor="black", linewidth=1.2, zorder=2)
     
     # Add state labels to inset
     lbls = gpd.GeoDataFrame(
@@ -370,7 +370,7 @@ def plot_map(
     for _, row in lbls.iterrows():
         ax_in.text(
             row.geometry.x, row.geometry.y, row['name'], 
-            ha='center', va='center', fontsize=10, fontweight='bold', color='#444444', zorder=3
+            ha='center', va='center', fontsize=9, fontweight='bold', color='#444444', zorder=3
         )
         
     index_domain = gpd.GeoDataFrame(geometry=[box(*INDEX_BBOX)], crs=4326).to_crs(plot_domain.crs)
