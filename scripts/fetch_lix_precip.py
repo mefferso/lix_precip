@@ -166,26 +166,33 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
 
 
 def read_and_clip_raster(tif_path: Path, lix_3857: gpd.GeoDataFrame):
-    lix_4326 = lix_3857.to_crs(4326)
-
     with rasterio.open(tif_path) as src:
+        # Reproject the LIX polygon to the raster's CRS before clipping.
+        lix_in_raster_crs = lix_3857.to_crs(src.crs)
+
         clipped_data, clipped_transform = mask(
             src,
-            lix_4326.geometry,
+            lix_in_raster_crs.geometry,
             crop=True,
             filled=True,
             nodata=np.nan,
         )
+
         arr = clipped_data[0].astype("float32")
 
         if src.nodata is not None:
             arr = np.where(arr == src.nodata, np.nan, arr)
 
-        bounds = rasterio.transform.array_bounds(arr.shape[0], arr.shape[1], clipped_transform)
+        arr = np.where(arr < 0, np.nan, arr)
 
+        bounds = rasterio.transform.array_bounds(
+            arr.shape[0],
+            arr.shape[1],
+            clipped_transform,
+        )
         left, bottom, right, top = bounds
 
-        # Build corner box in raster CRS, then project to EPSG:3857 for plotting with counties/CWA.
+        # Convert clipped raster bounds into EPSG:3857 for plotting with counties/CWA.
         raster_bounds_gdf = gpd.GeoDataFrame(
             geometry=[box(left, bottom, right, top)],
             crs=src.crs,
@@ -194,10 +201,7 @@ def read_and_clip_raster(tif_path: Path, lix_3857: gpd.GeoDataFrame):
         rb = raster_bounds_gdf.total_bounds
         extent_3857 = [rb[0], rb[2], rb[1], rb[3]]
 
-    # NWPS Stage IV CONUS TIFFs are already in inches.
-    arr = np.where(arr < 0, np.nan, arr)
     return arr, extent_3857
-
 
 def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, raster_arr: np.ndarray, raster_extent_3857: list[float]) -> None:
     minx, miny, maxx, maxy = counties.total_bounds
