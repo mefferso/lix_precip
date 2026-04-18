@@ -286,7 +286,6 @@ def plot_map(
     ax_head.set_yticks([])
 
     ax_head.text(0.5, 0.78, SUBTITLE, ha="center", va="center", fontsize=24, fontweight="bold")
-    ax_head.text(0.5, 0.56, PREPARED_BY, ha="center", va="center", fontsize=15, fontweight="bold")
     ax_head.text(0.5, 0.34, TITLE_OFFICE, ha="center", va="center", fontsize=17, fontweight="bold")
     ax_head.text(
         0.5,
