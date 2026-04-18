@@ -10,14 +10,13 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import geopandas as gpd
-import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import rasterio
 import requests
 from matplotlib.colors import BoundaryNorm, ListedColormap
-from scipy.ndimage import gaussian_filter
-from shapely import contains_xy
+from rasterio.mask import mask
 from shapely.geometry import box
 
 # -----------------------------
@@ -33,27 +32,18 @@ RAW_DIR.mkdir(parents=True, exist_ok=True)
 SHAPE_DIR.mkdir(parents=True, exist_ok=True)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-SYNOPTIC_TOKEN = os.getenv("SYNOPTIC_TOKEN", "").strip()
-if not SYNOPTIC_TOKEN:
-    raise SystemExit("Missing SYNOPTIC_TOKEN environment variable.")
-
-# Broader bbox than LIX CWA so interpolation behaves better near the edges.
-QUERY_BBOX = (-92.7, 28.5, -87.0, 32.7)  # lonmin, latmin, lonmax, latmax
-
 # Rough plotting extent around LIX CWA.
 PLOT_BBOX = (-91.9, 28.8, -87.6, 31.8)
 
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
 COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
-SYNOPTIC_URL = "https://api.synopticdata.com/v2/stations/precip"
 
 TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 SUBTITLE = "Estimated 24 Hour Rainfall"
 PREPARED_BY = "Graphic prepared by: WFO New Orleans/Baton Rouge"
 DESCRIPTION = (
     "Liquid precipitation observed over the specified 24 hour period. "
-    "The field is a station-based interpolation using Synoptic-derived precipitation totals. "
-    "It is not radar-QPE."
+    "Rainfall shading is from official NWPS / RFC Stage IV multi-sensor QPE."
 )
 
 LEVELS = [
@@ -96,7 +86,6 @@ class TimeWindow:
 def infer_default_end(now_utc: datetime | None = None) -> datetime:
     now_utc = now_utc or datetime.now(timezone.utc)
     today_12z = now_utc.replace(hour=12, minute=0, second=0, microsecond=0)
-    # Wait until 14:30 UTC so late morning daily gauges have a chance to land.
     if now_utc >= today_12z + timedelta(hours=2, minutes=30):
         return today_12z
     return today_12z - timedelta(days=1)
@@ -112,14 +101,10 @@ def build_time_window(end_dt: datetime) -> TimeWindow:
     return TimeWindow(start=end_dt - timedelta(hours=24), end=end_dt)
 
 
-def ymdhm(dt: datetime) -> str:
-    return dt.astimezone(timezone.utc).strftime("%Y%m%d%H%M")
-
-
 def download(url: str, dest: Path) -> Path:
     if dest.exists():
         return dest
-    r = requests.get(url, timeout=120)
+    r = requests.get(url, timeout=180)
     r.raise_for_status()
     dest.write_bytes(r.content)
     return dest
@@ -147,159 +132,75 @@ def load_shapes() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
     return cwa, counties
 
 
-def fetch_synoptic_precip(window: TimeWindow) -> pd.DataFrame:
-    params = {
-        "token": SYNOPTIC_TOKEN,
-        "bbox": ",".join(str(x) for x in QUERY_BBOX),
-        "start": ymdhm(window.start),
-        "end": ymdhm(window.end),
-        "pmode": "totals",
-        "search": "nearest",
-        "window": 60,
-        "units": "english",
-        "complete": 1,
-        "status": "active",
-        "showemptystations": 0,
-    }
-    r = requests.get(SYNOPTIC_URL, params=params, timeout=180)
-    r.raise_for_status()
-    payload = r.json()
-
-    summary = payload.get("SUMMARY", {})
-    code = summary.get("RESPONSE_CODE")
-    if code not in (1, "1"):
-        raise RuntimeError(f"Synoptic API returned code {code}: {summary.get('RESPONSE_MESSAGE')}")
-
-    rows: list[dict] = []
-    for station in payload.get("STATION", []):
-        precip_list = station.get("OBSERVATIONS", {}).get("precipitation", [])
-        if not precip_list:
-            continue
-
-        total = precip_list[0].get("total")
-        if total is None:
-            continue
-
-        try:
-            lat = float(station["LATITUDE"])
-            lon = float(station["LONGITUDE"])
-            total = float(total)
-        except Exception:
-            continue
-
-        rows.append(
-            {
-                "stid": station.get("STID"),
-                "name": station.get("NAME"),
-                "state": station.get("STATE"),
-                "lat": lat,
-                "lon": lon,
-                "mnet_id": station.get("MNET_ID"),
-                "timezone": station.get("TIMEZONE"),
-                "precip_in": max(total, 0.0),
-                "first_report": precip_list[0].get("first_report"),
-                "last_report": precip_list[0].get("last_report"),
-                "report_type": precip_list[0].get("report_type"),
-                "count": precip_list[0].get("count"),
-            }
-        )
-
-    df = pd.DataFrame(rows)
-    if df.empty:
-        raise RuntimeError("No station precipitation rows returned from Synoptic.")
-
-    df = df.drop_duplicates(subset=["stid"]).copy()
-    df = df[
-        (df["lon"] >= QUERY_BBOX[0]) & (df["lon"] <= QUERY_BBOX[2]) &
-        (df["lat"] >= QUERY_BBOX[1]) & (df["lat"] <= QUERY_BBOX[3])
-    ].copy()
-
-    return df.sort_values(["state", "stid"]).reset_index(drop=True)
+def stageiv_tif_url(end_dt: datetime) -> str:
+    y = end_dt.strftime("%Y")
+    m = end_dt.strftime("%m")
+    d = end_dt.strftime("%d")
+    ymd = end_dt.strftime("%Y%m%d")
+    return f"https://water.noaa.gov/resources/downloads/precip/stageIV/{y}/{m}/{d}/nws_precip_1day_{ymd}_conus.tif"
 
 
-def prepare_geodata(df: pd.DataFrame, cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
+def fetch_stageiv_qpe(window: TimeWindow) -> Path:
+    tif_url = stageiv_tif_url(window.end)
+    tif_path = RAW_DIR / f"nws_precip_1day_{window.end.strftime('%Y%m%d')}_conus.tif"
+    return download(tif_url, tif_path)
+
+
+def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
     lix = cwa[cwa["CWA"] == "LIX"].copy()
     if lix.empty:
         raise RuntimeError("Could not find CWA=LIX in CWA shapefile.")
 
     counties = counties.to_crs(4326)
     lix = lix.to_crs(4326)
-    plot_bounds = box(*PLOT_BBOX)
 
+    plot_bounds = box(*PLOT_BBOX)
     counties = counties[counties.intersects(plot_bounds)].copy()
     counties["in_lix"] = counties["CWA"].astype(str).str[:3].eq("LIX")
 
-    stations_gdf = gpd.GeoDataFrame(
-        df.copy(),
-        geometry=gpd.points_from_xy(df["lon"], df["lat"]),
-        crs=4326,
-    )
-
-    # Project for nicer interpolation/plotting math.
     target_crs = 3857
     return (
         lix.to_crs(target_crs),
         counties.to_crs(target_crs),
-        stations_gdf.to_crs(target_crs),
     )
 
 
-def idw_grid(
-    x: np.ndarray,
-    y: np.ndarray,
-    z: np.ndarray,
-    gx: np.ndarray,
-    gy: np.ndarray,
-    power: float = 2.0,
-) -> np.ndarray:
-    xi = gx[..., None]
-    yi = gy[..., None]
-    dist2 = (xi - x) ** 2 + (yi - y) ** 2
+def read_and_clip_raster(tif_path: Path, lix_3857: gpd.GeoDataFrame):
+    lix_4326 = lix_3857.to_crs(4326)
 
-    exact = dist2 == 0
-    dist2[exact] = 1e-12
+    with rasterio.open(tif_path) as src:
+        clipped_data, clipped_transform = mask(
+            src,
+            lix_4326.geometry,
+            crop=True,
+            filled=True,
+            nodata=np.nan,
+        )
+        arr = clipped_data[0].astype("float32")
 
-    w = 1.0 / np.power(dist2, power / 2.0)
-    vals = np.sum(w * z, axis=2) / np.sum(w, axis=2)
+        if src.nodata is not None:
+            arr = np.where(arr == src.nodata, np.nan, arr)
 
-    if exact.any():
-        row_idx, col_idx, pt_idx = np.where(exact)
-        vals[row_idx, col_idx] = z[pt_idx]
+        bounds = rasterio.transform.array_bounds(arr.shape[0], arr.shape[1], clipped_transform)
 
-    return vals
+        left, bottom, right, top = bounds
+
+        # Build corner box in raster CRS, then project to EPSG:3857 for plotting with counties/CWA.
+        raster_bounds_gdf = gpd.GeoDataFrame(
+            geometry=[box(left, bottom, right, top)],
+            crs=src.crs,
+        ).to_crs(3857)
+
+        rb = raster_bounds_gdf.total_bounds
+        extent_3857 = [rb[0], rb[2], rb[1], rb[3]]
+
+    # NWPS Stage IV CONUS TIFFs are already in inches.
+    arr = np.where(arr < 0, np.nan, arr)
+    return arr, extent_3857
 
 
-def format_station_value(v: float) -> str:
-    if v < 0.01:
-        return "0"
-    if v < 0.10:
-        return f"{v:.2f}".lstrip("0")
-    if v < 1.0:
-        return f"{v:.2f}".rstrip("0").rstrip(".")
-    return f"{v:.1f}".rstrip("0").rstrip(".")
-
-
-def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, stations: gpd.GeoDataFrame) -> None:
-    county_union = lix.geometry.union_all()
+def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, raster_arr: np.ndarray, raster_extent_3857: list[float]) -> None:
     minx, miny, maxx, maxy = counties.total_bounds
-
-    x = stations.geometry.x.to_numpy()
-    y = stations.geometry.y.to_numpy()
-    z_station = stations["precip_in"].to_numpy()
-
-    # For the contour field only, give tiny measurable values a small floor so they survive smoothing.
-    z_grid = z_station.copy()
-    measurable_mask = (z_grid > 0.0) & (z_grid < 0.01)
-    z_grid[measurable_mask] = 0.01
-
-    nx, ny = 550, 420
-    gx, gy = np.meshgrid(np.linspace(minx, maxx, nx), np.linspace(miny, maxy, ny))
-    grid = idw_grid(x, y, z_grid, gx, gy, power=2.0)
-    grid = gaussian_filter(grid, sigma=1.0)
-    grid = np.clip(grid, 0, None)
-
-    mask = contains_xy(county_union, gx, gy)
-    grid = np.where(mask, grid, np.nan)
 
     fig = plt.figure(figsize=(15.5, 11.5), facecolor="#f2f2f2")
 
@@ -336,49 +237,25 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
         s.set_linewidth(1.8)
         s.set_color("black")
 
-    counties.plot(ax=ax, facecolor="#ffffff", edgecolor="#8a8a8a", linewidth=0.6, zorder=1)
-    counties[counties["in_lix"]].plot(ax=ax, facecolor="none", edgecolor="black", linewidth=1.8, zorder=2)
+    counties.plot(ax=ax, facecolor="#ffffff", edgecolor="#b7b7b7", linewidth=0.6, zorder=1)
 
-    ax.contourf(gx, gy, grid, levels=LEVELS, cmap=CMAP, norm=NORM, extend="max", zorder=0)
+    ax.imshow(
+        raster_arr,
+        extent=raster_extent_3857,
+        origin="upper",
+        cmap=CMAP,
+        norm=NORM,
+        interpolation="nearest",
+        zorder=0,
+    )
+
+    counties[counties["in_lix"]].plot(ax=ax, facecolor="none", edgecolor="black", linewidth=1.6, zorder=2)
     lix.boundary.plot(ax=ax, color="black", linewidth=2.2, zorder=3)
-
-    # Label stations only inside LIX CWA
-    in_lix = stations[stations.within(county_union.buffer(1))].copy()
-
-    for row in in_lix.itertuples():
-        val = float(row.precip_in)
-
-        if val < 0.01:
-            color = "#666666"
-            size = 6.5
-        elif val < 1.0:
-            color = "#0b57d0"
-            size = 7.5
-        elif val < 3.0:
-            color = "#1f7a00"
-            size = 7.5
-        else:
-            color = "#c1121f"
-            size = 7.5
-
-        txt = ax.text(
-            row.geometry.x,
-            row.geometry.y,
-            format_station_value(val),
-            ha="center",
-            va="center",
-            fontsize=size,
-            color=color,
-            zorder=4,
-        )
-        txt.set_path_effects([pe.withStroke(linewidth=1.4, foreground="white")])
 
     ax.set_xlim(minx, maxx)
     ax.set_ylim(miny, maxy)
     ax.set_xticks([])
     ax.set_yticks([])
-
-    # No ax.set_title() here — that was causing the overlap mess.
 
     # -----------------------------
     # Legend / info panel
@@ -413,7 +290,7 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
     ax_leg.text(
         0.5,
         0.05,
-        "Sources: Synoptic derived precip + NWS GIS basemaps\nInterpolation: inverse-distance weighted",
+        "Sources: NWPS/RFC Stage IV QPE + NWS GIS basemaps",
         ha="center",
         va="bottom",
         fontsize=8.5,
@@ -425,20 +302,17 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
     plt.close(fig)
 
 
-def write_outputs(window: TimeWindow, df: pd.DataFrame) -> None:
-    csv_path = OUT_DIR / "station_precip_latest.csv"
+def write_outputs(window: TimeWindow, tif_path: Path) -> None:
     json_path = OUT_DIR / "latest.json"
 
-    df.to_csv(csv_path, index=False)
     json_path.write_text(
         json.dumps(
             {
                 "start_utc": window.start.isoformat(),
                 "end_utc": window.end.isoformat(),
                 "generated_utc": datetime.now(timezone.utc).isoformat(),
-                "station_count": int(len(df)),
                 "image": "lix_24h_precip_latest.png",
-                "csv": "station_precip_latest.csv",
+                "source_tif": tif_path.name,
             },
             indent=2,
         ),
@@ -449,13 +323,18 @@ def write_outputs(window: TimeWindow, df: pd.DataFrame) -> None:
 def main() -> None:
     end_dt = parse_end_arg()
     window = build_time_window(end_dt)
+
     cwa, counties = load_shapes()
-    df = fetch_synoptic_precip(window)
-    lix, counties_p, stations_p = prepare_geodata(df, cwa, counties)
-    plot_map(window, lix, counties_p, stations_p)
-    write_outputs(window, df)
+    lix, counties_p = prepare_geodata(cwa, counties)
+
+    tif_path = fetch_stageiv_qpe(window)
+    raster_arr, raster_extent_3857 = read_and_clip_raster(tif_path, lix)
+
+    plot_map(window, lix, counties_p, raster_arr, raster_extent_3857)
+    write_outputs(window, tif_path)
+
     print(f"Saved map to {OUT_DIR / 'lix_24h_precip_latest.png'}")
-    print(f"Stations used: {len(df)}")
+    print(f"Used source raster: {tif_path}")
 
 
 if __name__ == "__main__":
