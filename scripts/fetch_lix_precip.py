@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import io
 import json
-import math
 import os
 import sys
 import zipfile
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Iterable
 
 import geopandas as gpd
 import matplotlib.patheffects as pe
@@ -21,7 +18,7 @@ import requests
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from scipy.ndimage import gaussian_filter
 from shapely import contains_xy
-from shapely.geometry import Point, box
+from shapely.geometry import box
 
 # -----------------------------
 # CONFIG
@@ -54,8 +51,9 @@ TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 SUBTITLE = "Estimated 24 Hour Rainfall"
 PREPARED_BY = "Graphic prepared by: WFO New Orleans/Baton Rouge"
 DESCRIPTION = (
-    "Liquid precipitation observed over the specified 24 hour period. The field is a station-based "
-    "interpolation using Synoptic-derived precipitation totals. It is not radar-QPE."
+    "Liquid precipitation observed over the specified 24 hour period. "
+    "The field is a station-based interpolation using Synoptic-derived precipitation totals. "
+    "It is not radar-QPE."
 )
 
 LEVELS = [
@@ -177,15 +175,18 @@ def fetch_synoptic_precip(window: TimeWindow) -> pd.DataFrame:
         precip_list = station.get("OBSERVATIONS", {}).get("precipitation", [])
         if not precip_list:
             continue
+
         total = precip_list[0].get("total")
         if total is None:
             continue
+
         try:
             lat = float(station["LATITUDE"])
             lon = float(station["LONGITUDE"])
             total = float(total)
         except Exception:
             continue
+
         rows.append(
             {
                 "stid": station.get("STID"),
@@ -208,7 +209,11 @@ def fetch_synoptic_precip(window: TimeWindow) -> pd.DataFrame:
         raise RuntimeError("No station precipitation rows returned from Synoptic.")
 
     df = df.drop_duplicates(subset=["stid"]).copy()
-    df = df[(df["lon"] >= QUERY_BBOX[0]) & (df["lon"] <= QUERY_BBOX[2]) & (df["lat"] >= QUERY_BBOX[1]) & (df["lat"] <= QUERY_BBOX[3])]
+    df = df[
+        (df["lon"] >= QUERY_BBOX[0]) & (df["lon"] <= QUERY_BBOX[2]) &
+        (df["lat"] >= QUERY_BBOX[1]) & (df["lat"] <= QUERY_BBOX[3])
+    ].copy()
+
     return df.sort_values(["state", "stid"]).reset_index(drop=True)
 
 
@@ -239,29 +244,38 @@ def prepare_geodata(df: pd.DataFrame, cwa: gpd.GeoDataFrame, counties: gpd.GeoDa
     )
 
 
-def idw_grid(x: np.ndarray, y: np.ndarray, z: np.ndarray, gx: np.ndarray, gy: np.ndarray, power: float = 2.0) -> np.ndarray:
-    # gx, gy are 2D meshgrids
+def idw_grid(
+    x: np.ndarray,
+    y: np.ndarray,
+    z: np.ndarray,
+    gx: np.ndarray,
+    gy: np.ndarray,
+    power: float = 2.0,
+) -> np.ndarray:
     xi = gx[..., None]
     yi = gy[..., None]
     dist2 = (xi - x) ** 2 + (yi - y) ** 2
-    # Avoid divide by zero.
+
     exact = dist2 == 0
     dist2[exact] = 1e-12
+
     w = 1.0 / np.power(dist2, power / 2.0)
     vals = np.sum(w * z, axis=2) / np.sum(w, axis=2)
+
     if exact.any():
         row_idx, col_idx, pt_idx = np.where(exact)
         vals[row_idx, col_idx] = z[pt_idx]
+
     return vals
 
 
 def format_station_value(v: float) -> str:
     if v < 0.01:
         return "0"
-    if v < 0.1:
+    if v < 0.10:
         return f"{v:.2f}".lstrip("0")
-    if v < 1:
-        return f"{v:.2f}".rstrip("0").rstrip("0")
+    if v < 1.0:
+        return f"{v:.2f}".rstrip("0").rstrip(".")
     return f"{v:.1f}".rstrip("0").rstrip(".")
 
 
@@ -269,14 +283,18 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
     county_union = lix.geometry.union_all()
     minx, miny, maxx, maxy = counties.total_bounds
 
-    # Interpolate from all stations in the query domain, then clip to LIX CWA.
     x = stations.geometry.x.to_numpy()
     y = stations.geometry.y.to_numpy()
-    z = stations["precip_in"].to_numpy()
+    z_station = stations["precip_in"].to_numpy()
+
+    # For the contour field only, give tiny measurable values a small floor so they survive smoothing.
+    z_grid = z_station.copy()
+    measurable_mask = (z_grid > 0.0) & (z_grid < 0.01)
+    z_grid[measurable_mask] = 0.01
 
     nx, ny = 550, 420
     gx, gy = np.meshgrid(np.linspace(minx, maxx, nx), np.linspace(miny, maxy, ny))
-    grid = idw_grid(x, y, z, gx, gy, power=2.0)
+    grid = idw_grid(x, y, z_grid, gx, gy, power=2.0)
     grid = gaussian_filter(grid, sigma=1.0)
     grid = np.clip(grid, 0, None)
 
@@ -285,20 +303,34 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
 
     fig = plt.figure(figsize=(15.5, 11.5), facecolor="#f2f2f2")
 
+    # -----------------------------
     # Header block
-    ax_head = fig.add_axes([0.03, 0.83, 0.94, 0.14])
+    # -----------------------------
+    ax_head = fig.add_axes([0.03, 0.84, 0.94, 0.13])
     ax_head.set_facecolor("white")
     for s in ax_head.spines.values():
         s.set_linewidth(1.8)
         s.set_color("black")
     ax_head.set_xticks([])
     ax_head.set_yticks([])
-    ax_head.text(0.5, 0.82, SUBTITLE, ha="center", va="center", fontsize=30, fontweight="bold")
-    ax_head.text(0.5, 0.60, PREPARED_BY, ha="center", va="center", fontsize=17, fontweight="bold")
-    ax_head.text(0.5, 0.30, DESCRIPTION, ha="center", va="center", fontsize=13)
 
+    ax_head.text(0.5, 0.78, SUBTITLE, ha="center", va="center", fontsize=24, fontweight="bold")
+    ax_head.text(0.5, 0.56, PREPARED_BY, ha="center", va="center", fontsize=15, fontweight="bold")
+    ax_head.text(0.5, 0.34, TITLE_OFFICE, ha="center", va="center", fontsize=17, fontweight="bold")
+    ax_head.text(
+        0.5,
+        0.14,
+        f"24 Hour Precipitation Ending {window.end.strftime('%HZ %m-%d-%Y')}",
+        ha="center",
+        va="center",
+        fontsize=18,
+        fontweight="bold",
+    )
+
+    # -----------------------------
     # Main map
-    ax = fig.add_axes([0.03, 0.07, 0.82, 0.74])
+    # -----------------------------
+    ax = fig.add_axes([0.03, 0.07, 0.82, 0.75])
     ax.set_facecolor("white")
     for s in ax.spines.values():
         s.set_linewidth(1.8)
@@ -308,25 +340,27 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
     counties[counties["in_lix"]].plot(ax=ax, facecolor="none", edgecolor="black", linewidth=1.8, zorder=2)
 
     ax.contourf(gx, gy, grid, levels=LEVELS, cmap=CMAP, norm=NORM, extend="max", zorder=0)
-
     lix.boundary.plot(ax=ax, color="black", linewidth=2.2, zorder=3)
 
-    # Station labels inside the LIX CWA only.
+    # Label stations only inside LIX CWA
     in_lix = stations[stations.within(county_union.buffer(1))].copy()
+
     for row in in_lix.itertuples():
         val = float(row.precip_in)
+
         if val < 0.01:
             color = "#666666"
-            size = 7
+            size = 6.5
         elif val < 1.0:
             color = "#0b57d0"
-            size = 8
+            size = 7.5
         elif val < 3.0:
             color = "#1f7a00"
-            size = 8
+            size = 7.5
         else:
             color = "#c1121f"
-            size = 8
+            size = 7.5
+
         txt = ax.text(
             row.geometry.x,
             row.geometry.y,
@@ -337,21 +371,19 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
             color=color,
             zorder=4,
         )
-        txt.set_path_effects([pe.withStroke(linewidth=1.5, foreground="white")])
+        txt.set_path_effects([pe.withStroke(linewidth=1.4, foreground="white")])
 
     ax.set_xlim(minx, maxx)
     ax.set_ylim(miny, maxy)
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_title(
-        f"{TITLE_OFFICE}\n24 Hour Precipitation Ending {window.end.strftime('%HZ %m-%d-%Y')}",
-        fontsize=22,
-        fontweight="bold",
-        pad=16,
-    )
 
+    # No ax.set_title() here — that was causing the overlap mess.
+
+    # -----------------------------
     # Legend / info panel
-    ax_leg = fig.add_axes([0.86, 0.07, 0.11, 0.74])
+    # -----------------------------
+    ax_leg = fig.add_axes([0.86, 0.07, 0.11, 0.75])
     ax_leg.set_facecolor("white")
     for s in ax_leg.spines.values():
         s.set_linewidth(1.8)
@@ -368,11 +400,14 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
         "0.75 to 1", "1 to 1.5", "1.5 to 2", "2 to 2.5", "2.5 to 3", "3 to 4", "4 to 5",
         "5 to 6", "6 to 8", "8 to 10", "10 to 12", "12 to 14", "14 to 16", "16 to 18", "18 or higher"
     ]
+
     y0 = 0.70
     dy = 0.028
     for i, (label, color) in enumerate(zip(labels[::-1], COLORS[::-1])):
         y = y0 - i * dy
-        ax_leg.add_patch(plt.Rectangle((0.12, y - 0.012), 0.18, 0.018, color=color, transform=ax_leg.transAxes, clip_on=False))
+        ax_leg.add_patch(
+            plt.Rectangle((0.12, y - 0.012), 0.18, 0.018, color=color, transform=ax_leg.transAxes, clip_on=False)
+        )
         ax_leg.text(0.35, y - 0.002, label, fontsize=9.5, va="center", ha="left")
 
     ax_leg.text(
@@ -393,6 +428,7 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
 def write_outputs(window: TimeWindow, df: pd.DataFrame) -> None:
     csv_path = OUT_DIR / "station_precip_latest.csv"
     json_path = OUT_DIR / "latest.json"
+
     df.to_csv(csv_path, index=False)
     json_path.write_text(
         json.dumps(
