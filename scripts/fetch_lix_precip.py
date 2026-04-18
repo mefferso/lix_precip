@@ -10,6 +10,7 @@ from pathlib import Path
 
 import geopandas as gpd
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
 import numpy as np
 import rasterio
 import requests
@@ -47,6 +48,14 @@ DESCRIPTION = (
     "Liquid precipitation observed over the specified 24 hour period. "
     "Rainfall shading is from official NWPS / RFC Stage IV multi-sensor QPE."
 )
+
+CITIES = [
+    {"name": "Baton Rouge", "lat": 30.4515, "lon": -91.1871},
+    {"name": "New Orleans", "lat": 29.9511, "lon": -90.0715},
+    {"name": "Gulfport",    "lat": 30.3674, "lon": -89.0928},
+    {"name": "McComb",      "lat": 31.2438, "lon": -90.4532},
+    {"name": "Houma",       "lat": 29.5958, "lon": -90.7195},
+]
 
 # NWPS-like bins, but extended to 15+ at the top.
 # Values below 0.01 are drawn transparent.
@@ -195,12 +204,19 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, states: g
 
     plot_domain = gpd.GeoDataFrame(geometry=[plot_bounds], crs=4326)
 
+    cities_gdf = gpd.GeoDataFrame(
+        CITIES,
+        geometry=gpd.points_from_xy([c["lon"] for c in CITIES], [c["lat"] for c in CITIES]),
+        crs=4326
+    )
+
     target_crs = 3857
     return (
         lix.to_crs(target_crs),
         counties.to_crs(target_crs),
         states.to_crs(target_crs),
         plot_domain.to_crs(target_crs),
+        cities_gdf.to_crs(target_crs),
     )
 
 
@@ -253,6 +269,7 @@ def plot_map(
     counties: gpd.GeoDataFrame,
     states: gpd.GeoDataFrame,
     plot_domain: gpd.GeoDataFrame,
+    cities: gpd.GeoDataFrame,
     raster_arr: np.ndarray,
     raster_extent_3857: list[float],
 ) -> None:
@@ -314,6 +331,17 @@ def plot_map(
 
     # LIX boundary bold
     lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4)
+
+    # City dots and labels
+    for idx, row in cities.iterrows():
+        x, y = row.geometry.x, row.geometry.y
+        ax.plot(x, y, 'o', color='white', markeredgecolor='black', markersize=5, zorder=5)
+        ax.text(
+            x, y + 8000, row['name'],  # Offset y by ~8km in Web Mercator
+            color='black', fontsize=11, fontweight='bold', ha='center', va='bottom',
+            path_effects=[pe.withStroke(linewidth=2.5, foreground="white")],
+            zorder=6
+        )
 
     ax.set_xlim(minx, maxx)
     ax.set_ylim(miny, maxy)
@@ -396,12 +424,12 @@ def main() -> None:
     window = build_time_window(end_dt)
 
     cwa, counties, states = load_shapes()
-    lix, counties_p, states_p, plot_domain = prepare_geodata(cwa, counties, states)
+    lix, counties_p, states_p, plot_domain, cities_p = prepare_geodata(cwa, counties, states)
 
     tif_path = fetch_stageiv_qpe(window)
     raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path)
 
-    plot_map(window, lix, counties_p, states_p, plot_domain, raster_arr, raster_extent_3857)
+    plot_map(window, lix, counties_p, states_p, plot_domain, cities_p, raster_arr, raster_extent_3857)
     write_outputs(window, tif_path)
 
     print(f"Saved map to {OUT_DIR / 'lix_24h_precip_latest.png'}")
