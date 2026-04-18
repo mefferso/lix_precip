@@ -350,7 +350,7 @@ def plot_map(
     )
 
     # Inset Map (Locator Map) - Polished and locked strictly INSIDE the main axes
-    ax_in = ax.inset_axes([0.02, 0.74, 0.24, 0.24])
+    ax_in = ax.inset_axes([0.02, 0.84, 0.24, 0.24])
     ax_in.set_facecolor("#d4e6f1")  # Clean water blue to contrast land
     for s in ax_in.spines.values():
         s.set_linewidth(1.5)
