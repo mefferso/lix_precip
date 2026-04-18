@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import os
 import sys
 import zipfile
 from dataclasses import dataclass
@@ -12,11 +11,9 @@ from pathlib import Path
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import rasterio
 import requests
 from matplotlib.colors import BoundaryNorm, ListedColormap
-from rasterio.mask import mask
 from shapely.geometry import box
 
 # -----------------------------
@@ -32,7 +29,6 @@ RAW_DIR.mkdir(parents=True, exist_ok=True)
 SHAPE_DIR.mkdir(parents=True, exist_ok=True)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Rough plotting extent around LIX CWA.
 PLOT_BBOX = (-91.9, 28.8, -87.6, 31.8)
 
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
@@ -104,6 +100,7 @@ def build_time_window(end_dt: datetime) -> TimeWindow:
 def download(url: str, dest: Path) -> Path:
     if dest.exists():
         return dest
+
     r = requests.get(url, timeout=180)
     r.raise_for_status()
     dest.write_bytes(r.content)
@@ -114,6 +111,7 @@ def unzip(zip_path: Path, out_dir: Path) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(zip_path) as zf:
         zf.extractall(out_dir)
+
     shp_files = list(out_dir.glob("*.shp"))
     if not shp_files:
         raise FileNotFoundError(f"No .shp found in {zip_path}")
@@ -132,7 +130,11 @@ def load_shapes() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
     return cwa, counties
 
 
-def stageiv_tif_url(end_dt: datetime) -> str:
+def stageiv_current_url() -> str:
+    return "https://water.noaa.gov/resources/downloads/precip/stageIV/current/nws_precip_last24hours_conus.tif"
+
+
+def stageiv_archive_url(end_dt: datetime) -> str:
     y = end_dt.strftime("%Y")
     m = end_dt.strftime("%m")
     d = end_dt.strftime("%d")
@@ -141,8 +143,16 @@ def stageiv_tif_url(end_dt: datetime) -> str:
 
 
 def fetch_stageiv_qpe(window: TimeWindow) -> Path:
-    tif_url = stageiv_tif_url(window.end)
-    tif_path = RAW_DIR / f"nws_precip_1day_{window.end.strftime('%Y%m%d')}_conus.tif"
+    default_end = infer_default_end()
+    is_default_cycle = window.end == default_end
+
+    if is_default_cycle:
+        tif_url = stageiv_current_url()
+        tif_path = RAW_DIR / "nws_precip_last24hours_conus.tif"
+    else:
+        tif_url = stageiv_archive_url(window.end)
+        tif_path = RAW_DIR / f"nws_precip_1day_{window.end.strftime('%Y%m%d')}_conus.tif"
+
     return download(tif_url, tif_path)
 
 
@@ -165,34 +175,20 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
     )
 
 
-def read_and_clip_raster(tif_path: Path, lix_3857: gpd.GeoDataFrame):
+def read_raster_for_plotting(tif_path: Path):
     with rasterio.open(tif_path) as src:
         print(f"Raster CRS: {src.crs}")
-        lix_in_raster_crs = lix_3857.to_crs(src.crs)
+        print(f"Raster bounds: {src.bounds}")
 
-        clipped_data, clipped_transform = mask(
-            src,
-            lix_in_raster_crs.geometry,
-            crop=True,
-            filled=True,
-            nodata=np.nan,
-        )
-
-        arr = clipped_data[0].astype("float32")
+        arr = src.read(1).astype("float32")
 
         if src.nodata is not None:
             arr = np.where(arr == src.nodata, np.nan, arr)
 
         arr = np.where(arr < 0, np.nan, arr)
 
-        bounds = rasterio.transform.array_bounds(
-            arr.shape[0],
-            arr.shape[1],
-            clipped_transform,
-        )
-        left, bottom, right, top = bounds
+        left, bottom, right, top = src.bounds
 
-        # Convert clipped raster bounds into EPSG:3857 for plotting with counties/CWA.
         raster_bounds_gdf = gpd.GeoDataFrame(
             geometry=[box(left, bottom, right, top)],
             crs=src.crs,
@@ -203,14 +199,13 @@ def read_and_clip_raster(tif_path: Path, lix_3857: gpd.GeoDataFrame):
 
     return arr, extent_3857
 
+
 def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, raster_arr: np.ndarray, raster_extent_3857: list[float]) -> None:
     minx, miny, maxx, maxy = counties.total_bounds
 
     fig = plt.figure(figsize=(15.5, 11.5), facecolor="#f2f2f2")
 
-    # -----------------------------
     # Header block
-    # -----------------------------
     ax_head = fig.add_axes([0.03, 0.84, 0.94, 0.13])
     ax_head.set_facecolor("white")
     for s in ax_head.spines.values():
@@ -232,9 +227,7 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
         fontweight="bold",
     )
 
-    # -----------------------------
     # Main map
-    # -----------------------------
     ax = fig.add_axes([0.03, 0.07, 0.82, 0.75])
     ax.set_facecolor("white")
     for s in ax.spines.values():
@@ -261,9 +254,7 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
     ax.set_xticks([])
     ax.set_yticks([])
 
-    # -----------------------------
     # Legend / info panel
-    # -----------------------------
     ax_leg = fig.add_axes([0.86, 0.07, 0.11, 0.75])
     ax_leg.set_facecolor("white")
     for s in ax_leg.spines.values():
@@ -332,7 +323,7 @@ def main() -> None:
     lix, counties_p = prepare_geodata(cwa, counties)
 
     tif_path = fetch_stageiv_qpe(window)
-    raster_arr, raster_extent_3857 = read_and_clip_raster(tif_path, lix)
+    raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path)
 
     plot_map(window, lix, counties_p, raster_arr, raster_extent_3857)
     write_outputs(window, tif_path)
