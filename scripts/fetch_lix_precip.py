@@ -33,8 +33,8 @@ RAW_DIR.mkdir(parents=True, exist_ok=True)
 SHAPE_DIR.mkdir(parents=True, exist_ok=True)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Plot extent around WFO LIX CWA, in lon/lat
-PLOT_BBOX = (-91.9, 28.8, -87.6, 31.8)
+# Expanded plot extent: all of LA, MS, AL + nearby Gulf waters
+PLOT_BBOX = (-95.5, 27.2, -84.6, 35.3)
 
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
 COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
@@ -47,35 +47,36 @@ DESCRIPTION = (
     "Rainfall shading is from official NWPS / RFC Stage IV multi-sensor QPE."
 )
 
+# NWPS-like bins, but extended to 15+ at the top.
+# Values below 0.01 are drawn transparent.
 LEVELS = [
-    0.00, 0.01, 0.10, 0.25, 0.50, 0.75, 1.00, 1.50, 2.00, 2.50,
-    3.00, 4.00, 5.00, 6.00, 8.00, 10.00, 12.00, 14.00, 16.00, 18.00, 30.00
+    0.01, 0.10, 0.25, 0.50, 0.75, 1.00, 1.50, 2.00, 2.50,
+    3.00, 4.00, 5.00, 6.00, 8.00, 10.00, 15.00, 30.00
 ]
+
 COLORS = [
-    "#f7f7f7",  # <0.01
-    "#bfefff",  # 0.01-0.10
-    "#25a7e1",  # 0.10-0.25
-    "#1158b7",  # 0.25-0.50
-    "#57ff00",  # 0.50-0.75
-    "#38b000",  # 0.75-1.0
-    "#1f7a00",  # 1.0-1.5
-    "#f2ef00",  # 1.5-2.0
-    "#eec56f",  # 2.0-2.5
-    "#ff9a00",  # 2.5-3.0
-    "#ff3900",  # 3.0-4.0
-    "#d40000",  # 4.0-5.0
-    "#b10000",  # 5.0-6.0
-    "#ff00c8",  # 6.0-8.0
-    "#a700ff",  # 8.0-10.0
-    "#dddddd",  # 10.0-12.0
-    "#bdbdbd",  # 12.0-14.0
-    "#8fb9eb",  # 14.0-16.0
-    "#5e97cf",  # 16.0-18.0
-    "#356ba8",  # 18.0+
+    "#67c6e5",  # 0.01 to 0.1
+    "#6e9ad0",  # 0.1 to 0.25
+    "#4b4aa7",  # 0.25 to 0.5
+    "#57ea58",  # 0.5 to 0.75
+    "#52b852",  # 0.75 to 1
+    "#4d8c50",  # 1 to 1.5
+    "#eceb59",  # 1.5 to 2
+    "#efd27a",  # 2 to 2.5
+    "#eda24f",  # 2.5 to 3
+    "#ff4b4b",  # 3 to 4
+    "#c7484d",  # 4 to 5
+    "#a44a50",  # 5 to 6
+    "#e43ee0",  # 6 to 8
+    "#9362d6",  # 8 to 10
+    "#d9d9d9",  # 10 to 15
+    "#bcbcbc",  # >= 15
 ]
 
 CMAP = ListedColormap(COLORS)
-NORM = BoundaryNorm(LEVELS, CMAP.N, clip=True)
+CMAP.set_under((1, 1, 1, 0))   # <0.01 transparent
+CMAP.set_bad("#8f8f8f")         # missing data gray
+NORM = BoundaryNorm(LEVELS, CMAP.N, clip=False)
 
 
 @dataclass
@@ -185,17 +186,19 @@ def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame):
     counties = counties[counties.intersects(plot_bounds)].copy()
     counties["in_lix"] = counties["CWA"].astype(str).str[:3].eq("LIX")
 
+    plot_domain = gpd.GeoDataFrame(geometry=[plot_bounds], crs=4326)
+
     target_crs = 3857
     return (
         lix.to_crs(target_crs),
         counties.to_crs(target_crs),
+        plot_domain.to_crs(target_crs),
     )
 
 
 def read_raster_for_plotting(tif_path: Path):
     target_crs = "EPSG:3857"
 
-    # Build plot box in target CRS
     plot_box_4326 = gpd.GeoDataFrame(geometry=[box(*PLOT_BBOX)], crs=4326)
     plot_box_3857 = plot_box_4326.to_crs(target_crs)
     xmin, ymin, xmax, ymax = plot_box_3857.total_bounds
@@ -221,9 +224,14 @@ def read_raster_for_plotting(tif_path: Path):
 
             left, bottom, right, top = window_bounds(window, vrt.transform)
 
-    print(f"Cropped shape: {arr.shape}")
-    print(f"Crop extent 3857: left={left}, right={right}, bottom={bottom}, top={top}")
-    print(f"Crop min/max: min={np.nanmin(arr)}, max={np.nanmax(arr)}")
+    valid = arr[np.isfinite(arr)]
+    if valid.size:
+        print(f"Cropped shape: {arr.shape}")
+        print(f"Crop extent 3857: left={left}, right={right}, bottom={bottom}, top={top}")
+        print(f"Crop min/max: min={valid.min()}, max={valid.max()}")
+    else:
+        print(f"Cropped shape: {arr.shape}")
+        print("Crop contains no finite precip values.")
 
     extent_3857 = [left, right, bottom, top]
     print(f"Final extent_3857: {extent_3857}")
@@ -235,12 +243,13 @@ def plot_map(
     window: TimeWindow,
     lix: gpd.GeoDataFrame,
     counties: gpd.GeoDataFrame,
+    plot_domain: gpd.GeoDataFrame,
     raster_arr: np.ndarray,
     raster_extent_3857: list[float],
 ) -> None:
-    minx, miny, maxx, maxy = counties.total_bounds
+    minx, miny, maxx, maxy = plot_domain.total_bounds
 
-    fig = plt.figure(figsize=(15.5, 11.5), facecolor="#f2f2f2")
+    fig = plt.figure(figsize=(16, 11.5), facecolor="#f2f2f2")
 
     # Header block
     ax_head = fig.add_axes([0.03, 0.84, 0.94, 0.13])
@@ -271,8 +280,6 @@ def plot_map(
         s.set_linewidth(1.8)
         s.set_color("black")
 
-    counties.plot(ax=ax, facecolor="none", edgecolor="#b7b7b7", linewidth=0.6, zorder=1)
-
     ax.imshow(
         raster_arr,
         extent=raster_extent_3857,
@@ -283,7 +290,17 @@ def plot_map(
         zorder=0,
     )
 
-    counties[counties["in_lix"]].plot(ax=ax, facecolor="none", edgecolor="black", linewidth=1.6, zorder=2)
+    # Fade everything outside LIX, but keep raster visible underneath.
+    plot_box_geom = plot_domain.geometry.iloc[0]
+    lix_union = lix.geometry.union_all()
+    outside_geom = plot_box_geom.difference(lix_union)
+    outside_gdf = gpd.GeoDataFrame(geometry=[outside_geom], crs=plot_domain.crs)
+    outside_gdf.plot(ax=ax, facecolor="white", edgecolor="none", alpha=0.50, zorder=1)
+
+    # County outlines over the top
+    counties.plot(ax=ax, facecolor="none", edgecolor="#b7b7b7", linewidth=0.55, zorder=2)
+
+    # LIX boundary bold
     lix.boundary.plot(ax=ax, color="black", linewidth=2.2, zorder=3)
 
     ax.set_xlim(minx, maxx)
@@ -305,23 +322,43 @@ def plot_map(
     ax_leg.text(0.5, 0.77, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold")
 
     labels = [
-        "Less than 0.01", "0.01 to 0.1", "0.1 to 0.25", "0.25 to 0.5", "0.5 to 0.75",
-        "0.75 to 1", "1 to 1.5", "1.5 to 2", "2 to 2.5", "2.5 to 3", "3 to 4", "4 to 5",
-        "5 to 6", "6 to 8", "8 to 10", "10 to 12", "12 to 14", "14 to 16", "16 to 18", "18 or higher"
+        "Greater than or equal to 15",
+        "10 to 15",
+        "8 to 10",
+        "6 to 8",
+        "5 to 6",
+        "4 to 5",
+        "3 to 4",
+        "2.5 to 3",
+        "2 to 2.5",
+        "1.5 to 2",
+        "1 to 1.5",
+        "0.75 to 1",
+        "0.5 to 0.75",
+        "0.25 to 0.5",
+        "0.1 to 0.25",
+        "0.01 to 0.1",
     ]
 
     y0 = 0.70
-    dy = 0.028
-    for i, (label, color) in enumerate(zip(labels[::-1], COLORS[::-1])):
+    dy = 0.043
+    for i, (label, color) in enumerate(zip(labels, COLORS[::-1])):
         y = y0 - i * dy
         ax_leg.add_patch(
-            plt.Rectangle((0.12, y - 0.012), 0.18, 0.018, color=color, transform=ax_leg.transAxes, clip_on=False)
+            plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color=color, transform=ax_leg.transAxes, clip_on=False)
         )
-        ax_leg.text(0.35, y - 0.002, label, fontsize=9.5, va="center", ha="left")
+        ax_leg.text(0.36, y - 0.003, label, fontsize=10, va="center", ha="left")
+
+    # Missing data patch
+    y = y0 - len(labels) * dy
+    ax_leg.add_patch(
+        plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color="#8f8f8f", transform=ax_leg.transAxes, clip_on=False)
+    )
+    ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left")
 
     ax_leg.text(
         0.5,
-        0.05,
+        0.03,
         "Sources: NWPS/RFC Stage IV QPE + NWS GIS basemaps",
         ha="center",
         va="bottom",
@@ -357,12 +394,12 @@ def main() -> None:
     window = build_time_window(end_dt)
 
     cwa, counties = load_shapes()
-    lix, counties_p = prepare_geodata(cwa, counties)
+    lix, counties_p, plot_domain = prepare_geodata(cwa, counties)
 
     tif_path = fetch_stageiv_qpe(window)
     raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path)
 
-    plot_map(window, lix, counties_p, raster_arr, raster_extent_3857)
+    plot_map(window, lix, counties_p, plot_domain, raster_arr, raster_extent_3857)
     write_outputs(window, tif_path)
 
     print(f"Saved map to {OUT_DIR / 'lix_24h_precip_latest.png'}")
