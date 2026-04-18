@@ -228,6 +228,9 @@ def read_raster_for_plotting(tif_path: Path):
     row1 = min(dst_height, int(np.ceil((full_top - ymin) / yres)))
 
     cropped = dst_array[row0:row1, col0:col1]
+    print(f"Cropped shape: {cropped.shape}")
+    print(f"Crop extent 3857: left={crop_left}, right={crop_right}, bottom={crop_bottom}, top={crop_top}")
+    print(f"Crop min/max: min={np.nanmin(cropped)}, max={np.nanmax(cropped)}")
 
     crop_left = full_left + col0 * xres
     crop_right = full_left + col1 * xres
@@ -237,6 +240,7 @@ def read_raster_for_plotting(tif_path: Path):
     cropped = np.where(cropped < 0, np.nan, cropped)
 
     extent_3857 = [crop_left, crop_right, crop_bottom, crop_top]
+    print(f"Final extent_3857: {extent_3857}")
     return cropped, extent_3857
 
 
