@@ -279,7 +279,7 @@ def plot_map(window: TimeWindow, lix: gpd.GeoDataFrame, counties: gpd.GeoDataFra
     ax.imshow(
         raster_arr,
         extent=raster_extent_3857,
-        origin="upper",
+        origin="lower",
         cmap=CMAP,
         norm=NORM,
         interpolation="nearest",
