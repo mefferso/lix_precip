@@ -38,7 +38,7 @@ PLOT_BBOX = (-92.5, 28.5, -88.5, 32.0)
 
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
 COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
-STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/State/s_16ap26.zip"
+STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/State/s_11au16.zip"
 
 TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 SUBTITLE = "Estimated 24 Hour Rainfall"
@@ -138,7 +138,7 @@ def unzip(zip_path: Path, out_dir: Path) -> Path:
 def load_shapes() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame, gpd.GeoDataFrame]:
     cwa_zip = download_if_missing(CWA_URL, RAW_DIR / "w_16ap26.zip")
     county_zip = download_if_missing(COUNTY_URL, RAW_DIR / "c_16ap26.zip")
-    state_zip = download_if_missing(STATE_URL, RAW_DIR / "s_16ap26.zip")
+    state_zip = download_if_missing(STATE_URL, RAW_DIR / "s_11au16.zip")
 
     cwa_shp = unzip(cwa_zip, SHAPE_DIR / "cwa")
     county_shp = unzip(county_zip, SHAPE_DIR / "county")
