@@ -48,40 +48,32 @@ jobs:
             echo "date_arg=" >> "$GITHUB_OUTPUT"
             echo "No manual date provided. Script will use default latest cycle."
           else
-            DATE_ARG=$(python - "$INPUT_DATE" <<'PY'
-          from datetime import datetime
-          import sys
-          
-          s = sys.argv[1].strip()
-          dt = datetime.strptime(s, "%m/%d/%Y")
-          print(dt.strftime("%Y%m%d") + "1200")
-          PY
-          )
-                      echo "date_arg=$DATE_ARG" >> "$GITHUB_OUTPUT"
-                      echo "Using manual date: $INPUT_DATE -> $DATE_ARG"
-                    fi
-          
-                - name: Generate map
-                  run: |
-                    if [ -n "${{ steps.build_date.outputs.date_arg }}" ]; then
-                      python scripts/fetch_lix_precip.py "${{ steps.build_date.outputs.date_arg }}"
-                    else
-                      python scripts/fetch_lix_precip.py
-                    fi
-          
-                - name: Commit updated outputs
-                  run: |
-                    git config user.name "github-actions[bot]"
-                    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-                    git add docs/ data/
-          
-                    if git diff --cached --quiet; then
-                      echo "No changes to commit."
-                      exit 0
-                    fi
-          
-                    git commit -m "Update latest LIX precip map"
-          
-                    git pull --rebase origin main
-                    git push origin main
+            DATE_ARG="$(date -u -d "$INPUT_DATE" +%Y%m%d)1200"
+            echo "date_arg=$DATE_ARG" >> "$GITHUB_OUTPUT"
+            echo "Using manual date: $INPUT_DATE -> $DATE_ARG"
+          fi
+
+      - name: Generate map
+        run: |
+          if [ -n "${{ steps.build_date.outputs.date_arg }}" ]; then
+            python scripts/fetch_lix_precip.py "${{ steps.build_date.outputs.date_arg }}"
+          else
+            python scripts/fetch_lix_precip.py
+          fi
+
+      - name: Commit updated outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add docs/ data/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update latest LIX precip map"
+
+          git pull --rebase origin main
+          git push origin main
