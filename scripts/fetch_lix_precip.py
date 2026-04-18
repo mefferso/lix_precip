@@ -43,9 +43,9 @@ INDEX_BBOX = (-95.0, 28.5, -84.0, 35.0)
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
 COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
 STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/County/s_16ap26.zip"
-
 TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 SUBTITLE = "Estimated 24 Hour Rainfall"
+
 DESCRIPTION = (
     "Liquid precipitation observed over the specified 24 hour period. "
     "Rainfall shading is from official NWPS / RFC Stage IV multi-sensor QPE."
@@ -291,6 +291,7 @@ def plot_map(
     ax_head.set_yticks([])
 
     ax_head.text(0.5, 0.78, SUBTITLE, ha="center", va="center", fontsize=24, fontweight="bold")
+    ax_heat.text(0.5, 0.50, "Data Source: water.noaa.gov" ha="center", va="center", fontsize=17, fontweight="bold")
     ax_head.text(0.5, 0.34, TITLE_OFFICE, ha="center", va="center", fontsize=17, fontweight="bold")
     ax_head.text(
         0.5,
@@ -471,7 +472,7 @@ def plot_map(
     ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left")
 
     # Source Text
-    ax_leg.text(0.5, 0.02, "Source:\nwater.noaa.gov", ha="center", va="bottom", fontsize=11, fontweight="bold", color="#333333")
+    #ax_leg.text(0.5, 0.02, "Source:\nwater.noaa.gov", ha="center", va="bottom", fontsize=11, fontweight="bold", color="#333333")
 
     png_path = OUT_DIR / "lix_24h_precip_latest.png"
     fig.savefig(png_path, dpi=170, bbox_inches="tight")
