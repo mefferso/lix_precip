@@ -34,7 +34,7 @@ SHAPE_DIR.mkdir(parents=True, exist_ok=True)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Zoomed-in plot extent centered on LIX (LA/MS)
-PLOT_BBOX = (-92.5, 28.5, -88.5, 32.0)
+PLOT_BBOX = (-92.5, 28.5, -88.0, 32.0)
 
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
 COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
