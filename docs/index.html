@@ -9,21 +9,56 @@
     h1 { margin: 0 0 10px; font-size: 28px; }
     p { margin: 0 0 14px; font-size: 15px; }
     .card { background: #fff; border: 2px solid #111; border-radius: 10px; padding: 12px; }
-    img { width: 100%; height: auto; display: block; }
-    .links { margin-top: 12px; font-size: 15px; }
+    img { width: 100%; height: auto; display: block; margin-top: 15px; }
+    .links { margin-top: 12px; font-size: 15px; display: flex; justify-content: space-between; align-items: center; }
     a { color: #0b57d0; }
+    
+    /* Styling for the new dropdown */
+    .controls { margin-bottom: 15px; }
+    select { padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; width: 100%; max-width: 300px; }
   </style>
 </head>
 <body>
   <main>
     <div class="card">
-      <img src="lix_24h_precip_latest.png" alt="Latest WFO LIX 24-hour precipitation map">
+      <div class="controls">
+        <label for="mapSelector"><strong>Select Timeframe:</strong></label><br>
+        <select id="mapSelector">
+          <option value="lix_24h_precip_latest.png">24 Hour Rainfall</option>
+          <option value="lix_2d_precip_latest.png">2-Day Rainfall</option>
+          <option value="lix_3d_precip_latest.png">3-Day Rainfall</option>
+          <option value="lix_4d_precip_latest.png">4-Day Rainfall</option>
+          <option value="lix_5d_precip_latest.png">5-Day Rainfall</option>
+          <option value="lix_6d_precip_latest.png">6-Day Rainfall</option>
+          <option value="lix_7d_precip_latest.png">7-Day Rainfall</option>
+          <option value="lix_10d_precip_latest.png">10-Day Rainfall</option>
+          <option value="lix_14d_precip_latest.png">14-Day Rainfall</option>
+          <option value="lix_30d_precip_latest.png">30-Day Rainfall</option>
+          <option value="lix_mtd_precip_latest.png">Month-to-Date Rainfall</option>
+          <option value="lix_ytd_precip_latest.png">Year-to-Date Rainfall</option>
+        </select>
+      </div>
+
+      <img id="precipMap" src="lix_24h_precip_latest.png" alt="WFO LIX Precipitation Map">
+      
       <div class="links">
-        <a href="station_precip_latest.csv">Download latest station CSV</a>
-        &nbsp;|&nbsp;
-        <a href="latest.json">Latest metadata JSON</a>
+        <div>
+          <a href="station_precip_latest.csv">Download latest station CSV</a>
+          &nbsp;|&nbsp;
+          <a href="latest.json">Latest metadata JSON</a>
+        </div>
       </div>
     </div>
   </main>
+
+  <script>
+    // JavaScript to swap the image source when the dropdown changes
+    const selector = document.getElementById('mapSelector');
+    const mapImage = document.getElementById('precipMap');
+
+    selector.addEventListener('change', function() {
+      mapImage.src = this.value;
+    });
+  </script>
 </body>
 </html>
