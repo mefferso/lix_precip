@@ -217,25 +217,27 @@ def flatten_statistics_station(
     base = get_station_meta(station)
     stats = station.get("STATISTICS", {})
     block = pick_stat_block(stats, variable)
-    if not block:
+    if not block or not isinstance(block, list):
         return None
 
-    # Statistics service can return a list of period blocks. Use the newest one.
-    values = block.get(stat_name, [])
-    if not values:
+    newest = block[-1]
+    if not isinstance(newest, dict):
         return None
-    newest = values[-1]
 
-    value = newest.get("value")
+    value = newest.get(stat_name)
     if value in (None, ""):
         return None
+
+    time_period = newest.get("time_period", {}) or {}
+    valid_time = newest.get(f"{stat_name}_time", "")
 
     return {
         **base,
         value_col: round(float(value), 1),
-        "valid_time": newest.get("date_time", newest.get("dateend", "")),
-        "period_start": newest.get("datestart", ""),
-        "period_end": newest.get("dateend", ""),
+        "valid_time": valid_time,
+        "period_type": time_period.get("type", ""),
+        "period_value": time_period.get("value", ""),
+        "period_timezone": time_period.get("timezone", ""),
         "count": newest.get("count", ""),
     }
 
@@ -343,14 +345,16 @@ def build_latest_product(product_key: str) -> dict[str, Any]:
 def build_statistics_product(product_key: str, end_utc: datetime) -> dict[str, Any]:
     config = PRODUCTS[product_key]
 
-    # Ask for just one local day ending "now".
-    start_utc = end_utc - timedelta(hours=36)
+    # Synoptic statistics with period=day requires YYYYmmdd, not YYYYmmddHHMM.
+    # Since obtimezone=local, use the station-local/current local calendar day.
+    local_day_str = end_utc.astimezone().strftime("%Y%m%d")
+
     payload = request_json(
         config["service"],
         {
             **config["params"],
-            "start": start_utc.strftime("%Y%m%d%H%M"),
-            "end": end_utc.strftime("%Y%m%d%H%M"),
+            "start": local_day_str,
+            "end": local_day_str,
         },
     )
     stations = payload.get("STATION", [])
