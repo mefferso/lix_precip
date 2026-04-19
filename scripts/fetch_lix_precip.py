@@ -324,7 +324,7 @@ def plot_map(
     lix_union = lix.geometry.union_all() 
     outside_geom = plot_box_geom.difference(lix_union) 
     outside_gdf = gpd.GeoDataFrame(geometry=[outside_geom], crs=plot_domain.crs) 
-    outside_gdf.plot(ax=ax, facecolor="white", edgecolor="none", alpha=0.50, zorder=1) 
+    outside_gdf.plot(ax=ax, facecolor="white", edgecolor="none", alpha=0.40, zorder=1) 
 
     # County outlines over the top
     counties.plot(ax=ax, facecolor="none", edgecolor="#b7b7b7", linewidth=0.55, zorder=2) 
