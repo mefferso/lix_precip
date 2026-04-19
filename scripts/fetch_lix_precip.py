@@ -61,18 +61,18 @@ CITIES = [
 
 # Mapping keys to NOAA's exact filename strings and readable titles
 PERIODS = {
-    "24h": {"noaa_str": "1day", "title": "24 Hour"},
-    "2d": {"noaa_str": "2day", "title": "2-Day"},
-    "3d": {"noaa_str": "3day", "title": "3-Day"},
-    "4d": {"noaa_str": "4day", "title": "4-Day"},
-    "5d": {"noaa_str": "5day", "title": "5-Day"},
-    "6d": {"noaa_str": "6day", "title": "6-Day"},
-    "7d": {"noaa_str": "7day", "title": "7-Day"},
-    "10d": {"noaa_str": "10day", "title": "10-Day"},
-    "14d": {"noaa_str": "14day", "title": "14-Day"},
-    "30d": {"noaa_str": "30day", "title": "30-Day"},
-    "mtd": {"noaa_str": "mtd", "title": "Month-to-Date"},
-    "ytd": {"noaa_str": "ytd", "title": "Year-to-Date"},
+    "24h": {"noaa_str": "1day", "days": 1, "title": "24 Hour"},
+    "2d":  {"noaa_str": "1day", "days": 2, "title": "2-Day"},
+    "3d":  {"noaa_str": "1day", "days": 3, "title": "3-Day"},
+    "4d":  {"noaa_str": "1day", "days": 4, "title": "4-Day"},
+    "5d":  {"noaa_str": "1day", "days": 5, "title": "5-Day"},
+    "6d":  {"noaa_str": "1day", "days": 6, "title": "6-Day"},
+    "7d":  {"noaa_str": "1day", "days": 7, "title": "7-Day"},
+    "10d": {"noaa_str": "1day", "days": 10, "title": "10-Day"},
+    "14d": {"noaa_str": "1day", "days": 14, "title": "14-Day"},
+    "30d": {"noaa_str": "1day", "days": 30, "title": "30-Day"},
+    "mtd": {"noaa_str": "mtd", "days": 1, "title": "Month-to-Date"},
+    "ytd": {"noaa_str": "ytd", "days": 1, "title": "Year-to-Date"},
 }
 
 # NWPS-like bins, but extended to 15+ at the top.
@@ -178,11 +178,11 @@ def stageiv_archive_url(end_dt: datetime, noaa_str: str) -> str:
     return f"https://water.noaa.gov/resources/downloads/precip/stageIV/{y}/{m}/{d}/nws_precip_{noaa_str}_{ymd}_conus.tif"
 
 
-def fetch_stageiv_qpe(window: TimeWindow, noaa_str: str) -> Path:
+def fetch_stageiv_qpe(end_dt: datetime, noaa_str: str) -> Path:
     # Always pull from the archive structure, even for the current day, 
     # to maintain consistent multi-day file naming conventions.
-    tif_url = stageiv_archive_url(window.end, noaa_str)
-    tif_path = RAW_DIR / f"nws_precip_{noaa_str}_{window.end.strftime('%Y%m%d')}_conus.tif"
+    tif_url = stageiv_archive_url(end_dt, noaa_str)
+    tif_path = RAW_DIR / f"nws_precip_{noaa_str}_{end_dt.strftime('%Y%m%d')}_conus.tif"
 
     path = download_if_missing(tif_url, tif_path)
     print(f"Used source raster: {path}") 
@@ -476,11 +476,41 @@ def main() -> None:
 
     generated_maps = {}
 
+generated_maps = {}
+
     for period_key, period_info in PERIODS.items():
         print(f"--- Processing {period_info['title']} ---")
         try:
-            tif_path = fetch_stageiv_qpe(window, period_info["noaa_str"])
-            raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path)
+            days = period_info.get("days", 1)
+            noaa_str = period_info["noaa_str"]
+
+            if days == 1:
+                # Standard single-file fetch (1day, mtd, ytd)
+                tif_path = fetch_stageiv_qpe(window.end, noaa_str)
+                raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path)
+                source_tif_name = tif_path.name
+            else:
+                # Multi-day fetch and sum
+                sum_arr = None
+                raster_extent_3857 = None
+                
+                for i in range(days):
+                    # Step back one day at a time
+                    day_dt = window.end - timedelta(days=i)
+                    tif_path = fetch_stageiv_qpe(day_dt, noaa_str)
+                    arr, ext = read_raster_for_plotting(tif_path)
+
+                    if sum_arr is None:
+                        sum_arr = arr
+                        raster_extent_3857 = ext
+                    else:
+                        # Safely sum arrays while preserving NaN (missing data) transparent rendering
+                        all_nan = np.isnan(sum_arr) & np.isnan(arr)
+                        sum_arr = np.nansum([sum_arr, arr], axis=0)
+                        sum_arr[all_nan] = np.nan
+                
+                raster_arr = sum_arr
+                source_tif_name = f"Calculated_{days}day_sum"
 
             plot_map(
                 window, lix, counties_p, states_p, plot_domain, cities_p, 
@@ -489,7 +519,7 @@ def main() -> None:
             
             generated_maps[period_key] = {
                 "image": f"lix_{period_key}_precip_latest.png",
-                "source_tif": tif_path.name
+                "source_tif": source_tif_name
             }
             print(f"Saved map to {OUT_DIR / f'lix_{period_key}_precip_latest.png'}")
 
