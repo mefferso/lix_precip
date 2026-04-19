@@ -3,66 +3,138 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WFO LIX Station Observation Feeds</title>
+  <title>WFO LIX Precipitation Maps</title>
   <style>
-    body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #ececec; color: #111; }
-    main { max-width: 1100px; margin: 0 auto; padding: 18px; }
-    .card { background: #fff; border: 2px solid #111; border-radius: 10px; padding: 16px; }
-    h1 { margin: 0 0 10px; }
-    p { line-height: 1.4; }
-    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-    th { background: #f5f5f5; }
-    a { color: #0b57d0; }
-    .small { font-size: 13px; color: #555; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #ececec;
+      color: #111;
+    }
+    main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .title-wrap h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+    }
+    .title-wrap p {
+      margin: 0;
+      font-size: 15px;
+    }
+    .controls label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 4px;
+    }
+    select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      min-width: 260px;
+    }
+    .button-link {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 2px solid #111;
+      border-radius: 8px;
+      background: #f5f5f5;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .button-link:hover {
+      background: #e9e9e9;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+    }
+    .links {
+      margin-top: 12px;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    a {
+      color: #0b57d0;
+    }
   </style>
 </head>
 <body>
   <main>
     <div class="card">
-      <h1>WFO LIX Station Observation Feeds</h1>
-      <p>
-        This page is the boring-but-useful backbone for a future map UI. Right now it publishes fresh CSV/JSON
-        products for 24-hour rainfall, latest temperature, daily minimum temperature, and daily maximum temperature.
-      </p>
-      <p class="small">Data source: Synoptic Weather API. Files below are rebuilt by GitHub Actions.</p>
+      <div class="topbar">
+        <div class="title-wrap">
+          <h1>WFO LIX Precipitation Maps</h1>
+          <p>Stage IV / NWPS rainfall maps for the WFO LIX area.</p>
+        </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>CSV</th>
-            <th>JSON</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>24-Hour Rainfall</td>
-            <td><a href="station_precip_24h_latest.csv">station_precip_24h_latest.csv</a></td>
-            <td><a href="station_precip_24h_latest.json">station_precip_24h_latest.json</a></td>
-          </tr>
-          <tr>
-            <td>Current Temperature</td>
-            <td><a href="station_air_temp_latest.csv">station_air_temp_latest.csv</a></td>
-            <td><a href="station_air_temp_latest.json">station_air_temp_latest.json</a></td>
-          </tr>
-          <tr>
-            <td>Daily Minimum Temperature</td>
-            <td><a href="station_air_temp_daily_min_latest.csv">station_air_temp_daily_min_latest.csv</a></td>
-            <td><a href="station_air_temp_daily_min_latest.json">station_air_temp_daily_min_latest.json</a></td>
-          </tr>
-          <tr>
-            <td>Daily Maximum Temperature</td>
-            <td><a href="station_air_temp_daily_max_latest.csv">station_air_temp_daily_max_latest.csv</a></td>
-            <td><a href="station_air_temp_daily_max_latest.json">station_air_temp_daily_max_latest.json</a></td>
-          </tr>
-          <tr>
-            <td>Master Manifest</td>
-            <td colspan="2"><a href="latest_obs_manifest.json">latest_obs_manifest.json</a></td>
-          </tr>
-        </tbody>
-      </table>
+        <div class="controls">
+          <label for="mapSelector">Select Timeframe:</label>
+          <select id="mapSelector">
+            <option value="lix_24h_precip_latest.png">24 Hour Rainfall</option>
+            <option value="lix_2d_precip_latest.png">2-Day Rainfall</option>
+            <option value="lix_3d_precip_latest.png">3-Day Rainfall</option>
+            <option value="lix_4d_precip_latest.png">4-Day Rainfall</option>
+            <option value="lix_5d_precip_latest.png">5-Day Rainfall</option>
+            <option value="lix_6d_precip_latest.png">6-Day Rainfall</option>
+            <option value="lix_7d_precip_latest.png">7-Day Rainfall</option>
+            <option value="lix_10d_precip_latest.png">10-Day Rainfall</option>
+            <option value="lix_14d_precip_latest.png">14-Day Rainfall</option>
+            <option value="lix_30d_precip_latest.png">30-Day Rainfall</option>
+            <option value="lix_mtd_precip_latest.png">Month-to-Date Rainfall</option>
+            <option value="lix_ytd_precip_latest.png">Year-to-Date Rainfall</option>
+          </select>
+        </div>
+
+        <div>
+          <a class="button-link" href="obs_map.html">Open Station Observation Map</a>
+        </div>
+      </div>
+
+      <img id="precipMap" src="lix_24h_precip_latest.png" alt="WFO LIX precipitation map">
+
+      <div class="links">
+        <div>
+          <a href="station_precip_24h_latest.csv">Station 24h rainfall CSV</a>
+          &nbsp;|&nbsp;
+          <a href="latest.json">Latest precip metadata JSON</a>
+        </div>
+      </div>
     </div>
   </main>
+
+  <script>
+    const selector = document.getElementById('mapSelector');
+    const mapImage = document.getElementById('precipMap');
+
+    selector.addEventListener('change', function () {
+      mapImage.src = this.value;
+    });
+  </script>
 </body>
 </html>
