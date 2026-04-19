@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WFO LIX Station Observation Map</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  />
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #ececec;
+      color: #111;
+    }
+    main {
+      max-width: 1550px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 10px;
+      padding: 14px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+    p {
+      margin: 0 0 12px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+    .control-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #bbb;
+      min-width: 260px;
+    }
+    .button-link {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 2px solid #111;
+      border-radius: 8px;
+      background: #f5f5f5;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .button-link:hover {
+      background: #e9e9e9;
+    }
+    #map {
+      height: 760px;
+      width: 100%;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .legend {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 10px 12px;
+      border: 1px solid #999;
+      border-radius: 8px;
+      line-height: 1.35;
+      font-size: 13px;
+    }
+    .legend-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 3px 0;
+    }
+    .swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid #444;
+      flex: 0 0 18px;
+    }
+    .leaflet-popup-content {
+      font-size: 14px;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="card">
+      <h1>WFO LIX Station Observation Map</h1>
+      <p>
+        This page plots station observations from Synoptic-generated CSV files. It is separate from the Stage IV rainfall map page so both products can coexist without stepping on each other like drunk raccoons.
+      </p>
+
+      <div class="toolbar">
+        <div class="control-group">
+          <label for="datasetSelect">Display Dataset</label>
+          <select id="datasetSelect">
+            <option value="precip_24h">24-Hour Rainfall</option>
+            <option value="air_temp_latest">Current Temperature</option>
+            <option value="air_temp_daily_min">Daily Minimum Temperature</option>
+            <option value="air_temp_daily_max">Daily Maximum Temperature</option>
+          </select>
+        </div>
+
+        <div>
+          <a class="button-link" href="index.html">Back to Precip Maps</a>
+        </div>
+      </div>
+
+      <div id="map"></div>
+
+      <div class="status-row">
+        <div id="statusText">Loading…</div>
+        <div id="downloadLinks"></div>
+      </div>
+    </div>
+  </main>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
+
+  <script>
+    const DATASETS = {
+      precip_24h: {
+        label: "24-Hour Rainfall",
+        csv: "station_precip_24h_latest.csv",
+        json: "station_precip_24h_latest.json",
+        valueCol: "precip_in",
+        units: " in",
+        decimals: 2,
+        legend: [
+          { max: 0.00, color: "#d9d9d9", label: "0.00" },
+          { max: 0.49, color: "#67c6e5", label: "0.01–0.49" },
+          { max: 0.99, color: "#57ea58", label: "0.50–0.99" },
+          { max: 1.99, color: "#eceb59", label: "1.00–1.99" },
+          { max: 2.99, color: "#eda24f", label: "2.00–2.99" },
+          { max: 4.99, color: "#ff4b4b", label: "3.00–4.99" },
+          { max: 999, color: "#9362d6", label: "5.00+" }
+        ]
+      },
+      air_temp_latest: {
+        label: "Current Temperature",
+        csv: "station_air_temp_latest.csv",
+        json: "station_air_temp_latest.json",
+        valueCol: "air_temp_f",
+        units: "°F",
+        decimals: 1,
+        legend: [
+          { max: 39.9, color: "#4b4aa7", label: "< 40" },
+          { max: 49.9, color: "#6e9ad0", label: "40–49" },
+          { max: 59.9, color: "#67c6e5", label: "50–59" },
+          { max: 69.9, color: "#57ea58", label: "60–69" },
+          { max: 79.9, color: "#eceb59", label: "70–79" },
+          { max: 89.9, color: "#eda24f", label: "80–89" },
+          { max: 999, color: "#ff4b4b", label: "90+" }
+        ]
+      },
+      air_temp_daily_min: {
+        label: "Daily Minimum Temperature",
+        csv: "station_air_temp_daily_min_latest.csv",
+        json: "station_air_temp_daily_min_latest.json",
+        valueCol: "air_temp_min_f",
+        units: "°F",
+        decimals: 1,
+        legend: [
+          { max: 39.9, color: "#4b4aa7", label: "< 40" },
+          { max: 49.9, color: "#6e9ad0", label: "40–49" },
+          { max: 59.9, color: "#67c6e5", label: "50–59" },
+          { max: 69.9, color: "#57ea58", label: "60–69" },
+          { max: 79.9, color: "#eceb59", label: "70–79" },
+          { max: 89.9, color: "#eda24f", label: "80–89" },
+          { max: 999, color: "#ff4b4b", label: "90+" }
+        ]
+      },
+      air_temp_daily_max: {
+        label: "Daily Maximum Temperature",
+        csv: "station_air_temp_daily_max_latest.csv",
+        json: "station_air_temp_daily_max_latest.json",
+        valueCol: "air_temp_max_f",
+        units: "°F",
+        decimals: 1,
+        legend: [
+          { max: 39.9, color: "#4b4aa7", label: "< 40" },
+          { max: 49.9, color: "#6e9ad0", label: "40–49" },
+          { max: 59.9, color: "#67c6e5", label: "50–59" },
+          { max: 69.9, color: "#57ea58", label: "60–69" },
+          { max: 79.9, color: "#eceb59", label: "70–79" },
+          { max: 89.9, color: "#eda24f", label: "80–89" },
+          { max: 999, color: "#ff4b4b", label: "90+" }
+        ]
+      }
+    };
+
+    const map = L.map('map').setView([30.3, -89.8], 8);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let markerLayer = L.layerGroup().addTo(map);
+    let legendControl = null;
+
+    function parseCSV(text) {
+      const lines = text.trim().split(/\r?\n/);
+      if (!lines.length) return [];
+
+      const headers = splitCSVLine(lines[0]);
+      const rows = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = splitCSVLine(lines[i]);
+        const row = {};
+        headers.forEach((header, idx) => {
+          row[header] = values[idx] ?? "";
+        });
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    function splitCSVLine(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        const next = line[i + 1];
+
+        if (ch === '"' && inQuotes && next === '"') {
+          current += '"';
+          i++;
+        } else if (ch === '"') {
+          inQuotes = !inQuotes;
+        } else if (ch === ',' && !inQuotes) {
+          result.push(current);
+          current = '';
+        } else {
+          current += ch;
+        }
+      }
+
+      result.push(current);
+      return result;
+    }
+
+    function getColor(datasetKey, value) {
+      const legend = DATASETS[datasetKey].legend;
+      for (const bucket of legend) {
+        if (value <= bucket.max) return bucket.color;
+      }
+      return "#000000";
+    }
+
+    function buildLegend(datasetKey) {
+      const cfg = DATASETS[datasetKey];
+
+      const control = L.control({ position: 'bottomright' });
+      control.onAdd = function () {
+        const div = L.DomUtil.create('div', 'legend');
+        let html = `<div class="legend-title">${cfg.label}</div>`;
+        for (const item of cfg.legend) {
+          html += `
+            <div class="legend-row">
+              <span class="swatch" style="background:${item.color};"></span>
+              <span>${item.label}</span>
+            </div>
+          `;
+        }
+        div.innerHTML = html;
+        return div;
+      };
+      return control;
+    }
+
+    function formatValue(value, decimals) {
+      const num = Number(value);
+      if (!Number.isFinite(num)) return "N/A";
+      return num.toFixed(decimals);
+    }
+
+    async function loadDataset(datasetKey) {
+      const cfg = DATASETS[datasetKey];
+      const statusText = document.getElementById('statusText');
+      const downloadLinks = document.getElementById('downloadLinks');
+
+      statusText.textContent = `Loading ${cfg.label}...`;
+      downloadLinks.innerHTML = '';
+
+      markerLayer.clearLayers();
+      if (legendControl) {
+        map.removeControl(legendControl);
+      }
+
+      try {
+        const response = await fetch(cfg.csv, { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`Could not load ${cfg.csv}`);
+        }
+
+        const csvText = await response.text();
+        const rows = parseCSV(csvText).filter(row => row.lat && row.lon && row[cfg.valueCol] !== "");
+
+        rows.forEach(row => {
+          const lat = Number(row.lat);
+          const lon = Number(row.lon);
+          const value = Number(row[cfg.valueCol]);
+
+          if (!Number.isFinite(lat) || !Number.isFinite(lon) || !Number.isFinite(value)) {
+            return;
+          }
+
+          const color = getColor(datasetKey, value);
+          const marker = L.circleMarker([lat, lon], {
+            radius: 8,
+            color: '#222',
+            weight: 1,
+            fillColor: color,
+            fillOpacity: 0.9
+          });
+
+          marker.bindPopup(`
+            <strong>${row.name || row.stid}</strong><br>
+            STID: ${row.stid || ''}<br>
+            State: ${row.state || ''}<br>
+            Value: <strong>${formatValue(value, cfg.decimals)}${cfg.units}</strong><br>
+            Valid Time: ${row.valid_time || row.last_report || ''}<br>
+            County: ${row.county || ''}<br>
+            CWA: ${row.cwa || ''}<br>
+            Lat/Lon: ${lat.toFixed(4)}, ${lon.toFixed(4)}
+          `);
+
+          marker.addTo(markerLayer);
+        });
+
+        legendControl = buildLegend(datasetKey);
+        legendControl.addTo(map);
+
+        statusText.textContent = `${cfg.label}: ${rows.length} stations plotted.`;
+
+        downloadLinks.innerHTML = `
+          <a href="${cfg.csv}">Download CSV</a>
+          &nbsp;|&nbsp;
+          <a href="${cfg.json}">Download JSON</a>
+          &nbsp;|&nbsp;
+          <a href="latest_obs_manifest.json">Manifest</a>
+        `;
+      } catch (err) {
+        statusText.textContent = `Failed to load ${cfg.label}: ${err.message}`;
+      }
+    }
+
+    document.getElementById('datasetSelect').addEventListener('change', function () {
+      loadDataset(this.value);
+    });
+
+    loadDataset('precip_24h');
+  </script>
+</body>
+</html>
