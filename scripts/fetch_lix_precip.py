@@ -118,7 +118,7 @@ def infer_default_end(now_utc: datetime | None = None) -> datetime:
     today_12z = now_utc.replace(hour=12, minute=0, second=0, microsecond=0) [cite: 24]
 
     # Wait until 14:30 UTC so latest daily product has time to show up.
-    if now_utc >= today_12z + timedelta(hours=2, minutes=30): [cite: 24, 25]
+    if now_utc >= today_12z + timedelta(hours=2, minutes=30):
         return today_12z [cite: 25]
     return today_12z - timedelta(days=1) [cite: 25]
 
