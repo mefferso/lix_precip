@@ -1,11 +1,47 @@
 {
   "start_utc": "2026-04-18T12:00:00+00:00",
   "end_utc": "2026-04-19T12:00:00+00:00",
-  "generated_utc": "2026-04-19T15:23:39.473296+00:00",
+  "generated_utc": "2026-04-19T19:38:21.809258+00:00",
   "maps": {
     "24h": {
       "image": "lix_24h_precip_latest.png",
       "source_tif": "nws_precip_1day_20260419_conus.tif"
+    },
+    "2d": {
+      "image": "lix_2d_precip_latest.png",
+      "source_tif": "Calculated_2day_sum"
+    },
+    "3d": {
+      "image": "lix_3d_precip_latest.png",
+      "source_tif": "Calculated_3day_sum"
+    },
+    "4d": {
+      "image": "lix_4d_precip_latest.png",
+      "source_tif": "Calculated_4day_sum"
+    },
+    "5d": {
+      "image": "lix_5d_precip_latest.png",
+      "source_tif": "Calculated_5day_sum"
+    },
+    "6d": {
+      "image": "lix_6d_precip_latest.png",
+      "source_tif": "Calculated_6day_sum"
+    },
+    "7d": {
+      "image": "lix_7d_precip_latest.png",
+      "source_tif": "Calculated_7day_sum"
+    },
+    "10d": {
+      "image": "lix_10d_precip_latest.png",
+      "source_tif": "Calculated_10day_sum"
+    },
+    "14d": {
+      "image": "lix_14d_precip_latest.png",
+      "source_tif": "Calculated_14day_sum"
+    },
+    "30d": {
+      "image": "lix_30d_precip_latest.png",
+      "source_tif": "Calculated_30day_sum"
     },
     "mtd": {
       "image": "lix_mtd_precip_latest.png",
