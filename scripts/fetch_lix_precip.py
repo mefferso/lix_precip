@@ -476,7 +476,6 @@ def main() -> None:
 
     generated_maps = {}
 
-
     for period_key, period_info in PERIODS.items():
         print(f"--- Processing {period_info['title']} ---")
         try:
