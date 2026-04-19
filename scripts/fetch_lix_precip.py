@@ -433,8 +433,8 @@ def plot_map(
         "0.01 to 0.1", 
     ]
 
-    y0 = 0.73 
-    dy = 0.041 
+    y0 = 0.715 
+    dy = 0.042 
     for i, (label, color) in enumerate(zip(labels, COLORS[::-1])): 
         y = y0 - i * dy 
         ax_leg.add_patch(
