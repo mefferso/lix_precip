@@ -1,6 +1,9 @@
 name: Build WFO LIX 24-hour precipitation map
 
 on:
+  push:
+    paths:
+      - 'scripts/fetch_lix_precip.py'
   workflow_dispatch:
     inputs:
       map_date:
