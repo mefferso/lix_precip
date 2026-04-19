@@ -1,7 +1,7 @@
 {
   "product": "air_temp_latest",
   "label": "Current Temperature",
-  "generated_utc": "2026-04-19T21:43:52.774378+00:00",
+  "generated_utc": "2026-04-19T21:49:19.950987+00:00",
   "station_count": 385,
   "csv": "station_air_temp_latest.csv",
   "rows": [
@@ -19,7 +19,7 @@
       "lon": "-91.04050",
       "mnet_id": "65",
       "air_temp_f": 75.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:42:00Z"
     },
     {
       "stid": "AT261",
@@ -35,7 +35,7 @@
       "lon": "-90.69933",
       "mnet_id": "65",
       "air_temp_f": 75.0,
-      "valid_time": "2026-04-19T21:42:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "UP884",
@@ -99,7 +99,7 @@
       "lon": "-91.12713",
       "mnet_id": "65",
       "air_temp_f": 73.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "F5707",
@@ -115,23 +115,39 @@
       "lon": "-92.46767",
       "mnet_id": "65",
       "air_temp_f": 73.0,
-      "valid_time": "2026-04-19T21:31:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "AS718",
-      "name": "N5PRN Jena",
+      "stid": "F1193",
+      "name": "FW1193 St. Gabriel",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "209.0",
-      "lat": "31.70200",
-      "lon": "-92.11870",
+      "elevation_ft": "16.0",
+      "lat": "30.30833",
+      "lon": "-91.101",
       "mnet_id": "65",
       "air_temp_f": 73.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
+    },
+    {
+      "stid": "BENL1",
+      "name": "CATAHOULA",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "230.0",
+      "lat": "31.50211",
+      "lon": "-92.46131",
+      "mnet_id": "2",
+      "air_temp_f": 73.0,
+      "valid_time": "2026-04-19T21:43:00Z"
     },
     {
       "stid": "K0R4",
@@ -179,7 +195,7 @@
       "lon": "-91.83450",
       "mnet_id": "65",
       "air_temp_f": 72.0,
-      "valid_time": "2026-04-19T21:24:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "F6181",
@@ -195,39 +211,7 @@
       "lon": "-90.06633",
       "mnet_id": "65",
       "air_temp_f": 72.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "F1193",
-      "name": "FW1193 St. Gabriel",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "16.0",
-      "lat": "30.30833",
-      "lon": "-91.101",
-      "mnet_id": "65",
-      "air_temp_f": 72.0,
-      "valid_time": "2026-04-19T21:41:00Z"
-    },
-    {
-      "stid": "BENL1",
-      "name": "CATAHOULA",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "230.0",
-      "lat": "31.50211",
-      "lon": "-92.46131",
-      "mnet_id": "2",
-      "air_temp_f": 72.0,
-      "valid_time": "2026-04-19T20:43:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "AV521",
@@ -246,20 +230,20 @@
       "valid_time": "2026-04-19T21:38:00Z"
     },
     {
-      "stid": "KPTN",
-      "name": "Patterson Memorial",
+      "stid": "AS718",
+      "name": "N5PRN Jena",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "10.0",
-      "lat": "29.71667",
-      "lon": "-91.33333",
-      "mnet_id": "1",
-      "air_temp_f": 71.6,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "elevation_ft": "209.0",
+      "lat": "31.70200",
+      "lon": "-92.11870",
+      "mnet_id": "65",
+      "air_temp_f": 72.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "KESF",
@@ -275,7 +259,23 @@
       "lon": "-92.28273",
       "mnet_id": "1",
       "air_temp_f": 71.6,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
+    },
+    {
+      "stid": "KARA",
+      "name": "Acadiana Regional Airport",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "13.0",
+      "lat": "30.02918",
+      "lon": "-91.88451",
+      "mnet_id": "1",
+      "air_temp_f": 71.6,
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "2158W",
@@ -307,7 +307,23 @@
       "lon": "-91.84000",
       "mnet_id": "65",
       "air_temp_f": 71.0,
-      "valid_time": "2026-04-19T21:38:00Z"
+      "valid_time": "2026-04-19T21:43:00Z"
+    },
+    {
+      "stid": "G6346",
+      "name": "GW6346 LACOMBE",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "22.97",
+      "lat": "30.35700",
+      "lon": "-89.92183",
+      "mnet_id": "65",
+      "air_temp_f": 71.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G5379",
@@ -323,7 +339,7 @@
       "lon": "-90.93133",
       "mnet_id": "65",
       "air_temp_f": 71.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "F0338",
@@ -339,7 +355,7 @@
       "lon": "-91.96533",
       "mnet_id": "65",
       "air_temp_f": 71.0,
-      "valid_time": "2026-04-19T21:42:00Z"
+      "valid_time": "2026-04-19T21:47:00Z"
     },
     {
       "stid": "E1616",
@@ -355,39 +371,23 @@
       "lon": "-90.94720",
       "mnet_id": "65",
       "air_temp_f": 71.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "LM012",
-      "name": "ULM_JENA",
-      "state": "LA",
+      "stid": "MSS20",
+      "name": "Natchez",
+      "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "211.0",
-      "lat": "31.66897",
-      "lon": "-92.15916",
-      "mnet_id": "313",
-      "air_temp_f": 70.6,
-      "valid_time": "2026-04-19T21:25:00Z"
-    },
-    {
-      "stid": "LM008",
-      "name": "ULM_JVIL",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "51.9997",
-      "lat": "31.58849",
-      "lon": "-91.85472",
-      "mnet_id": "313",
-      "air_temp_f": 70.6,
-      "valid_time": "2026-04-19T21:25:00Z"
+      "elevation_ft": "75.0",
+      "lat": "31.34067",
+      "lon": "-91.39999",
+      "mnet_id": "236",
+      "air_temp_f": 70.7,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "KREG",
@@ -454,20 +454,36 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "MSS20",
-      "name": "Natchez",
-      "state": "MS",
+      "stid": "LM012",
+      "name": "ULM_JENA",
+      "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "75.0",
-      "lat": "31.34067",
-      "lon": "-91.39999",
-      "mnet_id": "236",
-      "air_temp_f": 70.2,
-      "valid_time": "2026-04-19T21:15:00Z"
+      "elevation_ft": "211.0",
+      "lat": "31.66897",
+      "lon": "-92.15916",
+      "mnet_id": "313",
+      "air_temp_f": 70.3,
+      "valid_time": "2026-04-19T21:35:00Z"
+    },
+    {
+      "stid": "LM008",
+      "name": "ULM_JVIL",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "51.9997",
+      "lat": "31.58849",
+      "lon": "-91.85472",
+      "mnet_id": "313",
+      "air_temp_f": 70.3,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "UP161",
@@ -483,7 +499,7 @@
       "lon": "-91.61386",
       "mnet_id": "64",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:13:00Z"
+      "valid_time": "2026-04-19T21:36:00Z"
     },
     {
       "stid": "SFPL1",
@@ -502,38 +518,6 @@
       "valid_time": "2026-04-19T21:17:00Z"
     },
     {
-      "stid": "G6346",
-      "name": "GW6346 LACOMBE",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "22.97",
-      "lat": "30.35700",
-      "lon": "-89.92183",
-      "mnet_id": "65",
-      "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "G5218",
-      "name": "GW5218 SLIDELL",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "78.08",
-      "lat": "30.27483",
-      "lon": "-89.75933",
-      "mnet_id": "65",
-      "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
       "stid": "F7862",
       "name": "FW7862 Mandeville",
       "state": "LA",
@@ -547,7 +531,7 @@
       "lon": "-90.02150",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:42:00Z"
     },
     {
       "stid": "F5866",
@@ -563,7 +547,7 @@
       "lon": "-92.12017",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "F4663",
@@ -579,7 +563,23 @@
       "lon": "-90.78567",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "F4455",
+      "name": "FW4455 Prairieville",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "22.28",
+      "lat": "30.28850",
+      "lon": "-90.97317",
+      "mnet_id": "65",
+      "air_temp_f": 70.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "F1704",
@@ -595,7 +595,7 @@
       "lon": "-90.07300",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "F0094",
@@ -611,7 +611,7 @@
       "lon": "-89.773",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E1090",
@@ -627,7 +627,7 @@
       "lon": "-90.14217",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:38:00Z"
+      "valid_time": "2026-04-19T21:43:00Z"
     },
     {
       "stid": "E0561",
@@ -643,7 +643,7 @@
       "lon": "-90.14100",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "C6488",
@@ -659,7 +659,7 @@
       "lon": "-90.14033",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "BDEM6",
@@ -676,38 +676,6 @@
       "mnet_id": "2",
       "air_temp_f": 70.0,
       "valid_time": "2026-04-19T21:05:00Z"
-    },
-    {
-      "stid": "AV683",
-      "name": "KG5WBN New Orleans",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "6.56",
-      "lat": "29.95400",
-      "lon": "-90.12617",
-      "mnet_id": "65",
-      "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:39:00Z"
-    },
-    {
-      "stid": "AV042",
-      "name": "N5PA-2 Meadville",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "310.07",
-      "lat": "31.58700",
-      "lon": "-90.89833",
-      "mnet_id": "65",
-      "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "AU112",
@@ -739,7 +707,7 @@
       "lon": "-90.14627",
       "mnet_id": "65",
       "air_temp_f": 70.0,
-      "valid_time": "2026-04-19T21:31:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "1972W",
@@ -774,6 +742,22 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
+      "stid": "KPTN",
+      "name": "Patterson Memorial",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "10.0",
+      "lat": "29.71667",
+      "lon": "-91.33333",
+      "mnet_id": "1",
+      "air_temp_f": 69.8,
+      "valid_time": "2026-04-19T21:40:00Z"
+    },
+    {
       "stid": "KPIB",
       "name": "Hattiesburg/Laurel, Hattiesburg-Laurel Regional Airport",
       "state": "MS",
@@ -787,7 +771,7 @@
       "lon": "-89.33333",
       "mnet_id": "1",
       "air_temp_f": 69.8,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KMTK",
@@ -803,7 +787,7 @@
       "lon": "-89.40000",
       "mnet_id": "108",
       "air_temp_f": 69.8,
-      "valid_time": "2026-04-19T21:15:00Z"
+      "valid_time": "2026-04-19T21:35:00Z"
     },
     {
       "stid": "KLFT",
@@ -819,7 +803,7 @@
       "lon": "-91.99306",
       "mnet_id": "1",
       "air_temp_f": 69.8,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KHUM",
@@ -838,22 +822,6 @@
       "valid_time": "2026-04-19T20:47:00Z"
     },
     {
-      "stid": "KHEZ",
-      "name": "Natchez, Hardy-Anders Field Natchez-Adams County Airport",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "264.0",
-      "lat": "31.61593",
-      "lon": "-91.29724",
-      "mnet_id": "1",
-      "air_temp_f": 69.8,
-      "valid_time": "2026-04-19T21:35:00Z"
-    },
-    {
       "stid": "KBTR",
       "name": "Baton Rouge, Baton Rouge Metropolitan, Ryan Field",
       "state": "LA",
@@ -867,7 +835,7 @@
       "lon": "-91.14694",
       "mnet_id": "1",
       "air_temp_f": 69.8,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KASD",
@@ -883,23 +851,7 @@
       "lon": "-89.82194",
       "mnet_id": "1",
       "air_temp_f": 69.8,
-      "valid_time": "2026-04-19T21:35:00Z"
-    },
-    {
-      "stid": "KARA",
-      "name": "Acadiana Regional Airport",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "13.0",
-      "lat": "30.02918",
-      "lon": "-91.88451",
-      "mnet_id": "1",
-      "air_temp_f": 69.8,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "LM009",
@@ -915,7 +867,7 @@
       "lon": "-91.71883",
       "mnet_id": "313",
       "air_temp_f": 69.5,
-      "valid_time": "2026-04-19T21:25:00Z"
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "NGC11",
@@ -966,6 +918,38 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
+      "stid": "LM025",
+      "name": "ULM_CPOT",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "43.9993",
+      "lat": "30.42204",
+      "lon": "-92.23156",
+      "mnet_id": "313",
+      "air_temp_f": 69.2,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
+      "stid": "LM019",
+      "name": "ULM_MORG",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "31.0007",
+      "lat": "30.72307",
+      "lon": "-91.53518",
+      "mnet_id": "313",
+      "air_temp_f": 69.2,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
       "stid": "KHDC",
       "name": "Hammond, Hammond Municipal Airport",
       "state": "LA",
@@ -998,22 +982,6 @@
       "valid_time": "2026-04-19T21:00:00Z"
     },
     {
-      "stid": "BYGL1",
-      "name": "West Bank 1",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "3.0",
-      "lat": "29.78856",
-      "lon": "-90.42020",
-      "mnet_id": "122",
-      "air_temp_f": 69.1,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
       "stid": "2166W",
       "name": "Port Allen",
       "state": "LA",
@@ -1043,7 +1011,7 @@
       "lon": "-91.50878",
       "mnet_id": "64",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:06:00Z"
+      "valid_time": "2026-04-19T21:36:00Z"
     },
     {
       "stid": "UR391",
@@ -1060,6 +1028,22 @@
       "mnet_id": "64",
       "air_temp_f": 69.0,
       "valid_time": "2026-04-19T21:32:00Z"
+    },
+    {
+      "stid": "UR373",
+      "name": "GRSTE2",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "22.0",
+      "lat": "30.40680",
+      "lon": "-91.42288",
+      "mnet_id": "64",
+      "air_temp_f": 69.0,
+      "valid_time": "2026-04-19T21:37:00Z"
     },
     {
       "stid": "UP368",
@@ -1110,22 +1094,6 @@
       "valid_time": "2026-04-19T21:09:00Z"
     },
     {
-      "stid": "LM019",
-      "name": "ULM_MORG",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "31.0007",
-      "lat": "30.72307",
-      "lon": "-91.53518",
-      "mnet_id": "313",
-      "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:25:00Z"
-    },
-    {
       "stid": "G6440",
       "name": "GW6440 LACOMBE",
       "state": "LA",
@@ -1139,7 +1107,7 @@
       "lon": "-89.93917",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G6345",
@@ -1155,7 +1123,7 @@
       "lon": "-90.17050",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G5825",
@@ -1171,23 +1139,23 @@
       "lon": "-90.22483",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:42:00Z"
     },
     {
-      "stid": "F9742",
-      "name": "FW9742 Paulina",
+      "stid": "G5218",
+      "name": "GW5218 SLIDELL",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "10.01",
-      "lat": "30.03800",
-      "lon": "-90.74150",
+      "elevation_ft": "78.08",
+      "lat": "30.27483",
+      "lon": "-89.75933",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "F8402",
@@ -1203,7 +1171,7 @@
       "lon": "-92.01083",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "F6464",
@@ -1219,7 +1187,7 @@
       "lon": "-89.18633",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "F5486",
@@ -1235,39 +1203,23 @@
       "lon": "-92.0225",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:42:00Z"
     },
     {
-      "stid": "F4455",
-      "name": "FW4455 Prairieville",
+      "stid": "F1110",
+      "name": "FW1110 Kenner",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "22.28",
-      "lat": "30.28850",
-      "lon": "-90.97317",
+      "elevation_ft": "-4.4",
+      "lat": "30.02850",
+      "lon": "-90.22450",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "F1251",
-      "name": "FW1251 Lacombe",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "17.65",
-      "lat": "30.32667",
-      "lon": "-89.97017",
-      "mnet_id": "65",
-      "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E1043",
@@ -1283,7 +1235,7 @@
       "lon": "-90.69917",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "D7368",
@@ -1299,7 +1251,7 @@
       "lon": "-92.4195",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "D2721",
@@ -1315,7 +1267,7 @@
       "lon": "-90.44988",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "C7580",
@@ -1331,7 +1283,7 @@
       "lon": "-90.69917",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "C2220",
@@ -1346,6 +1298,22 @@
       "lat": "30.00720",
       "lon": "-92.29422",
       "mnet_id": "65",
+      "air_temp_f": 69.0,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "BYGL1",
+      "name": "West Bank 1",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "3.0",
+      "lat": "29.78856",
+      "lon": "-90.42020",
+      "mnet_id": "122",
       "air_temp_f": 69.0,
       "valid_time": "2026-04-19T21:30:00Z"
     },
@@ -1395,7 +1363,7 @@
       "lon": "-90.21383",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "AX182",
@@ -1411,23 +1379,39 @@
       "lon": "-91.06350",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:42:00Z"
     },
     {
-      "stid": "AW575",
-      "name": "N4SZO-7 MOBILE",
-      "state": "AL",
+      "stid": "AV683",
+      "name": "KG5WBN New Orleans",
+      "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "135.01",
-      "lat": "30.63200",
-      "lon": "-88.17850",
+      "elevation_ft": "6.56",
+      "lat": "29.95400",
+      "lon": "-90.12617",
       "mnet_id": "65",
       "air_temp_f": 69.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "AV042",
+      "name": "N5PA-2 Meadville",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "310.07",
+      "lat": "31.58700",
+      "lon": "-90.89833",
+      "mnet_id": "65",
+      "air_temp_f": 69.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "AS256",
@@ -1474,24 +1458,24 @@
       "lat": "30.65821",
       "lon": "-92.27666",
       "mnet_id": "313",
-      "air_temp_f": 68.7,
-      "valid_time": "2026-04-19T21:25:00Z"
+      "air_temp_f": 68.8,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
-      "stid": "LM025",
-      "name": "ULM_CPOT",
+      "stid": "KAPS",
+      "name": "Port of South Louisiana Executive Regional Airport",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "43.9993",
-      "lat": "30.42204",
-      "lon": "-92.23156",
-      "mnet_id": "313",
-      "air_temp_f": 68.4,
-      "valid_time": "2026-04-19T21:25:00Z"
+      "elevation_ft": "7.0",
+      "lat": "30.08747",
+      "lon": "-90.58283",
+      "mnet_id": "1",
+      "air_temp_f": 68.7,
+      "valid_time": "2026-04-19T21:35:00Z"
     },
     {
       "stid": "KLUL",
@@ -1574,22 +1558,6 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "UR373",
-      "name": "GRSTE2",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "22.0",
-      "lat": "30.40680",
-      "lon": "-91.42288",
-      "mnet_id": "64",
-      "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:07:00Z"
-    },
-    {
       "stid": "UP880",
       "name": "POWELL",
       "state": "LA",
@@ -1622,6 +1590,22 @@
       "valid_time": "2026-04-19T21:20:00Z"
     },
     {
+      "stid": "UP860",
+      "name": "BUNKIE",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "52.0",
+      "lat": "30.88467",
+      "lon": "-92.12814",
+      "mnet_id": "64",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:41:00Z"
+    },
+    {
       "stid": "TS947",
       "name": "SELA PORTABLE",
       "state": "LA",
@@ -1636,6 +1620,22 @@
       "mnet_id": "2",
       "air_temp_f": 68.0,
       "valid_time": "2026-04-19T21:34:00Z"
+    },
+    {
+      "stid": "TESL1",
+      "name": "Berwick",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "10.0",
+      "lat": "29.66750",
+      "lon": "-91.23761",
+      "mnet_id": "122",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "NNHM6",
@@ -1670,22 +1670,6 @@
       "valid_time": "2026-04-19T21:15:00Z"
     },
     {
-      "stid": "MSS44",
-      "name": "McNeill",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "229.0",
-      "lat": "30.65967",
-      "lon": "-89.63633",
-      "mnet_id": "236",
-      "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:15:00Z"
-    },
-    {
       "stid": "MPAM6",
       "name": "PIKE",
       "state": "MS",
@@ -1700,22 +1684,6 @@
       "mnet_id": "2",
       "air_temp_f": 68.0,
       "valid_time": "2026-04-19T21:09:00Z"
-    },
-    {
-      "stid": "LM028",
-      "name": "ULM_CLIN",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "241.001",
-      "lat": "30.84559",
-      "lon": "-90.98049",
-      "mnet_id": "313",
-      "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:25:00Z"
     },
     {
       "stid": "KSPR",
@@ -1763,7 +1731,7 @@
       "lon": "-90.25083",
       "mnet_id": "1",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KMJD",
@@ -1782,6 +1750,22 @@
       "valid_time": "2026-04-19T21:35:00Z"
     },
     {
+      "stid": "KHEZ",
+      "name": "Natchez, Hardy-Anders Field Natchez-Adams County Airport",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "264.0",
+      "lat": "31.61593",
+      "lon": "-91.29724",
+      "mnet_id": "1",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:40:00Z"
+    },
+    {
       "stid": "KGPT",
       "name": "Gulfport - Gulfport-Biloxi International Airport",
       "state": "MS",
@@ -1795,7 +1779,7 @@
       "lon": "-89.08083",
       "mnet_id": "1",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KEKE",
@@ -1843,7 +1827,7 @@
       "lon": "-89.81633",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G6347",
@@ -1859,7 +1843,7 @@
       "lon": "-89.75800",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G6344",
@@ -1875,7 +1859,7 @@
       "lon": "-89.94750",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G6343",
@@ -1891,7 +1875,7 @@
       "lon": "-90.18833",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G6342",
@@ -1907,7 +1891,23 @@
       "lon": "-90.04400",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "G6059",
+      "name": "GW6059 PEARL RIVER",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "39.37",
+      "lat": "30.36817",
+      "lon": "-89.77317",
+      "mnet_id": "65",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G5906",
@@ -1923,7 +1923,7 @@
       "lon": "-90.56333",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "G3439",
@@ -1939,7 +1939,23 @@
       "lon": "-89.56067",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "G2175",
+      "name": "GW2175 SPANISH FORT",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "108.27",
+      "lat": "30.66967",
+      "lon": "-87.91600",
+      "mnet_id": "65",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "G1868",
@@ -1958,36 +1974,20 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "G0582",
-      "name": "GW0582 Slidel",
+      "stid": "FRWL1",
+      "name": "Freshwater Canal Locks",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "18.6",
-      "lat": "30.31983",
-      "lon": "-89.77150",
-      "mnet_id": "65",
+      "elevation_ft": "0.0",
+      "lat": "29.55500",
+      "lon": "-92.30500",
+      "mnet_id": "122",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:40:00Z"
-    },
-    {
-      "stid": "G0554",
-      "name": "GW0554 Perkinston",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "240.0",
-      "lat": "30.73850",
-      "lon": "-89.12817",
-      "mnet_id": "65",
-      "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "F9828",
@@ -2003,7 +2003,39 @@
       "lon": "-90.49816",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
+    },
+    {
+      "stid": "F9742",
+      "name": "FW9742 Paulina",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "10.01",
+      "lat": "30.03800",
+      "lon": "-90.74150",
+      "mnet_id": "65",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:42:00Z"
+    },
+    {
+      "stid": "F1251",
+      "name": "FW1251 Lacombe",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "17.65",
+      "lat": "30.32667",
+      "lon": "-89.97017",
+      "mnet_id": "65",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "F0324",
@@ -2019,7 +2051,7 @@
       "lon": "-90.81733",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E9083",
@@ -2035,7 +2067,7 @@
       "lon": "-90.19902",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:38:00Z"
+      "valid_time": "2026-04-19T21:43:00Z"
     },
     {
       "stid": "E6903",
@@ -2051,7 +2083,7 @@
       "lon": "-90.54483",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E5037",
@@ -2067,7 +2099,23 @@
       "lon": "-90.67167",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:36:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
+    },
+    {
+      "stid": "E2701",
+      "name": "EW2701 Gulfport",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "73.0",
+      "lat": "30.49600",
+      "lon": "-89.07517",
+      "mnet_id": "65",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "C5600",
@@ -2099,7 +2147,7 @@
       "lon": "-90.218",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "BLCM6",
@@ -2131,7 +2179,7 @@
       "lon": "-89.70283",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:38:00Z"
+      "valid_time": "2026-04-19T21:43:00Z"
     },
     {
       "stid": "AU084",
@@ -2147,7 +2195,23 @@
       "lon": "-89.23383",
       "mnet_id": "65",
       "air_temp_f": 68.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "AMRL1",
+      "name": "LAWMA",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "3.0",
+      "lat": "29.44958",
+      "lon": "-91.33811",
+      "mnet_id": "122",
+      "air_temp_f": 68.0,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "1826W",
@@ -2166,68 +2230,20 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "TESL1",
-      "name": "Berwick",
+      "stid": "LM028",
+      "name": "ULM_CLIN",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "10.0",
-      "lat": "29.66750",
-      "lon": "-91.23761",
-      "mnet_id": "122",
-      "air_temp_f": 67.8,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "MSS28",
-      "name": "Beaumont",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "171.0",
-      "lat": "31.23583",
-      "lon": "-88.92188",
-      "mnet_id": "236",
-      "air_temp_f": 67.8,
-      "valid_time": "2026-04-19T21:15:00Z"
-    },
-    {
-      "stid": "FRWL1",
-      "name": "Freshwater Canal Locks",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.55500",
-      "lon": "-92.30500",
-      "mnet_id": "122",
-      "air_temp_f": 67.8,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "LM029",
-      "name": "ULM_MARO",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "5.0",
-      "lat": "29.8305",
-      "lon": "-90.11407",
+      "elevation_ft": "241.001",
+      "lat": "30.84559",
+      "lon": "-90.98049",
       "mnet_id": "313",
-      "air_temp_f": 67.7,
-      "valid_time": "2026-04-19T21:25:00Z"
+      "air_temp_f": 67.9,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "1968W",
@@ -2246,18 +2262,18 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "AMRL1",
-      "name": "LAWMA",
+      "stid": "LM029",
+      "name": "ULM_MARO",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "3.0",
-      "lat": "29.44958",
-      "lon": "-91.33811",
-      "mnet_id": "122",
+      "elevation_ft": "5.0",
+      "lat": "29.8305",
+      "lon": "-90.11407",
+      "mnet_id": "313",
       "air_temp_f": 67.6,
       "valid_time": "2026-04-19T21:30:00Z"
     },
@@ -2374,6 +2390,22 @@
       "valid_time": "2026-04-19T20:30:00Z"
     },
     {
+      "stid": "MSS44",
+      "name": "McNeill",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "229.0",
+      "lat": "30.65967",
+      "lon": "-89.63633",
+      "mnet_id": "236",
+      "air_temp_f": 67.2,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
       "stid": "MSS39",
       "name": "White Sand",
       "state": "MS",
@@ -2387,7 +2419,23 @@
       "lon": "-89.69016",
       "mnet_id": "236",
       "air_temp_f": 67.2,
-      "valid_time": "2026-04-19T21:15:00Z"
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
+      "stid": "LM027",
+      "name": "ULM_KENT",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "251.001",
+      "lat": "30.8852",
+      "lon": "-90.6086",
+      "mnet_id": "313",
+      "air_temp_f": 67.2,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "2245W",
@@ -2438,34 +2486,18 @@
       "valid_time": "2026-04-19T21:30:00Z"
     },
     {
-      "stid": "KAPS",
-      "name": "Port of South Louisiana Executive Regional Airport",
-      "state": "LA",
+      "stid": "MSS28",
+      "name": "Beaumont",
+      "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "7.0",
-      "lat": "30.08747",
-      "lon": "-90.58283",
-      "mnet_id": "1",
-      "air_temp_f": 67.1,
-      "valid_time": "2026-04-19T21:15:00Z"
-    },
-    {
-      "stid": "GISL1",
-      "name": "Grand Isle",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.26330",
-      "lon": "-89.95670",
-      "mnet_id": "122",
+      "elevation_ft": "171.0",
+      "lat": "31.23583",
+      "lon": "-88.92188",
+      "mnet_id": "236",
       "air_temp_f": 67.1,
       "valid_time": "2026-04-19T21:30:00Z"
     },
@@ -2502,6 +2534,22 @@
       "valid_time": "2026-04-19T21:22:00Z"
     },
     {
+      "stid": "UP866",
+      "name": "DONVLE",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "19.0",
+      "lat": "30.05690",
+      "lon": "-90.93188",
+      "mnet_id": "64",
+      "air_temp_f": 67.0,
+      "valid_time": "2026-04-19T21:38:00Z"
+    },
+    {
       "stid": "UP862",
       "name": "CHNYVL",
       "state": "LA",
@@ -2516,22 +2564,6 @@
       "mnet_id": "64",
       "air_temp_f": 67.0,
       "valid_time": "2026-04-19T20:45:00Z"
-    },
-    {
-      "stid": "UP860",
-      "name": "BUNKIE",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "52.0",
-      "lat": "30.88467",
-      "lon": "-92.12814",
-      "mnet_id": "64",
-      "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:34:00Z"
     },
     {
       "stid": "UP144",
@@ -2550,20 +2582,36 @@
       "valid_time": "2026-04-19T20:57:00Z"
     },
     {
-      "stid": "LM027",
-      "name": "ULM_KENT",
-      "state": "LA",
+      "stid": "OBLA1",
+      "name": "Mobile State Docks",
+      "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "251.001",
-      "lat": "30.8852",
-      "lon": "-90.6086",
-      "mnet_id": "313",
+      "elevation_ft": "20.0",
+      "lat": "30.70830",
+      "lon": "-88.04330",
+      "mnet_id": "122",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:25:00Z"
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
+      "stid": "MSS38",
+      "name": "Poplarville",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "328.0",
+      "lat": "30.83972",
+      "lon": "-89.54644",
+      "mnet_id": "236",
+      "air_temp_f": 67.0,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "LKKM6",
@@ -2598,50 +2646,18 @@
       "valid_time": "2026-04-19T21:36:00Z"
     },
     {
-      "stid": "G6348",
-      "name": "GW6348 SLIDELL",
+      "stid": "GISL1",
+      "name": "Grand Isle",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "9.84",
-      "lat": "30.22417",
-      "lon": "-89.78783",
-      "mnet_id": "65",
-      "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "G6243",
-      "name": "GW6243 PETAL",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "515.09",
-      "lat": "31.35150",
-      "lon": "-89.20467",
-      "mnet_id": "65",
-      "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "G6059",
-      "name": "GW6059 PEARL RIVER",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "39.37",
-      "lat": "30.36817",
-      "lon": "-89.77317",
-      "mnet_id": "65",
+      "elevation_ft": "0.0",
+      "lat": "29.26330",
+      "lon": "-89.95670",
+      "mnet_id": "122",
       "air_temp_f": 67.0,
       "valid_time": "2026-04-19T21:30:00Z"
     },
@@ -2659,7 +2675,7 @@
       "lon": "-89.28433",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G4801",
@@ -2675,23 +2691,23 @@
       "lon": "-90.21667",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:42:00Z"
     },
     {
-      "stid": "G2175",
-      "name": "GW2175 SPANISH FORT",
-      "state": "AL",
+      "stid": "G3222",
+      "name": "GW3222 Waynesboro",
+      "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "108.27",
-      "lat": "30.66967",
-      "lon": "-87.91600",
+      "elevation_ft": "167.0",
+      "lat": "31.67737",
+      "lon": "-88.67066",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G2074",
@@ -2710,6 +2726,54 @@
       "valid_time": "2026-04-19T21:26:00Z"
     },
     {
+      "stid": "G1824",
+      "name": "KD1DRM POPLARVILLE",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "264.01",
+      "lat": "30.85000",
+      "lon": "-89.52000",
+      "mnet_id": "65",
+      "air_temp_f": 67.0,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "G0582",
+      "name": "GW0582 Slidel",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "18.6",
+      "lat": "30.31983",
+      "lon": "-89.77150",
+      "mnet_id": "65",
+      "air_temp_f": 67.0,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "G0554",
+      "name": "GW0554 Perkinston",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "240.0",
+      "lat": "30.73850",
+      "lon": "-89.12817",
+      "mnet_id": "65",
+      "air_temp_f": 67.0,
+      "valid_time": "2026-04-19T21:44:00Z"
+    },
+    {
       "stid": "G0043",
       "name": "GW0043 Slidell",
       "state": "LA",
@@ -2723,7 +2787,7 @@
       "lon": "-89.78983",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "FRGM6",
@@ -2755,23 +2819,23 @@
       "lon": "-87.65821",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "F1110",
-      "name": "FW1110 Kenner",
-      "state": "LA",
+      "stid": "F0278",
+      "name": "FW0278 Summit",
+      "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "-4.4",
-      "lat": "30.02850",
-      "lon": "-90.22450",
+      "elevation_ft": "383.56",
+      "lat": "31.26650",
+      "lon": "-90.52733",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:31:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E8473",
@@ -2787,7 +2851,7 @@
       "lon": "-90.04883",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E3364",
@@ -2803,7 +2867,7 @@
       "lon": "-89.99183",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "D6888",
@@ -2819,7 +2883,23 @@
       "lon": "-90.03783",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:38:00Z"
+      "valid_time": "2026-04-19T21:43:00Z"
+    },
+    {
+      "stid": "D6471",
+      "name": "DW6471 Daphne",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "158.99",
+      "lat": "30.63016",
+      "lon": "-87.86720",
+      "mnet_id": "65",
+      "air_temp_f": 67.0,
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "D5349",
@@ -2835,7 +2915,7 @@
       "lon": "-90.048",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "C4185",
@@ -2851,7 +2931,7 @@
       "lon": "-90.19917",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "BONA1",
@@ -2870,6 +2950,22 @@
       "valid_time": "2026-04-19T20:50:00Z"
     },
     {
+      "stid": "AW575",
+      "name": "N4SZO-7 MOBILE",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "135.01",
+      "lat": "30.63200",
+      "lon": "-88.17850",
+      "mnet_id": "65",
+      "air_temp_f": 67.0,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
       "stid": "AW259",
       "name": "N5YHM-13 ABITA SPRINGS",
       "state": "LA",
@@ -2883,7 +2979,7 @@
       "lon": "-90.04300",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:42:00Z"
+      "valid_time": "2026-04-19T21:47:00Z"
     },
     {
       "stid": "AW123",
@@ -2899,7 +2995,7 @@
       "lon": "-89.87400",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "AV775",
@@ -2915,7 +3011,7 @@
       "lon": "-87.11950",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "AV585",
@@ -2931,7 +3027,7 @@
       "lon": "-89.96933",
       "mnet_id": "65",
       "air_temp_f": 67.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "1824W",
@@ -3011,6 +3107,22 @@
       "lon": "-89.649",
       "mnet_id": "96",
       "air_temp_f": 66.9,
+      "valid_time": "2026-04-19T21:00:00Z"
+    },
+    {
+      "stid": "EINL1",
+      "name": "North of Eugene Island",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "20.0",
+      "lat": "29.37306",
+      "lon": "-91.38389",
+      "mnet_id": "96",
+      "air_temp_f": 66.8,
       "valid_time": "2026-04-19T21:00:00Z"
     },
     {
@@ -3110,22 +3222,6 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "PSTL1",
-      "name": "Pilots Station East",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "28.93220",
-      "lon": "-89.40750",
-      "mnet_id": "122",
-      "air_temp_f": 66.6,
-      "valid_time": "2026-04-19T21:24:00Z"
-    },
-    {
       "stid": "NTC8737048",
       "name": "Mobile State Docks",
       "state": "AL",
@@ -3139,6 +3235,22 @@
       "lon": "-88.03961",
       "mnet_id": "278",
       "air_temp_f": 66.6,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
+      "stid": "PSTL1",
+      "name": "Pilots Station East",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "28.93220",
+      "lon": "-89.40750",
+      "mnet_id": "122",
+      "air_temp_f": 66.4,
       "valid_time": "2026-04-19T21:30:00Z"
     },
     {
@@ -3158,38 +3270,6 @@
       "valid_time": "2026-04-19T20:30:00Z"
     },
     {
-      "stid": "USA5",
-      "name": "Saraland",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "20.0",
-      "lat": "30.83020",
-      "lon": "-88.06580",
-      "mnet_id": "3011",
-      "air_temp_f": 66.3,
-      "valid_time": "2026-04-19T21:39:00Z"
-    },
-    {
-      "stid": "MSS38",
-      "name": "Poplarville",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "328.0",
-      "lat": "30.83972",
-      "lon": "-89.54644",
-      "mnet_id": "236",
-      "air_temp_f": 66.3,
-      "valid_time": "2026-04-19T21:15:00Z"
-    },
-    {
       "stid": "LM030",
       "name": "ULM_CHAL",
       "state": "LA",
@@ -3202,8 +3282,8 @@
       "lat": "29.97033",
       "lon": "-89.95386",
       "mnet_id": "313",
-      "air_temp_f": 66.3,
-      "valid_time": "2026-04-19T21:25:00Z"
+      "air_temp_f": 66.4,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "1822W",
@@ -3315,7 +3395,7 @@
       "lon": "-88.53155",
       "mnet_id": "1",
       "air_temp_f": 66.2,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KNEW",
@@ -3331,7 +3411,7 @@
       "lon": "-90.02889",
       "mnet_id": "1",
       "air_temp_f": 66.2,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KMOB",
@@ -3347,7 +3427,7 @@
       "lon": "-88.24556",
       "mnet_id": "1",
       "air_temp_f": 66.2,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KIKT",
@@ -3379,7 +3459,7 @@
       "lon": "-89.25613",
       "mnet_id": "1",
       "air_temp_f": 66.2,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KGZH",
@@ -3395,7 +3475,7 @@
       "lon": "-87.04806",
       "mnet_id": "1",
       "air_temp_f": 66.2,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KBFM",
@@ -3411,7 +3491,7 @@
       "lon": "-88.06333",
       "mnet_id": "1",
       "air_temp_f": 66.2,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "K1R8",
@@ -3430,20 +3510,20 @@
       "valid_time": "2026-04-19T21:35:00Z"
     },
     {
-      "stid": "EINL1",
-      "name": "North of Eugene Island",
-      "state": "LA",
+      "stid": "AESM6",
+      "name": "Agricola",
+      "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "20.0",
-      "lat": "29.37306",
-      "lon": "-91.38389",
-      "mnet_id": "96",
+      "elevation_ft": "225.0",
+      "lat": "30.81700",
+      "lon": "-88.52050",
+      "mnet_id": "3011",
       "air_temp_f": 66.2,
-      "valid_time": "2026-04-19T20:30:00Z"
+      "valid_time": "2026-04-19T21:39:00Z"
     },
     {
       "stid": "1887W",
@@ -3510,6 +3590,22 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
+      "stid": "WYCM6",
+      "name": "Bay Waveland Yacht Club",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "30.32639",
+      "lon": "-89.32578",
+      "mnet_id": "122",
+      "air_temp_f": 66.0,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
       "stid": "UP887",
       "name": "VENEER",
       "state": "LA",
@@ -3524,6 +3620,22 @@
       "mnet_id": "64",
       "air_temp_f": 66.0,
       "valid_time": "2026-04-19T20:21:00Z"
+    },
+    {
+      "stid": "UP390",
+      "name": "PLAQMN",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "24.0",
+      "lat": "30.26172",
+      "lon": "-91.21897",
+      "mnet_id": "64",
+      "air_temp_f": 66.0,
+      "valid_time": "2026-04-19T21:37:00Z"
     },
     {
       "stid": "SHCM6",
@@ -3542,8 +3654,24 @@
       "valid_time": "2026-04-19T20:51:00Z"
     },
     {
-      "stid": "OBLA1",
-      "name": "Mobile State Docks",
+      "stid": "PTOA1",
+      "name": "Pinto Island",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "10.0",
+      "lat": "30.67114",
+      "lon": "-88.03106",
+      "mnet_id": "121",
+      "air_temp_f": 66.0,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
+      "stid": "MBPA1",
+      "name": "Middle Bay Port - Mobile Bay",
       "state": "AL",
       "country": "US",
       "county": "",
@@ -3551,27 +3679,11 @@
       "nwszone": "",
       "timezone": "America/Chicago",
       "elevation_ft": "20.0",
-      "lat": "30.70830",
-      "lon": "-88.04330",
-      "mnet_id": "122",
+      "lat": "30.52711",
+      "lon": "-88.08656",
+      "mnet_id": "121",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:24:00Z"
-    },
-    {
-      "stid": "MVSA1",
-      "name": "Mt. Vernon",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "53.0",
-      "lat": "31.09050",
-      "lon": "-87.99870",
-      "mnet_id": "3011",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "GRBM6",
@@ -3603,23 +3715,39 @@
       "lon": "-87.19417",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
-      "stid": "G4772",
-      "name": "GW4772 GATESWOOD",
+      "stid": "G6348",
+      "name": "GW6348 SLIDELL",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "9.84",
+      "lat": "30.22417",
+      "lon": "-89.78783",
+      "mnet_id": "65",
+      "air_temp_f": 66.0,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "G6029",
+      "name": "GW6029 FOLEY",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "177.16",
-      "lat": "30.70833",
-      "lon": "-87.54767",
+      "elevation_ft": "278.87",
+      "lat": "30.41333",
+      "lon": "-87.69133",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "G3750",
@@ -3635,71 +3763,39 @@
       "lon": "-89.36550",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "G3222",
-      "name": "GW3222 Waynesboro",
+      "stid": "G2297",
+      "name": "GW2297 LUCEDALE",
       "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "167.0",
-      "lat": "31.67737",
-      "lon": "-88.67066",
+      "elevation_ft": "269.03",
+      "lat": "30.92300",
+      "lon": "-88.58983",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "G2672",
-      "name": "GW2672 West Mobile",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "206.99",
-      "lat": "30.67950",
-      "lon": "-88.24017",
-      "mnet_id": "65",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:31:00Z"
-    },
-    {
-      "stid": "G1930",
-      "name": "GW1930 CHATOM",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "154.2",
-      "lat": "31.45100",
-      "lon": "-88.19617",
-      "mnet_id": "65",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "G1824",
-      "name": "KD1DRM POPLARVILLE",
+      "stid": "G1927",
+      "name": "GW1927 SAND HILL",
       "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "264.01",
-      "lat": "30.85000",
-      "lon": "-89.52000",
+      "elevation_ft": "341.21",
+      "lat": "31.34900",
+      "lon": "-88.76167",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G0610",
@@ -3715,7 +3811,7 @@
       "lon": "-90.13883",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "F7820",
@@ -3731,87 +3827,23 @@
       "lon": "-89.44100",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "F4737",
-      "name": "FW4737 Nokomis",
+      "stid": "E6361",
+      "name": "EW6361 Orange Beach",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "240.03",
-      "lat": "31.02712",
-      "lon": "-87.59266",
+      "elevation_ft": "1.05",
+      "lat": "30.304",
+      "lon": "-87.476",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:40:00Z"
-    },
-    {
-      "stid": "F1622",
-      "name": "FW1622 New Orleans",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "6.1",
-      "lat": "29.9435",
-      "lon": "-90.06983",
-      "mnet_id": "65",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:17:00Z"
-    },
-    {
-      "stid": "F0278",
-      "name": "FW0278 Summit",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "383.56",
-      "lat": "31.26650",
-      "lon": "-90.52733",
-      "mnet_id": "65",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "E7714",
-      "name": "EW7714 Mobile",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "183.33",
-      "lat": "30.68550",
-      "lon": "-88.27967",
-      "mnet_id": "65",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:40:00Z"
-    },
-    {
-      "stid": "E2701",
-      "name": "EW2701 Gulfport",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "73.0",
-      "lat": "30.49600",
-      "lon": "-89.07517",
-      "mnet_id": "65",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E1604",
@@ -3827,7 +3859,7 @@
       "lon": "-88.64750",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E0390",
@@ -3843,23 +3875,7 @@
       "lon": "-87.99883",
       "mnet_id": "65",
       "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:39:00Z"
-    },
-    {
-      "stid": "D6471",
-      "name": "DW6471 Daphne",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "158.99",
-      "lat": "30.63016",
-      "lon": "-87.86720",
-      "mnet_id": "65",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "CKWM6",
@@ -3876,22 +3892,6 @@
       "mnet_id": "2",
       "air_temp_f": 66.0,
       "valid_time": "2026-04-19T21:00:00Z"
-    },
-    {
-      "stid": "C1353",
-      "name": "CW1353 Mobile",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "160.6",
-      "lat": "30.60783",
-      "lon": "-88.25833",
-      "mnet_id": "65",
-      "air_temp_f": 66.0,
-      "valid_time": "2026-04-19T21:34:00Z"
     },
     {
       "stid": "2020W",
@@ -3942,20 +3942,52 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "USA12",
-      "name": "Gasque",
+      "stid": "MVSA1",
+      "name": "Mt. Vernon",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "4.0",
-      "lat": "30.23870",
-      "lon": "-87.85400",
+      "elevation_ft": "53.0",
+      "lat": "31.09050",
+      "lon": "-87.99870",
       "mnet_id": "3011",
       "air_temp_f": 65.9,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
+    },
+    {
+      "stid": "USA9",
+      "name": "Fairhope",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "125.0",
+      "lat": "30.54120",
+      "lon": "-87.88190",
+      "mnet_id": "3011",
+      "air_temp_f": 65.8,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "USA5",
+      "name": "Saraland",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "20.0",
+      "lat": "30.83020",
+      "lon": "-88.06580",
+      "mnet_id": "3011",
+      "air_temp_f": 65.8,
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "NDBCNWCL1",
@@ -3990,38 +4022,6 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "WYCM6",
-      "name": "Bay Waveland Yacht Club",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "30.32639",
-      "lon": "-89.32578",
-      "mnet_id": "122",
-      "air_temp_f": 65.7,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "USA1",
-      "name": "USA West",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "170.0",
-      "lat": "30.69440",
-      "lon": "-88.19440",
-      "mnet_id": "3011",
-      "air_temp_f": 65.7,
-      "valid_time": "2026-04-19T21:39:00Z"
-    },
-    {
       "stid": "NDBCPTFL1",
       "name": "8762075 - Port Fourchon, LA",
       "state": "LA",
@@ -4038,36 +4038,36 @@
       "valid_time": "2026-04-19T20:30:00Z"
     },
     {
-      "stid": "USA24",
-      "name": "Poarch Creek",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "294.0",
-      "lat": "31.09210",
-      "lon": "-87.54350",
-      "mnet_id": "3011",
-      "air_temp_f": 65.6,
-      "valid_time": "2026-04-19T21:40:00Z"
-    },
-    {
-      "stid": "USA19",
-      "name": "Leaksville",
+      "stid": "MSS12",
+      "name": "Coastal Research and Extension Center",
       "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "235.0",
-      "lat": "31.17650",
-      "lon": "-88.60010",
+      "elevation_ft": "56.0",
+      "lat": "30.44102",
+      "lon": "-88.94368",
+      "mnet_id": "236",
+      "air_temp_f": 65.6,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
+      "stid": "BMTA1",
+      "name": "Bay Minette FS",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "269.0",
+      "lat": "30.88040",
+      "lon": "-87.78140",
       "mnet_id": "3011",
       "air_temp_f": 65.6,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "1819W",
@@ -4102,22 +4102,6 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "NWCL1",
-      "name": "New Canal Station",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "7.0",
-      "lat": "30.02717",
-      "lon": "-90.11342",
-      "mnet_id": "122",
-      "air_temp_f": 65.5,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
       "stid": "KBIX",
       "name": "Keesler Air Force Base / Biloxi",
       "state": "MS",
@@ -4134,20 +4118,52 @@
       "valid_time": "2026-04-19T20:55:00Z"
     },
     {
-      "stid": "MSS12",
-      "name": "Coastal Research and Extension Center",
-      "state": "MS",
+      "stid": "USA12",
+      "name": "Gasque",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "4.0",
+      "lat": "30.23870",
+      "lon": "-87.85400",
+      "mnet_id": "3011",
+      "air_temp_f": 65.4,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "USA11",
+      "name": "Loxley",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "184.0",
+      "lat": "30.64030",
+      "lon": "-87.73150",
+      "mnet_id": "3011",
+      "air_temp_f": 65.4,
+      "valid_time": "2026-04-19T21:49:00Z"
+    },
+    {
+      "stid": "USA10",
+      "name": "Foley",
+      "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
       "elevation_ft": "56.0",
-      "lat": "30.44102",
-      "lon": "-88.94368",
-      "mnet_id": "236",
+      "lat": "30.36990",
+      "lon": "-87.64560",
+      "mnet_id": "3011",
       "air_temp_f": 65.3,
-      "valid_time": "2026-04-19T21:15:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "BRXA1",
@@ -4214,6 +4230,22 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
+      "stid": "USA1",
+      "name": "USA West",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "170.0",
+      "lat": "30.69440",
+      "lon": "-88.19440",
+      "mnet_id": "3011",
+      "air_temp_f": 65.1,
+      "valid_time": "2026-04-19T21:44:00Z"
+    },
+    {
       "stid": "BURL1",
       "name": "Southwest Pass",
       "state": "LA",
@@ -4230,68 +4262,84 @@
       "valid_time": "2026-04-19T21:00:00Z"
     },
     {
-      "stid": "UP866",
-      "name": "DONVLE",
+      "stid": "USA19",
+      "name": "Leaksville",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "235.0",
+      "lat": "31.17650",
+      "lon": "-88.60010",
+      "mnet_id": "3011",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:46:00Z"
+    },
+    {
+      "stid": "SHBL1",
+      "name": "Shell Beach",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "19.0",
-      "lat": "30.05690",
-      "lon": "-90.93188",
-      "mnet_id": "64",
+      "elevation_ft": "0.0",
+      "lat": "29.86811",
+      "lon": "-89.67325",
+      "mnet_id": "122",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:09:00Z"
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
-      "stid": "UP390",
-      "name": "PLAQMN",
+      "stid": "PILL1",
+      "name": "Pilottown",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "24.0",
-      "lat": "30.26172",
-      "lon": "-91.21897",
-      "mnet_id": "64",
+      "elevation_ft": "3.0",
+      "lat": "29.17830",
+      "lon": "-89.25830",
+      "mnet_id": "121",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:06:00Z"
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
-      "stid": "PTOA1",
-      "name": "Pinto Island",
+      "stid": "NWCL1",
+      "name": "New Canal Station",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "7.0",
+      "lat": "30.02717",
+      "lon": "-90.11342",
+      "mnet_id": "122",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
+      "stid": "MCGA1",
+      "name": "Coast Guard Sector Mobile",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "10.0",
-      "lat": "30.67114",
-      "lon": "-88.03106",
+      "elevation_ft": "13.0",
+      "lat": "30.64830",
+      "lon": "-88.05830",
       "mnet_id": "121",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:24:00Z"
-    },
-    {
-      "stid": "MBPA1",
-      "name": "Middle Bay Port - Mobile Bay",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "20.0",
-      "lat": "30.52711",
-      "lon": "-88.08656",
-      "mnet_id": "121",
-      "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:24:00Z"
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "GHAA1",
@@ -4323,23 +4371,23 @@
       "lon": "-87.14667",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
-      "stid": "G6029",
-      "name": "GW6029 FOLEY",
-      "state": "AL",
+      "stid": "G6243",
+      "name": "GW6243 PETAL",
+      "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "278.87",
-      "lat": "30.41333",
-      "lon": "-87.69133",
+      "elevation_ft": "515.09",
+      "lat": "31.35150",
+      "lon": "-89.20467",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G5750",
@@ -4355,7 +4403,7 @@
       "lon": "-87.75467",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "G4878",
@@ -4371,7 +4419,23 @@
       "lon": "-88.22900",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "G4772",
+      "name": "GW4772 GATESWOOD",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "177.16",
+      "lat": "30.70833",
+      "lon": "-87.54767",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G4508",
@@ -4387,7 +4451,7 @@
       "lon": "-87.35017",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "G2193",
@@ -4403,39 +4467,119 @@
       "lon": "-87.67700",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:31:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "G1927",
-      "name": "GW1927 SAND HILL",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "341.21",
-      "lat": "31.34900",
-      "lon": "-88.76167",
-      "mnet_id": "65",
-      "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:31:00Z"
-    },
-    {
-      "stid": "E6361",
-      "name": "EW6361 Orange Beach",
+      "stid": "G1930",
+      "name": "GW1930 CHATOM",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "1.05",
-      "lat": "30.304",
-      "lon": "-87.476",
+      "elevation_ft": "154.2",
+      "lat": "31.45100",
+      "lon": "-88.19617",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "F9403",
+      "name": "FW9403 Summerdale",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "129.0",
+      "lat": "30.48733",
+      "lon": "-87.74317",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:44:00Z"
+    },
+    {
+      "stid": "F9380",
+      "name": "FW9380 Gulf Breeze",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "15.22",
+      "lat": "30.36100",
+      "lon": "-87.19100",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:42:00Z"
+    },
+    {
+      "stid": "F4737",
+      "name": "FW4737 Nokomis",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "240.03",
+      "lat": "31.02712",
+      "lon": "-87.59266",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "F1622",
+      "name": "FW1622 New Orleans",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "6.1",
+      "lat": "29.9435",
+      "lon": "-90.06983",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:42:00Z"
+    },
+    {
+      "stid": "E7714",
+      "name": "EW7714 Mobile",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "183.33",
+      "lat": "30.68550",
+      "lon": "-88.27967",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "E4624",
+      "name": "EW4624 Pensacola",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "4.0",
+      "lat": "30.30633",
+      "lon": "-87.42333",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "E1896",
@@ -4451,7 +4595,7 @@
       "lon": "-87.13217",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "D8180",
@@ -4467,7 +4611,7 @@
       "lon": "-87.15283",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "D7066",
@@ -4483,7 +4627,7 @@
       "lon": "-87.19167",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "D4135",
@@ -4499,7 +4643,23 @@
       "lon": "-87.04733",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:39:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
+    },
+    {
+      "stid": "C1353",
+      "name": "CW1353 Mobile",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "160.6",
+      "lat": "30.60783",
+      "lon": "-88.25833",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:43:00Z"
     },
     {
       "stid": "AW815",
@@ -4515,7 +4675,23 @@
       "lon": "-88.82750",
       "mnet_id": "65",
       "air_temp_f": 65.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:42:00Z"
+    },
+    {
+      "stid": "AR152",
+      "name": "KC5LIO Fairhope",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "91.53",
+      "lat": "30.51833",
+      "lon": "-87.81717",
+      "mnet_id": "65",
+      "air_temp_f": 65.0,
+      "valid_time": "2026-04-19T21:47:00Z"
     },
     {
       "stid": "2280W",
@@ -4534,22 +4710,6 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "USA11",
-      "name": "Loxley",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "184.0",
-      "lat": "30.64030",
-      "lon": "-87.73150",
-      "mnet_id": "3011",
-      "air_temp_f": 64.9,
-      "valid_time": "2026-04-19T21:44:00Z"
-    },
-    {
       "stid": "USA3",
       "name": "Grand Bay",
       "state": "AL",
@@ -4563,71 +4723,7 @@
       "lon": "-88.36800",
       "mnet_id": "3011",
       "air_temp_f": 64.8,
-      "valid_time": "2026-04-19T21:39:00Z"
-    },
-    {
-      "stid": "USA20",
-      "name": "Castleberry",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "250.0",
-      "lat": "31.29580",
-      "lon": "-87.03130",
-      "mnet_id": "3011",
-      "air_temp_f": 64.8,
-      "valid_time": "2026-04-19T21:40:00Z"
-    },
-    {
-      "stid": "USA10",
-      "name": "Foley",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "56.0",
-      "lat": "30.36990",
-      "lon": "-87.64560",
-      "mnet_id": "3011",
-      "air_temp_f": 64.8,
-      "valid_time": "2026-04-19T21:40:00Z"
-    },
-    {
-      "stid": "SHBL1",
-      "name": "Shell Beach",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.86811",
-      "lon": "-89.67325",
-      "mnet_id": "122",
-      "air_temp_f": 64.8,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "PILL1",
-      "name": "Pilottown",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "3.0",
-      "lat": "29.17830",
-      "lon": "-89.25830",
-      "mnet_id": "121",
-      "air_temp_f": 64.8,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:44:00Z"
     },
     {
       "stid": "NDBCMBPA1",
@@ -4644,38 +4740,6 @@
       "mnet_id": "286",
       "air_temp_f": 64.8,
       "valid_time": "2026-04-19T20:30:00Z"
-    },
-    {
-      "stid": "BMTA1",
-      "name": "Bay Minette FS",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "269.0",
-      "lat": "30.88040",
-      "lon": "-87.78140",
-      "mnet_id": "3011",
-      "air_temp_f": 64.8,
-      "valid_time": "2026-04-19T21:39:00Z"
-    },
-    {
-      "stid": "AESM6",
-      "name": "Agricola",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "225.0",
-      "lat": "30.81700",
-      "lon": "-88.52050",
-      "mnet_id": "3011",
-      "air_temp_f": 64.8,
-      "valid_time": "2026-04-19T21:34:00Z"
     },
     {
       "stid": "1970W",
@@ -4710,20 +4774,20 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "YLBA1",
-      "name": "Bayou La Batre",
+      "stid": "USA20",
+      "name": "Castleberry",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "13.0",
-      "lat": "30.3956",
-      "lon": "-88.2478",
+      "elevation_ft": "250.0",
+      "lat": "31.29580",
+      "lon": "-87.03130",
       "mnet_id": "3011",
       "air_temp_f": 64.7,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "GCBSPA1",
@@ -4742,20 +4806,36 @@
       "valid_time": "2026-04-19T21:00:00Z"
     },
     {
-      "stid": "USA9",
-      "name": "Fairhope",
+      "stid": "YLBA1",
+      "name": "Bayou La Batre",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "125.0",
-      "lat": "30.54120",
-      "lon": "-87.88190",
+      "elevation_ft": "13.0",
+      "lat": "30.3956",
+      "lon": "-88.2478",
       "mnet_id": "3011",
       "air_temp_f": 64.6,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "USA24",
+      "name": "Poarch Creek",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "294.0",
+      "lat": "31.09210",
+      "lon": "-87.54350",
+      "mnet_id": "3011",
+      "air_temp_f": 64.6,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "NDBCSHBL1",
@@ -4772,22 +4852,6 @@
       "mnet_id": "286",
       "air_temp_f": 64.6,
       "valid_time": "2026-04-19T20:30:00Z"
-    },
-    {
-      "stid": "MCGA1",
-      "name": "Coast Guard Sector Mobile",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "13.0",
-      "lat": "30.64830",
-      "lon": "-88.05830",
-      "mnet_id": "121",
-      "air_temp_f": 64.6,
-      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "1684W",
@@ -4819,7 +4883,7 @@
       "lon": "-88.52120",
       "mnet_id": "3011",
       "air_temp_f": 64.5,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "2216W",
@@ -4867,7 +4931,7 @@
       "lon": "-87.18694",
       "mnet_id": "1",
       "air_temp_f": 64.4,
-      "valid_time": "2026-04-19T21:35:00Z"
+      "valid_time": "2026-04-19T21:40:00Z"
     },
     {
       "stid": "KJKA",
@@ -4902,6 +4966,22 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
+      "stid": "USA7",
+      "name": "Robertsdale",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "154.0",
+      "lat": "30.58400",
+      "lon": "-87.73010",
+      "mnet_id": "3011",
+      "air_temp_f": 64.3,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
       "stid": "2117W",
       "name": "Foley Elementary School",
       "state": "AL",
@@ -4934,6 +5014,22 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
+      "stid": "USA8",
+      "name": "Elberta",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "73.0",
+      "lat": "30.41130",
+      "lon": "-87.58500",
+      "mnet_id": "3011",
+      "air_temp_f": 64.2,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
       "stid": "SSGSP",
       "name": "Floridatown Park",
       "state": "FL",
@@ -4948,22 +5044,6 @@
       "mnet_id": "248",
       "air_temp_f": 64.2,
       "valid_time": "2026-04-19T21:19:00Z"
-    },
-    {
-      "stid": "PCLF1",
-      "name": "Pensacola",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "13.0",
-      "lat": "30.40440",
-      "lon": "-87.21120",
-      "mnet_id": "122",
-      "air_temp_f": 64.2,
-      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "NDBCOBLA1",
@@ -5014,20 +5094,20 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "USA7",
-      "name": "Robertsdale",
-      "state": "AL",
+      "stid": "USA23",
+      "name": "Jay",
+      "state": "FL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "154.0",
-      "lat": "30.58400",
-      "lon": "-87.73010",
+      "elevation_ft": "260.0",
+      "lat": "30.94840",
+      "lon": "-87.17060",
       "mnet_id": "3011",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "UP357",
@@ -5044,6 +5124,22 @@
       "mnet_id": "64",
       "air_temp_f": 64.0,
       "valid_time": "2026-04-19T21:32:00Z"
+    },
+    {
+      "stid": "PCLF1",
+      "name": "Pensacola",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "13.0",
+      "lat": "30.40440",
+      "lon": "-87.21120",
+      "mnet_id": "122",
+      "air_temp_f": 64.0,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "NTC8734383",
@@ -5094,6 +5190,22 @@
       "valid_time": "2026-04-19T20:56:00Z"
     },
     {
+      "stid": "G4271",
+      "name": "GW4271 GULF BREEZE",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "14.99",
+      "lat": "30.38633",
+      "lon": "-87.05217",
+      "mnet_id": "65",
+      "air_temp_f": 64.0,
+      "valid_time": "2026-04-19T21:46:00Z"
+    },
+    {
       "stid": "G2684",
       "name": "GW2684 Robertsdale",
       "state": "AL",
@@ -5107,71 +5219,55 @@
       "lon": "-87.71467",
       "mnet_id": "65",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "G2297",
-      "name": "GW2297 LUCEDALE",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "269.03",
-      "lat": "30.92300",
-      "lon": "-88.58983",
-      "mnet_id": "65",
-      "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "G2037",
-      "name": "GW2037 WILMER",
+      "stid": "G2672",
+      "name": "GW2672 West Mobile",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "241.01",
-      "lat": "30.87717",
-      "lon": "-88.25950",
+      "elevation_ft": "206.99",
+      "lat": "30.67950",
+      "lon": "-88.24017",
       "mnet_id": "65",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
-      "stid": "F9403",
-      "name": "FW9403 Summerdale",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "129.0",
-      "lat": "30.48733",
-      "lon": "-87.74317",
-      "mnet_id": "65",
-      "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:39:00Z"
-    },
-    {
-      "stid": "F9380",
-      "name": "FW9380 Gulf Breeze",
+      "stid": "G0933",
+      "name": "GW0933 Pensacola",
       "state": "FL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "15.22",
-      "lat": "30.36100",
-      "lon": "-87.19100",
+      "elevation_ft": "16.4",
+      "lat": "30.26633",
+      "lon": "-87.26533",
       "mnet_id": "65",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:37:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
+      "stid": "G0489",
+      "name": "GW0489 Pensacola",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "9.0",
+      "lat": "30.31467",
+      "lon": "-87.47833",
+      "mnet_id": "65",
+      "air_temp_f": 64.0,
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "F3872",
@@ -5187,23 +5283,7 @@
       "lon": "-87.58183",
       "mnet_id": "65",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:40:00Z"
-    },
-    {
-      "stid": "E4624",
-      "name": "EW4624 Pensacola",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "4.0",
-      "lat": "30.30633",
-      "lon": "-87.42333",
-      "mnet_id": "65",
-      "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "D9919",
@@ -5219,7 +5299,7 @@
       "lon": "-87.51133",
       "mnet_id": "65",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "D2686",
@@ -5235,7 +5315,7 @@
       "lon": "-87.7285",
       "mnet_id": "65",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "D1458",
@@ -5251,7 +5331,7 @@
       "lon": "-87.66983",
       "mnet_id": "65",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "AW503",
@@ -5267,55 +5347,7 @@
       "lon": "-87.87483",
       "mnet_id": "65",
       "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:40:00Z"
-    },
-    {
-      "stid": "AW025",
-      "name": "KF5WKW CANTONMENT",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "65.0",
-      "lat": "30.54533",
-      "lon": "-87.33683",
-      "mnet_id": "65",
-      "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:35:00Z"
-    },
-    {
-      "stid": "AR152",
-      "name": "KC5LIO Fairhope",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "91.53",
-      "lat": "30.51833",
-      "lon": "-87.81717",
-      "mnet_id": "65",
-      "air_temp_f": 64.0,
-      "valid_time": "2026-04-19T21:32:00Z"
-    },
-    {
-      "stid": "USA8",
-      "name": "Elberta",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "73.0",
-      "lat": "30.41130",
-      "lon": "-87.58500",
-      "mnet_id": "3011",
-      "air_temp_f": 63.9,
-      "valid_time": "2026-04-19T21:40:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "NDBCPILL1",
@@ -5526,22 +5558,6 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "USA23",
-      "name": "Jay",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "260.0",
-      "lat": "30.94840",
-      "lon": "-87.17060",
-      "mnet_id": "3011",
-      "air_temp_f": 63.2,
-      "valid_time": "2026-04-19T21:35:00Z"
-    },
-    {
       "stid": "GCBSCA1",
       "name": "BSCA - Station Bon Secour, LA",
       "state": "AL",
@@ -5554,6 +5570,22 @@
       "lat": "30.3288",
       "lon": "-87.8293",
       "mnet_id": "315",
+      "air_temp_f": 63.2,
+      "valid_time": "2026-04-19T21:00:00Z"
+    },
+    {
+      "stid": "EFLA1",
+      "name": "E Range Front Light Visibility",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "14.0",
+      "lat": "30.42861",
+      "lon": "-88.00972",
+      "mnet_id": "96",
       "air_temp_f": 63.2,
       "valid_time": "2026-04-19T21:00:00Z"
     },
@@ -5654,52 +5686,36 @@
       "valid_time": "2026-04-19T21:29:00Z"
     },
     {
-      "stid": "G4271",
-      "name": "GW4271 GULF BREEZE",
-      "state": "FL",
+      "stid": "G2037",
+      "name": "GW2037 WILMER",
+      "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "14.99",
-      "lat": "30.38633",
-      "lon": "-87.05217",
+      "elevation_ft": "241.01",
+      "lat": "30.87717",
+      "lon": "-88.25950",
       "mnet_id": "65",
       "air_temp_f": 63.0,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:47:00Z"
     },
     {
-      "stid": "G0933",
-      "name": "GW0933 Pensacola",
-      "state": "FL",
+      "stid": "FRMA1",
+      "name": "Fort Morgan",
+      "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "16.4",
-      "lat": "30.26633",
-      "lon": "-87.26533",
-      "mnet_id": "65",
+      "elevation_ft": "5.0",
+      "lat": "30.23445",
+      "lon": "-87.99361",
+      "mnet_id": "96",
       "air_temp_f": 63.0,
-      "valid_time": "2026-04-19T21:38:00Z"
-    },
-    {
-      "stid": "G0489",
-      "name": "GW0489 Pensacola",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "9.0",
-      "lat": "30.31467",
-      "lon": "-87.47833",
-      "mnet_id": "65",
-      "air_temp_f": 63.0,
-      "valid_time": "2026-04-19T21:30:00Z"
+      "valid_time": "2026-04-19T21:00:00Z"
     },
     {
       "stid": "F7996",
@@ -5716,6 +5732,22 @@
       "mnet_id": "65",
       "air_temp_f": 63.0,
       "valid_time": "2026-04-19T21:40:00Z"
+    },
+    {
+      "stid": "DILA1",
+      "name": "Dauphin Island",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "30.25000",
+      "lon": "-88.07500",
+      "mnet_id": "122",
+      "air_temp_f": 63.0,
+      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "D4362",
@@ -5750,36 +5782,20 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
-      "stid": "AX128",
-      "name": "KN4CGX PENSACOLA",
+      "stid": "AW025",
+      "name": "KF5WKW CANTONMENT",
       "state": "FL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "111.55",
-      "lat": "30.51750",
-      "lon": "-87.36583",
+      "elevation_ft": "65.0",
+      "lat": "30.54533",
+      "lon": "-87.33683",
       "mnet_id": "65",
       "air_temp_f": 63.0,
-      "valid_time": "2026-04-19T21:30:00Z"
-    },
-    {
-      "stid": "PTBM6",
-      "name": "Petit Bois Is",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "30.21330",
-      "lon": "-88.50000",
-      "mnet_id": "121",
-      "air_temp_f": 62.8,
-      "valid_time": "2026-04-19T21:24:00Z"
+      "valid_time": "2026-04-19T21:45:00Z"
     },
     {
       "stid": "NDBCPTOA1",
@@ -5796,22 +5812,6 @@
       "mnet_id": "286",
       "air_temp_f": 62.8,
       "valid_time": "2026-04-19T20:30:00Z"
-    },
-    {
-      "stid": "DILA1",
-      "name": "Dauphin Island",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "30.25000",
-      "lon": "-88.07500",
-      "mnet_id": "122",
-      "air_temp_f": 62.8,
-      "valid_time": "2026-04-19T21:30:00Z"
     },
     {
       "stid": "42012",
@@ -5878,6 +5878,22 @@
       "valid_time": "2026-04-19T21:40:00Z"
     },
     {
+      "stid": "PTBM6",
+      "name": "Petit Bois Is",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "30.21330",
+      "lon": "-88.50000",
+      "mnet_id": "121",
+      "air_temp_f": 62.6,
+      "valid_time": "2026-04-19T21:30:00Z"
+    },
+    {
       "stid": "NDBCEFLA1",
       "name": "8734536 - E Range Front Light Visibility, AL",
       "state": null,
@@ -5942,22 +5958,6 @@
       "valid_time": "2026-04-19T21:30:00Z"
     },
     {
-      "stid": "EFLA1",
-      "name": "E Range Front Light Visibility",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "14.0",
-      "lat": "30.42861",
-      "lon": "-88.00972",
-      "mnet_id": "96",
-      "air_temp_f": 62.6,
-      "valid_time": "2026-04-19T20:30:00Z"
-    },
-    {
       "stid": "SSLYH",
       "name": "Davenport Bayou",
       "state": "FL",
@@ -6004,22 +6004,6 @@
       "mnet_id": "315",
       "air_temp_f": 62.4,
       "valid_time": "2026-04-19T21:10:00Z"
-    },
-    {
-      "stid": "FRMA1",
-      "name": "Fort Morgan",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "5.0",
-      "lat": "30.23445",
-      "lon": "-87.99361",
-      "mnet_id": "96",
-      "air_temp_f": 62.4,
-      "valid_time": "2026-04-19T20:30:00Z"
     },
     {
       "stid": "GCDPHA1",
@@ -6086,6 +6070,22 @@
       "valid_time": "2026-04-19T20:30:00Z"
     },
     {
+      "stid": "AX128",
+      "name": "KN4CGX PENSACOLA",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "111.55",
+      "lat": "30.51750",
+      "lon": "-87.36583",
+      "mnet_id": "65",
+      "air_temp_f": 62.0,
+      "valid_time": "2026-04-19T21:45:00Z"
+    },
+    {
       "stid": "NDBCDILA1",
       "name": "8735180 - Dauphin Island, AL",
       "state": null,
@@ -6131,7 +6131,7 @@
       "lon": "-89.80317",
       "mnet_id": "65",
       "air_temp_f": 56.0,
-      "valid_time": "2026-04-19T21:41:00Z"
+      "valid_time": "2026-04-19T21:46:00Z"
     },
     {
       "stid": "UP172",
@@ -6162,8 +6162,8 @@
       "lat": "30.51779",
       "lon": "-92.20221",
       "mnet_id": "64",
-      "air_temp_f": -50.0,
-      "valid_time": "2026-04-19T21:09:00Z"
+      "air_temp_f": -49.0,
+      "valid_time": "2026-04-19T21:40:00Z"
     }
   ]
 }
