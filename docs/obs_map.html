@@ -18,26 +18,31 @@
       background: #ececec;
       color: #111;
     }
+
     main {
-      max-width: 1550px;
+      max-width: 1600px;
       margin: 0 auto;
       padding: 18px;
     }
+
     .card {
       background: #fff;
       border: 2px solid #111;
       border-radius: 10px;
       padding: 14px;
     }
+
     h1 {
       margin: 0 0 8px;
       font-size: 30px;
     }
+
     p {
       margin: 0 0 12px;
       font-size: 15px;
       line-height: 1.35;
     }
+
     .toolbar {
       display: flex;
       flex-wrap: wrap;
@@ -45,19 +50,28 @@
       align-items: end;
       margin-bottom: 12px;
     }
+
     .control-group label {
       display: block;
       font-weight: bold;
       margin-bottom: 4px;
     }
-    select {
+
+    select,
+    input[type="number"],
+    input[type="range"] {
       padding: 8px;
       font-size: 16px;
       border-radius: 5px;
       border: 1px solid #bbb;
+    }
+
+    select {
       min-width: 260px;
     }
-    .button-link {
+
+    .button-link,
+    .button {
       display: inline-block;
       padding: 10px 14px;
       border: 2px solid #111;
@@ -66,17 +80,38 @@
       color: #111;
       text-decoration: none;
       font-weight: bold;
+      cursor: pointer;
     }
+
+    .button:hover,
     .button-link:hover {
       background: #e9e9e9;
     }
+
+    .toggle-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin: 10px 0 12px;
+      font-size: 14px;
+    }
+
+    .toggle-row label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
     #map {
-      height: 760px;
+      height: 780px;
       width: 100%;
       border: 1px solid #bbb;
       border-radius: 8px;
       margin-top: 10px;
     }
+
     .status-row {
       display: flex;
       justify-content: space-between;
@@ -85,34 +120,83 @@
       margin-top: 10px;
       font-size: 14px;
     }
+
     .legend {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       padding: 10px 12px;
       border: 1px solid #999;
       border-radius: 8px;
       line-height: 1.35;
       font-size: 13px;
+      max-width: 260px;
     }
+
     .legend-title {
       font-weight: bold;
       margin-bottom: 6px;
     }
+
     .legend-row {
       display: flex;
       align-items: center;
       gap: 8px;
       margin: 3px 0;
     }
+
     .swatch {
       width: 18px;
       height: 18px;
-      border-radius: 50%;
+      border-radius: 4px;
       border: 1px solid #444;
       flex: 0 0 18px;
     }
+
     .leaflet-popup-content {
       font-size: 14px;
       line-height: 1.35;
+    }
+
+    .obs-label {
+      border: none;
+      background: transparent;
+    }
+
+    .obs-label-inner {
+      min-width: 34px;
+      padding: 2px 5px;
+      border: 1px solid #111;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 1.1;
+      color: #111;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .obs-label-inner.included {
+      color: #111;
+    }
+
+    .obs-label-inner.excluded {
+      color: #666;
+      text-decoration: line-through;
+      opacity: 0.75;
+      border-style: dashed;
+    }
+
+    .small-note {
+      font-size: 13px;
+      color: #444;
+    }
+
+    .compact {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
   </style>
 </head>
@@ -121,7 +205,7 @@
     <div class="card">
       <h1>WFO LIX Station Observation Map</h1>
       <p>
-        This page plots station observations from Synoptic-generated CSV files. It is separate from the Stage IV rainfall map page so both products can coexist without stepping on each other like drunk raccoons.
+        Station values are plotted directly on the map. Click any plotted value to exclude or restore that station from contouring. Auto-outlier filtering is also built in so one stupid station does not blow up the whole field.
       </p>
 
       <div class="toolbar">
@@ -138,6 +222,41 @@
         <div>
           <a class="button-link" href="index.html">Back to Precip Maps</a>
         </div>
+
+        <div>
+          <button id="resetRemovedBtn" class="button" type="button">Reset Removed Stations</button>
+        </div>
+      </div>
+
+      <div class="toggle-row">
+        <label><input type="checkbox" id="showContours" checked> Show contours</label>
+        <label><input type="checkbox" id="showLabels" checked> Show station values</label>
+        <label><input type="checkbox" id="hideAutoOutliers" checked> Exclude auto-outliers from contours</label>
+
+        <div class="compact">
+          <label for="gridSize">Contour grid</label>
+          <select id="gridSize">
+            <option value="0.10">Fine</option>
+            <option value="0.14" selected> Medium</option>
+            <option value="0.20">Coarse</option>
+          </select>
+        </div>
+
+        <div class="compact">
+          <label for="powerSlider">IDW power</label>
+          <input type="range" id="powerSlider" min="1" max="4" step="0.5" value="2">
+          <span id="powerValue">2</span>
+        </div>
+
+        <div class="compact">
+          <label for="sigmaSlider">Outlier aggressiveness</label>
+          <input type="range" id="sigmaSlider" min="2" max="5" step="0.5" value="3.5">
+          <span id="sigmaValue">3.5</span>
+        </div>
+      </div>
+
+      <div class="small-note">
+        Auto-outlier logic uses a robust median/MAD filter. Clicking a value toggles manual exclusion for that station and immediately redraws contours.
       </div>
 
       <div id="map"></div>
@@ -149,10 +268,8 @@
     </div>
   </main>
 
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    crossorigin=""
-  ></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
   <script>
     const DATASETS = {
@@ -163,6 +280,7 @@
         valueCol: "precip_in",
         units: " in",
         decimals: 2,
+        descending: true,
         legend: [
           { max: 0.00, color: "#d9d9d9", label: "0.00" },
           { max: 0.49, color: "#67c6e5", label: "0.01–0.49" },
@@ -171,7 +289,8 @@
           { max: 2.99, color: "#eda24f", label: "2.00–2.99" },
           { max: 4.99, color: "#ff4b4b", label: "3.00–4.99" },
           { max: 999, color: "#9362d6", label: "5.00+" }
-        ]
+        ],
+        contourBreaks: [0.01, 0.10, 0.25, 0.50, 1.00, 2.00, 3.00, 5.00, 8.00]
       },
       air_temp_latest: {
         label: "Current Temperature",
@@ -180,6 +299,7 @@
         valueCol: "air_temp_f",
         units: "°F",
         decimals: 1,
+        descending: true,
         legend: [
           { max: 39.9, color: "#4b4aa7", label: "< 40" },
           { max: 49.9, color: "#6e9ad0", label: "40–49" },
@@ -188,7 +308,8 @@
           { max: 79.9, color: "#eceb59", label: "70–79" },
           { max: 89.9, color: "#eda24f", label: "80–89" },
           { max: 999, color: "#ff4b4b", label: "90+" }
-        ]
+        ],
+        contourBreaks: [35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90]
       },
       air_temp_daily_min: {
         label: "Daily Minimum Temperature",
@@ -197,6 +318,7 @@
         valueCol: "air_temp_min_f",
         units: "°F",
         decimals: 1,
+        descending: false,
         legend: [
           { max: 39.9, color: "#4b4aa7", label: "< 40" },
           { max: 49.9, color: "#6e9ad0", label: "40–49" },
@@ -205,7 +327,8 @@
           { max: 79.9, color: "#eceb59", label: "70–79" },
           { max: 89.9, color: "#eda24f", label: "80–89" },
           { max: 999, color: "#ff4b4b", label: "90+" }
-        ]
+        ],
+        contourBreaks: [35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90]
       },
       air_temp_daily_max: {
         label: "Daily Maximum Temperature",
@@ -214,6 +337,7 @@
         valueCol: "air_temp_max_f",
         units: "°F",
         decimals: 1,
+        descending: true,
         legend: [
           { max: 39.9, color: "#4b4aa7", label: "< 40" },
           { max: 49.9, color: "#6e9ad0", label: "40–49" },
@@ -222,8 +346,16 @@
           { max: 79.9, color: "#eceb59", label: "70–79" },
           { max: 89.9, color: "#eda24f", label: "80–89" },
           { max: 999, color: "#ff4b4b", label: "90+" }
-        ]
+        ],
+        contourBreaks: [35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90]
       }
+    };
+
+    const MAP_BOUNDS = {
+      west: -92.5,
+      south: 28.5,
+      east: -87.0,
+      north: 31.8
     };
 
     const map = L.map('map').setView([30.3, -89.8], 8);
@@ -232,17 +364,28 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    let markerLayer = L.layerGroup().addTo(map);
+    const labelLayer = L.layerGroup().addTo(map);
+    const contourLayer = L.layerGroup().addTo(map);
+
     let legendControl = null;
+    let currentRows = [];
+    let currentDatasetKey = "precip_24h";
+
+    const manualExcluded = new Set();
+
+    function stationKey(row) {
+      return String(row.stid || `${row.lat},${row.lon}`);
+    }
 
     function parseCSV(text) {
       const lines = text.trim().split(/\r?\n/);
-      if (!lines.length) return [];
+      if (!lines.length || !lines[0].trim()) return [];
 
       const headers = splitCSVLine(lines[0]);
       const rows = [];
 
       for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
         const values = splitCSVLine(lines[i]);
         const row = {};
         headers.forEach((header, idx) => {
@@ -303,6 +446,7 @@
             </div>
           `;
         }
+        html += `<div style="margin-top:8px;font-size:12px;">Click a station value to exclude/include it from contours.</div>`;
         div.innerHTML = html;
         return div;
       };
@@ -315,18 +459,293 @@
       return num.toFixed(decimals);
     }
 
-    async function loadDataset(datasetKey) {
+    function median(values) {
+      if (!values.length) return NaN;
+      const sorted = [...values].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 === 0
+        ? (sorted[mid - 1] + sorted[mid]) / 2
+        : sorted[mid];
+    }
+
+    function robustOutlierFlags(values, sigmaThreshold) {
+      if (values.length < 5) {
+        return values.map(() => false);
+      }
+
+      const med = median(values);
+      const absDev = values.map(v => Math.abs(v - med));
+      const mad = median(absDev);
+
+      if (!Number.isFinite(mad) || mad === 0) {
+        return values.map(() => false);
+      }
+
+      return values.map(v => {
+        const robustZ = 0.6745 * (v - med) / mad;
+        return Math.abs(robustZ) > sigmaThreshold;
+      });
+    }
+
+    function buildWorkingRows(datasetKey) {
       const cfg = DATASETS[datasetKey];
-      const statusText = document.getElementById('statusText');
-      const downloadLinks = document.getElementById('downloadLinks');
+      const sigmaThreshold = Number(document.getElementById('sigmaSlider').value);
+      const excludeAuto = document.getElementById('hideAutoOutliers').checked;
 
-      statusText.textContent = `Loading ${cfg.label}...`;
-      downloadLinks.innerHTML = '';
+      const rows = currentRows
+        .map(row => {
+          const value = Number(row[cfg.valueCol]);
+          const lat = Number(row.lat);
+          const lon = Number(row.lon);
+          if (!Number.isFinite(value) || !Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+          return {
+            ...row,
+            _value: value,
+            _lat: lat,
+            _lon: lon,
+            _stationKey: stationKey(row)
+          };
+        })
+        .filter(Boolean);
 
-      markerLayer.clearLayers();
+      const flags = robustOutlierFlags(rows.map(r => r._value), sigmaThreshold);
+
+      rows.forEach((row, idx) => {
+        row._autoOutlier = flags[idx];
+        row._manualExcluded = manualExcluded.has(row._stationKey);
+        row._contourExcluded = row._manualExcluded || (excludeAuto && row._autoOutlier);
+      });
+
+      return rows;
+    }
+
+    function drawLabels(datasetKey, rows) {
+      labelLayer.clearLayers();
+
+      if (!document.getElementById('showLabels').checked) {
+        return;
+      }
+
+      const cfg = DATASETS[datasetKey];
+
+      rows.forEach(row => {
+        const valueText = formatValue(row._value, cfg.decimals);
+        const bg = getColor(datasetKey, row._value);
+        const klass = row._contourExcluded ? 'excluded' : 'included';
+
+        const icon = L.divIcon({
+          className: 'obs-label',
+          html: `
+            <div class="obs-label-inner ${klass}" style="background:${bg};">
+              ${valueText}
+            </div>
+          `,
+          iconSize: [42, 20],
+          iconAnchor: [21, 10]
+        });
+
+        const marker = L.marker([row._lat, row._lon], { icon });
+
+        const reasonParts = [];
+        if (row._manualExcluded) reasonParts.push("manually excluded");
+        if (row._autoOutlier) reasonParts.push("auto-outlier");
+        const reasonText = reasonParts.length ? reasonParts.join(", ") : "included in contours";
+
+        marker.bindPopup(`
+          <strong>${row.name || row.stid}</strong><br>
+          STID: ${row.stid || ''}<br>
+          State: ${row.state || ''}<br>
+          Value: <strong>${valueText}${cfg.units}</strong><br>
+          Valid Time: ${row.valid_time || row.last_report || ''}<br>
+          County: ${row.county || ''}<br>
+          CWA: ${row.cwa || ''}<br>
+          Contour status: <strong>${reasonText}</strong><br>
+          <em>Click label on map to toggle manual exclusion.</em>
+        `);
+
+        marker.on('click', () => {
+          toggleManualExclusion(row._stationKey);
+        });
+
+        marker.addTo(labelLayer);
+      });
+    }
+
+    function toggleManualExclusion(key) {
+      if (manualExcluded.has(key)) {
+        manualExcluded.delete(key);
+      } else {
+        manualExcluded.add(key);
+      }
+      redrawMap();
+    }
+
+    function makeGridPoints(bounds, stepDeg) {
+      const pts = [];
+      for (let lat = bounds.south; lat <= bounds.north; lat += stepDeg) {
+        for (let lon = bounds.west; lon <= bounds.east; lon += stepDeg) {
+          pts.push([lon, lat]);
+        }
+      }
+      return pts;
+    }
+
+    function distanceKm(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) ** 2;
+      return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function idwValue(lat, lon, stations, power) {
+      let numerator = 0;
+      let denominator = 0;
+
+      for (const st of stations) {
+        const d = distanceKm(lat, lon, st._lat, st._lon);
+
+        if (d < 0.01) {
+          return st._value;
+        }
+
+        const w = 1 / Math.pow(d, power);
+        numerator += w * st._value;
+        denominator += w;
+      }
+
+      return denominator > 0 ? numerator / denominator : null;
+    }
+
+    function buildContours(datasetKey, stations) {
+      if (!document.getElementById('showContours').checked) {
+        return [];
+      }
+
+      if (stations.length < 4) {
+        return [];
+      }
+
+      const cfg = DATASETS[datasetKey];
+      const gridStep = Number(document.getElementById('gridSize').value);
+      const power = Number(document.getElementById('powerSlider').value);
+
+      const gridCoords = makeGridPoints(MAP_BOUNDS, gridStep);
+      const pointFeatures = [];
+
+      for (const [lon, lat] of gridCoords) {
+        const v = idwValue(lat, lon, stations, power);
+        if (v === null || !Number.isFinite(v)) continue;
+        pointFeatures.push(turf.point([lon, lat], { value: v }));
+      }
+
+      if (!pointFeatures.length) {
+        return [];
+      }
+
+      const fc = turf.featureCollection(pointFeatures);
+
+      let breaks = cfg.contourBreaks;
+      const vals = stations.map(s => s._value);
+      const minVal = Math.min(...vals);
+      const maxVal = Math.max(...vals);
+
+      breaks = breaks.filter(b => b >= minVal && b <= maxVal);
+      if (breaks.length < 2) {
+        return [];
+      }
+
+      let isobands;
+      try {
+        isobands = turf.isobands(fc, breaks, { zProperty: 'value' });
+      } catch (err) {
+        console.error('isobands failed:', err);
+        return [];
+      }
+
+      return isobands.features || [];
+    }
+
+    function styleContourFeature(datasetKey, feature) {
+      const cfg = DATASETS[datasetKey];
+      const props = feature.properties || {};
+      const low = Number(props[`${cfg.valueCol}`]) || Number(props.lowerBound) || Number(props.low) || Number(props.min);
+      const high = Number(props[`${cfg.valueCol}_max`]) || Number(props.upperBound) || Number(props.high) || Number(props.max);
+      const ref = Number.isFinite(high) ? high : (Number.isFinite(low) ? low : 0);
+      const color = getColor(datasetKey, ref);
+
+      return {
+        color: '#444',
+        weight: 1,
+        fillColor: color,
+        fillOpacity: 0.35
+      };
+    }
+
+    function drawContours(datasetKey, rows) {
+      contourLayer.clearLayers();
+
+      const contourStations = rows.filter(r => !r._contourExcluded);
+      const features = buildContours(datasetKey, contourStations);
+      if (!features.length) return;
+
+      const geojson = L.geoJSON(features, {
+        style: feature => styleContourFeature(datasetKey, feature)
+      });
+
+      geojson.addTo(contourLayer);
+    }
+
+    function updateStatus(datasetKey, rows) {
+      const cfg = DATASETS[datasetKey];
+      const total = rows.length;
+      const autoOutliers = rows.filter(r => r._autoOutlier).length;
+      const manual = rows.filter(r => r._manualExcluded).length;
+      const contourCount = rows.filter(r => !r._contourExcluded).length;
+
+      document.getElementById('statusText').textContent =
+        `${cfg.label}: ${total} stations loaded | ${contourCount} used in contours | ${autoOutliers} auto-outliers flagged | ${manual} manually removed`;
+    }
+
+    function updateLinks(datasetKey) {
+      const cfg = DATASETS[datasetKey];
+      document.getElementById('downloadLinks').innerHTML = `
+        <a href="${cfg.csv}">Download CSV</a>
+        &nbsp;|&nbsp;
+        <a href="${cfg.json}">Download JSON</a>
+        &nbsp;|&nbsp;
+        <a href="latest_obs_manifest.json">Manifest</a>
+      `;
+    }
+
+    function redrawLegend(datasetKey) {
       if (legendControl) {
         map.removeControl(legendControl);
       }
+      legendControl = buildLegend(datasetKey);
+      legendControl.addTo(map);
+    }
+
+    function redrawMap() {
+      const datasetKey = currentDatasetKey;
+      const rows = buildWorkingRows(datasetKey);
+      drawContours(datasetKey, rows);
+      drawLabels(datasetKey, rows);
+      redrawLegend(datasetKey);
+      updateStatus(datasetKey, rows);
+      updateLinks(datasetKey);
+    }
+
+    async function loadDataset(datasetKey) {
+      currentDatasetKey = datasetKey;
+      const cfg = DATASETS[datasetKey];
+      document.getElementById('statusText').textContent = `Loading ${cfg.label}...`;
+      labelLayer.clearLayers();
+      contourLayer.clearLayers();
 
       try {
         const response = await fetch(cfg.csv, { cache: 'no-store' });
@@ -335,60 +754,43 @@
         }
 
         const csvText = await response.text();
-        const rows = parseCSV(csvText).filter(row => row.lat && row.lon && row[cfg.valueCol] !== "");
+        currentRows = parseCSV(csvText);
 
-        rows.forEach(row => {
-          const lat = Number(row.lat);
-          const lon = Number(row.lon);
-          const value = Number(row[cfg.valueCol]);
-
-          if (!Number.isFinite(lat) || !Number.isFinite(lon) || !Number.isFinite(value)) {
-            return;
-          }
-
-          const color = getColor(datasetKey, value);
-          const marker = L.circleMarker([lat, lon], {
-            radius: 8,
-            color: '#222',
-            weight: 1,
-            fillColor: color,
-            fillOpacity: 0.9
-          });
-
-          marker.bindPopup(`
-            <strong>${row.name || row.stid}</strong><br>
-            STID: ${row.stid || ''}<br>
-            State: ${row.state || ''}<br>
-            Value: <strong>${formatValue(value, cfg.decimals)}${cfg.units}</strong><br>
-            Valid Time: ${row.valid_time || row.last_report || ''}<br>
-            County: ${row.county || ''}<br>
-            CWA: ${row.cwa || ''}<br>
-            Lat/Lon: ${lat.toFixed(4)}, ${lon.toFixed(4)}
-          `);
-
-          marker.addTo(markerLayer);
-        });
-
-        legendControl = buildLegend(datasetKey);
-        legendControl.addTo(map);
-
-        statusText.textContent = `${cfg.label}: ${rows.length} stations plotted.`;
-
-        downloadLinks.innerHTML = `
-          <a href="${cfg.csv}">Download CSV</a>
-          &nbsp;|&nbsp;
-          <a href="${cfg.json}">Download JSON</a>
-          &nbsp;|&nbsp;
-          <a href="latest_obs_manifest.json">Manifest</a>
-        `;
+        redrawMap();
       } catch (err) {
-        statusText.textContent = `Failed to load ${cfg.label}: ${err.message}`;
+        document.getElementById('statusText').textContent = `Failed to load ${cfg.label}: ${err.message}`;
       }
     }
 
     document.getElementById('datasetSelect').addEventListener('change', function () {
+      manualExcluded.clear();
       loadDataset(this.value);
     });
+
+    document.getElementById('showContours').addEventListener('change', redrawMap);
+    document.getElementById('showLabels').addEventListener('change', redrawMap);
+    document.getElementById('hideAutoOutliers').addEventListener('change', redrawMap);
+    document.getElementById('gridSize').addEventListener('change', redrawMap);
+
+    document.getElementById('powerSlider').addEventListener('input', function () {
+      document.getElementById('powerValue').textContent = this.value;
+      redrawMap();
+    });
+
+    document.getElementById('sigmaSlider').addEventListener('input', function () {
+      document.getElementById('sigmaValue').textContent = this.value;
+      redrawMap();
+    });
+
+    document.getElementById('resetRemovedBtn').addEventListener('click', function () {
+      manualExcluded.clear();
+      redrawMap();
+    });
+
+    map.fitBounds([
+      [MAP_BOUNDS.south, MAP_BOUNDS.west],
+      [MAP_BOUNDS.north, MAP_BOUNDS.east]
+    ]);
 
     loadDataset('precip_24h');
   </script>
