@@ -447,7 +447,7 @@ def plot_map(
     ax_leg.add_patch(
         plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color="#8f8f8f", transform=ax_leg.transAxes, clip_on=False) 
     )
-    ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left") 
+    ax_leg.text(0.36, y 0.003, "Missing data", fontsize=10, va="center", ha="left") 
 
     png_path = OUT_DIR / f"lix_{period_key}_precip_latest.png"
     fig.savefig(png_path, dpi=170, bbox_inches="tight") 
