@@ -6,6 +6,8 @@ import json
 import os
 import sys
 from dataclasses import dataclass
+from zoneinfo import ZoneInfo
+CENTRAL_TZ = ZoneInfo("America/Chicago")
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -347,7 +349,7 @@ def build_statistics_product(product_key: str, end_utc: datetime) -> dict[str, A
 
     # Synoptic statistics with period=day requires YYYYmmdd, not YYYYmmddHHMM.
     # Since obtimezone=local, use the station-local/current local calendar day.
-    local_day_str = end_utc.astimezone().strftime("%Y%m%d")
+    local_day_str = end_utc.astimezone(CENTRAL_TZ).strftime("%Y%m%d")
 
     payload = request_json(
         config["service"],
