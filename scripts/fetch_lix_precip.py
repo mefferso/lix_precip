@@ -224,7 +224,8 @@ def read_raster_for_plotting(tif_path: Path):
     xmin, ymin, xmax, ymax = plot_box_3857.total_bounds 
 
     with rasterio.open(tif_path) as src: 
-        with WarpedVRT(src, crs=target_crs, resampling=Resampling.nearest) as vrt: 
+        with WarpedVRT(src, crs=target_crs, resampling=Resampling.bilinear) as vrt: # Changed from Resampling.nearest
+    # ... rest of the code 
             requested_window = from_bounds(xmin, ymin, xmax, ymax, transform=vrt.transform) 
             requested_window = requested_window.round_offsets().round_lengths() 
 
@@ -314,7 +315,7 @@ def plot_map(
         origin="upper", 
         cmap=CMAP, 
         norm=norm, 
-        interpolation="nearest", 
+        interpolation="bilinear",  # Changed from "nearest" to "bilinear" 
         zorder=0, 
     )
 
