@@ -75,36 +75,29 @@ PERIODS = {
     "ytd": {"noaa_str": "ytd", "days": 1, "title": "Year-to-Date"},
 }
 
-# NWPS-like bins, but extended to 15+ at the top.
-# Values below 0.01 are drawn transparent.
-LEVELS = [
-    0.01, 0.10, 0.25, 0.50, 0.75, 1.00, 1.50, 2.00, 2.50,
-    3.00, 4.00, 5.00, 6.00, 8.00, 10.00, 15.00, 30.00
-] 
-
+# 16 Colors for the colormap.
 COLORS = [
-    "#67c6e5",  # 0.01 to 0.1
-    "#6e9ad0",  # 0.1 to 0.25
-    "#4b4aa7",  # 0.25 to 0.5
-    "#57ea58",  # 0.5 to 0.75
-    "#52b852",  # 0.75 to 1
-    "#4d8c50",  # 1 to 1.5
-    "#eceb59",  # 1.5 to 2
-    "#efd27a",  # 2 to 2.5
-    "#eda24f",  # 2.5 to 3
-    "#ff4b4b",  # 3 to 4
-    "#c7484d",  # 4 to 5
-    "#a44a50",  # 5 to 6
-    "#e43ee0",  # 6 to 8
-    "#9362d6",  # 8 to 10
-    "#d9d9d9",  # 10 to 15
-    "#bcbcbc",  # >= 15
+    "#67c6e5",  # 0.01 to 0.1 (Base example)
+    "#6e9ad0",  
+    "#4b4aa7",  
+    "#57ea58",  
+    "#52b852",  
+    "#4d8c50",  
+    "#eceb59",  
+    "#efd27a",  
+    "#eda24f",  
+    "#ff4b4b",  
+    "#c7484d",  
+    "#a44a50",  
+    "#e43ee0",  
+    "#9362d6",  
+    "#d9d9d9",  
+    "#bcbcbc",  # Highest tier
 ] 
 
 CMAP = ListedColormap(COLORS) 
 CMAP.set_under((1, 1, 1, 0))   # <0.01 transparent 
-CMAP.set_bad("#8f8f8f")         # missing data gray 
-NORM = BoundaryNorm(LEVELS, CMAP.N, clip=False) 
+CMAP.set_bad("#8f8f8f")        # missing data gray 
 
 
 @dataclass
@@ -252,6 +245,22 @@ def read_raster_for_plotting(tif_path: Path):
     return arr, extent_3857 
 
 
+def get_dynamic_levels(period_key: str, days: int) -> list[float]:
+    """Returns logically scaled boundaries based on the timeframe (Must be 17 values to match 16 colors)"""
+    if period_key == "ytd":
+        # YTD: Capped at 120+ inches for South Louisiana's massive annual averages
+        return [0.01, 0.5, 1, 2, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 100, 120, 150]
+    elif period_key == "mtd" or days >= 10:
+        # Long-term (10 to 30 days): Heavy month
+        return [0.01, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 15, 20, 25, 30, 40, 60]
+    elif days >= 4:
+        # Mid-term (4 to 7 days): Tropical events
+        return [0.01, 0.25, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 15, 20, 25, 40]
+    else:
+        # Short-term (1 to 3 days): The user's expanded 24h scale
+        return [0.01, 0.10, 0.25, 0.50, 0.75, 1.00, 1.50, 2.00, 2.50, 3.00, 4.00, 5.00, 6.00, 8.00, 10.00, 15.00, 30.00]
+
+
 def plot_map(
     window: TimeWindow,
     lix: gpd.GeoDataFrame,
@@ -262,7 +271,9 @@ def plot_map(
     raster_arr: np.ndarray,
     raster_extent_3857: list[float],
     period_key: str,
-    period_title: str
+    period_title: str,
+    levels: list[float],
+    norm: BoundaryNorm
 ) -> None:
     minx, miny, maxx, maxy = plot_domain.total_bounds 
 
@@ -302,7 +313,7 @@ def plot_map(
         extent=raster_extent_3857, 
         origin="upper", 
         cmap=CMAP, 
-        norm=NORM, 
+        norm=norm, 
         interpolation="nearest", 
         zorder=0, 
     )
@@ -385,7 +396,7 @@ def plot_map(
             
             if np.isfinite(val) and val > 0: 
                 val_str = f"{val:.2f}" 
-                
+            
         label_text = f"{row['name']}\n{val_str}\"" 
         
         ax.plot(x, y, 'o', color='white', markeredgecolor='black', markersize=5, zorder=5) 
@@ -414,27 +425,21 @@ def plot_map(
     ax_leg.text(0.5, 0.88, window.end.strftime("%Y/%m/%d\n%H00 UTC"), ha="center", va="top", fontsize=16) 
     ax_leg.text(0.5, 0.80, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold") 
 
-    labels = [
-        "Greater than 15", 
-        "10 to 15", 
-        "8 to 10", 
-        "6 to 8", 
-        "5 to 6", 
-        "4 to 5", 
-        "3 to 4", 
-        "2.5 to 3", 
-        "2 to 2.5", 
-        "1.5 to 2", 
-        "1 to 1.5", 
-        "0.75 to 1", 
-        "0.5 to 0.75", 
-        "0.25 to 0.5", 
-        "0.1 to 0.25", 
-        "0.01 to 0.1", 
-    ]
+    # Dynamically build labels from the provided levels array
+    labels = []
+    for i in range(len(levels) - 1):
+        if i == len(levels) - 2:
+            # The top bucket gets a "Greater than" label
+            labels.append(f"Greater than {levels[i]:g}")
+        else:
+            labels.append(f"{levels[i]:g} to {levels[i+1]:g}")
+            
+    # Reverse labels to map correctly from top-to-bottom layout
+    labels = labels[::-1]
 
-    y0 = 0.715 
-    dy = 0.042 
+    # Adjusted y0 and dy to fix bottom clipping
+    y0 = 0.73 
+    dy = 0.041 
     for i, (label, color) in enumerate(zip(labels, COLORS[::-1])): 
         y = y0 - i * dy 
         ax_leg.add_patch(
@@ -482,6 +487,10 @@ def main() -> None:
             days = period_info.get("days", 1)
             noaa_str = period_info["noaa_str"]
 
+            # Generate dynamic levels for this specific period
+            levels = get_dynamic_levels(period_key, days)
+            norm = BoundaryNorm(levels, CMAP.N, clip=False)
+
             if days == 1:
                 # Standard single-file fetch (1day, mtd, ytd)
                 tif_path = fetch_stageiv_qpe(window.end, noaa_str)
@@ -510,9 +519,11 @@ def main() -> None:
                 raster_arr = sum_arr
                 source_tif_name = f"Calculated_{days}day_sum"
 
+            # Pass the dynamically generated levels and norm to the plot function
             plot_map(
                 window, lix, counties_p, states_p, plot_domain, cities_p, 
-                raster_arr, raster_extent_3857, period_key, period_info["title"]
+                raster_arr, raster_extent_3857, period_key, period_info["title"],
+                levels, norm
             )
             
             generated_maps[period_key] = {
