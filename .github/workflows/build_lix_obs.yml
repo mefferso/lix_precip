@@ -1,30 +1,31 @@
-name: Build LIX station observations
+name: Build station products
 
 on:
   push:
     paths:
       - 'scripts/fetch_lix_obs.py'
+      - 'scripts/build_lix_obs_maps.py'
+      - 'data/manual_station_excludes.json'
       - '.github/workflows/build_lix_obs.yml'
-      - 'docs/index.html'
-      - 'requirements.txt'
+      - 'docs/obs_qc.html'
   workflow_dispatch:
     inputs:
       end_time_utc:
-        description: 'Optional end time in YYYYMMDDHHMM UTC format. Leave blank for now.'
+        description: 'Optional end time in YYYYMMDDHHMM format'
         required: false
         default: ''
   schedule:
-    - cron: '8 * * * *'
+    - cron: '15 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: lix-station-obs
+  group: lix-station-products
   cancel-in-progress: true
 
 jobs:
-  build-obs:
+  build-station-products:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,7 +42,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Build station products
+      - name: Build station CSV/JSON products
         env:
           SYNOPTIC_TOKEN: ${{ secrets.SYNOPTIC_TOKEN }}
           END_TIME_UTC: ${{ github.event.inputs.end_time_utc }}
@@ -51,6 +52,10 @@ jobs:
           else
             python scripts/fetch_lix_obs.py
           fi
+
+      - name: Build station PNG maps
+        run: |
+          python scripts/build_lix_obs_maps.py
 
       - name: Commit updated outputs
         run: |
@@ -64,6 +69,6 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Update LIX station observations"
+          git commit -m "Update LIX station products"
           git pull --rebase origin main
           git push origin main
