@@ -1,0 +1,603 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import math
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
+import numpy as np
+import pandas as pd
+from matplotlib.colors import BoundaryNorm, ListedColormap
+from matplotlib.patches import Rectangle
+from matplotlib.tri import Triangulation
+from shapely.geometry import box
+
+# -------------------------------------------------
+# PATHS
+# -------------------------------------------------
+ROOT = Path(__file__).resolve().parents[1]
+DOCS_DIR = ROOT / "docs"
+DATA_DIR = ROOT / "data"
+SHAPE_DIR = DATA_DIR / "shapes"
+
+COUNTY_SHP = SHAPE_DIR / "county" / "c_16ap26.shp"
+CWA_SHP = SHAPE_DIR / "cwa" / "w_16ap26.shp"
+STATE_SHP = SHAPE_DIR / "state" / "s_16ap26.shp"
+
+MANUAL_EXCLUDES_JSON = DATA_DIR / "manual_station_excludes.json"
+
+OUT_MANIFEST = DOCS_DIR / "latest_station_maps.json"
+
+# -------------------------------------------------
+# MAP CONFIG
+# -------------------------------------------------
+PLOT_BBOX = (-92.5, 28.5, -87.0, 31.8)
+INDEX_BBOX = (-95.0, 28.2, -84.0, 35.0)
+TARGET_CRS = 3857
+
+TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
+
+CITIES = [
+    {"name": "Baton Rouge", "lat": 30.4515, "lon": -91.1871},
+    {"name": "New Orleans", "lat": 29.9511, "lon": -90.0715},
+    {"name": "Gulfport", "lat": 30.3674, "lon": -89.0928},
+    {"name": "McComb", "lat": 31.2438, "lon": -90.4532},
+    {"name": "Houma", "lat": 29.5958, "lon": -90.7195},
+]
+
+DATASETS: dict[str, dict[str, Any]] = {
+    "precip_24h": {
+        "label": "24 Hour Rainfall",
+        "csv": "station_precip_24h_latest.csv",
+        "value_col": "precip_in",
+        "units": "Inches",
+        "title_suffix": "24 Hour Rainfall",
+        "png": "lix_station_precip_24h_latest.png",
+        "levels": [0.01, 0.10, 0.25, 0.50, 0.75, 1.00, 1.50, 2.00, 2.50, 3.00, 4.00, 5.00, 6.00, 8.00, 10.00, 15.00, 30.00],
+        "colors": [
+            "#67c6e5",
+            "#6e9ad0",
+            "#4b4aa7",
+            "#57ea58",
+            "#52b852",
+            "#4d8c50",
+            "#eceb59",
+            "#efd27a",
+            "#eda24f",
+            "#ff4b4b",
+            "#c7484d",
+            "#a44a50",
+            "#e43ee0",
+            "#9362d6",
+            "#d9d9d9",
+            "#bcbcbc",
+        ],
+        "value_fmt": "{:.2f}",
+        "tri_edge_km": 95.0,
+        "neighbor_radius_km": 90.0,
+        "neighbor_min": 3,
+        "buddy_threshold": 4.0,
+        "contour_line_color": "#444444",
+        "source_line": "Data Source: Synoptic Weather API station observations",
+        "desc": "Experimental station-based rainfall analysis using reported 24-hour totals.",
+    },
+    "air_temp_latest": {
+        "label": "Current Temperature",
+        "csv": "station_air_temp_latest.csv",
+        "value_col": "air_temp_f",
+        "units": "Degrees F",
+        "title_suffix": "Current Temperatures",
+        "png": "lix_station_air_temp_latest.png",
+        "levels": [35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+        "colors": [
+            "#4b4aa7",
+            "#6e9ad0",
+            "#67c6e5",
+            "#1db4b0",
+            "#007f5f",
+            "#3aa655",
+            "#8ccf7e",
+            "#c7e9ad",
+            "#f2e788",
+            "#f2c66d",
+            "#f59d3d",
+            "#f04e37",
+            "#cc1f1a",
+        ],
+        "value_fmt": "{:.0f}",
+        "tri_edge_km": 95.0,
+        "neighbor_radius_km": 90.0,
+        "neighbor_min": 3,
+        "buddy_threshold": 12.0,
+        "contour_line_color": "#666666",
+        "source_line": "Data Source: Synoptic Weather API station observations",
+        "desc": "Experimental station-based temperature analysis using current reported values.",
+    },
+    "air_temp_daily_min": {
+        "label": "Daily Minimum Temperature",
+        "csv": "station_air_temp_daily_min_latest.csv",
+        "value_col": "air_temp_min_f",
+        "units": "Degrees F",
+        "title_suffix": "24 Hour Low Temperatures",
+        "png": "lix_station_air_temp_daily_min_latest.png",
+        "levels": [35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90],
+        "colors": [
+            "#4b4aa7",
+            "#6e9ad0",
+            "#67c6e5",
+            "#1db4b0",
+            "#007f5f",
+            "#3aa655",
+            "#8ccf7e",
+            "#c7e9ad",
+            "#f2e788",
+            "#f2c66d",
+            "#f59d3d",
+        ],
+        "value_fmt": "{:.0f}",
+        "tri_edge_km": 95.0,
+        "neighbor_radius_km": 90.0,
+        "neighbor_min": 3,
+        "buddy_threshold": 12.0,
+        "contour_line_color": "#666666",
+        "source_line": "Data Source: Synoptic Weather API station observations",
+        "desc": "Experimental station-based analysis using reported daily minimum temperatures.",
+    },
+    "air_temp_daily_max": {
+        "label": "Daily Maximum Temperature",
+        "csv": "station_air_temp_daily_max_latest.csv",
+        "value_col": "air_temp_max_f",
+        "units": "Degrees F",
+        "title_suffix": "24 Hour High Temperatures",
+        "png": "lix_station_air_temp_daily_max_latest.png",
+        "levels": [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+        "colors": [
+            "#4b4aa7",
+            "#6e9ad0",
+            "#67c6e5",
+            "#1db4b0",
+            "#007f5f",
+            "#3aa655",
+            "#8ccf7e",
+            "#c7e9ad",
+            "#f2e788",
+            "#f2c66d",
+            "#f59d3d",
+            "#f04e37",
+        ],
+        "value_fmt": "{:.0f}",
+        "tri_edge_km": 95.0,
+        "neighbor_radius_km": 90.0,
+        "neighbor_min": 3,
+        "buddy_threshold": 12.0,
+        "contour_line_color": "#666666",
+        "source_line": "Data Source: Synoptic Weather API station observations",
+        "desc": "Experimental station-based analysis using reported daily maximum temperatures.",
+    },
+}
+
+# -------------------------------------------------
+# HELPERS
+# -------------------------------------------------
+@dataclass
+class GeoContext:
+    lix: gpd.GeoDataFrame
+    counties: gpd.GeoDataFrame
+    states: gpd.GeoDataFrame
+    plot_domain: gpd.GeoDataFrame
+    index_domain: gpd.GeoDataFrame
+    cities: gpd.GeoDataFrame
+
+
+def load_manual_excludes() -> dict[str, list[str]]:
+    if not MANUAL_EXCLUDES_JSON.exists():
+        return {"all": []}
+
+    try:
+        data = json.loads(MANUAL_EXCLUDES_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        return {"all": []}
+
+    if not isinstance(data, dict):
+        return {"all": []}
+
+    cleaned: dict[str, list[str]] = {}
+    for key, value in data.items():
+        if isinstance(value, list):
+            cleaned[key] = [str(v).strip().upper() for v in value if str(v).strip()]
+    if "all" not in cleaned:
+        cleaned["all"] = []
+    return cleaned
+
+
+def station_is_manually_excluded(dataset_key: str, stid: str, manual: dict[str, list[str]]) -> bool:
+    stid = str(stid).strip().upper()
+    return stid in manual.get("all", []) or stid in manual.get(dataset_key, [])
+
+
+def modified_zscore_flags(values: np.ndarray, threshold: float = 4.5) -> np.ndarray:
+    if len(values) < 5:
+        return np.zeros(len(values), dtype=bool)
+
+    med = np.median(values)
+    mad = np.median(np.abs(values - med))
+    if mad == 0 or not np.isfinite(mad):
+        return np.zeros(len(values), dtype=bool)
+
+    z = 0.6745 * (values - med) / mad
+    return np.abs(z) > threshold
+
+
+def haversine_km(lat1: np.ndarray, lon1: np.ndarray, lat2: float, lon2: float) -> np.ndarray:
+    r = 6371.0
+    dlat = np.radians(lat1 - lat2)
+    dlon = np.radians(lon1 - lon2)
+    a = np.sin(dlat / 2.0) ** 2 + np.cos(np.radians(lat2)) * np.cos(np.radians(lat1)) * np.sin(dlon / 2.0) ** 2
+    return 2 * r * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+
+
+def buddy_check_flags(
+    lats: np.ndarray,
+    lons: np.ndarray,
+    values: np.ndarray,
+    radius_km: float,
+    min_neighbors: int,
+    threshold: float,
+) -> np.ndarray:
+    n = len(values)
+    flags = np.zeros(n, dtype=bool)
+
+    for i in range(n):
+        d = haversine_km(lats, lons, lats[i], lons[i])
+        mask = (d > 0) & (d <= radius_km)
+        neighbors = values[mask]
+
+        if len(neighbors) < min_neighbors:
+            continue
+
+        med = np.median(neighbors)
+        if abs(values[i] - med) > threshold:
+            flags[i] = True
+
+    return flags
+
+
+def build_dataset_rows(dataset_key: str, config: dict[str, Any], manual: dict[str, list[str]]) -> pd.DataFrame:
+    csv_path = DOCS_DIR / config["csv"]
+    if not csv_path.exists():
+        raise FileNotFoundError(f"Missing CSV: {csv_path}")
+
+    df = pd.read_csv(csv_path)
+    value_col = config["value_col"]
+
+    needed = {"stid", "name", "state", "lat", "lon", value_col}
+    missing = needed - set(df.columns)
+    if missing:
+        raise RuntimeError(f"{csv_path.name} is missing required columns: {sorted(missing)}")
+
+    df = df.copy()
+    df["stid"] = df["stid"].astype(str).str.upper()
+    df["lat"] = pd.to_numeric(df["lat"], errors="coerce")
+    df["lon"] = pd.to_numeric(df["lon"], errors="coerce")
+    df[value_col] = pd.to_numeric(df[value_col], errors="coerce")
+    df = df.dropna(subset=["lat", "lon", value_col])
+
+    df["manual_exclude"] = df["stid"].apply(lambda s: station_is_manually_excluded(dataset_key, s, manual))
+
+    values = df[value_col].to_numpy(dtype=float)
+    lats = df["lat"].to_numpy(dtype=float)
+    lons = df["lon"].to_numpy(dtype=float)
+
+    global_flags = modified_zscore_flags(values, threshold=4.5)
+    buddy_flags = buddy_check_flags(
+        lats=lats,
+        lons=lons,
+        values=values,
+        radius_km=config["neighbor_radius_km"],
+        min_neighbors=config["neighbor_min"],
+        threshold=config["buddy_threshold"],
+    )
+
+    df["auto_outlier"] = global_flags | buddy_flags
+    df["exclude_from_contours"] = df["manual_exclude"] | df["auto_outlier"]
+
+    return df
+
+
+def load_geography() -> GeoContext:
+    if not COUNTY_SHP.exists():
+        raise FileNotFoundError(f"Missing county shapefile: {COUNTY_SHP}")
+    if not CWA_SHP.exists():
+        raise FileNotFoundError(f"Missing CWA shapefile: {CWA_SHP}")
+    if not STATE_SHP.exists():
+        raise FileNotFoundError(f"Missing state shapefile: {STATE_SHP}")
+
+    cwa = gpd.read_file(CWA_SHP).to_crs(4326)
+    counties = gpd.read_file(COUNTY_SHP).to_crs(4326)
+    states = gpd.read_file(STATE_SHP).to_crs(4326)
+
+    lix = cwa[cwa["CWA"] == "LIX"].copy()
+    if lix.empty:
+        raise RuntimeError("Could not find CWA=LIX in CWA shapefile.")
+
+    plot_bounds = box(*PLOT_BBOX)
+    index_bounds = box(*INDEX_BBOX)
+
+    counties = counties[counties.intersects(plot_bounds)].copy()
+    states = states[states.intersects(index_bounds)].copy()
+
+    plot_domain = gpd.GeoDataFrame(geometry=[plot_bounds], crs=4326)
+    index_domain = gpd.GeoDataFrame(geometry=[index_bounds], crs=4326)
+
+    cities = gpd.GeoDataFrame(
+        CITIES,
+        geometry=gpd.points_from_xy([c["lon"] for c in CITIES], [c["lat"] for c in CITIES]),
+        crs=4326,
+    )
+
+    return GeoContext(
+        lix=lix.to_crs(TARGET_CRS),
+        counties=counties.to_crs(TARGET_CRS),
+        states=states.to_crs(TARGET_CRS),
+        plot_domain=plot_domain.to_crs(TARGET_CRS),
+        index_domain=index_domain.to_crs(TARGET_CRS),
+        cities=cities.to_crs(TARGET_CRS),
+    )
+
+
+def triangle_edge_lengths_km(x: np.ndarray, y: np.ndarray, triangles: np.ndarray) -> np.ndarray:
+    x1 = x[triangles[:, 0]]
+    y1 = y[triangles[:, 0]]
+    x2 = x[triangles[:, 1]]
+    y2 = y[triangles[:, 1]]
+    x3 = x[triangles[:, 2]]
+    y3 = y[triangles[:, 2]]
+
+    a = np.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) / 1000.0
+    b = np.sqrt((x2 - x3) ** 2 + (y2 - y3) ** 2) / 1000.0
+    c = np.sqrt((x3 - x1) ** 2 + (y3 - y1) ** 2) / 1000.0
+    return np.maximum.reduce([a, b, c])
+
+
+def build_triangulation(df_proj: gpd.GeoDataFrame, max_edge_km: float) -> Triangulation | None:
+    if len(df_proj) < 3:
+        return None
+
+    x = df_proj.geometry.x.to_numpy()
+    y = df_proj.geometry.y.to_numpy()
+
+    tri = Triangulation(x, y)
+    if tri.triangles is None or len(tri.triangles) == 0:
+        return None
+
+    max_edges = triangle_edge_lengths_km(x, y, tri.triangles)
+    tri.set_mask(max_edges > max_edge_km)
+    return tri
+
+
+def draw_legend(ax_leg, config: dict[str, Any], levels: list[float], colors: list[str], ending_label: str) -> None:
+    ax_leg.set_facecolor("white")
+    for s in ax_leg.spines.values():
+        s.set_linewidth(1.8)
+        s.set_color("black")
+    ax_leg.set_xticks([])
+    ax_leg.set_yticks([])
+
+    ax_leg.text(0.5, 0.965, config["title_suffix"], ha="center", va="top", fontsize=15, fontweight="bold")
+    ax_leg.text(0.5, 0.905, ending_label, ha="center", va="top", fontsize=13)
+    ax_leg.text(0.5, 0.84, config["units"], ha="center", va="top", fontsize=15, fontweight="bold")
+
+    labels = []
+    for i in range(len(levels) - 1):
+        if i == len(levels) - 2:
+            labels.append(f">{levels[i]:g}")
+        else:
+            labels.append(f"{levels[i]:g} - {levels[i+1]:g}")
+    labels = labels[::-1]
+    colors_rev = colors[::-1]
+
+    y0 = 0.78
+    dy = 0.042
+    for i, (label, color) in enumerate(zip(labels, colors_rev)):
+        y = y0 - i * dy
+        ax_leg.add_patch(Rectangle((0.10, y - 0.016), 0.20, 0.026, color=color, transform=ax_leg.transAxes))
+        ax_leg.text(0.36, y - 0.003, label, fontsize=10, va="center", ha="left")
+
+    y = y0 - len(labels) * dy
+    ax_leg.text(0.10, y - 0.005, "Station values:", fontsize=10, fontweight="bold", ha="left")
+    ax_leg.text(0.10, y - 0.045, "White = used in contours", fontsize=9, ha="left")
+    ax_leg.text(0.10, y - 0.075, "Red = excluded/outlier", fontsize=9, ha="left")
+
+
+def draw_inset(ax, geo: GeoContext) -> None:
+    ax_in = ax.inset_axes([0.00, 0.79, 0.24, 0.24])
+    ax_in.set_facecolor("#d4e6f1")
+    for s in ax_in.spines.values():
+        s.set_linewidth(1.2)
+        s.set_color("black")
+
+    geo.states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=0.7, zorder=1)
+    geo.lix.plot(ax=ax_in, facecolor="#ffb000", edgecolor="black", linewidth=1.0, zorder=2)
+
+    lbls = gpd.GeoDataFrame(
+        {"name": ["LA", "MS", "AL", "TX", "AR"]},
+        geometry=gpd.points_from_xy(
+            [-92.2, -89.6, -86.8, -94.2, -92.5],
+            [31.2, 32.8, 32.8, 31.5, 34.5]
+        ),
+        crs=4326,
+    ).to_crs(TARGET_CRS)
+
+    for _, row in lbls.iterrows():
+        ax_in.text(row.geometry.x, row.geometry.y, row["name"], ha="center", va="center", fontsize=8, fontweight="bold", color="#444444")
+
+    minx, miny, maxx, maxy = geo.index_domain.total_bounds
+    ax_in.set_xlim(minx, maxx)
+    ax_in.set_ylim(miny, maxy)
+    ax_in.set_xticks([])
+    ax_in.set_yticks([])
+
+
+def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manual: dict[str, list[str]]) -> dict[str, Any]:
+    df = build_dataset_rows(dataset_key, config, manual)
+    value_col = config["value_col"]
+
+    df_g = gpd.GeoDataFrame(
+        df.copy(),
+        geometry=gpd.points_from_xy(df["lon"], df["lat"]),
+        crs=4326,
+    ).to_crs(TARGET_CRS)
+
+    used = df_g[~df_g["exclude_from_contours"]].copy()
+
+    tri = build_triangulation(used, max_edge_km=config["tri_edge_km"])
+
+    levels = config["levels"]
+    colors = config["colors"]
+    cmap = ListedColormap(colors)
+    cmap.set_under((1, 1, 1, 0))
+    norm = BoundaryNorm(levels, cmap.N, clip=False)
+
+    minx, miny, maxx, maxy = geo.plot_domain.total_bounds
+
+    fig = plt.figure(figsize=(16, 11.5), facecolor="#f2f2f2")
+
+    # Header
+    ax_head = fig.add_axes([0.03, 0.84, 0.94, 0.13])
+    ax_head.set_facecolor("white")
+    for s in ax_head.spines.values():
+        s.set_linewidth(1.8)
+        s.set_color("black")
+    ax_head.set_xticks([])
+    ax_head.set_yticks([])
+
+    ax_head.text(0.5, 0.78, "National Weather Service", ha="center", va="center", fontsize=26, fontweight="bold", style="italic")
+    ax_head.text(0.5, 0.52, "New Orleans/Baton Rouge Louisiana", ha="center", va="center", fontsize=24, fontweight="bold")
+    ax_head.text(0.5, 0.16, config["title_suffix"], ha="center", va="center", fontsize=20, fontweight="bold", style="italic")
+
+    # Main map
+    ax = fig.add_axes([0.03, 0.07, 0.78, 0.75])
+    ax.set_facecolor("#efefef")
+    for s in ax.spines.values():
+        s.set_linewidth(1.8)
+        s.set_color("black")
+
+    if tri is not None and len(used) >= 3:
+        x = used.geometry.x.to_numpy()
+        y = used.geometry.y.to_numpy()
+        z = used[value_col].to_numpy(dtype=float)
+
+        ax.tricontourf(tri, z, levels=levels, cmap=cmap, norm=norm, extend="max", zorder=0, antialiased=True)
+        ax.tricontour(tri, z, levels=levels, colors=config["contour_line_color"], linewidths=0.45, alpha=0.65, zorder=1)
+
+    plot_box_geom = geo.plot_domain.geometry.iloc[0]
+    lix_union = geo.lix.geometry.union_all()
+    outside_geom = plot_box_geom.difference(lix_union)
+    outside_gdf = gpd.GeoDataFrame(geometry=[outside_geom], crs=geo.plot_domain.crs)
+    outside_gdf.plot(ax=ax, facecolor="white", edgecolor="none", alpha=0.30, zorder=2)
+
+    geo.counties.plot(ax=ax, facecolor="none", edgecolor="#9a9a9a", linewidth=0.55, zorder=3)
+    geo.states.plot(ax=ax, facecolor="none", edgecolor="#555555", linewidth=1.4, zorder=4)
+    geo.lix.boundary.plot(ax=ax, color="black", linewidth=2.2, zorder=5)
+
+    draw_inset(ax, geo)
+
+    # City labels
+    for _, row in geo.cities.iterrows():
+        ax.plot(row.geometry.x, row.geometry.y, "o", color="white", markeredgecolor="black", markersize=4.5, zorder=7)
+        ax.text(
+            row.geometry.x,
+            row.geometry.y + 9000,
+            row["name"],
+            color="black",
+            fontsize=10,
+            fontweight="bold",
+            ha="center",
+            va="bottom",
+            path_effects=[pe.withStroke(linewidth=2.5, foreground="white")],
+            zorder=8,
+        )
+
+    # Station values
+    for _, row in df_g.iterrows():
+        txt_color = "#ff2d2d" if row["exclude_from_contours"] else "white"
+        ax.text(
+            row.geometry.x,
+            row.geometry.y,
+            config["value_fmt"].format(row[value_col]),
+            fontsize=10,
+            fontweight="bold",
+            ha="center",
+            va="center",
+            color=txt_color,
+            path_effects=[pe.withStroke(linewidth=2.0, foreground="black")],
+            zorder=9,
+        )
+
+    ax.text(
+        0.02,
+        -0.01,
+        config["desc"],
+        transform=ax.transAxes,
+        fontsize=10,
+        ha="left",
+        va="top",
+    )
+    ax.text(
+        0.02,
+        -0.055,
+        "Red values were excluded from contouring by manual exclusion and/or outlier logic.",
+        transform=ax.transAxes,
+        fontsize=9,
+        ha="left",
+        va="top",
+    )
+
+    ax.set_xlim(minx, maxx)
+    ax.set_ylim(miny, maxy)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    # Legend
+    ax_leg = fig.add_axes([0.82, 0.07, 0.15, 0.75])
+    ending_label = f"Stations used: {len(used)} / {len(df_g)}"
+    draw_legend(ax_leg, config, levels, colors, ending_label)
+
+    png_path = DOCS_DIR / config["png"]
+    fig.savefig(png_path, dpi=170, bbox_inches="tight")
+    plt.close(fig)
+
+    return {
+        "image": config["png"],
+        "csv": config["csv"],
+        "station_count": int(len(df_g)),
+        "used_in_contours": int(len(used)),
+        "excluded": int(df_g["exclude_from_contours"].sum()),
+    }
+
+
+def main() -> None:
+    DOCS_DIR.mkdir(parents=True, exist_ok=True)
+
+    geo = load_geography()
+    manual = load_manual_excludes()
+
+    manifest: dict[str, Any] = {"maps": {}}
+
+    for dataset_key, config in DATASETS.items():
+        print(f"Building {dataset_key}...")
+        result = plot_dataset(dataset_key, config, geo, manual)
+        manifest["maps"][dataset_key] = result
+        print(f"Saved {result['image']}")
+
+    OUT_MANIFEST.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    print("Finished building station maps.")
+
+
+if __name__ == "__main__":
+    main()
