@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WFO LIX Precipitation Maps</title>
+
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -11,17 +12,20 @@
       background: #ececec;
       color: #111;
     }
+
     main {
       max-width: 1500px;
       margin: 0 auto;
       padding: 18px;
     }
+
     .card {
       background: #fff;
       border: 2px solid #111;
       border-radius: 10px;
       padding: 12px;
     }
+
     .topbar {
       display: flex;
       flex-wrap: wrap;
@@ -30,19 +34,23 @@
       gap: 14px;
       margin-bottom: 10px;
     }
+
     .title-wrap h1 {
       margin: 0 0 6px;
       font-size: 28px;
     }
+
     .title-wrap p {
       margin: 0;
       font-size: 15px;
     }
+
     .controls label {
       font-weight: bold;
       display: block;
       margin-bottom: 4px;
     }
+
     select {
       padding: 8px;
       font-size: 16px;
@@ -50,6 +58,7 @@
       border: 1px solid #ccc;
       min-width: 260px;
     }
+
     .button-link {
       display: inline-block;
       padding: 10px 14px;
@@ -60,9 +69,11 @@
       text-decoration: none;
       font-weight: bold;
     }
+
     .button-link:hover {
       background: #e9e9e9;
     }
+
     img {
       width: 100%;
       height: auto;
@@ -70,6 +81,7 @@
       margin-top: 15px;
       border: 1px solid #ccc;
     }
+
     .links {
       margin-top: 12px;
       font-size: 15px;
@@ -79,11 +91,13 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
     a {
       color: #0b57d0;
     }
   </style>
 </head>
+
 <body>
   <main>
     <div class="card">
@@ -95,6 +109,7 @@
 
         <div class="controls">
           <label for="mapSelector">Select Timeframe:</label>
+
           <select id="mapSelector">
             <option value="lix_24h_precip_latest.png">24 Hour Rainfall</option>
             <option value="lix_2d_precip_latest.png">2-Day Rainfall</option>
@@ -112,17 +127,35 @@
         </div>
 
         <div>
-          <a class="button-link" href="obs_map.html">Open Station Observation Map</a>
+          <a class="button-link" href="obs_qc.html">Open Station QC Helper</a>
         </div>
       </div>
 
-      <img id="precipMap" src="lix_24h_precip_latest.png" alt="WFO LIX precipitation map">
+      <img
+        id="precipMap"
+        src="lix_24h_precip_latest.png"
+        alt="WFO LIX precipitation map"
+      >
 
       <div class="links">
         <div>
           <a href="station_precip_24h_latest.csv">Station 24h rainfall CSV</a>
           &nbsp;|&nbsp;
           <a href="latest.json">Latest precip metadata JSON</a>
+        </div>
+      </div>
+
+      <div class="links" style="margin-top:14px;">
+        <div>
+          <a href="lix_station_precip_24h_latest.png">Station 24h rainfall PNG</a>
+          &nbsp;|&nbsp;
+          <a href="lix_station_air_temp_latest.png">Current temp PNG</a>
+          &nbsp;|&nbsp;
+          <a href="lix_station_air_temp_daily_min_latest.png">Daily low PNG</a>
+          &nbsp;|&nbsp;
+          <a href="lix_station_air_temp_daily_max_latest.png">Daily high PNG</a>
+          &nbsp;|&nbsp;
+          <a href="obs_qc.html">Station QC helper</a>
         </div>
       </div>
     </div>
