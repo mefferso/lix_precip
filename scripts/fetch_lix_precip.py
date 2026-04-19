@@ -412,7 +412,7 @@ def plot_map(
 
     ax_leg.text(0.5, 0.96, f"{period_title}\nrainfall ending:", ha="center", va="top", fontsize=15, fontweight="bold")
     ax_leg.text(0.5, 0.88, window.end.strftime("%Y/%m/%d\n%H00 UTC"), ha="center", va="top", fontsize=16) 
-    ax_leg.text(0.5, 0.77, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold") 
+    ax_leg.text(0.5, 0.80, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold") 
 
     labels = [
         "Greater than 15", 
