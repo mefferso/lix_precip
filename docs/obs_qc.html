@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LIX Station QC Helper</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #ececec;
+      color: #111;
+    }
+
+    main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .card {
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    p {
+      margin: 0 0 12px;
+      font-size: 15px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    select,
+    button {
+      padding: 8px 10px;
+      font-size: 16px;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    #map {
+      height: 760px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .obs-label {
+      border: none;
+      background: transparent;
+    }
+
+    .obs-label-inner {
+      min-width: 34px;
+      padding: 2px 5px;
+      border: 1px solid #111;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 1.1;
+      color: #111;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+      background: white;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .excluded {
+      background: #ffb3b3 !important;
+      color: #900 !important;
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="card">
+      <h1>LIX Station QC Helper</h1>
+      <p>Click a station value to toggle exclusion. Then click <strong>Download manual_station_excludes.json</strong> and replace the repo file with it.</p>
+
+      <div class="toolbar">
+        <div>
+          <label for="datasetSelect">Dataset</label>
+          <select id="datasetSelect">
+            <option value="precip_24h">24-Hour Rainfall</option>
+            <option value="air_temp_latest">Current Temperature</option>
+            <option value="air_temp_daily_min">Daily Minimum Temperature</option>
+            <option value="air_temp_daily_max">Daily Maximum Temperature</option>
+          </select>
+        </div>
+
+        <div>
+          <label>&nbsp;</label>
+          <button id="downloadBtn" type="button">Download manual_station_excludes.json</button>
+        </div>
+
+        <div>
+          <label>&nbsp;</label>
+          <button id="resetBtn" type="button">Reset Current Dataset</button>
+        </div>
+      </div>
+
+      <div id="map"></div>
+      <div class="status" id="statusText">Loading…</div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    const DATASETS = {
+      precip_24h: { csv: "station_precip_24h_latest.csv", valueCol: "precip_in", decimals: 2 },
+      air_temp_latest: { csv: "station_air_temp_latest.csv", valueCol: "air_temp_f", decimals: 0 },
+      air_temp_daily_min: { csv: "station_air_temp_daily_min_latest.csv", valueCol: "air_temp_min_f", decimals: 0 },
+      air_temp_daily_max: { csv: "station_air_temp_daily_max_latest.csv", valueCol: "air_temp_max_f", decimals: 0 }
+    };
+
+    const excludes = {
+      all: [],
+      precip_24h: [],
+      air_temp_latest: [],
+      air_temp_daily_min: [],
+      air_temp_daily_max: []
+    };
+
+    const map = L.map('map').setView([30.3, -89.8], 8);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const layer = L.layerGroup().addTo(map);
+
+    function splitCSVLine(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        const next = line[i + 1];
+
+        if (ch === '"' && inQuotes && next === '"') {
+          current += '"';
+          i++;
+        } else if (ch === '"') {
+          inQuotes = !inQuotes;
+        } else if (ch === ',' && !inQuotes) {
+          result.push(current);
+          current = '';
+        } else {
+          current += ch;
+        }
+      }
+
+      result.push(current);
+      return result;
+    }
+
+    function parseCSV(text) {
+      const lines = text.trim().split(/\r?\n/);
+      const headers = splitCSVLine(lines[0]);
+      const rows = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        const vals = splitCSVLine(lines[i]);
+        const row = {};
+        headers.forEach((h, idx) => row[h] = vals[idx] ?? "");
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    function stationExcluded(datasetKey, stid) {
+      return excludes[datasetKey].includes(String(stid).toUpperCase());
+    }
+
+    function toggleStation(datasetKey, stid) {
+      stid = String(stid).toUpperCase();
+      const arr = excludes[datasetKey];
+      const idx = arr.indexOf(stid);
+      if (idx >= 0) {
+        arr.splice(idx, 1);
+      } else {
+        arr.push(stid);
+      }
+    }
+
+    async function loadDataset() {
+      const datasetKey = document.getElementById('datasetSelect').value;
+      const cfg = DATASETS[datasetKey];
+      const statusText = document.getElementById('statusText');
+
+      statusText.textContent = `Loading ${datasetKey}...`;
+      layer.clearLayers();
+
+      const res = await fetch(cfg.csv, { cache: 'no-store' });
+      const text = await res.text();
+      const rows = parseCSV(text);
+
+      rows.forEach(row => {
+        const lat = Number(row.lat);
+        const lon = Number(row.lon);
+        const val = Number(row[cfg.valueCol]);
+
+        if (!Number.isFinite(lat) || !Number.isFinite(lon) || !Number.isFinite(val)) {
+          return;
+        }
+
+        const excluded = stationExcluded(datasetKey, row.stid);
+        const klass = excluded ? 'excluded' : '';
+        const valueText = cfg.decimals === 0 ? String(Math.round(val)) : val.toFixed(cfg.decimals);
+
+        const icon = L.divIcon({
+          className: 'obs-label',
+          html: `<div class="obs-label-inner ${klass}">${valueText}</div>`,
+          iconSize: [42, 20],
+          iconAnchor: [21, 10]
+        });
+
+        const marker = L.marker([lat, lon], { icon });
+
+        marker.on('click', () => {
+          toggleStation(datasetKey, row.stid);
+          loadDataset();
+        });
+
+        marker.bindPopup(`
+          <strong>${row.name || row.stid}</strong><br>
+          STID: ${row.stid}<br>
+          Value: ${valueText}<br>
+          Click value to toggle exclusion.
+        `);
+
+        marker.addTo(layer);
+      });
+
+      statusText.textContent = `${datasetKey}: ${rows.length} stations shown | manually excluded: ${excludes[datasetKey].length}`;
+    }
+
+    document.getElementById('datasetSelect').addEventListener('change', loadDataset);
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const datasetKey = document.getElementById('datasetSelect').value;
+      excludes[datasetKey] = [];
+      loadDataset();
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(excludes, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'manual_station_excludes.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    loadDataset();
+  </script>
+</body>
+</html>
