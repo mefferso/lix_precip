@@ -1,0 +1,32 @@
+{
+  "maps": {
+    "precip_24h": {
+      "image": "lix_station_precip_24h_latest.png",
+      "csv": "station_precip_24h_latest.csv",
+      "station_count": 352,
+      "used_in_contours": 345,
+      "excluded": 7
+    },
+    "air_temp_latest": {
+      "image": "lix_station_air_temp_latest.png",
+      "csv": "station_air_temp_latest.csv",
+      "station_count": 384,
+      "used_in_contours": 382,
+      "excluded": 2
+    },
+    "air_temp_daily_min": {
+      "image": "lix_station_air_temp_daily_min_latest.png",
+      "csv": "station_air_temp_daily_min_latest.csv",
+      "station_count": 400,
+      "used_in_contours": 393,
+      "excluded": 7
+    },
+    "air_temp_daily_max": {
+      "image": "lix_station_air_temp_daily_max_latest.png",
+      "csv": "station_air_temp_daily_max_latest.csv",
+      "station_count": 400,
+      "used_in_contours": 392,
+      "excluded": 8
+    }
+  }
+}
