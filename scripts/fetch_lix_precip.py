@@ -124,7 +124,7 @@ def infer_default_end(now_utc: datetime | None = None) -> datetime:
 
 
 def parse_end_arg() -> datetime:
-    if len(sys.argv) > 1: [cite: 25]
+    if len(sys.argv) > 1: 
         return datetime.strptime(sys.argv[1], "%Y%m%d%H%M").replace(tzinfo=timezone.utc) [cite: 25]
     return infer_default_end() [cite: 25]
 
