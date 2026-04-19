@@ -6,11 +6,10 @@ import json
 import os
 import sys
 from dataclasses import dataclass
-from zoneinfo import ZoneInfo
-CENTRAL_TZ = ZoneInfo("America/Chicago")
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -21,11 +20,11 @@ DOCS_DIR.mkdir(parents=True, exist_ok=True)
 API_BASE = "https://api.synopticdata.com/v2/stations"
 DEFAULT_BBOX = "-92.5,28.5,-87.0,31.8"  # LIX-ish; widen/narrow as needed
 DEFAULT_TIMEZONE = "America/Chicago"
+CENTRAL_TZ = ZoneInfo(DEFAULT_TIMEZONE)
 DEFAULT_RECENT_MINUTES = 90
 REQUEST_TIMEOUT = 180
 
-# This is the whole point: products are config-driven.
-# Add more products later without rewriting the whole damn script.
+# Config-driven products so more variables can be added later without rewriting everything.
 PRODUCTS: dict[str, dict[str, Any]] = {
     "precip_24h": {
         "label": "24-Hour Rainfall",
@@ -53,11 +52,9 @@ PRODUCTS: dict[str, dict[str, Any]] = {
     },
     "air_temp_daily_min": {
         "label": "Daily Minimum Temperature",
-        "service": "statistics",
+        "service": "timeseries",
         "params": {
             "vars": "air_temp",
-            "statistic": "min",
-            "period": "day",
             "units": "english",
             "obtimezone": "local",
         },
@@ -66,11 +63,9 @@ PRODUCTS: dict[str, dict[str, Any]] = {
     },
     "air_temp_daily_max": {
         "label": "Daily Maximum Temperature",
-        "service": "statistics",
+        "service": "timeseries",
         "params": {
             "vars": "air_temp",
-            "statistic": "max",
-            "period": "day",
             "units": "english",
             "obtimezone": "local",
         },
@@ -82,6 +77,14 @@ PRODUCTS: dict[str, dict[str, Any]] = {
 
 @dataclass
 class TimeWindow:
+    start_utc: datetime
+    end_utc: datetime
+
+
+@dataclass
+class LocalDayWindow:
+    start_local: datetime
+    end_local: datetime
     start_utc: datetime
     end_utc: datetime
 
@@ -98,6 +101,18 @@ def parse_end_arg() -> datetime:
 
 def build_time_window(end_utc: datetime) -> TimeWindow:
     return TimeWindow(start_utc=end_utc - timedelta(hours=24), end_utc=end_utc)
+
+
+def build_local_day_window(end_utc: datetime) -> LocalDayWindow:
+    end_local = end_utc.astimezone(CENTRAL_TZ)
+    start_local = end_local.replace(hour=0, minute=0, second=0, microsecond=0)
+    end_local_day = start_local + timedelta(days=1)
+    return LocalDayWindow(
+        start_local=start_local,
+        end_local=end_local_day,
+        start_utc=start_local.astimezone(timezone.utc),
+        end_utc=end_local_day.astimezone(timezone.utc),
+    )
 
 
 def require_token() -> str:
@@ -203,44 +218,59 @@ def flatten_latest_station(station: dict[str, Any], variable: str, value_col: st
     }
 
 
-def pick_stat_block(statistics: dict[str, Any], variable: str) -> dict[str, Any] | None:
-    for key, value in statistics.items():
-        if key.startswith(variable) and isinstance(value, dict):
-            return value
-    return None
+def get_timeseries_series(station: dict[str, Any], variable: str) -> tuple[list[Any], list[str]]:
+    obs = station.get("OBSERVATIONS", {})
+    value_key = ""
+    for key in obs:
+        if key.startswith(variable):
+            value_key = key
+            break
+
+    if not value_key:
+        return [], []
+
+    values = obs.get(value_key, []) or []
+    date_times = obs.get("date_time", []) or []
+    return values, date_times
 
 
-def flatten_statistics_station(
+def flatten_timeseries_stat_station(
     station: dict[str, Any],
     variable: str,
-    stat_name: str,
+    mode: str,
     value_col: str,
+    day_window: LocalDayWindow,
 ) -> dict[str, Any] | None:
     base = get_station_meta(station)
-    stats = station.get("STATISTICS", {})
-    block = pick_stat_block(stats, variable)
-    if not block or not isinstance(block, list):
+    values, date_times = get_timeseries_series(station, variable)
+    if not values or not date_times:
         return None
 
-    newest = block[-1]
-    if not isinstance(newest, dict):
+    candidates: list[tuple[float, str]] = []
+    for value, ts in zip(values, date_times):
+        if value in (None, ""):
+            continue
+        try:
+            num = float(value)
+        except (TypeError, ValueError):
+            continue
+        candidates.append((num, ts))
+
+    if not candidates:
         return None
 
-    value = newest.get(stat_name)
-    if value in (None, ""):
-        return None
-
-    time_period = newest.get("time_period", {}) or {}
-    valid_time = newest.get(f"{stat_name}_time", "")
+    chosen = min(candidates, key=lambda item: item[0]) if mode == "min" else max(candidates, key=lambda item: item[0])
+    chosen_value, chosen_time = chosen
 
     return {
         **base,
-        value_col: round(float(value), 1),
-        "valid_time": valid_time,
-        "period_type": time_period.get("type", ""),
-        "period_value": time_period.get("value", ""),
-        "period_timezone": time_period.get("timezone", ""),
-        "count": newest.get("count", ""),
+        value_col: round(chosen_value, 1),
+        "valid_time": chosen_time,
+        "period_start_local": day_window.start_local.isoformat(),
+        "period_end_local": day_window.end_local.isoformat(),
+        "period_start_utc": day_window.start_utc.isoformat(),
+        "period_end_utc": day_window.end_utc.isoformat(),
+        "count": len(candidates),
     }
 
 
@@ -260,14 +290,14 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-def sort_rows(rows: list[dict[str, Any]], value_col: str) -> list[dict[str, Any]]:
+def sort_rows(rows: list[dict[str, Any]], value_col: str, descending: bool = True) -> list[dict[str, Any]]:
     return sorted(
         rows,
         key=lambda row: (
             row.get(value_col, float("-inf")) if isinstance(row.get(value_col), (int, float)) else -999999,
             row.get("stid", ""),
         ),
-        reverse=True,
+        reverse=descending,
     )
 
 
@@ -284,7 +314,7 @@ def build_precip_product(window: TimeWindow) -> dict[str, Any]:
     stations = payload.get("STATION", [])
     rows = [flatten_precip_station(stn, window) for stn in stations]
     rows = [row for row in rows if row is not None]
-    rows = sort_rows(rows, "precip_in")
+    rows = sort_rows(rows, "precip_in", descending=True)
 
     csv_path = DOCS_DIR / config["csv"]
     json_path = DOCS_DIR / config["json"]
@@ -318,7 +348,7 @@ def build_latest_product(product_key: str) -> dict[str, Any]:
     stations = payload.get("STATION", [])
     rows = [flatten_latest_station(stn, "air_temp", "air_temp_f") for stn in stations]
     rows = [row for row in rows if row is not None]
-    rows = sort_rows(rows, "air_temp_f")
+    rows = sort_rows(rows, "air_temp_f", descending=True)
 
     csv_path = DOCS_DIR / config["csv"]
     json_path = DOCS_DIR / config["json"]
@@ -344,28 +374,30 @@ def build_latest_product(product_key: str) -> dict[str, Any]:
     }
 
 
-def build_statistics_product(product_key: str, end_utc: datetime) -> dict[str, Any]:
+def build_daily_temp_extreme_product(product_key: str, end_utc: datetime) -> dict[str, Any]:
     config = PRODUCTS[product_key]
-
-    # Synoptic statistics with period=day requires YYYYmmdd, not YYYYmmddHHMM.
-    # Since obtimezone=local, use the station-local/current local calendar day.
-    local_day_str = end_utc.astimezone(CENTRAL_TZ).strftime("%Y%m%d")
+    day_window = build_local_day_window(end_utc)
 
     payload = request_json(
         config["service"],
         {
             **config["params"],
-            "start": local_day_str,
-            "end": local_day_str,
+            "start": day_window.start_utc.strftime("%Y%m%d%H%M"),
+            "end": day_window.end_utc.strftime("%Y%m%d%H%M"),
         },
     )
     stations = payload.get("STATION", [])
 
-    stat_name = config["params"]["statistic"]
-    value_col = "air_temp_min_f" if stat_name == "min" else "air_temp_max_f"
-    rows = [flatten_statistics_station(stn, "air_temp", stat_name, value_col) for stn in stations]
+    is_min = product_key.endswith("_min")
+    value_col = "air_temp_min_f" if is_min else "air_temp_max_f"
+    mode = "min" if is_min else "max"
+
+    rows = [
+        flatten_timeseries_stat_station(stn, "air_temp", mode, value_col, day_window)
+        for stn in stations
+    ]
     rows = [row for row in rows if row is not None]
-    rows = sort_rows(rows, value_col)
+    rows = sort_rows(rows, value_col, descending=not is_min)
 
     csv_path = DOCS_DIR / config["csv"]
     json_path = DOCS_DIR / config["json"]
@@ -376,6 +408,10 @@ def build_statistics_product(product_key: str, end_utc: datetime) -> dict[str, A
         {
             "product": product_key,
             "label": config["label"],
+            "period_start_local": day_window.start_local.isoformat(),
+            "period_end_local": day_window.end_local.isoformat(),
+            "period_start_utc": day_window.start_utc.isoformat(),
+            "period_end_utc": day_window.end_utc.isoformat(),
             "generated_utc": utc_now().isoformat(),
             "station_count": len(rows),
             "csv": csv_path.name,
@@ -409,8 +445,8 @@ def main() -> None:
     outputs: dict[str, Any] = {}
     outputs["precip_24h"] = build_precip_product(window)
     outputs["air_temp_latest"] = build_latest_product("air_temp_latest")
-    outputs["air_temp_daily_min"] = build_statistics_product("air_temp_daily_min", end_utc)
-    outputs["air_temp_daily_max"] = build_statistics_product("air_temp_daily_max", end_utc)
+    outputs["air_temp_daily_min"] = build_daily_temp_extreme_product("air_temp_daily_min", end_utc)
+    outputs["air_temp_daily_max"] = build_daily_temp_extreme_product("air_temp_daily_max", end_utc)
     write_manifest(window, outputs)
 
     print("Finished building LIX station observation products.")
