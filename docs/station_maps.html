@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WFO LIX Station Maps</title>
+  <title>WFO LIX Station Observation Maps</title>
 
   <style>
     body {
@@ -81,6 +81,20 @@
       margin-top: 15px;
       border: 1px solid #ccc;
     }
+
+    .links {
+      margin-top: 12px;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    a {
+      color: #0b57d0;
+    }
   </style>
 </head>
 
@@ -94,12 +108,13 @@
         </div>
 
         <div class="controls">
-          <label for="stationMapSelector">Select Dataset:</label>
-          <select id="stationMapSelector">
+          <label for="mapSelector">Select Dataset:</label>
+
+          <select id="mapSelector">
             <option value="lix_station_precip_24h_latest.png">24 Hour Rainfall</option>
             <option value="lix_station_air_temp_latest.png">Current Temperature</option>
-            <option value="lix_station_air_temp_daily_min_latest.png">Daily Minimum Temperature</option>
-            <option value="lix_station_air_temp_daily_max_latest.png">Daily Maximum Temperature</option>
+            <option value="lix_station_air_temp_daily_min_latest.png">24 Hour Low Temperature</option>
+            <option value="lix_station_air_temp_daily_max_latest.png">24 Hour High Temperature</option>
           </select>
         </div>
 
@@ -113,11 +128,25 @@
         src="lix_station_precip_24h_latest.png"
         alt="WFO LIX station observation map"
       >
+
+      <div class="links">
+        <div>
+          <a href="station_precip_24h_latest.csv">24h rainfall CSV</a>
+          &nbsp;|&nbsp;
+          <a href="station_air_temp_latest.csv">Current temp CSV</a>
+          &nbsp;|&nbsp;
+          <a href="station_air_temp_daily_min_latest.csv">Daily low CSV</a>
+          &nbsp;|&nbsp;
+          <a href="station_air_temp_daily_max_latest.csv">Daily high CSV</a>
+          &nbsp;|&nbsp;
+          <a href="obs_qc.html">Station QC helper</a>
+        </div>
+      </div>
     </div>
   </main>
 
   <script>
-    const selector = document.getElementById('stationMapSelector');
+    const selector = document.getElementById('mapSelector');
     const mapImage = document.getElementById('stationMap');
 
     selector.addEventListener('change', function () {
