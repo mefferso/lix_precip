@@ -68,6 +68,7 @@
       color: #111;
       text-decoration: none;
       font-weight: bold;
+      white-space: nowrap;
     }
 
     .button-link:hover {
@@ -80,6 +81,7 @@
       display: block;
       margin-top: 15px;
       border: 1px solid #ccc;
+      background: #f7f7f7;
     }
 
     .links {
@@ -94,6 +96,23 @@
 
     a {
       color: #0b57d0;
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      select {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -125,7 +144,6 @@
 
       <img
         id="stationMap"
-        src="lix_station_precip_24h_latest.png"
         alt="WFO LIX station observation map"
       >
 
@@ -149,9 +167,16 @@
     const selector = document.getElementById('mapSelector');
     const mapImage = document.getElementById('stationMap');
 
+    function setMapImage(filename) {
+      mapImage.src = filename + '?t=' + Date.now();
+    }
+
     selector.addEventListener('change', function () {
-      mapImage.src = this.value;
+      setMapImage(this.value);
     });
+
+    // Set default image on initial page load with cache busting too
+    setMapImage(selector.value);
   </script>
 </body>
 </html>
