@@ -720,6 +720,20 @@ def main() -> None:
     
     for dataset_key, config in DATASETS.items():
         if dataset_key == "precip_24h" and not mrms_ok:
+            stale_png = DOCS_DIR / config["png"]
+            if stale_png.exists():
+                stale_png.unlink()
+                print(f"Deleted stale precip map: {stale_png.name}")
+    
+            manifest["maps"][dataset_key] = {
+                "image": None,
+                "csv": config["csv"],
+                "station_count": 0,
+                "used_in_contours": 0,
+                "excluded": 0,
+                "status": "MRMS unavailable"
+            }
+    
             print("Skipping precip_24h map because MRMS data was unavailable.")
             continue
     
@@ -727,9 +741,6 @@ def main() -> None:
         result = plot_dataset(dataset_key, config, geo, manual, grid_data)
         manifest["maps"][dataset_key] = result
         print(f"Saved {result['image']}")
-
-    OUT_MANIFEST.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    print("Finished building station maps.")
 
 if __name__ == "__main__":
     main()
