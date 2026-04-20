@@ -380,33 +380,34 @@ def build_triangulation(df_proj: gpd.GeoDataFrame, max_edge_km: float) -> Triang
     return tri
 
 
-def draw_legend(ax_leg, config: dict[str, Any], levels: list[float], colors: list[str], ending_label: str) -> None:
+def draw_legend(fig, config: dict[str, Any], levels: list[float], colors: list[str]) -> None:
+    # Place firmly on the bottom left of the figure
+    ax_leg = fig.add_axes([0.03, 0.05, 0.16, 0.52])
     ax_leg.set_facecolor("white")
     for s in ax_leg.spines.values():
-        s.set_linewidth(1.8)
+        s.set_linewidth(1.5)
         s.set_color("black")
     ax_leg.set_xticks([])
     ax_leg.set_yticks([])
 
-    ax_leg.text(0.5, 0.965, config["title_suffix"], ha="center", va="top", fontsize=15, fontweight="bold")
-    ax_leg.text(0.5, 0.905, ending_label, ha="center", va="top", fontsize=13)
-    ax_leg.text(0.5, 0.84, config["units"], ha="center", va="top", fontsize=15, fontweight="bold")
+    ax_leg.text(0.5, 0.95, config["label"], ha="center", va="top", fontsize=15, fontweight="bold")
+    ax_leg.text(0.5, 0.89, f"({config['units']})", ha="center", va="top", fontsize=13, fontweight="bold")
 
     labels = []
     for i in range(len(levels) - 1):
         if i == len(levels) - 2:
-            labels.append(f">{levels[i]:g}")
+            labels.append(f"> {levels[i]:g}")
         else:
             labels.append(f"{levels[i]:g} - {levels[i+1]:g}")
     labels = labels[::-1]
     colors_rev = colors[::-1]
 
-    y0 = 0.78
-    dy = 0.042
+    y0 = 0.81
+    dy = 0.048
     for i, (label, color) in enumerate(zip(labels, colors_rev)):
         y = y0 - i * dy
-        ax_leg.add_patch(Rectangle((0.10, y - 0.016), 0.20, 0.026, color=color, transform=ax_leg.transAxes))
-        ax_leg.text(0.36, y - 0.003, label, fontsize=10, va="center", ha="left")
+        ax_leg.add_patch(Rectangle((0.15, y - 0.016), 0.25, 0.03, color=color, transform=ax_leg.transAxes))
+        ax_leg.text(0.48, y - 0.001, label, fontsize=12, va="center", ha="left", fontweight="bold")
 
     y = y0 - len(labels) * dy
     ax_leg.text(0.10, y - 0.005, "Station values:", fontsize=10, fontweight="bold", ha="left")
@@ -414,15 +415,16 @@ def draw_legend(ax_leg, config: dict[str, Any], levels: list[float], colors: lis
     ax_leg.text(0.10, y - 0.075, "Red = excluded/outlier", fontsize=9, ha="left")
 
 
-def draw_inset(ax, geo: GeoContext) -> None:
-    ax_in = ax.inset_axes([0.00, 0.79, 0.24, 0.24])
-    ax_in.set_facecolor("#d4e6f1")
+def draw_inset(fig, geo: GeoContext) -> None:
+    # Place on the top left of the figure, above the legend
+    ax_in = fig.add_axes([0.03, 0.60, 0.16, 0.22])
+    ax_in.set_facecolor("#ffffff")
     for s in ax_in.spines.values():
-        s.set_linewidth(1.2)
+        s.set_linewidth(1.5)
         s.set_color("black")
 
-    geo.states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=0.7, zorder=1)
-    geo.lix.plot(ax=ax_in, facecolor="#ffb000", edgecolor="black", linewidth=1.0, zorder=2)
+    geo.states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=0.8, zorder=1)
+    geo.lix.plot(ax=ax_in, facecolor="#ffb000", edgecolor="black", linewidth=1.2, zorder=2)
 
     lbls = gpd.GeoDataFrame(
         {"name": ["LA", "MS", "AL", "TX", "AR"]},
@@ -434,7 +436,7 @@ def draw_inset(ax, geo: GeoContext) -> None:
     ).to_crs(TARGET_CRS)
 
     for _, row in lbls.iterrows():
-        ax_in.text(row.geometry.x, row.geometry.y, row["name"], ha="center", va="center", fontsize=8, fontweight="bold", color="#444444")
+        ax_in.text(row.geometry.x, row.geometry.y, row["name"], ha="center", va="center", fontsize=9, fontweight="bold", color="#444444")
 
     minx, miny, maxx, maxy = geo.index_domain.total_bounds
     ax_in.set_xlim(minx, maxx)
@@ -465,23 +467,22 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
 
     minx, miny, maxx, maxy = geo.plot_domain.total_bounds
 
-    fig = plt.figure(figsize=(16, 11.5), facecolor="#f2f2f2")
+    fig = plt.figure(figsize=(16, 11.5), facecolor="#ffffff")
 
-    # Header
-    ax_head = fig.add_axes([0.03, 0.84, 0.94, 0.13])
-    ax_head.set_facecolor("white")
+    # Header - No borders, italicized bold text
+    ax_head = fig.add_axes([0.05, 0.88, 0.9, 0.12])
+    ax_head.set_facecolor("#ffffff") 
     for s in ax_head.spines.values():
-        s.set_linewidth(1.8)
-        s.set_color("black")
+        s.set_visible(False) 
     ax_head.set_xticks([])
     ax_head.set_yticks([])
 
-    ax_head.text(0.5, 0.78, "National Weather Service", ha="center", va="center", fontsize=26, fontweight="bold", style="italic")
-    ax_head.text(0.5, 0.52, "New Orleans/Baton Rouge Louisiana", ha="center", va="center", fontsize=24, fontweight="bold")
-    ax_head.text(0.5, 0.16, config["title_suffix"], ha="center", va="center", fontsize=20, fontweight="bold", style="italic")
+    ax_head.text(0.5, 0.8, "National Weather Service", ha="center", va="center", fontsize=28, fontweight="bold", style="italic")
+    ax_head.text(0.5, 0.45, TITLE_OFFICE, ha="center", va="center", fontsize=26, fontweight="bold", style="italic")
+    ax_head.text(0.5, 0.1, config["title_suffix"], ha="center", va="center", fontsize=22, fontweight="bold", style="italic")
 
-    # Main map
-    ax = fig.add_axes([0.03, 0.07, 0.78, 0.75])
+    # Main map - Pushed to the right to leave a sidebar space
+    ax = fig.add_axes([0.22, 0.05, 0.75, 0.82])
     ax.set_facecolor("#efefef")
     for s in ax.spines.values():
         s.set_linewidth(1.8)
@@ -493,7 +494,6 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
         z = used[value_col].to_numpy(dtype=float)
 
         ax.tricontourf(tri, z, levels=levels, cmap=cmap, norm=norm, extend="max", zorder=0, antialiased=True)
-        ax.tricontour(tri, z, levels=levels, colors=config["contour_line_color"], linewidths=0.45, alpha=0.65, zorder=1)
 
     plot_box_geom = geo.plot_domain.geometry.iloc[0]
     lix_union = geo.lix.geometry.union_all()
@@ -505,7 +505,9 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     geo.states.plot(ax=ax, facecolor="none", edgecolor="#555555", linewidth=1.4, zorder=4)
     geo.lix.boundary.plot(ax=ax, color="black", linewidth=2.2, zorder=5)
 
-    draw_inset(ax, geo)
+    # Draw the newly positioned sidebar elements
+    draw_inset(fig, geo)
+    draw_legend(fig, config, levels, colors)
 
     # City labels
     for _, row in geo.cities.iterrows():
@@ -530,30 +532,21 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
             row.geometry.x,
             row.geometry.y,
             config["value_fmt"].format(row[value_col]),
-            fontsize=10,
+            fontsize=11,
             fontweight="bold",
             ha="center",
             va="center",
             color=txt_color,
-            path_effects=[pe.withStroke(linewidth=2.0, foreground="black")],
+            path_effects=[pe.withStroke(linewidth=2.5, foreground="black")],
             zorder=9,
         )
 
     ax.text(
         0.02,
-        -0.01,
-        config["desc"],
+        -0.015,
+        "This map is an experimental interpolation of actual reported values.",
         transform=ax.transAxes,
         fontsize=10,
-        ha="left",
-        va="top",
-    )
-    ax.text(
-        0.02,
-        -0.055,
-        "Red values were excluded from contouring by manual exclusion and/or outlier logic.",
-        transform=ax.transAxes,
-        fontsize=9,
         ha="left",
         va="top",
     )
@@ -562,11 +555,6 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     ax.set_ylim(miny, maxy)
     ax.set_xticks([])
     ax.set_yticks([])
-
-    # Legend
-    ax_leg = fig.add_axes([0.82, 0.07, 0.15, 0.75])
-    ending_label = f"Stations used: {len(used)} / {len(df_g)}"
-    draw_legend(ax_leg, config, levels, colors, ending_label)
 
     png_path = DOCS_DIR / config["png"]
     fig.savefig(png_path, dpi=170, bbox_inches="tight")
