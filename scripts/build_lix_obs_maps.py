@@ -701,22 +701,28 @@ def main() -> None:
 
     # Hit NOMADS and process the MRMS grids (Precipitation)
     print("Initiating MRMS Grid Processing...")
+    mrms_ok = True
     try:
         mrms_data = process_mrms()
     except Exception as e:
         print(f"MRMS FETCH FAILED: {e}")
         mrms_data = {}
-
+        mrms_ok = False
+    
     # Merge into a single dictionary for the plotting function
     grid_data = {**urma_data}
     if mrms_data:
         grid_data["precip_24h"] = mrms_data["precip_24h"]
         grid_data["precip_24h_x"] = mrms_data["x"]
         grid_data["precip_24h_y"] = mrms_data["y"]
-
+    
     manifest: dict[str, Any] = {"maps": {}}
-
+    
     for dataset_key, config in DATASETS.items():
+        if dataset_key == "precip_24h" and not mrms_ok:
+            print("Skipping precip_24h map because MRMS data was unavailable.")
+            continue
+    
         print(f"Building {dataset_key}...")
         result = plot_dataset(dataset_key, config, geo, manual, grid_data)
         manifest["maps"][dataset_key] = result
