@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from matplotlib.patches import Rectangle
-from matplotlib.tri import Triangulation
+from matplotlib.tri import Triangulation, UniformTriRefiner
 from shapely.geometry import box
 
 # -------------------------------------------------
@@ -390,8 +390,11 @@ def draw_legend(fig, config: dict[str, Any], levels: list[float], colors: list[s
     ax_leg.set_xticks([])
     ax_leg.set_yticks([])
 
-    ax_leg.text(0.5, 0.95, config["label"], ha="center", va="top", fontsize=15, fontweight="bold")
-    ax_leg.text(0.5, 0.89, f"({config['units']})", ha="center", va="top", fontsize=13, fontweight="bold")
+    # Split long titles onto two lines
+    label_text = config["label"].replace(" Temperature", "\nTemperature")
+    
+    ax_leg.text(0.5, 0.96, label_text, ha="center", va="top", fontsize=14, fontweight="bold", linespacing=1.3)
+    ax_leg.text(0.5, 0.85, f"({config['units']})", ha="center", va="top", fontsize=13, fontweight="bold")
 
     labels = []
     for i in range(len(levels) - 1):
@@ -402,7 +405,8 @@ def draw_legend(fig, config: dict[str, Any], levels: list[float], colors: list[s
     labels = labels[::-1]
     colors_rev = colors[::-1]
 
-    y0 = 0.81
+    # Shifted starting point down to 0.77 to make room for the taller title
+    y0 = 0.77 
     dy = 0.048
     for i, (label, color) in enumerate(zip(labels, colors_rev)):
         y = y0 - i * dy
@@ -493,7 +497,13 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
         y = used.geometry.y.to_numpy()
         z = used[value_col].to_numpy(dtype=float)
 
-        ax.tricontourf(tri, z, levels=levels, cmap=cmap, norm=norm, extend="max", zorder=0, antialiased=True)
+        # Smooth out the sharp triangles using UniformTriRefiner
+        # subdiv=3 multiplies the number of triangles, cubic interpolation curves the gradients
+        refiner = UniformTriRefiner(tri)
+        tri_refi, z_refi = refiner.refine_field(z, triinterpolator='cubic', subdiv=3)
+
+        # Plot the refined, smoothed mesh instead of the raw triangles
+        ax.tricontourf(tri_refi, z_refi, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
 
     plot_box_geom = geo.plot_domain.geometry.iloc[0]
     lix_union = geo.lix.geometry.union_all()
