@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import gzip
 import json
-import math
 import shutil
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -19,7 +18,7 @@ import requests
 import xarray as xr
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from matplotlib.patches import Rectangle
-from matplotlib.tri import Triangulation, UniformTriRefiner
+from matplotlib.tri import Triangulation
 from pyproj import Transformer
 from shapely.geometry import box
 
@@ -93,7 +92,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37", "#cc1f1a",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0, 
+        "tri_edge_km": 95.0,
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -132,7 +131,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0, 
+        "tri_edge_km": 95.0,
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -155,7 +154,7 @@ def download_urma_hour(dt: datetime) -> Path | None:
     )
 
     dest = RAW_DIR / f"urma_{date_str}{hour_str}.grb2"
-    if dest.exists() and dest.stat().st_size > 1000000:
+    if dest.exists() and dest.stat().st_size > 1_000_000:
         return dest
 
     try:
@@ -169,7 +168,7 @@ def download_urma_hour(dt: datetime) -> Path | None:
                     if chunk:
                         f.write(chunk)
 
-        if dest.exists() and dest.stat().st_size > 1000000:
+        if dest.exists() and dest.stat().st_size > 1_000_000:
             print(f"Downloaded URMA for {date_str} {hour_str}Z")
             return dest
 
@@ -226,9 +225,7 @@ def process_urma() -> dict[str, Any]:
 
     stack = np.array(grids)
 
-    # Kelvin to Fahrenheit
     temp_f = (stack - 273.15) * 1.8 + 32.0
-
     latest_f = temp_f[0]
     max_f = np.max(temp_f, axis=0)
     min_f = np.min(temp_f, axis=0)
@@ -261,7 +258,7 @@ def download_mrms(dt: datetime) -> Path | None:
     dest_gz = RAW_DIR / file_name
     dest_grib = RAW_DIR / file_name.replace(".gz", "")
 
-    if dest_grib.exists() and dest_grib.stat().st_size > 1000000:
+    if dest_grib.exists() and dest_grib.stat().st_size > 1_000_000:
         return dest_grib
 
     try:
@@ -275,14 +272,13 @@ def download_mrms(dt: datetime) -> Path | None:
                     if chunk:
                         f.write(chunk)
 
-        # MRMS files are compressed with gzip. Decompress them for xarray
-        with gzip.open(dest_gz, 'rb') as f_in:
-            with open(dest_grib, 'wb') as f_out:
+        with gzip.open(dest_gz, "rb") as f_in:
+            with open(dest_grib, "wb") as f_out:
                 shutil.copyfileobj(f_in, f_out)
-        
-        dest_gz.unlink() # Clean up the gz file
 
-        if dest_grib.exists() and dest_grib.stat().st_size > 1000000:
+        dest_gz.unlink()
+
+        if dest_grib.exists() and dest_grib.stat().st_size > 1_000_000:
             print(f"Downloaded MRMS for {date_str} {hour_str}Z")
             return dest_grib
 
@@ -320,17 +316,14 @@ def process_mrms() -> dict[str, Any]:
     except Exception as e:
         raise RuntimeError(f"Failed to decode MRMS: {e}")
 
-    # Force lon/lat to 1-D if cfgrib gives 2-D arrays
     if lon.ndim == 2:
         lon = lon[0, :]
     if lat.ndim == 2:
         lat = lat[:, 0]
 
-    # Convert mm to inches
     precip_in = precip_mm / 25.4
     precip_in = np.where(precip_in < 0, 0, precip_in)
 
-    # Make sure coordinate order matches data orientation
     if lat[0] > lat[-1]:
         lat = lat[::-1]
         precip_in = precip_in[::-1, :]
@@ -339,7 +332,6 @@ def process_mrms() -> dict[str, Any]:
         lon = lon[::-1]
         precip_in = precip_in[:, ::-1]
 
-    # Build 2-D coordinate grids after orientation is fixed
     lon2d, lat2d = np.meshgrid(lon, lat)
 
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
@@ -402,7 +394,14 @@ def haversine_km(lat1: np.ndarray, lon1: np.ndarray, lat2: float, lon2: float) -
     a = np.sin(dlat / 2.0) ** 2 + np.cos(np.radians(lat2)) * np.cos(np.radians(lat1)) * np.sin(dlon / 2.0) ** 2
     return 2 * r * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
 
-def buddy_check_flags(lats: np.ndarray, lons: np.ndarray, values: np.ndarray, radius_km: float, min_neighbors: int, threshold: float) -> np.ndarray:
+def buddy_check_flags(
+    lats: np.ndarray,
+    lons: np.ndarray,
+    values: np.ndarray,
+    radius_km: float,
+    min_neighbors: int,
+    threshold: float,
+) -> np.ndarray:
     n = len(values)
     flags = np.zeros(n, dtype=bool)
     for i in range(n):
@@ -439,7 +438,9 @@ def build_dataset_rows(dataset_key: str, config: dict[str, Any], manual: dict[st
 
     global_flags = modified_zscore_flags(values, threshold=4.5)
     buddy_flags = buddy_check_flags(
-        lats=lats, lons=lons, values=values,
+        lats=lats,
+        lons=lons,
+        values=values,
         radius_km=config["neighbor_radius_km"],
         min_neighbors=config["neighbor_min"],
         threshold=config["buddy_threshold"],
@@ -523,7 +524,7 @@ def draw_legend(fig, config: dict[str, Any], levels: list[float], colors: list[s
     labels = labels[::-1]
     colors_rev = colors[::-1]
 
-    y0 = 0.77 
+    y0 = 0.77
     dy = 0.048
     for i, (label, color) in enumerate(zip(labels, colors_rev)):
         y = y0 - i * dy
@@ -547,7 +548,16 @@ def draw_inset(fig, geo: GeoContext) -> None:
     ).to_crs(TARGET_CRS)
 
     for _, row in lbls.iterrows():
-        ax_in.text(row.geometry.x, row.geometry.y, row["name"], ha="center", va="center", fontsize=9, fontweight="bold", color="#444444")
+        ax_in.text(
+            row.geometry.x,
+            row.geometry.y,
+            row["name"],
+            ha="center",
+            va="center",
+            fontsize=9,
+            fontweight="bold",
+            color="#444444",
+        )
 
     minx, miny, maxx, maxy = geo.index_domain.total_bounds
     ax_in.set_xlim(minx, maxx)
@@ -555,7 +565,13 @@ def draw_inset(fig, geo: GeoContext) -> None:
     ax_in.set_xticks([])
     ax_in.set_yticks([])
 
-def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manual: dict[str, list[str]], grid_data: dict[str, Any]) -> dict[str, Any]:
+def plot_dataset(
+    dataset_key: str,
+    config: dict[str, Any],
+    geo: GeoContext,
+    manual: dict[str, list[str]],
+    grid_data: dict[str, Any],
+) -> dict[str, Any]:
     df = build_dataset_rows(dataset_key, config, manual)
     value_col = config["value_col"]
 
@@ -578,9 +594,9 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     fig = plt.figure(figsize=(16, 11.5), facecolor="#ffffff")
 
     ax_head = fig.add_axes([0.05, 0.88, 0.9, 0.12])
-    ax_head.set_facecolor("#ffffff") 
+    ax_head.set_facecolor("#ffffff")
     for s in ax_head.spines.values():
-        s.set_visible(False) 
+        s.set_visible(False)
     ax_head.set_xticks([])
     ax_head.set_yticks([])
 
@@ -594,27 +610,25 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
         s.set_linewidth(1.8)
         s.set_color("black")
 
-    # -----------------------------------------------------------------
-    # PLOTTING THE BACKGROUND
-    # If the dataset is in grid_data, we paint the high-res grid (URMA or MRMS).
-    # Otherwise, we use the triangulated stations as a fallback.
-    # -----------------------------------------------------------------
     if dataset_key in grid_data:
         x_grid = grid_data.get(f"{dataset_key}_x", grid_data.get("x"))
         y_grid = grid_data.get(f"{dataset_key}_y", grid_data.get("y"))
-        
-        ax.contourf(x_grid, y_grid, grid_data[dataset_key], levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
+        ax.contourf(
+            x_grid,
+            y_grid,
+            grid_data[dataset_key],
+            levels=levels,
+            cmap=cmap,
+            norm=norm,
+            extend="both",
+            zorder=0,
+            antialiased=True,
+        )
     else:
-        # If URMA/MRMS fails, we fall back to a simple, accurate station-only map
         tri = build_triangulation(used, max_edge_km=config["tri_edge_km"])
         if tri is not None and len(used) >= 3:
-            x = used.geometry.x.to_numpy()
-            y = used.geometry.y.to_numpy()
             z = used[value_col].to_numpy(dtype=float).copy()
-
             ax.tricontourf(tri, z, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0)
-
-    # -----------------------------------------------------------------
 
     plot_box_geom = geo.plot_domain.geometry.iloc[0]
     lix_union = geo.lix.geometry.union_all()
@@ -684,14 +698,15 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
         "station_count": int(len(df_g)),
         "used_in_contours": int(len(used)),
         "excluded": int(df_g["exclude_from_contours"].sum()),
+        "status": "ok",
     }
 
 def main() -> None:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
+
     geo = load_geography()
     manual = load_manual_excludes()
 
-    # Hit NOMADS and process the 24-hour URMA grids (Temperatures)
     print("Initiating URMA Grid Processing...")
     try:
         urma_data = process_urma()
@@ -699,7 +714,6 @@ def main() -> None:
         print(f"URMA FETCH FAILED: {e}")
         urma_data = {}
 
-    # Hit NOMADS and process the MRMS grids (Precipitation)
     print("Initiating MRMS Grid Processing...")
     mrms_ok = True
     try:
@@ -708,39 +722,42 @@ def main() -> None:
         print(f"MRMS FETCH FAILED: {e}")
         mrms_data = {}
         mrms_ok = False
-    
-    # Merge into a single dictionary for the plotting function
+
     grid_data = {**urma_data}
     if mrms_data:
         grid_data["precip_24h"] = mrms_data["precip_24h"]
         grid_data["precip_24h_x"] = mrms_data["x"]
         grid_data["precip_24h_y"] = mrms_data["y"]
-    
+
     manifest: dict[str, Any] = {"maps": {}}
-    
+
     for dataset_key, config in DATASETS.items():
         if dataset_key == "precip_24h" and not mrms_ok:
             stale_png = DOCS_DIR / config["png"]
             if stale_png.exists():
                 stale_png.unlink()
                 print(f"Deleted stale precip map: {stale_png.name}")
-    
+
             manifest["maps"][dataset_key] = {
                 "image": None,
                 "csv": config["csv"],
                 "station_count": 0,
                 "used_in_contours": 0,
                 "excluded": 0,
-                "status": "MRMS unavailable"
+                "status": "MRMS unavailable",
             }
-    
+
             print("Skipping precip_24h map because MRMS data was unavailable.")
             continue
-    
+
         print(f"Building {dataset_key}...")
         result = plot_dataset(dataset_key, config, geo, manual, grid_data)
         manifest["maps"][dataset_key] = result
         print(f"Saved {result['image']}")
+
+    OUT_MANIFEST.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    print(f"Wrote manifest: {OUT_MANIFEST.name}")
+    print("Finished building station maps.")
 
 if __name__ == "__main__":
     main()
