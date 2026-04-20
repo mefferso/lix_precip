@@ -163,7 +163,6 @@
 
       <img
         id="precipMap"
-        src="lix_24h_precip_latest.png"
         alt="WFO LIX precipitation map"
       >
 
@@ -192,13 +191,16 @@
   <script>
     const selector = document.getElementById('mapSelector');
     const mapImage = document.getElementById('precipMap');
-
+  
+    function setMapImage(filename) {
+      mapImage.src = filename + '?t=' + Date.now();
+    }
+  
     selector.addEventListener('change', function () {
-      mapImage.src = this.value;
-
-      // Bust browser cache so the damn thing updates immediately
-      mapImage.src = this.value + '?t=' + Date.now();
+      setMapImage(this.value);
     });
+  
+    setMapImage(selector.value);
   </script>
 </body>
 </html>
