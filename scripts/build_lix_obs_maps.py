@@ -407,7 +407,7 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     if tri is not None and len(used) >= 3:
         x = used.geometry.x.to_numpy()
         y = used.geometry.y.to_numpy()
-        z = used[value_col].to_numpy(dtype=float)
+        z = used[value_col].to_numpy(dtype=float).copy()
 
         refiner = UniformTriRefiner(tri)
         tri_refi, z_refi = refiner.refine_field(z, subdiv=3)
