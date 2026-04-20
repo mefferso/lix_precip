@@ -410,7 +410,7 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
         z = used[value_col].to_numpy(dtype=float)
 
         refiner = UniformTriRefiner(tri)
-        tri_refi, z_refi = refiner.refine_field(z, triinterpolator='cubic', subdiv=3)
+        tri_refi, z_refi = refiner.refine_field(z, subdiv=3)
 
         ax.tricontourf(tri_refi, z_refi, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
 
