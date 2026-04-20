@@ -143,14 +143,18 @@ DATASETS: dict[str, dict[str, Any]] = {
 # URMA FETCHING & PROCESSING
 # -------------------------------------------------
 def load_urma_t2m_hour(dt: datetime) -> dict[str, Any] | None:
-    dt = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
+    # Keep UTC handling in YOUR code...
+    dt_utc = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
+
+    # ...but pass Herbie a TZ-NAIVE UTC datetime
+    herbie_dt = dt_utc.replace(tzinfo=None)
 
     try:
-        H = Herbie(dt, model="urma", product="anl")
+        H = Herbie(herbie_dt, model="urma", product="anl")
         ds = H.xarray("TMP:2 m", remove_grib=True)
 
         if ds is None or "t2m" not in ds:
-            print(f"URMA unavailable or missing t2m for {dt:%Y%m%d %HZ}")
+            print(f"URMA unavailable or missing t2m for {dt_utc:%Y%m%d %HZ}")
             return None
 
         lon = ds.longitude.values
@@ -166,7 +170,7 @@ def load_urma_t2m_hour(dt: datetime) -> dict[str, Any] | None:
         except Exception:
             pass
 
-        print(f"Loaded URMA TMP 2m for {dt:%Y%m%d %HZ}")
+        print(f"Loaded URMA TMP 2m for {dt_utc:%Y%m%d %HZ}")
         return {
             "lon": lon,
             "lat": lat,
@@ -174,7 +178,7 @@ def load_urma_t2m_hour(dt: datetime) -> dict[str, Any] | None:
         }
 
     except Exception as e:
-        print(f"URMA load failed for {dt:%Y%m%d %HZ}: {e}")
+        print(f"URMA load failed for {dt_utc:%Y%m%d %HZ}: {e}")
         return None
 
 
