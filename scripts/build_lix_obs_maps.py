@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 import geopandas as gpd
+from herbie import Herbie
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 import numpy as np
@@ -91,7 +92,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37", "#cc1f1a",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0, # <-- ADDED BACK IN
+        "tri_edge_km": 95.0,
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -110,7 +111,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#3aa655", "#8ccf7e", "#c7e9ad", "#f2e788", "#f2c66d", "#f59d3d",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0, # <-- ADDED BACK IN
+        "tri_edge_km": 95.0,
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -130,7 +131,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0, # <-- ADDED BACK IN
+        "tri_edge_km": 95.0,
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -141,110 +142,83 @@ DATASETS: dict[str, dict[str, Any]] = {
 # -------------------------------------------------
 # URMA FETCHING & PROCESSING
 # -------------------------------------------------
-def download_urma_hour(dt: datetime) -> Path | None:
-    date_str = dt.strftime("%Y%m%d")
-    hour_str = dt.strftime("%H")
-    file_name = f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2_wexp"
-
-    url = (
-        f"https://nomads.ncep.noaa.gov/cgi-bin/filter_urma2p5.pl?"
-        f"file={file_name}"
-        f"&lev_2_m_above_ground=on"
-        f"&var_TMP=on"
-        f"&leftlon=-95.0&rightlon=-84.0&toplat=35.0&bottomlat=28.2"
-        f"&dir=%2Furma2p5.{date_str}"
-    )
-
-    dest = RAW_DIR / f"urma_{date_str}{hour_str}.grb2"
-
-    if dest.exists() and dest.stat().st_size > 1000:
-        return dest
+def load_urma_t2m_hour(dt: datetime) -> dict[str, Any] | None:
+    dt = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
 
     try:
-        r = requests.get(
-            url,
-            timeout=30,
-            headers={"User-Agent": "Mozilla/5.0"}
-        )
-        if r.status_code == 200 and len(r.content) > 1000:
-            dest.write_bytes(r.content)
-            print(f"Downloaded URMA for {date_str} {hour_str}Z")
-            return dest
-        else:
-            print(
-                f"URMA unavailable for {date_str} {hour_str}Z "
-                f"(status={r.status_code}, bytes={len(r.content)})"
-            )
-    except Exception as e:
-        print(f"URMA request failed for {date_str} {hour_str}Z: {e}")
+        H = Herbie(dt, model="urma", product="anl")
+        ds = H.xarray("TMP:2 m", remove_grib=True)
 
-    return None
+        if ds is None or "t2m" not in ds:
+            print(f"URMA unavailable or missing t2m for {dt:%Y%m%d %HZ}")
+            return None
+
+        lon = ds.longitude.values
+        lat = ds.latitude.values
+
+        # Convert 0-360 lon to -180 to 180 if needed
+        lon = np.where(lon > 180, lon - 360, lon)
+
+        t2m_f = (ds["t2m"].values - 273.15) * 1.8 + 32.0
+
+        try:
+            ds.close()
+        except Exception:
+            pass
+
+        print(f"Loaded URMA TMP 2m for {dt:%Y%m%d %HZ}")
+        return {
+            "lon": lon,
+            "lat": lat,
+            "t2m_f": t2m_f,
+        }
+
+    except Exception as e:
+        print(f"URMA load failed for {dt:%Y%m%d %HZ}: {e}")
+        return None
+
 
 def process_urma() -> dict[str, Any]:
-    # Start from the last completed UTC hour, not "right now"
     now = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
 
     latest_dt = None
+    latest_grid = None
 
-    # URMA can lag. Look back farther.
-    for i in range(18):
+    # Look back far enough to find latest valid URMA hour
+    for i in range(30):
         dt = now - timedelta(hours=i)
-        if download_urma_hour(dt):
+        result = load_urma_t2m_hour(dt)
+        if result is not None:
             latest_dt = dt
-            print(f"Using latest available URMA hour: {latest_dt.strftime('%Y%m%d %HZ')}")
+            latest_grid = result
+            print(f"Using latest available URMA hour: {latest_dt:%Y%m%d %HZ}")
             break
 
-    if not latest_dt:
-        raise RuntimeError("Could not fetch any recent URMA data from NOMADS.")
+    if latest_dt is None or latest_grid is None:
+        raise RuntimeError("Could not fetch any recent URMA data.")
 
-    # Pull up to the last 24 hours ending at the latest valid hour
-    valid_paths = []
-    for i in range(24):
+    hourly_fields = [latest_grid["t2m_f"]]
+
+    # Gather previous hours for 24h min/max
+    for i in range(1, 24):
         dt = latest_dt - timedelta(hours=i)
-        p = download_urma_hour(dt)
-        if p:
-            valid_paths.append(p)
+        result = load_urma_t2m_hour(dt)
+        if result is not None:
+            hourly_fields.append(result["t2m_f"])
 
-    print(f"Successfully retrieved {len(valid_paths)}/24 URMA hourly grids.")
+    print(f"Successfully retrieved {len(hourly_fields)}/24 URMA hourly fields.")
 
-    if len(valid_paths) < 6:
-        raise RuntimeError(f"Too few valid URMA grids retrieved: {len(valid_paths)}")
+    if len(hourly_fields) < 6:
+        raise RuntimeError(f"Too few valid URMA hourly fields: {len(hourly_fields)}")
 
-    grids = []
-    lon, lat = None, None
+    stack = np.stack(hourly_fields, axis=0)
 
-    for p in valid_paths:
-        try:
-            ds = xr.open_dataset(
-                p,
-                engine="cfgrib",
-                backend_kwargs={"indexpath": ""}
-            )
-            grids.append(ds["t2m"].values)
-
-            if lon is None:
-                lon = ds.longitude.values
-                lat = ds.latitude.values
-
-            ds.close()
-
-        except Exception as e:
-            print(f"Failed to decode {p.name}: {e}")
-
-    if not grids:
-        raise RuntimeError("No valid URMA grids parsed.")
-
-    stack = np.array(grids)
-
-    # Kelvin to Fahrenheit
-    temp_f = (stack - 273.15) * 1.8 + 32.0
-
-    latest_f = temp_f[0]
-    max_f = np.max(temp_f, axis=0)
-    min_f = np.min(temp_f, axis=0)
+    latest_f = stack[0]
+    max_f = np.max(stack, axis=0)
+    min_f = np.min(stack, axis=0)
 
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
-    x_3857, y_3857 = transformer.transform(lon, lat)
+    x_3857, y_3857 = transformer.transform(latest_grid["lon"], latest_grid["lat"])
 
     return {
         "x": x_3857,
@@ -426,7 +400,7 @@ def draw_legend(fig, config: dict[str, Any], levels: list[float], colors: list[s
     labels = labels[::-1]
     colors_rev = colors[::-1]
 
-    y0 = 0.77 
+    y0 = 0.77
     dy = 0.048
     for i, (label, color) in enumerate(zip(labels, colors_rev)):
         y = y0 - i * dy
@@ -481,9 +455,9 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     fig = plt.figure(figsize=(16, 11.5), facecolor="#ffffff")
 
     ax_head = fig.add_axes([0.05, 0.88, 0.9, 0.12])
-    ax_head.set_facecolor("#ffffff") 
+    ax_head.set_facecolor("#ffffff")
     for s in ax_head.spines.values():
-        s.set_visible(False) 
+        s.set_visible(False)
     ax_head.set_xticks([])
     ax_head.set_yticks([])
 
@@ -497,25 +471,23 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
         s.set_linewidth(1.8)
         s.set_color("black")
 
-    # -----------------------------------------------------------------
-    # PLOTTING THE BACKGROUND
-    # If the dataset is temperature, we paint the URMA grid.
-    # If it's precipitation, we use the triangulated stations.
-    # -----------------------------------------------------------------
     if dataset_key in urma_data and dataset_key != "precip_24h":
-        ax.contourf(urma_data["x"], urma_data["y"], urma_data[dataset_key], levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
+        ax.contourf(
+            urma_data["x"],
+            urma_data["y"],
+            urma_data[dataset_key],
+            levels=levels,
+            cmap=cmap,
+            norm=norm,
+            extend="both",
+            zorder=0,
+            antialiased=True,
+        )
     else:
-        # If URMA fails, we fall back to a simple, accurate station-only map
         tri = build_triangulation(used, max_edge_km=config["tri_edge_km"])
         if tri is not None and len(used) >= 3:
-            x = used.geometry.x.to_numpy()
-            y = used.geometry.y.to_numpy()
             z = used[value_col].to_numpy(dtype=float).copy()
-
-            # We removed the 'refiner' and 'cubic' math to stop the "tie-dye" bullseyes
             ax.tricontourf(tri, z, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0)
-
-    # -----------------------------------------------------------------
 
     plot_box_geom = geo.plot_domain.geometry.iloc[0]
     lix_union = geo.lix.geometry.union_all()
@@ -592,7 +564,6 @@ def main() -> None:
     geo = load_geography()
     manual = load_manual_excludes()
 
-    # Hit NOMADS and process the 24-hour URMA grids
     print("Initiating URMA Grid Processing...")
     try:
         urma_data = process_urma()
