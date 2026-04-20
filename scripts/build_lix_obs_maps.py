@@ -486,15 +486,15 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     if dataset_key in urma_data and dataset_key != "precip_24h":
         ax.contourf(urma_data["x"], urma_data["y"], urma_data[dataset_key], levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
     else:
+        # If URMA fails, we fall back to a simple, accurate station-only map
         tri = build_triangulation(used, max_edge_km=config["tri_edge_km"])
         if tri is not None and len(used) >= 3:
             x = used.geometry.x.to_numpy()
             y = used.geometry.y.to_numpy()
             z = used[value_col].to_numpy(dtype=float).copy()
 
-            refiner = UniformTriRefiner(tri)
-            tri_refi, z_refi = refiner.refine_field(z, subdiv=3)
-            ax.tricontourf(tri_refi, z_refi, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
+            # We removed the 'refiner' and 'cubic' math to stop the "tie-dye" bullseyes
+            ax.tricontourf(tri, z, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0)
 
     # -----------------------------------------------------------------
 
