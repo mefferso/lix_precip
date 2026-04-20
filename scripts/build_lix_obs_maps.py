@@ -145,94 +145,113 @@ def download_urma_hour(dt: datetime) -> Path | None:
     date_str = dt.strftime("%Y%m%d")
     hour_str = dt.strftime("%H")
     file_name = f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2_wexp"
-    
-    # We use NOMADS filtering to only grab 2-meter temps for the LIX bounding box
+
     url = (
         f"https://nomads.ncep.noaa.gov/cgi-bin/filter_urma2p5.pl?"
-        f"file={file_name}&lev_2_m_above_ground=on&var_TMP=on"
+        f"file={file_name}"
+        f"&lev_2_m_above_ground=on"
+        f"&var_TMP=on"
         f"&leftlon=-95.0&rightlon=-84.0&toplat=35.0&bottomlat=28.2"
         f"&dir=%2Furma2p5.{date_str}"
     )
-    
+
     dest = RAW_DIR / f"urma_{date_str}{hour_str}.grb2"
+
     if dest.exists() and dest.stat().st_size > 1000:
         return dest
-        
+
     try:
-        r = requests.get(url, timeout=15)
+        r = requests.get(
+            url,
+            timeout=30,
+            headers={"User-Agent": "Mozilla/5.0"}
+        )
         if r.status_code == 200 and len(r.content) > 1000:
             dest.write_bytes(r.content)
             print(f"Downloaded URMA for {date_str} {hour_str}Z")
             return dest
-    except Exception:
-        pass
-    
-    print(f"URMA unavailable for {date_str} {hour_str}Z")
+        else:
+            print(
+                f"URMA unavailable for {date_str} {hour_str}Z "
+                f"(status={r.status_code}, bytes={len(r.content)})"
+            )
+    except Exception as e:
+        print(f"URMA request failed for {date_str} {hour_str}Z: {e}")
+
     return None
 
 def process_urma() -> dict[str, Any]:
-    now = datetime.now(timezone.utc)
+    # Start from the last completed UTC hour, not "right now"
+    now = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
+
     latest_dt = None
-    
-    # Ping NOMADS to find the most recent valid hour
-    for i in range(6):
+
+    # URMA can lag. Look back farther.
+    for i in range(18):
         dt = now - timedelta(hours=i)
         if download_urma_hour(dt):
             latest_dt = dt
+            print(f"Using latest available URMA hour: {latest_dt.strftime('%Y%m%d %HZ')}")
             break
-            
+
     if not latest_dt:
         raise RuntimeError("Could not fetch any recent URMA data from NOMADS.")
-        
-    # Fetch the last 24 hours of files
+
+    # Pull up to the last 24 hours ending at the latest valid hour
     valid_paths = []
     for i in range(24):
         dt = latest_dt - timedelta(hours=i)
         p = download_urma_hour(dt)
         if p:
             valid_paths.append(p)
-            
+
     print(f"Successfully retrieved {len(valid_paths)}/24 URMA hourly grids.")
-            
+
+    if len(valid_paths) < 6:
+        raise RuntimeError(f"Too few valid URMA grids retrieved: {len(valid_paths)}")
+
     grids = []
     lon, lat = None, None
-    
-    # Read grids safely using cfgrib backend
+
     for p in valid_paths:
         try:
-            ds = xr.open_dataset(p, engine="cfgrib", backend_kwargs={"indexpath": ""})
+            ds = xr.open_dataset(
+                p,
+                engine="cfgrib",
+                backend_kwargs={"indexpath": ""}
+            )
             grids.append(ds["t2m"].values)
+
             if lon is None:
                 lon = ds.longitude.values
                 lat = ds.latitude.values
+
             ds.close()
+
         except Exception as e:
             print(f"Failed to decode {p.name}: {e}")
-            
+
     if not grids:
-         raise RuntimeError("No valid URMA grids parsed.")
-         
-    # Stack grids: Shape becomes (hours, y, x)
-    stack = np.array(grids) 
-    
-    # Convert Kelvin to Fahrenheit
-    temp_f = (stack - 273.15) * 1.8 + 32
-    
-    # Calculate products across the time dimension
-    latest_f = temp_f[0] # valid_paths[0] is the most recent
+        raise RuntimeError("No valid URMA grids parsed.")
+
+    stack = np.array(grids)
+
+    # Kelvin to Fahrenheit
+    temp_f = (stack - 273.15) * 1.8 + 32.0
+
+    latest_f = temp_f[0]
     max_f = np.max(temp_f, axis=0)
     min_f = np.min(temp_f, axis=0)
-    
-    # Reproject lat/lon grid to Web Mercator (EPSG:3857) to match map layout
+
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
     x_3857, y_3857 = transformer.transform(lon, lat)
-    
+
     return {
         "x": x_3857,
         "y": y_3857,
         "air_temp_latest": latest_f,
         "air_temp_daily_max": max_f,
-        "air_temp_daily_min": min_f
+        "air_temp_daily_min": min_f,
     }
 
 # -------------------------------------------------
