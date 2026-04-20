@@ -91,6 +91,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37", "#cc1f1a",
         ],
         "value_fmt": "{:.0f}",
+        "tri_edge_km": 95.0, # <-- ADDED BACK IN
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -109,6 +110,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#3aa655", "#8ccf7e", "#c7e9ad", "#f2e788", "#f2c66d", "#f59d3d",
         ],
         "value_fmt": "{:.0f}",
+        "tri_edge_km": 95.0, # <-- ADDED BACK IN
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -128,6 +130,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37",
         ],
         "value_fmt": "{:.0f}",
+        "tri_edge_km": 95.0, # <-- ADDED BACK IN
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
