@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WFO LIX Precipitation Maps</title>
+  <title>WFO LIX Precipitation and Station Maps</title>
 
   <style>
     body {
@@ -68,6 +68,7 @@
       color: #111;
       text-decoration: none;
       font-weight: bold;
+      white-space: nowrap;
     }
 
     .button-link:hover {
@@ -80,20 +81,49 @@
       display: block;
       margin-top: 15px;
       border: 1px solid #ccc;
+      background: #f7f7f7;
     }
 
     .links {
-      margin-top: 12px;
+      margin-top: 14px;
       font-size: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
+    }
+
+    .links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
     }
 
     a {
       color: #0b57d0;
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .links-group {
+        width: 100%;
+      }
+
+      select {
+        width: 100%;
+        min-width: 0;
+      }
     }
   </style>
 </head>
@@ -104,11 +134,11 @@
       <div class="topbar">
         <div class="title-wrap">
           <h1>WFO LIX Precipitation Maps</h1>
-          <p>Stage IV / NWPS rainfall maps for the WFO LIX area.</p>
+          <p>Stage IV / NWPS rainfall maps and station observation products for the WFO LIX area.</p>
         </div>
 
         <div class="controls">
-          <label for="mapSelector">Select Timeframe:</label>
+          <label for="mapSelector">Select Rainfall Map:</label>
 
           <select id="mapSelector">
             <option value="lix_24h_precip_latest.png">24 Hour Rainfall</option>
@@ -125,6 +155,10 @@
             <option value="lix_ytd_precip_latest.png">Year-to-Date Rainfall</option>
           </select>
         </div>
+
+        <div>
+          <a class="button-link" href="station_maps.html">View Station Observation Maps</a>
+        </div>
       </div>
 
       <img
@@ -134,30 +168,22 @@
       >
 
       <div class="links">
-        <div>
-          <a href="station_precip_24h_latest.csv">Station 24h rainfall CSV</a>
-          &nbsp;|&nbsp;
-          <a href="latest.json">Latest precip metadata JSON</a>
+        <div class="links-group">
+          <a href="station_precip_24h_latest.csv">Station 24h Rainfall CSV</a>
+          <span>|</span>
+          <a href="latest.json">Latest Metadata JSON</a>
         </div>
-      </div>
 
-      <div class="links" style="margin-top:14px;">
-        <div>
-          <a class="button-link" href="station_maps.html">View Station Observation Maps</a>
-        </div>
-      </div>
-
-      <div class="links" style="margin-top:14px;">
-        <div>
-          <a href="lix_station_precip_24h_latest.png">Station 24h rainfall PNG</a>
-          &nbsp;|&nbsp;
-          <a href="lix_station_air_temp_latest.png">Current temp PNG</a>
-          &nbsp;|&nbsp;
-          <a href="lix_station_air_temp_daily_min_latest.png">Daily low PNG</a>
-          &nbsp;|&nbsp;
-          <a href="lix_station_air_temp_daily_max_latest.png">Daily high PNG</a>
-          &nbsp;|&nbsp;
-          <a href="obs_qc.html">Station QC helper</a>
+        <div class="links-group">
+          <a href="lix_station_precip_24h_latest.png">24h Station Rainfall PNG</a>
+          <span>|</span>
+          <a href="lix_station_air_temp_latest.png">Current Temp PNG</a>
+          <span>|</span>
+          <a href="lix_station_air_temp_daily_min_latest.png">Daily Low PNG</a>
+          <span>|</span>
+          <a href="lix_station_air_temp_daily_max_latest.png">Daily High PNG</a>
+          <span>|</span>
+          <a href="obs_qc.html">Station QC Helper</a>
         </div>
       </div>
     </div>
@@ -169,6 +195,9 @@
 
     selector.addEventListener('change', function () {
       mapImage.src = this.value;
+
+      // Bust browser cache so the damn thing updates immediately
+      mapImage.src = this.value + '?t=' + Date.now();
     });
   </script>
 </body>
