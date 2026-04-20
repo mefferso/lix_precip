@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import gzip
 import json
 import math
+import shutil
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 import geopandas as gpd
-from herbie import Herbie
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 import numpy as np
@@ -76,7 +77,7 @@ DATASETS: dict[str, dict[str, Any]] = {
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 4.0,
-        "desc": "Experimental station-based rainfall analysis using reported 24-hour totals.",
+        "desc": "MRMS 24-Hour Pass 2 QPE Gridded Background + Station Observations",
     },
     "air_temp_latest": {
         "label": "Current Temperature",
@@ -92,7 +93,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37", "#cc1f1a",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0,
+        "tri_edge_km": 95.0, 
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -131,7 +132,7 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0,
+        "tri_edge_km": 95.0, 
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
@@ -140,89 +141,100 @@ DATASETS: dict[str, dict[str, Any]] = {
 }
 
 # -------------------------------------------------
-# URMA FETCHING & PROCESSING
+# URMA FETCHING & PROCESSING (Temperature)
 # -------------------------------------------------
-def load_urma_t2m_hour(dt: datetime) -> dict[str, Any] | None:
-    # Keep UTC handling in YOUR code...
-    dt_utc = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
+def download_urma_hour(dt: datetime) -> Path | None:
+    dt = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
+    date_str = dt.strftime("%Y%m%d")
+    hour_str = dt.strftime("%H")
+    file_name = f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2_wexp"
 
-    # ...but pass Herbie a TZ-NAIVE UTC datetime
-    herbie_dt = dt_utc.replace(tzinfo=None)
+    url = (
+        f"https://nomads.ncep.noaa.gov/pub/data/nccf/com/urma/prod/"
+        f"urma2p5.{date_str}/{file_name}"
+    )
+
+    dest = RAW_DIR / f"urma_{date_str}{hour_str}.grb2"
+    if dest.exists() and dest.stat().st_size > 1000000:
+        return dest
 
     try:
-        H = Herbie(herbie_dt, model="urma", product="anl")
-        ds = H.xarray("TMP:2 m", remove_grib=True)
+        with requests.get(url, stream=True, timeout=60, headers={"User-Agent": "Mozilla/5.0"}) as r:
+            if r.status_code != 200:
+                print(f"URMA missing for {date_str} {hour_str}Z (status={r.status_code})")
+                return None
 
-        if ds is None or "t2m" not in ds:
-            print(f"URMA unavailable or missing t2m for {dt_utc:%Y%m%d %HZ}")
-            return None
+            with open(dest, "wb") as f:
+                for chunk in r.iter_content(chunk_size=1024 * 1024):
+                    if chunk:
+                        f.write(chunk)
 
-        lon = ds.longitude.values
-        lat = ds.latitude.values
-
-        # Convert 0-360 lon to -180 to 180 if needed
-        lon = np.where(lon > 180, lon - 360, lon)
-
-        t2m_f = (ds["t2m"].values - 273.15) * 1.8 + 32.0
-
-        try:
-            ds.close()
-        except Exception:
-            pass
-
-        print(f"Loaded URMA TMP 2m for {dt_utc:%Y%m%d %HZ}")
-        return {
-            "lon": lon,
-            "lat": lat,
-            "t2m_f": t2m_f,
-        }
+        if dest.exists() and dest.stat().st_size > 1000000:
+            print(f"Downloaded URMA for {date_str} {hour_str}Z")
+            return dest
 
     except Exception as e:
-        print(f"URMA load failed for {dt_utc:%Y%m%d %HZ}: {e}")
-        return None
+        print(f"URMA request failed for {date_str} {hour_str}Z: {e}")
 
+    return None
 
 def process_urma() -> dict[str, Any]:
     now = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
-
     latest_dt = None
-    latest_grid = None
 
-    # Look back far enough to find latest valid URMA hour
-    for i in range(30):
+    for i in range(18):
         dt = now - timedelta(hours=i)
-        result = load_urma_t2m_hour(dt)
-        if result is not None:
+        if download_urma_hour(dt):
             latest_dt = dt
-            latest_grid = result
-            print(f"Using latest available URMA hour: {latest_dt:%Y%m%d %HZ}")
+            print(f"Using latest available URMA hour: {latest_dt.strftime('%Y%m%d %HZ')}")
             break
 
-    if latest_dt is None or latest_grid is None:
-        raise RuntimeError("Could not fetch any recent URMA data.")
+    if not latest_dt:
+        raise RuntimeError("Could not fetch any recent URMA data from NOMADS.")
 
-    hourly_fields = [latest_grid["t2m_f"]]
-
-    # Gather previous hours for 24h min/max
-    for i in range(1, 24):
+    valid_paths = []
+    for i in range(24):
         dt = latest_dt - timedelta(hours=i)
-        result = load_urma_t2m_hour(dt)
-        if result is not None:
-            hourly_fields.append(result["t2m_f"])
+        p = download_urma_hour(dt)
+        if p:
+            valid_paths.append(p)
 
-    print(f"Successfully retrieved {len(hourly_fields)}/24 URMA hourly fields.")
+    print(f"Successfully retrieved {len(valid_paths)}/24 URMA hourly grids.")
 
-    if len(hourly_fields) < 6:
-        raise RuntimeError(f"Too few valid URMA hourly fields: {len(hourly_fields)}")
+    if len(valid_paths) < 6:
+        raise RuntimeError(f"Too few valid URMA grids retrieved: {len(valid_paths)}")
 
-    stack = np.stack(hourly_fields, axis=0)
+    grids = []
+    lon, lat = None, None
 
-    latest_f = stack[0]
-    max_f = np.max(stack, axis=0)
-    min_f = np.min(stack, axis=0)
+    for p in valid_paths:
+        try:
+            ds = xr.open_dataset(p, engine="cfgrib", backend_kwargs={"indexpath": ""})
+            grids.append(ds["t2m"].values)
+
+            if lon is None:
+                lon = ds.longitude.values
+                lat = ds.latitude.values
+
+            ds.close()
+
+        except Exception as e:
+            print(f"Failed to decode {p.name}: {e}")
+
+    if not grids:
+        raise RuntimeError("No valid URMA grids parsed.")
+
+    stack = np.array(grids)
+
+    # Kelvin to Fahrenheit
+    temp_f = (stack - 273.15) * 1.8 + 32.0
+
+    latest_f = temp_f[0]
+    max_f = np.max(temp_f, axis=0)
+    min_f = np.min(temp_f, axis=0)
 
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
-    x_3857, y_3857 = transformer.transform(latest_grid["lon"], latest_grid["lat"])
+    x_3857, y_3857 = transformer.transform(lon, lat)
 
     return {
         "x": x_3857,
@@ -230,6 +242,96 @@ def process_urma() -> dict[str, Any]:
         "air_temp_latest": latest_f,
         "air_temp_daily_max": max_f,
         "air_temp_daily_min": min_f,
+    }
+
+# -------------------------------------------------
+# MRMS FETCHING & PROCESSING (Precipitation)
+# -------------------------------------------------
+def download_mrms(dt: datetime) -> Path | None:
+    dt = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
+    date_str = dt.strftime("%Y%m%d")
+    hour_str = dt.strftime("%H")
+    file_name = f"MultiSensor_QPE_24H_Pass2_00.00_{date_str}-{hour_str}0000.grib2.gz"
+
+    url = (
+        f"https://nomads.ncep.noaa.gov/pub/data/nccf/com/mrms/prod/"
+        f"mrms.{date_str}/CONUS/{file_name}"
+    )
+
+    dest_gz = RAW_DIR / file_name
+    dest_grib = RAW_DIR / file_name.replace(".gz", "")
+
+    if dest_grib.exists() and dest_grib.stat().st_size > 1000000:
+        return dest_grib
+
+    try:
+        with requests.get(url, stream=True, timeout=60, headers={"User-Agent": "Mozilla/5.0"}) as r:
+            if r.status_code != 200:
+                print(f"MRMS missing for {date_str} {hour_str}Z (status={r.status_code})")
+                return None
+
+            with open(dest_gz, "wb") as f:
+                for chunk in r.iter_content(chunk_size=1024 * 1024):
+                    if chunk:
+                        f.write(chunk)
+
+        # MRMS files are compressed with gzip. Decompress them for xarray
+        with gzip.open(dest_gz, 'rb') as f_in:
+            with open(dest_grib, 'wb') as f_out:
+                shutil.copyfileobj(f_in, f_out)
+        
+        dest_gz.unlink() # Clean up the gz file
+
+        if dest_grib.exists() and dest_grib.stat().st_size > 1000000:
+            print(f"Downloaded MRMS for {date_str} {hour_str}Z")
+            return dest_grib
+
+    except Exception as e:
+        print(f"MRMS request failed for {date_str} {hour_str}Z: {e}")
+
+    return None
+
+def process_mrms() -> dict[str, Any]:
+    now = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
+    valid_path = None
+
+    for i in range(18):
+        dt = now - timedelta(hours=i)
+        p = download_mrms(dt)
+        if p:
+            valid_path = p
+            print(f"Using latest available MRMS hour: {dt.strftime('%Y%m%d %HZ')}")
+            break
+
+    if not valid_path:
+        raise RuntimeError("Could not fetch any recent MRMS data from NOMADS.")
+
+    try:
+        ds = xr.open_dataset(valid_path, engine="cfgrib", backend_kwargs={"indexpath": ""})
+        var_name = list(ds.data_vars)[0]
+        stack = ds[var_name].values
+        
+        lon = ds.longitude.values
+        lat = ds.latitude.values
+        ds.close()
+    except Exception as e:
+        raise RuntimeError(f"Failed to decode MRMS: {e}")
+
+    # MRMS data is natively in millimeters. Convert to inches.
+    precip_in = stack / 25.4
+    precip_in = np.where(precip_in < 0, 0, precip_in)
+
+    # Make lat/lon 2D if they aren't already
+    if lon.ndim == 1:
+        lon, lat = np.meshgrid(lon, lat)
+
+    transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
+    x_3857, y_3857 = transformer.transform(lon, lat)
+
+    return {
+        "x": x_3857,
+        "y": y_3857,
+        "precip_24h": precip_in,
     }
 
 # -------------------------------------------------
@@ -404,7 +506,7 @@ def draw_legend(fig, config: dict[str, Any], levels: list[float], colors: list[s
     labels = labels[::-1]
     colors_rev = colors[::-1]
 
-    y0 = 0.77
+    y0 = 0.77 
     dy = 0.048
     for i, (label, color) in enumerate(zip(labels, colors_rev)):
         y = y0 - i * dy
@@ -436,7 +538,7 @@ def draw_inset(fig, geo: GeoContext) -> None:
     ax_in.set_xticks([])
     ax_in.set_yticks([])
 
-def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manual: dict[str, list[str]], urma_data: dict[str, Any]) -> dict[str, Any]:
+def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manual: dict[str, list[str]], grid_data: dict[str, Any]) -> dict[str, Any]:
     df = build_dataset_rows(dataset_key, config, manual)
     value_col = config["value_col"]
 
@@ -459,9 +561,9 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     fig = plt.figure(figsize=(16, 11.5), facecolor="#ffffff")
 
     ax_head = fig.add_axes([0.05, 0.88, 0.9, 0.12])
-    ax_head.set_facecolor("#ffffff")
+    ax_head.set_facecolor("#ffffff") 
     for s in ax_head.spines.values():
-        s.set_visible(False)
+        s.set_visible(False) 
     ax_head.set_xticks([])
     ax_head.set_yticks([])
 
@@ -475,23 +577,27 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
         s.set_linewidth(1.8)
         s.set_color("black")
 
-    if dataset_key in urma_data and dataset_key != "precip_24h":
-        ax.contourf(
-            urma_data["x"],
-            urma_data["y"],
-            urma_data[dataset_key],
-            levels=levels,
-            cmap=cmap,
-            norm=norm,
-            extend="both",
-            zorder=0,
-            antialiased=True,
-        )
+    # -----------------------------------------------------------------
+    # PLOTTING THE BACKGROUND
+    # If the dataset is in grid_data, we paint the high-res grid (URMA or MRMS).
+    # Otherwise, we use the triangulated stations as a fallback.
+    # -----------------------------------------------------------------
+    if dataset_key in grid_data:
+        x_grid = grid_data.get(f"{dataset_key}_x", grid_data.get("x"))
+        y_grid = grid_data.get(f"{dataset_key}_y", grid_data.get("y"))
+        
+        ax.contourf(x_grid, y_grid, grid_data[dataset_key], levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
     else:
+        # If URMA/MRMS fails, we fall back to a simple, accurate station-only map
         tri = build_triangulation(used, max_edge_km=config["tri_edge_km"])
         if tri is not None and len(used) >= 3:
+            x = used.geometry.x.to_numpy()
+            y = used.geometry.y.to_numpy()
             z = used[value_col].to_numpy(dtype=float).copy()
+
             ax.tricontourf(tri, z, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0)
+
+    # -----------------------------------------------------------------
 
     plot_box_geom = geo.plot_domain.geometry.iloc[0]
     lix_union = geo.lix.geometry.union_all()
@@ -568,6 +674,7 @@ def main() -> None:
     geo = load_geography()
     manual = load_manual_excludes()
 
+    # Hit NOMADS and process the 24-hour URMA grids (Temperatures)
     print("Initiating URMA Grid Processing...")
     try:
         urma_data = process_urma()
@@ -575,11 +682,26 @@ def main() -> None:
         print(f"URMA FETCH FAILED: {e}")
         urma_data = {}
 
+    # Hit NOMADS and process the MRMS grids (Precipitation)
+    print("Initiating MRMS Grid Processing...")
+    try:
+        mrms_data = process_mrms()
+    except Exception as e:
+        print(f"MRMS FETCH FAILED: {e}")
+        mrms_data = {}
+
+    # Merge into a single dictionary for the plotting function
+    grid_data = {**urma_data}
+    if mrms_data:
+        grid_data["precip_24h"] = mrms_data["precip_24h"]
+        grid_data["precip_24h_x"] = mrms_data["x"]
+        grid_data["precip_24h_y"] = mrms_data["y"]
+
     manifest: dict[str, Any] = {"maps": {}}
 
     for dataset_key, config in DATASETS.items():
         print(f"Building {dataset_key}...")
-        result = plot_dataset(dataset_key, config, geo, manual, urma_data)
+        result = plot_dataset(dataset_key, config, geo, manual, grid_data)
         manifest["maps"][dataset_key] = result
         print(f"Saved {result['image']}")
 
