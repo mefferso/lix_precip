@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import math
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -12,9 +13,12 @@ import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 import numpy as np
 import pandas as pd
+import requests
+import xarray as xr
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from matplotlib.patches import Rectangle
 from matplotlib.tri import Triangulation, UniformTriRefiner
+from pyproj import Transformer
 from shapely.geometry import box
 
 # -------------------------------------------------
@@ -24,13 +28,15 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS_DIR = ROOT / "docs"
 DATA_DIR = ROOT / "data"
 SHAPE_DIR = DATA_DIR / "shapes"
+RAW_DIR = DATA_DIR / "raw"
+
+RAW_DIR.mkdir(parents=True, exist_ok=True)
 
 COUNTY_SHP = SHAPE_DIR / "county" / "c_16ap26.shp"
 CWA_SHP = SHAPE_DIR / "cwa" / "w_16ap26.shp"
 STATE_SHP = SHAPE_DIR / "state" / "s_16ap26.shp"
 
 MANUAL_EXCLUDES_JSON = DATA_DIR / "manual_station_excludes.json"
-
 OUT_MANIFEST = DOCS_DIR / "latest_station_maps.json"
 
 # -------------------------------------------------
@@ -69,7 +75,6 @@ DATASETS: dict[str, dict[str, Any]] = {
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 4.0,
-        "contour_line_color": "#444444",
         "desc": "Experimental station-based rainfall analysis using reported 24-hour totals.",
     },
     "air_temp_latest": {
@@ -86,12 +91,10 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37", "#cc1f1a",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0,
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
-        "contour_line_color": "#666666",
-        "desc": "Experimental station-based temperature analysis using current reported values.",
+        "desc": "URMA Gridded Background + Station Observations",
     },
     "air_temp_daily_min": {
         "label": "Daily Minimum Temperature",
@@ -106,12 +109,10 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#3aa655", "#8ccf7e", "#c7e9ad", "#f2e788", "#f2c66d", "#f59d3d",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0,
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
-        "contour_line_color": "#666666",
-        "desc": "Experimental station-based analysis using reported daily minimum temperatures.",
+        "desc": "URMA 24-Hour Gridded Minimum + Station Observations",
     },
     "air_temp_daily_max": {
         "label": "Daily Maximum Temperature",
@@ -127,14 +128,109 @@ DATASETS: dict[str, dict[str, Any]] = {
             "#f59d3d", "#f04e37",
         ],
         "value_fmt": "{:.0f}",
-        "tri_edge_km": 95.0,
         "neighbor_radius_km": 90.0,
         "neighbor_min": 3,
         "buddy_threshold": 12.0,
-        "contour_line_color": "#666666",
-        "desc": "Experimental station-based analysis using reported daily maximum temperatures.",
+        "desc": "URMA 24-Hour Gridded Maximum + Station Observations",
     },
 }
+
+# -------------------------------------------------
+# URMA FETCHING & PROCESSING
+# -------------------------------------------------
+def download_urma_hour(dt: datetime) -> Path | None:
+    date_str = dt.strftime("%Y%m%d")
+    hour_str = dt.strftime("%H")
+    file_name = f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2_wexp"
+    
+    # We use NOMADS filtering to only grab 2-meter temps for the LIX bounding box
+    url = (
+        f"https://nomads.ncep.noaa.gov/cgi-bin/filter_urma2p5.pl?"
+        f"file={file_name}&lev_2_m_above_ground=on&var_TMP=on"
+        f"&leftlon=-95.0&rightlon=-84.0&toplat=35.0&bottomlat=28.2"
+        f"&dir=%2Furma2p5.{date_str}"
+    )
+    
+    dest = RAW_DIR / f"urma_{date_str}{hour_str}.grb2"
+    if dest.exists() and dest.stat().st_size > 1000:
+        return dest
+        
+    try:
+        r = requests.get(url, timeout=15)
+        if r.status_code == 200 and len(r.content) > 1000:
+            dest.write_bytes(r.content)
+            print(f"Downloaded URMA for {date_str} {hour_str}Z")
+            return dest
+    except Exception:
+        pass
+    
+    print(f"URMA unavailable for {date_str} {hour_str}Z")
+    return None
+
+def process_urma() -> dict[str, Any]:
+    now = datetime.now(timezone.utc)
+    latest_dt = None
+    
+    # Ping NOMADS to find the most recent valid hour
+    for i in range(6):
+        dt = now - timedelta(hours=i)
+        if download_urma_hour(dt):
+            latest_dt = dt
+            break
+            
+    if not latest_dt:
+        raise RuntimeError("Could not fetch any recent URMA data from NOMADS.")
+        
+    # Fetch the last 24 hours of files
+    valid_paths = []
+    for i in range(24):
+        dt = latest_dt - timedelta(hours=i)
+        p = download_urma_hour(dt)
+        if p:
+            valid_paths.append(p)
+            
+    print(f"Successfully retrieved {len(valid_paths)}/24 URMA hourly grids.")
+            
+    grids = []
+    lon, lat = None, None
+    
+    # Read grids safely using cfgrib backend
+    for p in valid_paths:
+        try:
+            ds = xr.open_dataset(p, engine="cfgrib", backend_kwargs={"indexpath": ""})
+            grids.append(ds["t2m"].values)
+            if lon is None:
+                lon = ds.longitude.values
+                lat = ds.latitude.values
+            ds.close()
+        except Exception as e:
+            print(f"Failed to decode {p.name}: {e}")
+            
+    if not grids:
+         raise RuntimeError("No valid URMA grids parsed.")
+         
+    # Stack grids: Shape becomes (hours, y, x)
+    stack = np.array(grids) 
+    
+    # Convert Kelvin to Fahrenheit
+    temp_f = (stack - 273.15) * 1.8 + 32
+    
+    # Calculate products across the time dimension
+    latest_f = temp_f[0] # valid_paths[0] is the most recent
+    max_f = np.max(temp_f, axis=0)
+    min_f = np.min(temp_f, axis=0)
+    
+    # Reproject lat/lon grid to Web Mercator (EPSG:3857) to match map layout
+    transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
+    x_3857, y_3857 = transformer.transform(lon, lat)
+    
+    return {
+        "x": x_3857,
+        "y": y_3857,
+        "air_temp_latest": latest_f,
+        "air_temp_daily_max": max_f,
+        "air_temp_daily_min": min_f
+    }
 
 # -------------------------------------------------
 # HELPERS
@@ -209,11 +305,6 @@ def build_dataset_rows(dataset_key: str, config: dict[str, Any], manual: dict[st
     df = pd.read_csv(csv_path)
     value_col = config["value_col"]
 
-    needed = {"stid", "name", "state", "lat", "lon", value_col}
-    missing = needed - set(df.columns)
-    if missing:
-        raise RuntimeError(f"{csv_path.name} is missing required columns: {sorted(missing)}")
-
     df = df.copy()
     df["stid"] = df["stid"].astype(str).str.upper()
     df["lat"] = pd.to_numeric(df["lat"], errors="coerce")
@@ -241,21 +332,11 @@ def build_dataset_rows(dataset_key: str, config: dict[str, Any], manual: dict[st
     return df
 
 def load_geography() -> GeoContext:
-    if not COUNTY_SHP.exists():
-        raise FileNotFoundError(f"Missing county shapefile: {COUNTY_SHP}")
-    if not CWA_SHP.exists():
-        raise FileNotFoundError(f"Missing CWA shapefile: {CWA_SHP}")
-    if not STATE_SHP.exists():
-        raise FileNotFoundError(f"Missing state shapefile: {STATE_SHP}")
-
     cwa = gpd.read_file(CWA_SHP).to_crs(4326)
     counties = gpd.read_file(COUNTY_SHP).to_crs(4326)
     states = gpd.read_file(STATE_SHP).to_crs(4326)
 
     lix = cwa[cwa["CWA"] == "LIX"].copy()
-    if lix.empty:
-        raise RuntimeError("Could not find CWA=LIX in CWA shapefile.")
-
     plot_bounds = box(*PLOT_BBOX)
     index_bounds = box(*INDEX_BBOX)
 
@@ -297,9 +378,6 @@ def build_triangulation(df_proj: gpd.GeoDataFrame, max_edge_km: float) -> Triang
     y = df_proj.geometry.y.to_numpy()
 
     tri = Triangulation(x, y)
-    if tri.triangles is None or len(tri.triangles) == 0:
-        return None
-
     max_edges = triangle_edge_lengths_km(x, y, tri.triangles)
     tri.set_mask(max_edges > max_edge_km)
     return tri
@@ -345,10 +423,7 @@ def draw_inset(fig, geo: GeoContext) -> None:
 
     lbls = gpd.GeoDataFrame(
         {"name": ["LA", "MS", "AL", "TX", "AR"]},
-        geometry=gpd.points_from_xy(
-            [-92.2, -89.6, -86.8, -94.2, -92.5],
-            [31.2, 32.8, 32.8, 31.5, 34.5]
-        ),
+        geometry=gpd.points_from_xy([-92.2, -89.6, -86.8, -94.2, -92.5], [31.2, 32.8, 32.8, 31.5, 34.5]),
         crs=4326,
     ).to_crs(TARGET_CRS)
 
@@ -361,7 +436,7 @@ def draw_inset(fig, geo: GeoContext) -> None:
     ax_in.set_xticks([])
     ax_in.set_yticks([])
 
-def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manual: dict[str, list[str]]) -> dict[str, Any]:
+def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manual: dict[str, list[str]], urma_data: dict[str, Any]) -> dict[str, Any]:
     df = build_dataset_rows(dataset_key, config, manual)
     value_col = config["value_col"]
 
@@ -373,8 +448,6 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
 
     used = df_g[~df_g["exclude_from_contours"]].copy()
 
-    tri = build_triangulation(used, max_edge_km=config["tri_edge_km"])
-
     levels = config["levels"]
     colors = config["colors"]
     cmap = ListedColormap(colors)
@@ -385,7 +458,6 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
 
     fig = plt.figure(figsize=(16, 11.5), facecolor="#ffffff")
 
-    # Header - No borders, italicized bold text
     ax_head = fig.add_axes([0.05, 0.88, 0.9, 0.12])
     ax_head.set_facecolor("#ffffff") 
     for s in ax_head.spines.values():
@@ -397,22 +469,31 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     ax_head.text(0.5, 0.45, TITLE_OFFICE, ha="center", va="center", fontsize=26, fontweight="bold", style="italic")
     ax_head.text(0.5, 0.1, config["title_suffix"], ha="center", va="center", fontsize=22, fontweight="bold", style="italic")
 
-    # Main map - Pushed to the right to leave a sidebar space
     ax = fig.add_axes([0.22, 0.05, 0.75, 0.82])
     ax.set_facecolor("#efefef")
     for s in ax.spines.values():
         s.set_linewidth(1.8)
         s.set_color("black")
 
-    if tri is not None and len(used) >= 3:
-        x = used.geometry.x.to_numpy()
-        y = used.geometry.y.to_numpy()
-        z = used[value_col].to_numpy(dtype=float).copy()
+    # -----------------------------------------------------------------
+    # PLOTTING THE BACKGROUND
+    # If the dataset is temperature, we paint the URMA grid.
+    # If it's precipitation, we use the triangulated stations.
+    # -----------------------------------------------------------------
+    if dataset_key in urma_data and dataset_key != "precip_24h":
+        ax.contourf(urma_data["x"], urma_data["y"], urma_data[dataset_key], levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
+    else:
+        tri = build_triangulation(used, max_edge_km=config["tri_edge_km"])
+        if tri is not None and len(used) >= 3:
+            x = used.geometry.x.to_numpy()
+            y = used.geometry.y.to_numpy()
+            z = used[value_col].to_numpy(dtype=float).copy()
 
-        refiner = UniformTriRefiner(tri)
-        tri_refi, z_refi = refiner.refine_field(z, subdiv=3)
+            refiner = UniformTriRefiner(tri)
+            tri_refi, z_refi = refiner.refine_field(z, subdiv=3)
+            ax.tricontourf(tri_refi, z_refi, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
 
-        ax.tricontourf(tri_refi, z_refi, levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0, antialiased=True)
+    # -----------------------------------------------------------------
 
     plot_box_geom = geo.plot_domain.geometry.iloc[0]
     lix_union = geo.lix.geometry.union_all()
@@ -427,7 +508,6 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     draw_inset(fig, geo)
     draw_legend(fig, config, levels, colors)
 
-    # City labels
     for _, row in geo.cities.iterrows():
         ax.plot(row.geometry.x, row.geometry.y, "o", color="white", markeredgecolor="black", markersize=4.5, zorder=7)
         ax.text(
@@ -443,7 +523,6 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
             zorder=8,
         )
 
-    # Station values
     for _, row in df_g.iterrows():
         txt_color = "#ff2d2d" if row["exclude_from_contours"] else "white"
         ax.text(
@@ -462,7 +541,7 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
     ax.text(
         0.02,
         -0.015,
-        "This map is an experimental interpolation of actual reported values.",
+        config["desc"],
         transform=ax.transAxes,
         fontsize=10,
         ha="left",
@@ -491,11 +570,19 @@ def main() -> None:
     geo = load_geography()
     manual = load_manual_excludes()
 
+    # Hit NOMADS and process the 24-hour URMA grids
+    print("Initiating URMA Grid Processing...")
+    try:
+        urma_data = process_urma()
+    except Exception as e:
+        print(f"URMA FETCH FAILED: {e}")
+        urma_data = {}
+
     manifest: dict[str, Any] = {"maps": {}}
 
     for dataset_key, config in DATASETS.items():
         print(f"Building {dataset_key}...")
-        result = plot_dataset(dataset_key, config, geo, manual)
+        result = plot_dataset(dataset_key, config, geo, manual, urma_data)
         manifest["maps"][dataset_key] = result
         print(f"Saved {result['image']}")
 
