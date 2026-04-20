@@ -1,25 +1,36 @@
 {
   "maps": {
+    "precip_24h": {
+      "image": null,
+      "csv": "station_precip_24h_latest.csv",
+      "station_count": 0,
+      "used_in_contours": 0,
+      "excluded": 0,
+      "status": "MRMS unavailable"
+    },
     "air_temp_latest": {
       "image": "lix_station_air_temp_latest.png",
       "csv": "station_air_temp_latest.csv",
-      "station_count": 393,
-      "used_in_contours": 390,
-      "excluded": 3
+      "station_count": 397,
+      "used_in_contours": 394,
+      "excluded": 3,
+      "status": "ok"
     },
     "air_temp_daily_min": {
       "image": "lix_station_air_temp_daily_min_latest.png",
       "csv": "station_air_temp_daily_min_latest.csv",
-      "station_count": 419,
-      "used_in_contours": 396,
-      "excluded": 23
+      "station_count": 420,
+      "used_in_contours": 397,
+      "excluded": 23,
+      "status": "ok"
     },
     "air_temp_daily_max": {
       "image": "lix_station_air_temp_daily_max_latest.png",
       "csv": "station_air_temp_daily_max_latest.csv",
-      "station_count": 419,
-      "used_in_contours": 401,
-      "excluded": 18
+      "station_count": 420,
+      "used_in_contours": 403,
+      "excluded": 17,
+      "status": "ok"
     }
   }
 }
