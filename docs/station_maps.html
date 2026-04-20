@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WFO LIX Station Maps</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #ececec;
+      color: #111;
+    }
+
+    main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .card {
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+    }
+
+    .title-wrap p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .controls label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      min-width: 260px;
+    }
+
+    .button-link {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 2px solid #111;
+      border-radius: 8px;
+      background: #f5f5f5;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button-link:hover {
+      background: #e9e9e9;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="card">
+      <div class="topbar">
+        <div class="title-wrap">
+          <h1>WFO LIX Station Observation Maps</h1>
+          <p>Interpolated surface observations for the WFO LIX area.</p>
+        </div>
+
+        <div class="controls">
+          <label for="stationMapSelector">Select Dataset:</label>
+          <select id="stationMapSelector">
+            <option value="lix_station_precip_24h_latest.png">24 Hour Rainfall</option>
+            <option value="lix_station_air_temp_latest.png">Current Temperature</option>
+            <option value="lix_station_air_temp_daily_min_latest.png">Daily Minimum Temperature</option>
+            <option value="lix_station_air_temp_daily_max_latest.png">Daily Maximum Temperature</option>
+          </select>
+        </div>
+
+        <div>
+          <a class="button-link" href="index.html">Back to NWPS Precip Maps</a>
+        </div>
+      </div>
+
+      <img
+        id="stationMap"
+        src="lix_station_precip_24h_latest.png"
+        alt="WFO LIX station observation map"
+      >
+    </div>
+  </main>
+
+  <script>
+    const selector = document.getElementById('stationMapSelector');
+    const mapImage = document.getElementById('stationMap');
+
+    selector.addEventListener('change', function () {
+      mapImage.src = this.value;
+    });
+  </script>
+</body>
+</html>
