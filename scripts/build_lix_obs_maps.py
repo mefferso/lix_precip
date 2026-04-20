@@ -308,25 +308,42 @@ def process_mrms() -> dict[str, Any]:
 
     try:
         ds = xr.open_dataset(valid_path, engine="cfgrib", backend_kwargs={"indexpath": ""})
+        print(ds)
+
         var_name = list(ds.data_vars)[0]
-        stack = ds[var_name].values
-        
+        precip_mm = ds[var_name].values
+
         lon = ds.longitude.values
         lat = ds.latitude.values
         ds.close()
+
     except Exception as e:
         raise RuntimeError(f"Failed to decode MRMS: {e}")
 
-    # MRMS data is natively in millimeters. Convert to inches.
-    precip_in = stack / 25.4
+    # Force lon/lat to 1-D if cfgrib gives 2-D arrays
+    if lon.ndim == 2:
+        lon = lon[0, :]
+    if lat.ndim == 2:
+        lat = lat[:, 0]
+
+    # Convert mm to inches
+    precip_in = precip_mm / 25.4
     precip_in = np.where(precip_in < 0, 0, precip_in)
 
-    # Make lat/lon 2D if they aren't already
-    if lon.ndim == 1:
-        lon, lat = np.meshgrid(lon, lat)
+    # Make sure coordinate order matches data orientation
+    if lat[0] > lat[-1]:
+        lat = lat[::-1]
+        precip_in = precip_in[::-1, :]
+
+    if lon[0] > lon[-1]:
+        lon = lon[::-1]
+        precip_in = precip_in[:, ::-1]
+
+    # Build 2-D coordinate grids after orientation is fixed
+    lon2d, lat2d = np.meshgrid(lon, lat)
 
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
-    x_3857, y_3857 = transformer.transform(lon, lat)
+    x_3857, y_3857 = transformer.transform(lon2d, lat2d)
 
     return {
         "x": x_3857,
