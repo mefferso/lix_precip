@@ -84,6 +84,18 @@
       background: #f7f7f7;
     }
 
+    .status-box {
+      display: none;
+      margin-top: 15px;
+      padding: 14px 16px;
+      border: 1px solid #b3261e;
+      background: #fde8e7;
+      color: #8c1d18;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
     .links {
       margin-top: 12px;
       font-size: 15px;
@@ -128,13 +140,7 @@
 
         <div class="controls">
           <label for="mapSelector">Select Dataset:</label>
-
-          <select id="mapSelector">
-            <option value="lix_station_precip_24h_latest.png">24 Hour Rainfall</option>
-            <option value="lix_station_air_temp_latest.png">Current Temperature</option>
-            <option value="lix_station_air_temp_daily_min_latest.png">24 Hour Low Temperature</option>
-            <option value="lix_station_air_temp_daily_max_latest.png">24 Hour High Temperature</option>
-          </select>
+          <select id="mapSelector"></select>
         </div>
 
         <div>
@@ -145,7 +151,10 @@
       <img
         id="stationMap"
         alt="WFO LIX station observation map"
+        style="display:none;"
       >
+
+      <div id="mapStatus" class="status-box"></div>
 
       <div class="links">
         <div>
@@ -164,19 +173,106 @@
   </main>
 
   <script>
-    const selector = document.getElementById('mapSelector');
-    const mapImage = document.getElementById('stationMap');
+    const DATASET_META = {
+      precip_24h: {
+        label: "24 Hour Rainfall"
+      },
+      air_temp_latest: {
+        label: "Current Temperature"
+      },
+      air_temp_daily_min: {
+        label: "24 Hour Low Temperature"
+      },
+      air_temp_daily_max: {
+        label: "24 Hour High Temperature"
+      }
+    };
 
-    function setMapImage(filename) {
-      mapImage.src = filename + '?t=' + Date.now();
+    const DATASET_ORDER = [
+      "precip_24h",
+      "air_temp_latest",
+      "air_temp_daily_min",
+      "air_temp_daily_max"
+    ];
+
+    const selector = document.getElementById("mapSelector");
+    const mapImage = document.getElementById("stationMap");
+    const mapStatus = document.getElementById("mapStatus");
+
+    let manifestData = null;
+
+    function showStatus(message) {
+      mapImage.style.display = "none";
+      mapImage.removeAttribute("src");
+      mapStatus.textContent = message;
+      mapStatus.style.display = "block";
     }
 
-    selector.addEventListener('change', function () {
-      setMapImage(this.value);
+    function showImage(filename) {
+      mapStatus.style.display = "none";
+      mapStatus.textContent = "";
+      mapImage.src = filename + "?t=" + Date.now();
+      mapImage.style.display = "block";
+    }
+
+    function renderSelectedDataset() {
+      if (!manifestData || !manifestData.maps) {
+        showStatus("Map manifest missing or invalid.");
+        return;
+      }
+
+      const datasetKey = selector.value;
+      const mapInfo = manifestData.maps[datasetKey];
+
+      if (!mapInfo) {
+        showStatus("Selected dataset not found in manifest.");
+        return;
+      }
+
+      if (!mapInfo.image) {
+        showStatus(mapInfo.status || "Map unavailable.");
+        return;
+      }
+
+      showImage(mapInfo.image);
+    }
+
+    function populateSelector() {
+      selector.innerHTML = "";
+
+      for (const key of DATASET_ORDER) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = DATASET_META[key]?.label || key;
+        selector.appendChild(option);
+      }
+    }
+
+    async function initPage() {
+      populateSelector();
+
+      try {
+        const response = await fetch("latest_station_maps.json?t=" + Date.now(), {
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to load latest_station_maps.json");
+        }
+
+        manifestData = await response.json();
+        renderSelectedDataset();
+      } catch (err) {
+        console.error(err);
+        showStatus("Could not load station map manifest.");
+      }
+    }
+
+    selector.addEventListener("change", function () {
+      renderSelectedDataset();
     });
 
-    // Set default image on initial page load with cache busting too
-    setMapImage(selector.value);
+    initPage();
   </script>
 </body>
 </html>
