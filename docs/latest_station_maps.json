@@ -1,19 +1,19 @@
 {
   "maps": {
     "precip_24h": {
-      "image": null,
+      "image": "lix_station_precip_24h_latest.png",
       "csv": "station_precip_24h_latest.csv",
-      "station_count": 0,
-      "used_in_contours": 0,
+      "station_count": 384,
+      "used_in_contours": 384,
       "excluded": 0,
-      "status": "MRMS unavailable"
+      "status": "ok"
     },
     "air_temp_latest": {
       "image": "lix_station_air_temp_latest.png",
       "csv": "station_air_temp_latest.csv",
-      "station_count": 393,
+      "station_count": 388,
       "used_in_contours": 385,
-      "excluded": 8,
+      "excluded": 3,
       "status": "ok"
     },
     "air_temp_daily_min": {
