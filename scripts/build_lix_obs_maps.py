@@ -315,37 +315,55 @@ def process_mrms() -> dict[str, Any]:
             break
 
     if not valid_path:
-        raise RuntimeError("Could not fetch any recent MRMS data from NOMADS.")
+        raise RuntimeError("Could not fetch any recent MRMS data.")
 
     try:
         ds = xr.open_dataset(valid_path, engine="cfgrib", backend_kwargs={"indexpath": ""})
         print(ds)
 
         var_name = list(ds.data_vars)[0]
-        precip_mm = ds[var_name].values
-
+        precip_raw = ds[var_name].values
         lon = ds.longitude.values
         lat = ds.latitude.values
+
+        print(f"MRMS variable name: {var_name}")
+        print(f"Raw precip shape: {precip_raw.shape}")
+        print(f"Raw lon shape: {lon.shape}")
+        print(f"Raw lat shape: {lat.shape}")
+
         ds.close()
 
     except Exception as e:
         raise RuntimeError(f"Failed to decode MRMS: {e}")
 
+    # Flatten lon/lat to 1-D if needed
     if lon.ndim == 2:
         lon = lon[0, :]
     if lat.ndim == 2:
         lat = lat[:, 0]
 
-    precip_in = precip_mm / 25.4
+    # Convert 0..360 longitude to -180..180 if needed
+    if np.nanmax(lon) > 180:
+        lon = lon - 360.0
+
+    # Sort longitude ascending and reorder precip to match
+    lon_order = np.argsort(lon)
+    lon = lon[lon_order]
+    precip_raw = precip_raw[:, lon_order]
+
+    # Sort latitude ascending and reorder precip to match
+    lat_order = np.argsort(lat)
+    lat = lat[lat_order]
+    precip_raw = precip_raw[lat_order, :]
+
+    # Convert mm to inches
+    precip_in = precip_raw / 25.4
+    precip_in = np.where(np.isfinite(precip_in), precip_in, np.nan)
     precip_in = np.where(precip_in < 0, 0, precip_in)
 
-    if lat[0] > lat[-1]:
-        lat = lat[::-1]
-        precip_in = precip_in[::-1, :]
-
-    if lon[0] > lon[-1]:
-        lon = lon[::-1]
-        precip_in = precip_in[:, ::-1]
+    print(f"Fixed lon range: {np.nanmin(lon):.3f} to {np.nanmax(lon):.3f}")
+    print(f"Fixed lat range: {np.nanmin(lat):.3f} to {np.nanmax(lat):.3f}")
+    print(f"Precip inches min/max: {np.nanmin(precip_in):.3f} / {np.nanmax(precip_in):.3f}")
 
     lon2d, lat2d = np.meshgrid(lon, lat)
 
