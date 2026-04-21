@@ -4,6 +4,7 @@ from __future__ import annotations
 import gzip
 import json
 import shutil
+import s3fs
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -248,23 +249,37 @@ def download_mrms(dt: datetime) -> Path | None:
     dt = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
     date_str = dt.strftime("%Y%m%d")
     hour_str = dt.strftime("%H")
-    file_name = f"MultiSensor_QPE_24H_Pass2_00.00_{date_str}-{hour_str}0000.grib2.gz"
 
-    url = (
-        f"https://nomads.ncep.noaa.gov/pub/data/nccf/com/mrms/prod/"
-        f"mrms.{date_str}/CONUS/{file_name}"
-    )
+    product = "MultiSensor_QPE_24H_Pass2_00.00"
+    expected_suffix = f"_{date_str}-{hour_str}0000.grib2.gz"
 
-    dest_gz = RAW_DIR / file_name
-    dest_grib = RAW_DIR / file_name.replace(".gz", "")
+    dest_gz = RAW_DIR / f"MRMS_{product}_{date_str}-{hour_str}0000.grib2.gz"
+    dest_grib = RAW_DIR / f"MRMS_{product}_{date_str}-{hour_str}0000.grib2"
 
     if dest_grib.exists() and dest_grib.stat().st_size > 1_000_000:
         return dest_grib
 
     try:
-        with requests.get(url, stream=True, timeout=60, headers={"User-Agent": "Mozilla/5.0"}) as r:
+        fs = s3fs.S3FileSystem(anon=True)
+        prefix = f"noaa-mrms-pds/CONUS/{product}/{date_str}/"
+
+        try:
+            files = fs.ls(prefix, refresh=True)
+        except Exception:
+            print(f"MRMS AWS directory missing for {date_str}")
+            return None
+
+        match = next((f for f in files if f.endswith(expected_suffix)), None)
+
+        if not match:
+            print(f"MRMS missing for {date_str} {hour_str}Z in AWS bucket")
+            return None
+
+        url = "https://noaa-mrms-pds.s3.amazonaws.com/" + match[len("noaa-mrms-pds/"):]
+
+        with requests.get(url, stream=True, timeout=120, headers={"User-Agent": "Mozilla/5.0"}) as r:
             if r.status_code != 200:
-                print(f"MRMS missing for {date_str} {hour_str}Z (status={r.status_code})")
+                print(f"MRMS AWS download failed for {date_str} {hour_str}Z (status={r.status_code})")
                 return None
 
             with open(dest_gz, "wb") as f:
@@ -279,11 +294,11 @@ def download_mrms(dt: datetime) -> Path | None:
         dest_gz.unlink()
 
         if dest_grib.exists() and dest_grib.stat().st_size > 1_000_000:
-            print(f"Downloaded MRMS for {date_str} {hour_str}Z")
+            print(f"Downloaded MRMS from AWS for {date_str} {hour_str}Z")
             return dest_grib
 
     except Exception as e:
-        print(f"MRMS request failed for {date_str} {hour_str}Z: {e}")
+        print(f"MRMS AWS request failed for {date_str} {hour_str}Z: {e}")
 
     return None
 
