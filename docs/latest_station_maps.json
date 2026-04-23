@@ -3,32 +3,32 @@
     "precip_24h": {
       "image": "lix_station_precip_24h_latest.png",
       "csv": "station_precip_24h_latest.csv",
-      "station_count": 360,
-      "used_in_contours": 360,
+      "station_count": 348,
+      "used_in_contours": 348,
       "excluded": 0,
       "status": "ok"
     },
     "air_temp_latest": {
       "image": "lix_station_air_temp_latest.png",
       "csv": "station_air_temp_latest.csv",
-      "station_count": 391,
-      "used_in_contours": 387,
-      "excluded": 4,
-      "status": "ok"
-    },
-    "air_temp_daily_min": {
-      "image": "lix_station_air_temp_daily_min_latest.png",
-      "csv": "station_air_temp_daily_min_latest.csv",
       "station_count": 390,
       "used_in_contours": 385,
       "excluded": 5,
       "status": "ok"
     },
+    "air_temp_daily_min": {
+      "image": "lix_station_air_temp_daily_min_latest.png",
+      "csv": "station_air_temp_daily_min_latest.csv",
+      "station_count": 399,
+      "used_in_contours": 393,
+      "excluded": 6,
+      "status": "ok"
+    },
     "air_temp_daily_max": {
       "image": "lix_station_air_temp_daily_max_latest.png",
       "csv": "station_air_temp_daily_max_latest.csv",
-      "station_count": 390,
-      "used_in_contours": 386,
+      "station_count": 399,
+      "used_in_contours": 395,
       "excluded": 4,
       "status": "ok"
     }
