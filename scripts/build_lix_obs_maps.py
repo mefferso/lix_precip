@@ -523,6 +523,78 @@ def triangle_edge_lengths_km(x: np.ndarray, y: np.ndarray, triangles: np.ndarray
     b = np.sqrt((x2 - x3) ** 2 + (y2 - y3) ** 2) / 1000.0
     c = np.sqrt((x3 - x1) ** 2 + (y3 - y1) ** 2) / 1000.0
     return np.maximum.reduce([a, b, c])
+def thin_precip_label_points(
+    df_g: gpd.GeoDataFrame,
+    value_col: str,
+    max_labels: int = 110,
+    min_distance_km: float = 8.0,
+) -> gpd.GeoDataFrame:
+    """
+    Thin 24-hour rainfall station labels so the map remains readable.
+
+    Strategy:
+    - Higher rainfall totals get first priority.
+    - Light/zero amounts are allowed only sparsely.
+    - Labels must be separated by a minimum map distance.
+    """
+
+    if df_g.empty:
+        return df_g
+
+    work = df_g.copy()
+    work["_label_value"] = pd.to_numeric(work[value_col], errors="coerce")
+    work = work.dropna(subset=["_label_value", "geometry"])
+
+    if work.empty:
+        return work
+
+    # Priority: biggest rainfall totals first, then representative smaller totals.
+    work = work.sort_values("_label_value", ascending=False)
+
+    selected_rows = []
+    selected_xy: list[tuple[float, float]] = []
+
+    base_dist_m = min_distance_km * 1000.0
+
+    for _, row in work.iterrows():
+        value = float(row["_label_value"])
+        x = float(row.geometry.x)
+        y = float(row.geometry.y)
+
+        # Don’t let 0.00/trace values stampede the map like cattle.
+        if value < 0.10 and len(selected_rows) >= 30:
+            continue
+
+        # Use larger spacing for lower-value labels.
+        if value >= 1.00:
+            required_dist_m = base_dist_m * 0.85
+        elif value >= 0.50:
+            required_dist_m = base_dist_m
+        elif value >= 0.10:
+            required_dist_m = base_dist_m * 1.35
+        else:
+            required_dist_m = base_dist_m * 2.00
+
+        too_close = False
+        for sx, sy in selected_xy:
+            dist_m = ((x - sx) ** 2 + (y - sy) ** 2) ** 0.5
+            if dist_m < required_dist_m:
+                too_close = True
+                break
+
+        if too_close:
+            continue
+
+        selected_rows.append(row)
+        selected_xy.append((x, y))
+
+        if len(selected_rows) >= max_labels:
+            break
+
+    if not selected_rows:
+        return work.head(0)
+
+    return gpd.GeoDataFrame(selected_rows, crs=df_g.crs).drop(columns=["_label_value"], errors="ignore")
 
 def build_triangulation(df_proj: gpd.GeoDataFrame, max_edge_km: float) -> Triangulation | None:
     if len(df_proj) < 3:
@@ -676,6 +748,16 @@ def plot_dataset(
     draw_inset(fig, geo)
     draw_legend(fig, config, levels, colors)
 
+    if dataset_key == "precip_24h":
+        label_points = thin_precip_label_points(
+            df_g,
+            value_col=value_col,
+            max_labels=110,
+            min_distance_km=8.0,
+        )
+    else:
+        label_points = df_g
+
     for _, row in geo.cities.iterrows():
         ax.plot(row.geometry.x, row.geometry.y, "o", color="white", markeredgecolor="black", markersize=4.5, zorder=7)
         ax.text(
@@ -691,7 +773,7 @@ def plot_dataset(
             zorder=8,
         )
 
-    for _, row in df_g.iterrows():
+    for _, row in label_points.iterrows():
         txt_color = "#ff2d2d" if row["exclude_from_contours"] else "white"
         ax.text(
             row.geometry.x,
