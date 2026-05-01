@@ -85,7 +85,7 @@ TARGET_CRS = 3857
 TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 
 CITIES = [
-    {"name": "Baton Rouge", "lat": 30.4515, "lon": -91.1871},
+    {"name": "Baton Rouge", "lat": 30.4515, "lon": -91.0},
     {"name": "New Orleans", "lat": 29.9511, "lon": -90.0715},
     {"name": "Gulfport", "lat": 30.3674, "lon": -89.0928},
     {"name": "McComb", "lat": 31.2438, "lon": -90.4532},
