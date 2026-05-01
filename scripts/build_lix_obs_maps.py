@@ -7,6 +7,7 @@ import shutil
 import s3fs
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Any
 
@@ -83,6 +84,8 @@ INDEX_BBOX = (-95.0, 28.2, -84.0, 35.0)
 TARGET_CRS = 3857
 
 TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
+LOCAL_TZ = ZoneInfo("America/Chicago")
+OBS_WINDOW_END_LOCAL_HOUR = 6
 
 CITIES = [
     {"name": "Baton Rouge", "lat": 30.4515, "lon": -91.0},
@@ -776,6 +779,66 @@ def filter_points_to_domain(points: gpd.GeoDataFrame, geo: GeoContext) -> gpd.Ge
     domain_geom = geo.plot_domain.geometry.iloc[0]
     return points[points.geometry.within(domain_geom)].copy()
 
+def format_ampm(dt: datetime) -> str:
+    hour = dt.strftime("%I").lstrip("0")
+    return f"{hour} {dt.strftime('%p')}"
+
+
+def format_month_day_year(dt: datetime) -> str:
+    return f"{dt.month}/{dt.day}/{dt.year}"
+
+
+def get_latest_valid_time_local() -> datetime:
+    """
+    Approximate current observation valid time for map labeling.
+    """
+    return datetime.now(timezone.utc).astimezone(LOCAL_TZ).replace(
+        minute=0,
+        second=0,
+        microsecond=0,
+    )
+
+
+def get_observed_24h_window_local() -> tuple[datetime, datetime]:
+    """
+    Build a 24-hour observed window ending at 6 AM local time.
+    """
+    now_local = datetime.now(timezone.utc).astimezone(LOCAL_TZ)
+
+    end_local = now_local.replace(
+        hour=OBS_WINDOW_END_LOCAL_HOUR,
+        minute=0,
+        second=0,
+        microsecond=0,
+    )
+
+    if now_local < end_local:
+        end_local -= timedelta(days=1)
+
+    start_local = end_local - timedelta(days=1)
+    return start_local, end_local
+
+
+def build_dynamic_title(dataset_key: str, config: dict[str, Any]) -> str:
+    if dataset_key == "air_temp_latest":
+        valid_local = get_latest_valid_time_local()
+        return f"Current Temperatures {format_ampm(valid_local)}"
+
+    if dataset_key in ("air_temp_daily_min", "air_temp_daily_max"):
+        _, end_local = get_observed_24h_window_local()
+        day_label = f"{end_local.strftime('%A, %B')} {end_local.day}, {end_local.year}"
+        return f"{config['title_suffix']} - {day_label}"
+
+    if dataset_key == "precip_24h":
+        start_local, end_local = get_observed_24h_window_local()
+        return (
+            f"24 Hour Rainfall "
+            f"({format_month_day_year(start_local)} @ {format_ampm(start_local)} - "
+            f"{format_month_day_year(end_local)} @ {format_ampm(end_local)}) - Observed"
+        )
+
+    return config["title_suffix"]
+
 def plot_dataset(
     dataset_key: str,
     config: dict[str, Any],
@@ -822,17 +885,62 @@ def plot_dataset(
     ax_head.set_xticks([])
     ax_head.set_yticks([])
 
+    dynamic_title = build_dynamic_title(dataset_key, config)
+
     region_title = ""
     if is_regional and region_config:
         region_title = f" - {region_config.get('label', region_key)}"
     
     if is_regional:
-        ax_head.text(0.5, 0.72, TITLE_OFFICE, ha="center", va="center", fontsize=20, fontweight="bold")
-        ax_head.text(0.5, 0.28, f"{config['title_suffix']}{region_title}", ha="center", va="center", fontsize=18, fontweight="bold")
+        ax_head.text(
+            0.5,
+            0.72,
+            TITLE_OFFICE,
+            ha="center",
+            va="center",
+            fontsize=20,
+            fontweight="bold",
+        )
+        ax_head.text(
+            0.5,
+            0.28,
+            f"{dynamic_title}{region_title}",
+            ha="center",
+            va="center",
+            fontsize=16,
+            fontweight="bold",
+        )
     else:
-        ax_head.text(0.5, 0.8, "National Weather Service", ha="center", va="center", fontsize=28, fontweight="bold", style="italic")
-        ax_head.text(0.5, 0.45, TITLE_OFFICE, ha="center", va="center", fontsize=26, fontweight="bold", style="italic")
-        ax_head.text(0.5, 0.1, config["title_suffix"], ha="center", va="center", fontsize=22, fontweight="bold", style="italic")
+        ax_head.text(
+            0.5,
+            0.8,
+            "National Weather Service",
+            ha="center",
+            va="center",
+            fontsize=28,
+            fontweight="bold",
+            style="italic",
+        )
+        ax_head.text(
+            0.5,
+            0.45,
+            TITLE_OFFICE,
+            ha="center",
+            va="center",
+            fontsize=26,
+            fontweight="bold",
+            style="italic",
+        )
+        ax_head.text(
+            0.5,
+            0.1,
+            dynamic_title,
+            ha="center",
+            va="center",
+            fontsize=18 if dataset_key == "precip_24h" else 22,
+            fontweight="bold",
+            style="italic",
+        )
 
     if is_regional:
         ax = fig.add_axes([0.06, 0.08, 0.88, 0.80])
