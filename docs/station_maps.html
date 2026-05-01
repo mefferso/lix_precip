@@ -32,7 +32,7 @@
       flex-wrap: wrap;
       justify-content: flex-end;
     }
-    
+
     .topbar {
       display: flex;
       flex-wrap: wrap;
@@ -47,23 +47,33 @@
       font-size: 28px;
     }
 
-    .title-wrap p {
-      margin: 0;
-      font-size: 15px;
-    }
-
     .controls label {
       font-weight: bold;
       display: block;
       margin-bottom: 4px;
     }
 
-    select {
+    select,
+    input[type="date"] {
       padding: 8px;
       font-size: 16px;
       border-radius: 5px;
       border: 1px solid #ccc;
-      min-width: 260px;
+      min-width: 220px;
+      box-sizing: border-box;
+    }
+
+    input[type="date"]:disabled {
+      background: #eeeeee;
+      color: #666666;
+      cursor: not-allowed;
+    }
+
+    .hint-text {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #555;
+      max-width: 260px;
     }
 
     .button-link {
@@ -123,9 +133,14 @@
         align-items: stretch;
       }
 
-      select {
+      select,
+      input[type="date"] {
         width: 100%;
         min-width: 0;
+      }
+
+      .button-group {
+        justify-content: flex-start;
       }
 
       .links {
@@ -154,6 +169,12 @@
           <select id="regionSelector"></select>
         </div>
 
+        <div class="controls">
+          <label for="dateSelector">Select Archive Date:</label>
+          <input id="dateSelector" type="date">
+          <div id="dateHint" class="hint-text"></div>
+        </div>
+
         <div class="button-group">
           <a id="downloadPngLink" class="button-link" href="#" download>Download PNG</a>
           <a class="button-link" href="index.html">Back to NWPS Precip Maps</a>
@@ -179,16 +200,20 @@
   <script>
     const DATASET_META = {
       precip_24h: {
-        label: "24 Hour Rainfall"
+        label: "24 Hour Rainfall",
+        archived: true
       },
       air_temp_latest: {
-        label: "Current Temperatures"
+        label: "Current Temperatures",
+        archived: false
       },
       air_temp_daily_min: {
-        label: "24 Hour Low Temperatures"
+        label: "24 Hour Low Temperatures",
+        archived: true
       },
       air_temp_daily_max: {
-        label: "24 Hour High Temperatures"
+        label: "24 Hour High Temperatures",
+        archived: true
       }
     };
 
@@ -200,24 +225,12 @@
     ];
 
     const REGION_META = {
-      full: {
-        label: "Full LIX Area"
-      },
-      baton_rouge_metro: {
-        label: "Baton Rouge Metro"
-      },
-      new_orleans_metro: {
-        label: "New Orleans Metro"
-      },
-      southwest_ms: {
-        label: "Southwest MS"
-      },
-      coastal_ms: {
-        label: "Coastal MS"
-      },
-      northshore: {
-        label: "Northshore of Lake Pontchartrain"
-      }
+      full: { label: "Full LIX Area" },
+      baton_rouge_metro: { label: "Baton Rouge Metro" },
+      new_orleans_metro: { label: "New Orleans Metro" },
+      southwest_ms: { label: "Southwest MS" },
+      coastal_ms: { label: "Coastal MS" },
+      northshore: { label: "Northshore of Lake Pontchartrain" }
     };
 
     const REGION_ORDER = [
@@ -231,11 +244,15 @@
 
     const selector = document.getElementById("mapSelector");
     const regionSelector = document.getElementById("regionSelector");
+    const dateSelector = document.getElementById("dateSelector");
+    const dateHint = document.getElementById("dateHint");
     const mapImage = document.getElementById("stationMap");
     const mapStatus = document.getElementById("mapStatus");
     const downloadPngLink = document.getElementById("downloadPngLink");
 
-    let manifestData = null;
+    let latestManifestData = null;
+    let archiveManifestData = null;
+    let availableArchiveDates = [];
 
     function showStatus(message) {
       mapImage.style.display = "none";
@@ -249,49 +266,139 @@
     function showImage(filename) {
       mapStatus.style.display = "none";
       mapStatus.textContent = "";
-    
+
       downloadPngLink.href = filename;
-      downloadPngLink.download = filename;
-    
+      downloadPngLink.download = filename.split("/").pop() || "station_map.png";
+
       mapImage.onerror = function () {
         showStatus("Could not load map image: " + filename);
       };
-    
+
       mapImage.onload = function () {
         mapStatus.style.display = "none";
         mapStatus.textContent = "";
         mapImage.style.display = "block";
       };
-    
+
       mapImage.src = filename + "?t=" + Date.now();
     }
 
-    function renderSelectedDataset() {
-      if (!manifestData || !manifestData.maps) {
-        showStatus("Map manifest missing or invalid.");
+    function datasetUsesArchive(datasetKey) {
+      return DATASET_META[datasetKey]?.archived === true;
+    }
+
+    function updateDateControlState() {
+      const datasetKey = selector.value;
+      const usesArchive = datasetUsesArchive(datasetKey);
+
+      dateSelector.disabled = !usesArchive;
+
+      if (!usesArchive) {
+        dateHint.textContent = "Current Temperatures are latest-only.";
         return;
       }
 
+      if (!availableArchiveDates.length) {
+        dateHint.textContent = "No archived dates available yet.";
+        return;
+      }
+
+      dateHint.textContent = "Archived daily maps available.";
+    }
+
+    function setDateBoundsAndDefault() {
+      if (!availableArchiveDates.length) {
+        dateSelector.value = "";
+        dateSelector.removeAttribute("min");
+        dateSelector.removeAttribute("max");
+        return;
+      }
+
+      const firstDate = availableArchiveDates[0];
+      const lastDate = availableArchiveDates[availableArchiveDates.length - 1];
+
+      dateSelector.min = firstDate;
+      dateSelector.max = lastDate;
+
+      if (!dateSelector.value || !availableArchiveDates.includes(dateSelector.value)) {
+        dateSelector.value = lastDate;
+      }
+    }
+
+    function getLatestImage(datasetKey, regionKey) {
+      if (!latestManifestData || !latestManifestData.maps) {
+        return null;
+      }
+
+      const mapInfo = latestManifestData.maps[datasetKey];
+      if (!mapInfo) {
+        return null;
+      }
+
+      if (mapInfo.regions && mapInfo.regions[regionKey]) {
+        return mapInfo.regions[regionKey];
+      }
+
+      if (regionKey === "full" && mapInfo.image) {
+        return mapInfo.image;
+      }
+
+      return null;
+    }
+
+    function getArchiveImage(datasetKey, regionKey, dateKey) {
+      if (!archiveManifestData || !archiveManifestData.dates) {
+        return null;
+      }
+
+      const dateInfo = archiveManifestData.dates[dateKey];
+      if (!dateInfo) {
+        return null;
+      }
+
+      const datasetInfo = dateInfo[datasetKey];
+      if (!datasetInfo) {
+        return null;
+      }
+
+      return datasetInfo[regionKey] || null;
+    }
+
+    function renderSelectedDataset() {
       const datasetKey = selector.value;
       const regionKey = regionSelector.value;
-      const mapInfo = manifestData.maps[datasetKey];
+      const usesArchive = datasetUsesArchive(datasetKey);
 
-      if (!mapInfo) {
-        showStatus("Selected dataset not found in manifest.");
-        return;
-      }
+      updateDateControlState();
 
       let imageName = null;
 
-      if (mapInfo.regions && mapInfo.regions[regionKey]) {
-        imageName = mapInfo.regions[regionKey];
-      } else if (regionKey === "full" && mapInfo.image) {
-        imageName = mapInfo.image;
-      }
+      if (usesArchive) {
+        const dateKey = dateSelector.value;
 
-      if (!imageName) {
-        showStatus(mapInfo.status || "Selected regional map unavailable.");
-        return;
+        if (!dateKey) {
+          showStatus("No archive date selected.");
+          return;
+        }
+
+        if (!availableArchiveDates.includes(dateKey)) {
+          showStatus("No archived station map is available for " + dateKey + ".");
+          return;
+        }
+
+        imageName = getArchiveImage(datasetKey, regionKey, dateKey);
+
+        if (!imageName) {
+          showStatus("No archived " + (DATASET_META[datasetKey]?.label || datasetKey) + " map is available for " + dateKey + " / " + (REGION_META[regionKey]?.label || regionKey) + ".");
+          return;
+        }
+      } else {
+        imageName = getLatestImage(datasetKey, regionKey);
+
+        if (!imageName) {
+          showStatus("Latest regional map unavailable.");
+          return;
+        }
       }
 
       showImage(imageName);
@@ -319,29 +426,48 @@
       }
     }
 
+    async function fetchJsonOrNull(url) {
+      try {
+        const response = await fetch(url + "?t=" + Date.now(), { cache: "no-store" });
+        if (!response.ok) {
+          return null;
+        }
+        return await response.json();
+      } catch (err) {
+        console.warn("Could not load", url, err);
+        return null;
+      }
+    }
+
     async function initPage() {
       populateDatasetSelector();
       populateRegionSelector();
 
-      try {
-        const response = await fetch("latest_station_maps.json?t=" + Date.now(), {
-          cache: "no-store"
-        });
+      latestManifestData = await fetchJsonOrNull("latest_station_maps.json");
+      archiveManifestData = await fetchJsonOrNull("archive/station/station_manifest.json");
 
-        if (!response.ok) {
-          throw new Error("Failed to load latest_station_maps.json");
-        }
-
-        manifestData = await response.json();
-        renderSelectedDataset();
-      } catch (err) {
-        console.error(err);
-        showStatus("Could not load station map manifest.");
+      if (archiveManifestData && archiveManifestData.dates) {
+        availableArchiveDates = Object.keys(archiveManifestData.dates).sort();
       }
+
+      setDateBoundsAndDefault();
+      updateDateControlState();
+
+      if (!latestManifestData && !archiveManifestData) {
+        showStatus("Could not load station map manifests.");
+        return;
+      }
+
+      renderSelectedDataset();
     }
 
-    selector.addEventListener("change", renderSelectedDataset);
+    selector.addEventListener("change", function () {
+      updateDateControlState();
+      renderSelectedDataset();
+    });
+
     regionSelector.addEventListener("change", renderSelectedDataset);
+    dateSelector.addEventListener("change", renderSelectedDataset);
 
     initPage();
   </script>
