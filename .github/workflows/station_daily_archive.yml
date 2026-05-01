@@ -1,0 +1,94 @@
+name: Build station daily archive
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Start date YYYY-MM-DD"
+        required: false
+        default: ""
+      end_date:
+        description: "End date YYYY-MM-DD"
+        required: false
+        default: ""
+      days_back:
+        description: "Build last N days if start/end omitted"
+        required: false
+        default: "1"
+      no_skip_existing:
+        description: "Regenerate dates even if archive files exist"
+        required: false
+        default: "false"
+  schedule:
+    - cron: "30 12 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lix-station-daily-archive
+  cancel-in-progress: false
+
+jobs:
+  build-station-daily-archive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libeccodes-dev
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install 'herbie-data[extras]' s3fs
+
+      - name: Build station daily archive
+        env:
+          SYNOPTIC_TOKEN: ${{ secrets.SYNOPTIC_TOKEN }}
+          START_DATE: ${{ github.event.inputs.start_date }}
+          END_DATE: ${{ github.event.inputs.end_date }}
+          DAYS_BACK: ${{ github.event.inputs.days_back }}
+          NO_SKIP_EXISTING: ${{ github.event.inputs.no_skip_existing }}
+        run: |
+          if [ -n "$START_DATE" ] && [ -n "$END_DATE" ]; then
+            CMD="python scripts/build_station_daily_archive.py --start-date $START_DATE --end-date $END_DATE"
+          else
+            if [ -z "$DAYS_BACK" ]; then
+              DAYS_BACK="1"
+            fi
+            CMD="python scripts/build_station_daily_archive.py --days-back $DAYS_BACK"
+          fi
+
+          if [ "$NO_SKIP_EXISTING" = "true" ]; then
+            CMD="$CMD --no-skip-existing"
+          fi
+
+          echo "$CMD"
+          eval "$CMD"
+
+      - name: Commit archive outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add docs/archive/station/
+
+          if git diff --cached --quiet; then
+            echo "No archive changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update station daily archive"
+          git pull --rebase origin main
+          git push origin main
