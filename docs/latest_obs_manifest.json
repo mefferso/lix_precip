@@ -1,32 +1,32 @@
 {
-  "generated_utc": "2026-05-01T15:18:27.968324+00:00",
+  "generated_utc": "2026-05-01T15:31:15.065617+00:00",
   "bbox": "-92.5,28.5,-87.0,31.8",
-  "start_utc": "2026-04-30T15:18:00+00:00",
-  "end_utc": "2026-05-01T15:18:00+00:00",
+  "start_utc": "2026-04-30T15:31:00+00:00",
+  "end_utc": "2026-05-01T15:31:00+00:00",
   "products": {
     "precip_24h": {
       "label": "24-Hour Rainfall",
       "csv": "station_precip_24h_latest.csv",
       "json": "station_precip_24h_latest.json",
-      "station_count": 364
+      "station_count": 381
     },
     "air_temp_latest": {
       "label": "Current Temperature",
       "csv": "station_air_temp_latest.csv",
       "json": "station_air_temp_latest.json",
-      "station_count": 396
+      "station_count": 386
     },
     "air_temp_daily_min": {
       "label": "Daily Minimum Temperature",
       "csv": "station_air_temp_daily_min_latest.csv",
       "json": "station_air_temp_daily_min_latest.json",
-      "station_count": 410
+      "station_count": 411
     },
     "air_temp_daily_max": {
       "label": "Daily Maximum Temperature",
       "csv": "station_air_temp_daily_max_latest.csv",
       "json": "station_air_temp_daily_max_latest.json",
-      "station_count": 410
+      "station_count": 411
     }
   }
 }
