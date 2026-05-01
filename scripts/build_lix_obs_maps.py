@@ -45,6 +45,40 @@ OUT_MANIFEST = DOCS_DIR / "latest_station_maps.json"
 # MAP CONFIG
 # -------------------------------------------------
 PLOT_BBOX = (-92.5, 28.5, -87.0, 31.8)
+
+REGIONS: dict[str, dict[str, Any]] = {
+    "full": {
+        "label": "Full LIX Area",
+        "bbox": PLOT_BBOX,
+        "suffix": "",
+    },
+    "baton_rouge_metro": {
+        "label": "Baton Rouge Metro",
+        "bbox": (-91.55, 30.20, -90.85, 30.75),
+        "suffix": "_baton_rouge_metro",
+    },
+    "new_orleans_metro": {
+        "label": "New Orleans Metro",
+        "bbox": (-90.60, 29.55, -89.55, 30.35),
+        "suffix": "_new_orleans_metro",
+    },
+    "southwest_ms": {
+        "label": "Southwest MS",
+        "bbox": (-91.25, 30.80, -89.75, 31.85),
+        "suffix": "_southwest_ms",
+    },
+    "coastal_ms": {
+        "label": "Coastal MS",
+        "bbox": (-89.75, 30.05, -88.25, 30.70),
+        "suffix": "_coastal_ms",
+    },
+    "northshore": {
+        "label": "Northshore of Lake Pontchartrain",
+        "bbox": (-90.45, 30.15, -89.45, 30.75),
+        "suffix": "_northshore",
+    },
+}
+
 INDEX_BBOX = (-95.0, 28.2, -84.0, 35.0)
 TARGET_CRS = 3857
 
@@ -484,13 +518,13 @@ def build_dataset_rows(dataset_key: str, config: dict[str, Any], manual: dict[st
 
     return df
 
-def load_geography() -> GeoContext:
+def load_geography(plot_bbox: tuple[float, float, float, float] = PLOT_BBOX) -> GeoContext:
     cwa = gpd.read_file(CWA_SHP).to_crs(4326)
     counties = gpd.read_file(COUNTY_SHP).to_crs(4326)
     states = gpd.read_file(STATE_SHP).to_crs(4326)
 
     lix = cwa[cwa["CWA"] == "LIX"].copy()
-    plot_bounds = box(*PLOT_BBOX)
+    plot_bounds = box(*plot_bbox)
     index_bounds = box(*INDEX_BBOX)
 
     counties = counties[counties.intersects(plot_bounds)].copy()
@@ -504,6 +538,8 @@ def load_geography() -> GeoContext:
         geometry=gpd.points_from_xy([c["lon"] for c in CITIES], [c["lat"] for c in CITIES]),
         crs=4326,
     )
+
+    cities = cities[cities.intersects(plot_bounds)].copy()
 
     return GeoContext(
         lix=lix.to_crs(TARGET_CRS),
@@ -676,7 +712,10 @@ def plot_dataset(
     geo: GeoContext,
     manual: dict[str, list[str]],
     grid_data: dict[str, Any],
+    region_key: str = "full",
+    region_config: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+
     df = build_dataset_rows(dataset_key, config, manual)
     value_col = config["value_col"]
 
@@ -749,11 +788,18 @@ def plot_dataset(
     draw_legend(fig, config, levels, colors)
 
     if dataset_key == "precip_24h":
+        if region_key == "full":
+            max_labels = 110
+            min_distance_km = 8.0
+        else:
+            max_labels = 85
+            min_distance_km = 4.0
+    
         label_points = thin_precip_label_points(
             df_g,
             value_col=value_col,
-            max_labels=110,
-            min_distance_km=8.0,
+            max_labels=max_labels,
+            min_distance_km=min_distance_km,
         )
     else:
         label_points = df_g
@@ -803,23 +849,33 @@ def plot_dataset(
     ax.set_xticks([])
     ax.set_yticks([])
 
-    png_path = DOCS_DIR / config["png"]
+    region_config = region_config or REGIONS["full"]
+    suffix = region_config.get("suffix", "")
+    
+    base_png = config["png"]
+    if suffix:
+        png_name = base_png.replace("_latest.png", f"{suffix}_latest.png")
+    else:
+        png_name = base_png
+    
+    png_path = DOCS_DIR / png_name
     fig.savefig(png_path, dpi=170, bbox_inches="tight")
     plt.close(fig)
-
+    
     return {
-        "image": config["png"],
+        "image": png_name,
         "csv": config["csv"],
         "station_count": int(len(df_g)),
         "used_in_contours": int(len(used)),
         "excluded": int(df_g["exclude_from_contours"].sum()),
+        "region": region_key,
+        "region_label": region_config.get("label", region_key),
         "status": "ok",
     }
 
 def main() -> None:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
-    geo = load_geography()
     manual = load_manual_excludes()
 
     print("Initiating URMA Grid Processing...")
@@ -844,31 +900,81 @@ def main() -> None:
         grid_data["precip_24h_x"] = mrms_data["x"]
         grid_data["precip_24h_y"] = mrms_data["y"]
 
-    manifest: dict[str, Any] = {"maps": {}}
+    manifest: dict[str, Any] = {
+    "regions": {
+        key: {
+            "label": value["label"],
+            "bbox": value["bbox"],
+        }
+        for key, value in REGIONS.items()
+    },
+    "maps": {},
+}
 
-    for dataset_key, config in DATASETS.items():
-        if dataset_key == "precip_24h" and not mrms_ok:
-            stale_png = DOCS_DIR / config["png"]
+for dataset_key, config in DATASETS.items():
+    if dataset_key == "precip_24h" and not mrms_ok:
+        for region_key, region_config in REGIONS.items():
+            suffix = region_config.get("suffix", "")
+            if suffix:
+                stale_name = config["png"].replace("_latest.png", f"{suffix}_latest.png")
+            else:
+                stale_name = config["png"]
+
+            stale_png = DOCS_DIR / stale_name
             if stale_png.exists():
                 stale_png.unlink()
                 print(f"Deleted stale precip map: {stale_png.name}")
 
-            manifest["maps"][dataset_key] = {
-                "image": None,
-                "csv": config["csv"],
-                "station_count": 0,
-                "used_in_contours": 0,
-                "excluded": 0,
-                "status": "MRMS unavailable",
-            }
+        manifest["maps"][dataset_key] = {
+            "image": None,
+            "regions": {},
+            "csv": config["csv"],
+            "station_count": 0,
+            "used_in_contours": 0,
+            "excluded": 0,
+            "status": "MRMS unavailable",
+        }
 
-            print("Skipping precip_24h map because MRMS data was unavailable.")
-            continue
+        print("Skipping precip_24h maps because MRMS data was unavailable.")
+        continue
 
-        print(f"Building {dataset_key}...")
-        result = plot_dataset(dataset_key, config, geo, manual, grid_data)
-        manifest["maps"][dataset_key] = result
-        print(f"Saved {result['image']}")
+    print(f"Building {dataset_key} regional maps...")
+
+    dataset_result: dict[str, Any] | None = None
+    region_images: dict[str, str] = {}
+
+    for region_key, region_config in REGIONS.items():
+        print(f"  Building {dataset_key} / {region_config['label']}...")
+        geo = load_geography(region_config["bbox"])
+        result = plot_dataset(
+            dataset_key,
+            config,
+            geo,
+            manual,
+            grid_data,
+            region_key=region_key,
+            region_config=region_config,
+        )
+
+        region_images[region_key] = result["image"]
+
+        if region_key == "full":
+            dataset_result = result
+
+        print(f"  Saved {result['image']}")
+
+    if dataset_result is None:
+        dataset_result = {
+            "image": None,
+            "csv": config["csv"],
+            "station_count": 0,
+            "used_in_contours": 0,
+            "excluded": 0,
+            "status": "No maps generated",
+        }
+
+    dataset_result["regions"] = region_images
+    manifest["maps"][dataset_key] = dataset_result
 
     OUT_MANIFEST.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(f"Wrote manifest: {OUT_MANIFEST.name}")
