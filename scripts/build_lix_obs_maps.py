@@ -897,7 +897,7 @@ def plot_dataset(
             label_points = thin_label_points_by_distance(
                 df_g,
                 value_col=value_col,
-                max_labels=0,
+                max_labels=145,
                 min_distance_km=16.0,
             )
         else:
