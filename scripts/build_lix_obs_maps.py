@@ -902,80 +902,80 @@ def main() -> None:
         grid_data["precip_24h_y"] = mrms_data["y"]
 
     manifest: dict[str, Any] = {
-    "regions": {
-        key: {
-            "label": value["label"],
-            "bbox": value["bbox"],
-        }
-        for key, value in REGIONS.items()
-    },
-    "maps": {},
-}
+        "regions": {
+            key: {
+                "label": value["label"],
+                "bbox": value["bbox"],
+            }
+            for key, value in REGIONS.items()
+        },
+        "maps": {},
+    }
 
-for dataset_key, config in DATASETS.items():
-    if dataset_key == "precip_24h" and not mrms_ok:
+    for dataset_key, config in DATASETS.items():
+        if dataset_key == "precip_24h" and not mrms_ok:
+            for region_key, region_config in REGIONS.items():
+                suffix = region_config.get("suffix", "")
+                if suffix:
+                    stale_name = config["png"].replace("_latest.png", f"{suffix}_latest.png")
+                else:
+                    stale_name = config["png"]
+
+                stale_png = DOCS_DIR / stale_name
+                if stale_png.exists():
+                    stale_png.unlink()
+                    print(f"Deleted stale precip map: {stale_png.name}")
+
+            manifest["maps"][dataset_key] = {
+                "image": None,
+                "regions": {},
+                "csv": config["csv"],
+                "station_count": 0,
+                "used_in_contours": 0,
+                "excluded": 0,
+                "status": "MRMS unavailable",
+            }
+
+            print("Skipping precip_24h maps because MRMS data was unavailable.")
+            continue
+
+        print(f"Building {dataset_key} regional maps...")
+
+        dataset_result: dict[str, Any] | None = None
+        region_images: dict[str, str] = {}
+
         for region_key, region_config in REGIONS.items():
-            suffix = region_config.get("suffix", "")
-            if suffix:
-                stale_name = config["png"].replace("_latest.png", f"{suffix}_latest.png")
-            else:
-                stale_name = config["png"]
+            print(f"  Building {dataset_key} / {region_config['label']}...")
+            geo = load_geography(region_config["bbox"])
+            result = plot_dataset(
+                dataset_key,
+                config,
+                geo,
+                manual,
+                grid_data,
+                region_key=region_key,
+                region_config=region_config,
+            )
 
-            stale_png = DOCS_DIR / stale_name
-            if stale_png.exists():
-                stale_png.unlink()
-                print(f"Deleted stale precip map: {stale_png.name}")
+            region_images[region_key] = result["image"]
 
-        manifest["maps"][dataset_key] = {
-            "image": None,
-            "regions": {},
-            "csv": config["csv"],
-            "station_count": 0,
-            "used_in_contours": 0,
-            "excluded": 0,
-            "status": "MRMS unavailable",
-        }
+            if region_key == "full":
+                dataset_result = result
 
-        print("Skipping precip_24h maps because MRMS data was unavailable.")
-        continue
+            print(f"  Saved {result['image']}")
 
-    print(f"Building {dataset_key} regional maps...")
+        if dataset_result is None:
+            dataset_result = {
+                "image": None,
+                "csv": config["csv"],
+                "station_count": 0,
+                "used_in_contours": 0,
+                "excluded": 0,
+                "status": "No maps generated",
+            }
 
-    dataset_result: dict[str, Any] | None = None
-    region_images: dict[str, str] = {}
-
-    for region_key, region_config in REGIONS.items():
-        print(f"  Building {dataset_key} / {region_config['label']}...")
-        geo = load_geography(region_config["bbox"])
-        result = plot_dataset(
-            dataset_key,
-            config,
-            geo,
-            manual,
-            grid_data,
-            region_key=region_key,
-            region_config=region_config,
-        )
-
-        region_images[region_key] = result["image"]
-
-        if region_key == "full":
-            dataset_result = result
-
-        print(f"  Saved {result['image']}")
-
-    if dataset_result is None:
-        dataset_result = {
-            "image": None,
-            "csv": config["csv"],
-            "station_count": 0,
-            "used_in_contours": 0,
-            "excluded": 0,
-            "status": "No maps generated",
-        }
-
-    dataset_result["regions"] = region_images
-    manifest["maps"][dataset_key] = dataset_result
+        dataset_result["regions"] = region_images
+        manifest["maps"][dataset_key] = dataset_result
 
     OUT_MANIFEST.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(f"Wrote manifest: {OUT_MANIFEST.name}")
