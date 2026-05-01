@@ -77,18 +77,28 @@ jobs:
           echo "$CMD"
           eval "$CMD"
 
-      - name: Commit archive outputs
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add docs/archive/station/
-
-          if git diff --cached --quiet; then
-            echo "No archive changes to commit."
-            exit 0
-          fi
-
-          git commit -m "Update station daily archive"
-          git pull --rebase origin main
-          git push origin main
+            - name: Commit archive outputs
+              run: |
+                git config user.name "github-actions[bot]"
+                git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      
+                git add docs/archive/station/
+      
+                if git diff --cached --quiet; then
+                  echo "No archive changes to commit."
+                  exit 0
+                fi
+      
+                git stash push --include-untracked --message "archive-output-stash"
+                git pull --rebase origin main
+                git stash pop || true
+      
+                git add docs/archive/station/
+      
+                if git diff --cached --quiet; then
+                  echo "No archive changes to commit after rebase."
+                  exit 0
+                fi
+      
+                git commit -m "Update station daily archive"
+                git push origin main
