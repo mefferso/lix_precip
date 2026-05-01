@@ -987,18 +987,16 @@ def plot_dataset(
 
     if dataset_key == "precip_24h":
         if region_key == "full":
-            max_labels = 95
-            min_distance_km = 12.0
+            # Full LIX rainfall map already has MRMS shading.
+            # Hide station labels here to keep the map readable.
+            label_points = df_g.head(0)
         else:
-            max_labels = 85
-            min_distance_km = 4.0
-    
-        label_points = thin_precip_label_points(
-            df_g,
-            value_col=value_col,
-            max_labels=max_labels,
-            min_distance_km=min_distance_km,
-        )
+            label_points = thin_precip_label_points(
+                df_g,
+                value_col=value_col,
+                max_labels=85,
+                min_distance_km=4.0,
+            )
     
     else:
         if region_key == "full":
