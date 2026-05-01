@@ -706,6 +706,13 @@ def draw_inset(fig, geo: GeoContext) -> None:
     ax_in.set_xticks([])
     ax_in.set_yticks([])
 
+def filter_points_to_domain(points: gpd.GeoDataFrame, geo: GeoContext) -> gpd.GeoDataFrame:
+    if points.empty:
+        return points
+
+    domain_geom = geo.plot_domain.geometry.iloc[0]
+    return points[points.geometry.within(domain_geom)].copy()
+
 def plot_dataset(
     dataset_key: str,
     config: dict[str, Any],
@@ -735,20 +742,39 @@ def plot_dataset(
 
     minx, miny, maxx, maxy = geo.plot_domain.total_bounds
 
-    fig = plt.figure(figsize=(16, 11.5), facecolor="#ffffff")
+    is_regional = region_key != "full"
 
-    ax_head = fig.add_axes([0.05, 0.88, 0.9, 0.12])
+    if is_regional:
+        fig = plt.figure(figsize=(14, 10), facecolor="#ffffff")
+    else:
+        fig = plt.figure(figsize=(16, 11.5), facecolor="#ffffff")
+
+    if is_regional:
+        ax_head = fig.add_axes([0.04, 0.90, 0.92, 0.08])
+    else:
+        ax_head = fig.add_axes([0.05, 0.88, 0.9, 0.12])
     ax_head.set_facecolor("#ffffff")
     for s in ax_head.spines.values():
         s.set_visible(False)
     ax_head.set_xticks([])
     ax_head.set_yticks([])
 
-    ax_head.text(0.5, 0.8, "National Weather Service", ha="center", va="center", fontsize=28, fontweight="bold", style="italic")
-    ax_head.text(0.5, 0.45, TITLE_OFFICE, ha="center", va="center", fontsize=26, fontweight="bold", style="italic")
-    ax_head.text(0.5, 0.1, config["title_suffix"], ha="center", va="center", fontsize=22, fontweight="bold", style="italic")
+    region_title = ""
+    if is_regional and region_config:
+        region_title = f" - {region_config.get('label', region_key)}"
+    
+    if is_regional:
+        ax_head.text(0.5, 0.72, TITLE_OFFICE, ha="center", va="center", fontsize=20, fontweight="bold")
+        ax_head.text(0.5, 0.28, f"{config['title_suffix']}{region_title}", ha="center", va="center", fontsize=18, fontweight="bold")
+    else:
+        ax_head.text(0.5, 0.8, "National Weather Service", ha="center", va="center", fontsize=28, fontweight="bold", style="italic")
+        ax_head.text(0.5, 0.45, TITLE_OFFICE, ha="center", va="center", fontsize=26, fontweight="bold", style="italic")
+        ax_head.text(0.5, 0.1, config["title_suffix"], ha="center", va="center", fontsize=22, fontweight="bold", style="italic")
 
-    ax = fig.add_axes([0.22, 0.05, 0.75, 0.82])
+    if is_regional:
+        ax = fig.add_axes([0.06, 0.08, 0.88, 0.80])
+    else:
+        ax = fig.add_axes([0.22, 0.05, 0.75, 0.82])
     ax.set_facecolor("#efefef")
     for s in ax.spines.values():
         s.set_linewidth(1.8)
@@ -784,8 +810,9 @@ def plot_dataset(
     geo.states.plot(ax=ax, facecolor="none", edgecolor="#555555", linewidth=1.4, zorder=4)
     geo.lix.boundary.plot(ax=ax, color="black", linewidth=2.2, zorder=5)
 
-    draw_inset(fig, geo)
-    draw_legend(fig, config, levels, colors)
+    if not is_regional:
+        draw_inset(fig, geo)
+        draw_legend(fig, config, levels, colors)
 
     if dataset_key == "precip_24h":
         if region_key == "full":
@@ -803,6 +830,8 @@ def plot_dataset(
         )
     else:
         label_points = df_g
+        
+    label_points = filter_points_to_domain(label_points, geo)
 
     for _, row in geo.cities.iterrows():
         ax.plot(row.geometry.x, row.geometry.y, "o", color="white", markeredgecolor="black", markersize=4.5, zorder=7)
@@ -859,7 +888,10 @@ def plot_dataset(
         png_name = base_png
     
     png_path = DOCS_DIR / png_name
-    fig.savefig(png_path, dpi=170, bbox_inches="tight")
+    if is_regional:
+        fig.savefig(png_path, dpi=170)
+    else:
+        fig.savefig(png_path, dpi=170, bbox_inches="tight")
     plt.close(fig)
     
     return {
