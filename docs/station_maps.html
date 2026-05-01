@@ -100,7 +100,7 @@
       margin-top: 12px;
       font-size: 15px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
@@ -143,6 +143,11 @@
           <select id="mapSelector"></select>
         </div>
 
+        <div class="controls">
+          <label for="regionSelector">Select Region:</label>
+          <select id="regionSelector"></select>
+        </div>
+
         <div>
           <a class="button-link" href="index.html">Back to NWPS Precip Maps</a>
         </div>
@@ -158,14 +163,6 @@
 
       <div class="links">
         <div>
-          <a href="station_precip_24h_latest.csv">24h rainfall CSV</a>
-          &nbsp;|&nbsp;
-          <a href="station_air_temp_latest.csv">Current temp CSV</a>
-          &nbsp;|&nbsp;
-          <a href="station_air_temp_daily_min_latest.csv">Daily low CSV</a>
-          &nbsp;|&nbsp;
-          <a href="station_air_temp_daily_max_latest.csv">Daily high CSV</a>
-          &nbsp;|&nbsp;
           <a href="obs_qc.html">Station QC helper</a>
         </div>
       </div>
@@ -195,7 +192,38 @@
       "air_temp_daily_max"
     ];
 
+    const REGION_META = {
+      full: {
+        label: "Full LIX Area"
+      },
+      baton_rouge_metro: {
+        label: "Baton Rouge Metro"
+      },
+      new_orleans_metro: {
+        label: "New Orleans Metro"
+      },
+      southwest_ms: {
+        label: "Southwest MS"
+      },
+      coastal_ms: {
+        label: "Coastal MS"
+      },
+      northshore: {
+        label: "Northshore of Lake Pontchartrain"
+      }
+    };
+
+    const REGION_ORDER = [
+      "full",
+      "baton_rouge_metro",
+      "new_orleans_metro",
+      "southwest_ms",
+      "coastal_ms",
+      "northshore"
+    ];
+
     const selector = document.getElementById("mapSelector");
+    const regionSelector = document.getElementById("regionSelector");
     const mapImage = document.getElementById("stationMap");
     const mapStatus = document.getElementById("mapStatus");
 
@@ -222,6 +250,7 @@
       }
 
       const datasetKey = selector.value;
+      const regionKey = regionSelector.value;
       const mapInfo = manifestData.maps[datasetKey];
 
       if (!mapInfo) {
@@ -229,15 +258,23 @@
         return;
       }
 
-      if (!mapInfo.image) {
-        showStatus(mapInfo.status || "Map unavailable.");
+      let imageName = null;
+
+      if (mapInfo.regions && mapInfo.regions[regionKey]) {
+        imageName = mapInfo.regions[regionKey];
+      } else if (regionKey === "full" && mapInfo.image) {
+        imageName = mapInfo.image;
+      }
+
+      if (!imageName) {
+        showStatus(mapInfo.status || "Selected regional map unavailable.");
         return;
       }
 
-      showImage(mapInfo.image);
+      showImage(imageName);
     }
 
-    function populateSelector() {
+    function populateDatasetSelector() {
       selector.innerHTML = "";
 
       for (const key of DATASET_ORDER) {
@@ -248,8 +285,20 @@
       }
     }
 
+    function populateRegionSelector() {
+      regionSelector.innerHTML = "";
+
+      for (const key of REGION_ORDER) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = REGION_META[key]?.label || key;
+        regionSelector.appendChild(option);
+      }
+    }
+
     async function initPage() {
-      populateSelector();
+      populateDatasetSelector();
+      populateRegionSelector();
 
       try {
         const response = await fetch("latest_station_maps.json?t=" + Date.now(), {
@@ -268,9 +317,8 @@
       }
     }
 
-    selector.addEventListener("change", function () {
-      renderSelectedDataset();
-    });
+    selector.addEventListener("change", renderSelectedDataset);
+    regionSelector.addEventListener("change", renderSelectedDataset);
 
     initPage();
   </script>
