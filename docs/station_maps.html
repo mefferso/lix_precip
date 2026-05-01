@@ -26,6 +26,13 @@
       padding: 12px;
     }
 
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    
     .topbar {
       display: flex;
       flex-wrap: wrap;
@@ -148,7 +155,8 @@
           <select id="regionSelector"></select>
         </div>
 
-        <div>
+        <div class="button-group">
+          <a id="downloadPngLink" class="button-link" href="#" download>Download PNG</a>
           <a class="button-link" href="index.html">Back to NWPS Precip Maps</a>
         </div>
       </div>
@@ -226,12 +234,15 @@
     const regionSelector = document.getElementById("regionSelector");
     const mapImage = document.getElementById("stationMap");
     const mapStatus = document.getElementById("mapStatus");
+    const downloadPngLink = document.getElementById("downloadPngLink");
 
     let manifestData = null;
 
     function showStatus(message) {
       mapImage.style.display = "none";
       mapImage.removeAttribute("src");
+      downloadPngLink.href = "#";
+      downloadPngLink.removeAttribute("download");
       mapStatus.textContent = message;
       mapStatus.style.display = "block";
     }
@@ -239,8 +250,21 @@
     function showImage(filename) {
       mapStatus.style.display = "none";
       mapStatus.textContent = "";
+    
+      downloadPngLink.href = filename;
+      downloadPngLink.download = filename;
+    
+      mapImage.onerror = function () {
+        showStatus("Could not load map image: " + filename);
+      };
+    
+      mapImage.onload = function () {
+        mapStatus.style.display = "none";
+        mapStatus.textContent = "";
+        mapImage.style.display = "block";
+      };
+    
       mapImage.src = filename + "?t=" + Date.now();
-      mapImage.style.display = "block";
     }
 
     function renderSelectedDataset() {
