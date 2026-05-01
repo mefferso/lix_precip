@@ -632,6 +632,69 @@ def thin_precip_label_points(
 
     return gpd.GeoDataFrame(selected_rows, crs=df_g.crs).drop(columns=["_label_value"], errors="ignore")
 
+def thin_label_points_by_distance(
+    df_g: gpd.GeoDataFrame,
+    value_col: str,
+    max_labels: int = 150,
+    min_distance_km: float = 12.0,
+) -> gpd.GeoDataFrame:
+    """
+    Thin station labels by map distance while keeping spatial coverage.
+
+    Strategy:
+    - Sort north-to-south/west-to-east-ish so the result is not biased only toward max/min values.
+    - Keep a label only if it is far enough from already-selected labels.
+    - Works in projected meters, so distance behaves consistently on the map.
+    """
+
+    if df_g.empty:
+        return df_g
+
+    work = df_g.copy()
+    work["_label_value"] = pd.to_numeric(work[value_col], errors="coerce")
+    work = work.dropna(subset=["_label_value", "geometry"])
+
+    if work.empty:
+        return work
+
+    # Spatially stable ordering. This avoids only keeping the highest/lowest values.
+    work["_sort_x"] = work.geometry.x
+    work["_sort_y"] = work.geometry.y
+    work = work.sort_values(["_sort_y", "_sort_x"], ascending=[False, True])
+
+    selected_rows = []
+    selected_xy: list[tuple[float, float]] = []
+
+    min_dist_m = min_distance_km * 1000.0
+
+    for _, row in work.iterrows():
+        x = float(row.geometry.x)
+        y = float(row.geometry.y)
+
+        too_close = False
+        for sx, sy in selected_xy:
+            dist_m = ((x - sx) ** 2 + (y - sy) ** 2) ** 0.5
+            if dist_m < min_dist_m:
+                too_close = True
+                break
+
+        if too_close:
+            continue
+
+        selected_rows.append(row)
+        selected_xy.append((x, y))
+
+        if len(selected_rows) >= max_labels:
+            break
+
+    if not selected_rows:
+        return work.head(0).drop(columns=["_label_value", "_sort_x", "_sort_y"], errors="ignore")
+
+    return gpd.GeoDataFrame(selected_rows, crs=df_g.crs).drop(
+        columns=["_label_value", "_sort_x", "_sort_y"],
+        errors="ignore",
+    )
+
 def build_triangulation(df_proj: gpd.GeoDataFrame, max_edge_km: float) -> Triangulation | None:
     if len(df_proj) < 3:
         return None
@@ -816,8 +879,8 @@ def plot_dataset(
 
     if dataset_key == "precip_24h":
         if region_key == "full":
-            max_labels = 110
-            min_distance_km = 8.0
+            max_labels = 95
+            min_distance_km = 12.0
         else:
             max_labels = 85
             min_distance_km = 4.0
@@ -828,9 +891,18 @@ def plot_dataset(
             max_labels=max_labels,
             min_distance_km=min_distance_km,
         )
+    
     else:
-        label_points = df_g
-        
+        if region_key == "full":
+            label_points = thin_label_points_by_distance(
+                df_g,
+                value_col=value_col,
+                max_labels=145,
+                min_distance_km=16.0,
+            )
+        else:
+            label_points = df_g
+    
     label_points = filter_points_to_domain(label_points, geo)
 
     for _, row in geo.cities.iterrows():
