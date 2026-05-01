@@ -250,7 +250,7 @@ def get_dynamic_levels(period_key: str, days: int) -> list[float]:
     """Returns logically scaled boundaries based on the timeframe (Must be 17 values to match 16 colors)"""
     if period_key == "ytd":
         # YTD: Capped at 120+ inches for South Louisiana's massive annual averages
-        return [0.01, 0.5, 1, 2, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100, 100]
+        return [0.01, 0.5, 1, 2, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100, 999]
     elif period_key == "mtd" or days >= 10:
         # Long-term (10 to 30 days): Heavy month
         return [0.01, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 15, 20, 25, 30, 40, 60]
