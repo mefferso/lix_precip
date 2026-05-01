@@ -154,8 +154,16 @@ def build_for_date(day: date, skip_existing: bool) -> dict:
 
     end_arg = local_day_to_end_utc_arg(day)
 
+    # fetch station obs for this date
     run_command([sys.executable, "scripts/fetch_lix_obs.py", end_arg])
-    run_command([sys.executable, "scripts/build_lix_obs_maps.py"])
+
+    # build archive maps using date-aware URMA/MRMS
+    run_command([
+        sys.executable,
+        "scripts/build_lix_obs_archive_maps.py",
+        "--end-time",
+        end_arg,
+    ])
 
     out_dir.mkdir(parents=True, exist_ok=True)
 
