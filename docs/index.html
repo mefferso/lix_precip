@@ -59,6 +59,13 @@
       min-width: 260px;
     }
 
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    
     .button-link {
       display: inline-block;
       padding: 10px 14px;
@@ -156,7 +163,8 @@
           </select>
         </div>
 
-        <div>
+        <div class="button-group">
+          <a id="downloadPngLink" class="button-link" href="#" download>Download PNG</a>
           <a class="button-link" href="station_maps.html">View Station Observation Maps</a>
         </div>
       </div>
@@ -185,8 +193,11 @@
   <script>
     const selector = document.getElementById('mapSelector');
     const mapImage = document.getElementById('precipMap');
+    const downloadPngLink = document.getElementById('downloadPngLink');
   
     function setMapImage(filename) {
+      downloadPngLink.href = filename;
+      downloadPngLink.download = filename;
       mapImage.src = filename + '?t=' + Date.now();
     }
   
