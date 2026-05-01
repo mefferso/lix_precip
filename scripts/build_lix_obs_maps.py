@@ -887,6 +887,7 @@ def main() -> None:
 
     print("Initiating MRMS Grid Processing...")
     mrms_ok = True
+    
     try:
         mrms_data = process_mrms()
     except Exception as e:
