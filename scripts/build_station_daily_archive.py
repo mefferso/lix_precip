@@ -82,48 +82,45 @@ def local_day_to_end_utc_arg(day: date) -> str:
     return end_utc.strftime("%Y%m%d%H%M")
 
 
+def base_manifest() -> dict:
+    return {
+        "generated_utc": None,
+        "archive_type": "station_daily",
+        "products": [
+            "precip_24h",
+            "air_temp_daily_min",
+            "air_temp_daily_max",
+        ],
+        "regions": [
+            "full",
+            "baton_rouge_metro",
+            "new_orleans_metro",
+            "southwest_ms",
+            "coastal_ms",
+            "northshore",
+        ],
+        "dates": {},
+        "skipped_dates": {},
+    }
+
+
 def load_manifest() -> dict:
     if not MANIFEST_PATH.exists():
-        return {
-            "generated_utc": None,
-            "archive_type": "station_daily",
-            "products": [
-                "precip_24h",
-                "air_temp_daily_min",
-                "air_temp_daily_max",
-            ],
-            "regions": [
-                "full",
-                "baton_rouge_metro",
-                "new_orleans_metro",
-                "southwest_ms",
-                "coastal_ms",
-                "northshore",
-            ],
-            "dates": {},
-        }
+        return base_manifest()
 
     try:
-        return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        if not isinstance(manifest, dict):
+            return base_manifest()
     except Exception:
-        return {
-            "generated_utc": None,
-            "archive_type": "station_daily",
-            "products": [
-                "precip_24h",
-                "air_temp_daily_min",
-                "air_temp_daily_max",
-            ],
-            "regions": [
-                "full",
-                "baton_rouge_metro",
-                "new_orleans_metro",
-                "southwest_ms",
-                "coastal_ms",
-                "northshore",
-            ],
-            "dates": {},
-        }
+        return base_manifest()
+
+    manifest.setdefault("dates", {})
+    manifest.setdefault("skipped_dates", {})
+    manifest.setdefault("products", base_manifest()["products"])
+    manifest.setdefault("regions", base_manifest()["regions"])
+    manifest.setdefault("archive_type", "station_daily")
+    return manifest
 
 
 def write_manifest(manifest: dict) -> None:
@@ -139,32 +136,31 @@ def region_for_png(filename: str) -> str:
     return "full"
 
 
-def run_command(cmd: list[str]) -> None:
-    print("Running:", " ".join(cmd))
-    subprocess.run(cmd, cwd=ROOT, check=True)
+def run_command(cmd: list[str]) -> subprocess.CompletedProcess:
+    print("Running:", " ".join(cmd), flush=True)
+    return subprocess.run(cmd, cwd=ROOT, check=True)
 
 
-def build_for_date(day: date, skip_existing: bool) -> dict:
-    day_key = day.isoformat()
+def archive_existing_pngs() -> dict[str, dict[str, str]]:
+    day_manifest: dict[str, dict[str, str]] = {}
+
+    for dataset_key, filenames in DATASETS_TO_ARCHIVE.items():
+        day_manifest[dataset_key] = {}
+
+        for filename in filenames:
+            src = DOCS_DIR / filename
+            if not src.exists():
+                print(f"WARNING: missing expected PNG: {filename}", flush=True)
+                continue
+
+            region = region_for_png(filename)
+            day_manifest[dataset_key][region] = filename
+
+    return day_manifest
+
+
+def copy_day_pngs_to_archive(day: date) -> dict[str, dict[str, str]]:
     out_dir = archive_date_dir(day)
-
-    if skip_existing and out_dir.exists() and any(out_dir.glob("*.png")):
-        print(f"Archive already exists for {day_key}; skipping.")
-        return {}
-
-    end_arg = local_day_to_end_utc_arg(day)
-
-    # fetch station obs for this date
-    run_command([sys.executable, "scripts/fetch_lix_obs.py", end_arg])
-
-    # build archive maps using date-aware URMA/MRMS
-    run_command([
-        sys.executable,
-        "scripts/build_lix_obs_archive_maps.py",
-        "--end-time",
-        end_arg,
-    ])
-
     out_dir.mkdir(parents=True, exist_ok=True)
 
     day_manifest: dict[str, dict[str, str]] = {}
@@ -175,7 +171,7 @@ def build_for_date(day: date, skip_existing: bool) -> dict:
         for filename in filenames:
             src = DOCS_DIR / filename
             if not src.exists():
-                print(f"WARNING: missing expected PNG: {filename}")
+                print(f"WARNING: missing expected PNG: {filename}", flush=True)
                 continue
 
             dst = out_dir / filename
@@ -186,6 +182,67 @@ def build_for_date(day: date, skip_existing: bool) -> dict:
             day_manifest[dataset_key][region] = rel_path
 
     return day_manifest
+
+
+def count_archived_images(day_manifest: dict[str, dict[str, str]]) -> int:
+    return sum(len(region_map) for region_map in day_manifest.values())
+
+
+def build_for_date(day: date, skip_existing: bool) -> dict:
+    day_key = day.isoformat()
+    out_dir = archive_date_dir(day)
+
+    if skip_existing and out_dir.exists() and any(out_dir.glob("*.png")):
+        print(f"Archive already exists for {day_key}; skipping.", flush=True)
+        return {"status": "skipped_existing", "date": day_key}
+
+    end_arg = local_day_to_end_utc_arg(day)
+
+    try:
+        # fetch station obs for this date
+        run_command([sys.executable, "scripts/fetch_lix_obs.py", end_arg])
+
+        # build archive maps using date-aware URMA/MRMS
+        run_command([
+            sys.executable,
+            "scripts/build_lix_obs_archive_maps.py",
+            "--end-time",
+            end_arg,
+        ])
+
+    except subprocess.CalledProcessError as exc:
+        reason = (
+            f"Archive build failed for {day_key}. "
+            f"Command exited with status {exc.returncode}: {' '.join(str(x) for x in exc.cmd)}"
+        )
+        print(f"WARNING: {reason}", flush=True)
+        return {
+            "status": "skipped_failed_build",
+            "date": day_key,
+            "end_time_utc": end_arg,
+            "reason": reason,
+        }
+
+    day_manifest = copy_day_pngs_to_archive(day)
+    image_count = count_archived_images(day_manifest)
+
+    if image_count == 0:
+        reason = f"Archive build for {day_key} produced no PNGs."
+        print(f"WARNING: {reason}", flush=True)
+        return {
+            "status": "skipped_no_images",
+            "date": day_key,
+            "end_time_utc": end_arg,
+            "reason": reason,
+        }
+
+    return {
+        "status": "ok",
+        "date": day_key,
+        "end_time_utc": end_arg,
+        "images": day_manifest,
+        "image_count": image_count,
+    }
 
 
 def main() -> None:
@@ -204,6 +261,11 @@ def main() -> None:
         "--no-skip-existing",
         action="store_true",
         help="Regenerate dates even when archive PNGs already exist.",
+    )
+    parser.add_argument(
+        "--fail-on-skipped",
+        action="store_true",
+        help="Return a non-zero exit code if any dates fail or are skipped due to missing data.",
     )
 
     args = parser.parse_args()
@@ -225,19 +287,45 @@ def main() -> None:
 
     manifest = load_manifest()
     manifest.setdefault("dates", {})
+    manifest.setdefault("skipped_dates", {})
 
     skip_existing = not args.no_skip_existing
+    failed_or_skipped_dates: list[str] = []
 
     for day in iter_dates(start_day, end_day):
-        print(f"\n=== Building archive for {day.isoformat()} ===")
-        day_manifest = build_for_date(day, skip_existing=skip_existing)
+        day_key = day.isoformat()
+        print(f"\n=== Building archive for {day_key} ===", flush=True)
+        result = build_for_date(day, skip_existing=skip_existing)
+        status = result.get("status")
 
-        if day_manifest:
-            manifest["dates"][day.isoformat()] = day_manifest
+        if status == "ok":
+            manifest["dates"][day_key] = result["images"]
+            manifest["skipped_dates"].pop(day_key, None)
+            print(f"Archived {result['image_count']} PNGs for {day_key}.", flush=True)
+            write_manifest(manifest)
+        elif status == "skipped_existing":
+            print(f"Skipped {day_key}: archive already exists.", flush=True)
+        else:
+            manifest["skipped_dates"][day_key] = {
+                "status": status,
+                "reason": result.get("reason", "Unknown reason"),
+                "end_time_utc": result.get("end_time_utc"),
+                "recorded_utc": datetime.now(timezone.utc).isoformat(),
+            }
+            failed_or_skipped_dates.append(day_key)
+            print(f"Skipped {day_key}: {result.get('reason', status)}", flush=True)
             write_manifest(manifest)
 
     write_manifest(manifest)
-    print(f"Archive manifest written: {MANIFEST_PATH}")
+    print(f"Archive manifest written: {MANIFEST_PATH}", flush=True)
+
+    if failed_or_skipped_dates:
+        print(
+            "Completed with skipped/failed dates: " + ", ".join(failed_or_skipped_dates),
+            flush=True,
+        )
+        if args.fail_on_skipped:
+            raise SystemExit(1)
 
 
 if __name__ == "__main__":
