@@ -1,36 +1,132 @@
 {
+  "regions": {
+    "full": {
+      "label": "Full LIX Area",
+      "bbox": [
+        -92.5,
+        28.5,
+        -87.0,
+        31.8
+      ]
+    },
+    "baton_rouge_metro": {
+      "label": "Baton Rouge Metro",
+      "bbox": [
+        -91.55,
+        30.2,
+        -90.85,
+        30.75
+      ]
+    },
+    "new_orleans_metro": {
+      "label": "New Orleans Metro",
+      "bbox": [
+        -90.6,
+        29.55,
+        -89.55,
+        30.35
+      ]
+    },
+    "southwest_ms": {
+      "label": "Southwest MS",
+      "bbox": [
+        -91.25,
+        30.8,
+        -89.75,
+        31.85
+      ]
+    },
+    "coastal_ms": {
+      "label": "Coastal MS",
+      "bbox": [
+        -89.75,
+        30.05,
+        -88.25,
+        30.7
+      ]
+    },
+    "northshore": {
+      "label": "Northshore of Lake Pontchartrain",
+      "bbox": [
+        -90.45,
+        30.15,
+        -89.45,
+        30.75
+      ]
+    }
+  },
   "maps": {
     "precip_24h": {
       "image": "lix_station_precip_24h_latest.png",
       "csv": "station_precip_24h_latest.csv",
-      "station_count": 383,
-      "used_in_contours": 374,
-      "excluded": 9,
-      "status": "ok"
+      "station_count": 371,
+      "used_in_contours": 363,
+      "excluded": 8,
+      "region": "full",
+      "region_label": "Full LIX Area",
+      "status": "ok",
+      "regions": {
+        "full": "lix_station_precip_24h_latest.png",
+        "baton_rouge_metro": "lix_station_precip_24h_baton_rouge_metro_latest.png",
+        "new_orleans_metro": "lix_station_precip_24h_new_orleans_metro_latest.png",
+        "southwest_ms": "lix_station_precip_24h_southwest_ms_latest.png",
+        "coastal_ms": "lix_station_precip_24h_coastal_ms_latest.png",
+        "northshore": "lix_station_precip_24h_northshore_latest.png"
+      }
     },
     "air_temp_latest": {
       "image": "lix_station_air_temp_latest.png",
       "csv": "station_air_temp_latest.csv",
-      "station_count": 379,
-      "used_in_contours": 375,
+      "station_count": 387,
+      "used_in_contours": 383,
       "excluded": 4,
-      "status": "ok"
+      "region": "full",
+      "region_label": "Full LIX Area",
+      "status": "ok",
+      "regions": {
+        "full": "lix_station_air_temp_latest.png",
+        "baton_rouge_metro": "lix_station_air_temp_baton_rouge_metro_latest.png",
+        "new_orleans_metro": "lix_station_air_temp_new_orleans_metro_latest.png",
+        "southwest_ms": "lix_station_air_temp_southwest_ms_latest.png",
+        "coastal_ms": "lix_station_air_temp_coastal_ms_latest.png",
+        "northshore": "lix_station_air_temp_northshore_latest.png"
+      }
     },
     "air_temp_daily_min": {
       "image": "lix_station_air_temp_daily_min_latest.png",
       "csv": "station_air_temp_daily_min_latest.csv",
-      "station_count": 400,
-      "used_in_contours": 392,
+      "station_count": 410,
+      "used_in_contours": 402,
       "excluded": 8,
-      "status": "ok"
+      "region": "full",
+      "region_label": "Full LIX Area",
+      "status": "ok",
+      "regions": {
+        "full": "lix_station_air_temp_daily_min_latest.png",
+        "baton_rouge_metro": "lix_station_air_temp_daily_min_baton_rouge_metro_latest.png",
+        "new_orleans_metro": "lix_station_air_temp_daily_min_new_orleans_metro_latest.png",
+        "southwest_ms": "lix_station_air_temp_daily_min_southwest_ms_latest.png",
+        "coastal_ms": "lix_station_air_temp_daily_min_coastal_ms_latest.png",
+        "northshore": "lix_station_air_temp_daily_min_northshore_latest.png"
+      }
     },
     "air_temp_daily_max": {
       "image": "lix_station_air_temp_daily_max_latest.png",
       "csv": "station_air_temp_daily_max_latest.csv",
-      "station_count": 400,
-      "used_in_contours": 395,
+      "station_count": 410,
+      "used_in_contours": 405,
       "excluded": 5,
-      "status": "ok"
+      "region": "full",
+      "region_label": "Full LIX Area",
+      "status": "ok",
+      "regions": {
+        "full": "lix_station_air_temp_daily_max_latest.png",
+        "baton_rouge_metro": "lix_station_air_temp_daily_max_baton_rouge_metro_latest.png",
+        "new_orleans_metro": "lix_station_air_temp_daily_max_new_orleans_metro_latest.png",
+        "southwest_ms": "lix_station_air_temp_daily_max_southwest_ms_latest.png",
+        "coastal_ms": "lix_station_air_temp_daily_max_coastal_ms_latest.png",
+        "northshore": "lix_station_air_temp_daily_max_northshore_latest.png"
+      }
     }
   }
 }
