@@ -103,16 +103,69 @@ def build_time_window(end_utc: datetime) -> TimeWindow:
     return TimeWindow(start_utc=end_utc - timedelta(hours=24), end_utc=end_utc)
 
 
-def build_local_day_window(end_utc: datetime) -> LocalDayWindow:
-    end_local = end_utc.astimezone(CENTRAL_TZ)
-    start_local = end_local.replace(hour=0, minute=0, second=0, microsecond=0)
-    end_local_day = start_local + timedelta(days=1)
+def build_local_calendar_day_window(day, end_override_utc: datetime | None = None) -> LocalDayWindow:
+    """
+    Build a local calendar-day window.
+
+    If end_override_utc is supplied, the window ends at that time instead of midnight.
+    This is used for today's lows: midnight local to current/latest time.
+    """
+    start_local = datetime(
+        day.year,
+        day.month,
+        day.day,
+        0,
+        0,
+        tzinfo=CENTRAL_TZ,
+    )
+
+    if end_override_utc is None:
+        end_local = start_local + timedelta(days=1)
+    else:
+        end_local = end_override_utc.astimezone(CENTRAL_TZ)
+
     return LocalDayWindow(
         start_local=start_local,
-        end_local=end_local_day,
+        end_local=end_local,
         start_utc=start_local.astimezone(timezone.utc),
-        end_utc=end_local_day.astimezone(timezone.utc),
+        end_utc=end_local.astimezone(timezone.utc),
     )
+
+
+def build_daily_temp_window(product_key: str, end_utc: datetime) -> LocalDayWindow:
+    """
+    Latest daily temp logic:
+
+    Current Temperatures:
+      handled elsewhere with latest obs
+
+    Daily High Temperatures:
+      if local time 12 AM through before 4 PM:
+        yesterday local calendar day
+      else:
+        today local calendar day
+
+    Daily Low Temperatures:
+      if local time >= 9 AM:
+        today local midnight to current/latest obs time
+      else:
+        yesterday local calendar day
+    """
+    now_local = end_utc.astimezone(CENTRAL_TZ)
+    today = now_local.date()
+    yesterday = today - timedelta(days=1)
+
+    if product_key == "air_temp_daily_max":
+        if now_local.hour < 16:
+            return build_local_calendar_day_window(yesterday)
+        return build_local_calendar_day_window(today)
+
+    if product_key == "air_temp_daily_min":
+        if now_local.hour >= 9:
+            return build_local_calendar_day_window(today, end_override_utc=end_utc)
+        return build_local_calendar_day_window(yesterday)
+
+    return build_local_calendar_day_window(today)
 
 
 def require_token() -> str:
@@ -419,7 +472,7 @@ def build_latest_product(product_key: str) -> dict[str, Any]:
 
 def build_daily_temp_extreme_product(product_key: str, end_utc: datetime) -> dict[str, Any]:
     config = PRODUCTS[product_key]
-    day_window = build_local_day_window(end_utc)
+    day_window = build_daily_temp_window(product_key, end_utc)
 
     payload = request_json(
         config["service"],
