@@ -214,21 +214,58 @@ def download_urma_hour(dt: datetime) -> Path | None:
         print(f"URMA request failed for {date_str} {hour_str}Z: {e}")
 
     return None
+def get_latest_daily_temp_windows(now_utc: datetime) -> dict[str, dict[str, datetime]]:
+    """
+    Return the exact local/UTC windows used for latest daily high/low maps.
+    """
+    now_local = now_utc.astimezone(LOCAL_TZ)
+    today = now_local.date()
+    yesterday = today - timedelta(days=1)
+
+    def full_local_day(day):
+        start_local = datetime(day.year, day.month, day.day, 0, 0, tzinfo=LOCAL_TZ)
+        end_local = start_local + timedelta(days=1)
+        return {
+            "start_local": start_local,
+            "end_local": end_local,
+            "start_utc": start_local.astimezone(timezone.utc),
+            "end_utc": end_local.astimezone(timezone.utc),
+        }
+
+    def partial_today():
+        start_local = datetime(today.year, today.month, today.day, 0, 0, tzinfo=LOCAL_TZ)
+        end_local = now_utc.astimezone(LOCAL_TZ)
+        return {
+            "start_local": start_local,
+            "end_local": end_local,
+            "start_utc": start_local.astimezone(timezone.utc),
+            "end_utc": end_local.astimezone(timezone.utc),
+        }
+
+    if now_local.hour < 16:
+        high_window = full_local_day(yesterday)
+    else:
+        high_window = full_local_day(today)
+
+    if now_local.hour >= 9:
+        low_window = partial_today()
+    else:
+        low_window = full_local_day(yesterday)
+
+    return {
+        "air_temp_daily_max": high_window,
+        "air_temp_daily_min": low_window,
+    }
+
 def process_urma() -> dict[str, Any]:
     """
     Build URMA background grids that match the station products.
 
     - Current temp: latest available URMA hour
-    - Daily high/low: local calendar day, midnight-to-midnight America/Chicago
-
-    This keeps the shaded background from using a different time window than
-    the station labels. That was the source of the ugly-ass mismatch.
+    - Daily highs/lows: same time windows used by fetch_lix_obs.py
     """
     now_utc = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
 
-    # -------------------------------------------------
-    # 1. Find latest available URMA hour for current temp
-    # -------------------------------------------------
     latest_dt = None
     latest_path = None
 
@@ -244,38 +281,6 @@ def process_urma() -> dict[str, Any]:
     if not latest_dt or not latest_path:
         raise RuntimeError("Could not fetch any recent URMA data from NOMADS.")
 
-    # -------------------------------------------------
-    # 2. Figure out the local calendar day used for daily highs/lows
-    # -------------------------------------------------
-    now_local = now_utc.astimezone(LOCAL_TZ)
-
-    # Use yesterday's full local calendar day until today's day is complete.
-    # Example: during Apr 23, the daily max/min map should represent Apr 22.
-    daily_day = now_local.date() - timedelta(days=1)
-
-    start_local = datetime(
-        daily_day.year,
-        daily_day.month,
-        daily_day.day,
-        0,
-        0,
-        tzinfo=LOCAL_TZ,
-    )
-    end_local = start_local + timedelta(days=1)
-
-    start_utc = start_local.astimezone(timezone.utc)
-    end_utc = end_local.astimezone(timezone.utc)
-
-    print(
-        "Daily URMA temp window: "
-        f"{start_local.strftime('%Y-%m-%d %H:%M %Z')} to "
-        f"{end_local.strftime('%Y-%m-%d %H:%M %Z')} "
-        f"({start_utc.strftime('%Y%m%d %HZ')} to {end_utc.strftime('%Y%m%d %HZ')})"
-    )
-
-    # -------------------------------------------------
-    # 3. Decode latest/current temp grid
-    # -------------------------------------------------
     lon, lat = None, None
 
     try:
@@ -289,39 +294,51 @@ def process_urma() -> dict[str, Any]:
 
     latest_f = (latest_k - 273.15) * 1.8 + 32.0
 
-    # -------------------------------------------------
-    # 4. Download/decode every URMA hour in the local calendar day
-    # -------------------------------------------------
-    daily_grids = []
+    windows = get_latest_daily_temp_windows(now_utc)
 
-    dt = start_utc
-    while dt <= end_utc:
-        p = download_urma_hour(dt)
+    def build_urma_extreme(window: dict[str, datetime], mode: str) -> np.ndarray:
+        grids = []
 
-        if p:
-            try:
-                ds = xr.open_dataset(p, engine="cfgrib", backend_kwargs={"indexpath": ""})
-                daily_grids.append(ds["t2m"].values.astype(float))
-                ds.close()
-            except Exception as e:
-                print(f"Failed to decode daily URMA grid {p.name}: {e}")
+        start_utc = window["start_utc"].replace(minute=0, second=0, microsecond=0)
+        end_utc = window["end_utc"].replace(minute=0, second=0, microsecond=0)
 
-        dt += timedelta(hours=1)
+        print(
+            f"URMA {mode} window: "
+            f"{window['start_local'].strftime('%Y-%m-%d %H:%M %Z')} to "
+            f"{window['end_local'].strftime('%Y-%m-%d %H:%M %Z')} "
+            f"({start_utc.strftime('%Y%m%d %HZ')} to {end_utc.strftime('%Y%m%d %HZ')})"
+        )
 
-    print(f"Successfully retrieved {len(daily_grids)} URMA hourly grids for daily high/low.")
+        dt = start_utc
+        while dt <= end_utc:
+            p = download_urma_hour(dt)
 
-    if len(daily_grids) < 12:
-        raise RuntimeError(f"Too few valid URMA daily grids retrieved: {len(daily_grids)}")
+            if p:
+                try:
+                    ds = xr.open_dataset(p, engine="cfgrib", backend_kwargs={"indexpath": ""})
+                    grids.append(ds["t2m"].values.astype(float))
+                    ds.close()
+                except Exception as e:
+                    print(f"Failed to decode daily URMA grid {p.name}: {e}")
 
-    daily_stack_k = np.array(daily_grids)
-    daily_stack_f = (daily_stack_k - 273.15) * 1.8 + 32.0
+            dt += timedelta(hours=1)
 
-    max_f = np.nanmax(daily_stack_f, axis=0)
-    min_f = np.nanmin(daily_stack_f, axis=0)
+        print(f"Successfully retrieved {len(grids)} URMA hourly grids for {mode}.")
 
-    # -------------------------------------------------
-    # 5. Project lon/lat for plotting
-    # -------------------------------------------------
+        if len(grids) < 6:
+            raise RuntimeError(f"Too few valid URMA grids retrieved for {mode}: {len(grids)}")
+
+        stack_k = np.array(grids)
+        stack_f = (stack_k - 273.15) * 1.8 + 32.0
+
+        if mode == "max":
+            return np.nanmax(stack_f, axis=0)
+
+        return np.nanmin(stack_f, axis=0)
+
+    max_f = build_urma_extreme(windows["air_temp_daily_max"], "max")
+    min_f = build_urma_extreme(windows["air_temp_daily_min"], "min")
+
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
     x_3857, y_3857 = transformer.transform(lon, lat)
 
@@ -878,18 +895,22 @@ def build_dynamic_title(dataset_key: str, config: dict[str, Any]) -> str:
         return f"Current Temperatures {format_ampm(valid_local)}"
 
     if dataset_key in ("air_temp_daily_min", "air_temp_daily_max"):
-        now_local = datetime.now(timezone.utc).astimezone(LOCAL_TZ)
-        daily_day = now_local.date() - timedelta(days=1)
-        day_label_dt = datetime(
-            daily_day.year,
-            daily_day.month,
-            daily_day.day,
-            0,
-            0,
-            tzinfo=LOCAL_TZ,
-        )
-        day_label = f"{day_label_dt.strftime('%A, %B')} {day_label_dt.day}, {day_label_dt.year}"
-        return f"{config['title_suffix']} - {day_label}"
+        now_utc = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
+        windows = get_latest_daily_temp_windows(now_utc)
+        window = windows[dataset_key]
+
+        start_local = window["start_local"]
+
+        if dataset_key == "air_temp_daily_max":
+            label = f"High Temperatures - {start_local.strftime('%A, %B')} {start_local.day}, {start_local.year}"
+        else:
+            today_local = now_utc.astimezone(LOCAL_TZ).date()
+            if start_local.date() == today_local:
+                label = f"Low Temperatures This Morning - {start_local.strftime('%A, %B')} {start_local.day}, {start_local.year}"
+            else:
+                label = f"Low Temperatures - {start_local.strftime('%A, %B')} {start_local.day}, {start_local.year}"
+
+        return label 
 
     if dataset_key == "precip_24h":
         start_local, end_local = get_observed_24h_window_local()
