@@ -234,6 +234,31 @@ def get_timeseries_series(station: dict[str, Any], variable: str) -> tuple[list[
     return values, date_times
 
 
+def parse_synoptic_time(ts: str) -> datetime | None:
+    """
+    Parse Synoptic timestamps safely and return timezone-aware UTC datetime.
+    """
+    if not ts:
+        return None
+
+    ts = str(ts).strip()
+
+    try:
+        # Handles ISO strings like 2026-05-07T12:35:00Z
+        if ts.endswith("Z"):
+            ts = ts.replace("Z", "+00:00")
+
+        dt = datetime.fromisoformat(ts)
+
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+
+        return dt.astimezone(timezone.utc)
+
+    except Exception:
+        return None
+
+
 def flatten_timeseries_stat_station(
     station: dict[str, Any],
     variable: str,
@@ -243,29 +268,47 @@ def flatten_timeseries_stat_station(
 ) -> dict[str, Any] | None:
     base = get_station_meta(station)
     values, date_times = get_timeseries_series(station, variable)
+
     if not values or not date_times:
         return None
 
-    candidates: list[tuple[float, str]] = []
+    candidates: list[tuple[float, str, datetime]] = []
+
     for value, ts in zip(values, date_times):
         if value in (None, ""):
             continue
+
         try:
             num = float(value)
         except (TypeError, ValueError):
             continue
-        candidates.append((num, ts))
+
+        obs_time_utc = parse_synoptic_time(ts)
+        if obs_time_utc is None:
+            continue
+
+        # IMPORTANT:
+        # Only use observations inside the requested local calendar day.
+        if not (day_window.start_utc <= obs_time_utc < day_window.end_utc):
+            continue
+
+        candidates.append((num, ts, obs_time_utc))
 
     if not candidates:
         return None
 
-    chosen = min(candidates, key=lambda item: item[0]) if mode == "min" else max(candidates, key=lambda item: item[0])
-    chosen_value, chosen_time = chosen
+    if mode == "min":
+        chosen = min(candidates, key=lambda item: item[0])
+    else:
+        chosen = max(candidates, key=lambda item: item[0])
+
+    chosen_value, chosen_time, chosen_time_utc = chosen
 
     return {
         **base,
         value_col: round(chosen_value, 1),
         "valid_time": chosen_time,
+        "valid_time_utc": chosen_time_utc.isoformat(),
         "period_start_local": day_window.start_local.isoformat(),
         "period_end_local": day_window.end_local.isoformat(),
         "period_start_utc": day_window.start_utc.isoformat(),
