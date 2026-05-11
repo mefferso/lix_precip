@@ -5,7 +5,7 @@
   "period_end_local": "2026-05-11T00:00:00-05:00",
   "period_start_utc": "2026-05-10T05:00:00+00:00",
   "period_end_utc": "2026-05-11T05:00:00+00:00",
-  "generated_utc": "2026-05-11T08:39:06.552834+00:00",
+  "generated_utc": "2026-05-11T12:25:46.095081+00:00",
   "station_count": 419,
   "csv": "station_air_temp_daily_min_latest.csv",
   "rows": [
@@ -758,28 +758,6 @@
       "count": 333
     },
     {
-      "stid": "TFBM6",
-      "name": "TNC FORT BAYOU",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "43.0",
-      "lat": "30.47120",
-      "lon": "-88.74162",
-      "mnet_id": "29",
-      "air_temp_min_f": 62.6,
-      "valid_time": "2026-05-10T04:00:00-0500",
-      "valid_time_utc": "2026-05-10T09:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 24
-    },
-    {
       "stid": "USA19",
       "name": "Leaksville",
       "state": "MS",
@@ -800,6 +778,28 @@
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
       "count": 1420
+    },
+    {
+      "stid": "TFBM6",
+      "name": "TNC FORT BAYOU",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "43.0",
+      "lat": "30.47120",
+      "lon": "-88.74162",
+      "mnet_id": "29",
+      "air_temp_min_f": 62.8,
+      "valid_time": "2026-05-10T05:00:00-0500",
+      "valid_time_utc": "2026-05-10T10:00:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 24
     },
     {
       "stid": "BCCM6",
@@ -7553,7 +7553,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 696
+      "count": 701
     },
     {
       "stid": "1815W",
