@@ -5,8 +5,8 @@
   "period_end_local": "2026-05-11T00:00:00-05:00",
   "period_start_utc": "2026-05-10T05:00:00+00:00",
   "period_end_utc": "2026-05-11T05:00:00+00:00",
-  "generated_utc": "2026-05-10T23:11:44.042843+00:00",
-  "station_count": 417,
+  "generated_utc": "2026-05-11T00:11:35.011887+00:00",
+  "station_count": 418,
   "csv": "station_air_temp_daily_max_latest.csv",
   "rows": [
     {
@@ -22,14 +22,14 @@
       "lat": "30.88467",
       "lon": "-92.12814",
       "mnet_id": "64",
-      "air_temp_max_f": 94.0,
-      "valid_time": "2026-05-10T17:51:00-0500",
-      "valid_time_utc": "2026-05-10T22:51:00+00:00",
+      "air_temp_max_f": 95.0,
+      "valid_time": "2026-05-10T18:10:00-0500",
+      "valid_time_utc": "2026-05-10T23:10:00+00:00",
       "period_start_local": "2026-05-10T00:00:00-05:00",
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 41
+      "count": 44
     },
     {
       "stid": "UP368",
@@ -51,7 +51,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 40
+      "count": 42
     },
     {
       "stid": "NDBCKVOA",
@@ -73,7 +73,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "KVOA",
@@ -95,7 +95,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
+    },
+    {
+      "stid": "UP867",
+      "name": "EDGARD",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "12.0",
+      "lat": "30.01931",
+      "lon": "-90.54671",
+      "mnet_id": "64",
+      "air_temp_max_f": 91.0,
+      "valid_time": "2026-05-10T18:11:00-0500",
+      "valid_time_utc": "2026-05-10T23:11:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 17
     },
     {
       "stid": "UP862",
@@ -139,7 +161,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 38
+      "count": 40
+    },
+    {
+      "stid": "UP883",
+      "name": "ROSA",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "45.0",
+      "lat": "30.75410",
+      "lon": "-92.00578",
+      "mnet_id": "64",
+      "air_temp_max_f": 90.0,
+      "valid_time": "2026-05-10T18:34:00-0500",
+      "valid_time_utc": "2026-05-10T23:34:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 17
     },
     {
       "stid": "G1367",
@@ -161,29 +205,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
-    },
-    {
-      "stid": "UP867",
-      "name": "EDGARD",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "12.0",
-      "lat": "30.01931",
-      "lon": "-90.54671",
-      "mnet_id": "64",
-      "air_temp_max_f": 89.0,
-      "valid_time": "2026-05-10T13:33:00-0500",
-      "valid_time_utc": "2026-05-10T18:33:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 16
+      "count": 188
     },
     {
       "stid": "K0R4",
@@ -205,7 +227,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 53
+      "count": 57
     },
     {
       "stid": "G5674",
@@ -227,7 +249,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 59
+      "count": 60
     },
     {
       "stid": "G5294",
@@ -249,7 +271,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
+    },
+    {
+      "stid": "F5707",
+      "name": "FW5707 Pineville",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "104.99",
+      "lat": "31.37983",
+      "lon": "-92.46767",
+      "mnet_id": "65",
+      "air_temp_max_f": 88.0,
+      "valid_time": "2026-05-10T18:15:00-0500",
+      "valid_time_utc": "2026-05-10T23:15:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 77
     },
     {
       "stid": "AV775",
@@ -271,7 +315,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 210
+      "count": 222
     },
     {
       "stid": "AV521",
@@ -293,7 +337,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 192
+      "count": 205
     },
     {
       "stid": "K0R0",
@@ -315,7 +359,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "MSS20",
@@ -337,7 +381,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "1313W",
@@ -359,7 +403,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1089W",
@@ -381,7 +425,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "UP878",
@@ -403,7 +447,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 41
+      "count": 44
     },
     {
       "stid": "UP213",
@@ -447,7 +491,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "G6243",
@@ -469,7 +513,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G5825",
@@ -491,7 +535,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "G5218",
@@ -513,7 +557,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
+    },
+    {
+      "stid": "G3750",
+      "name": "GW3750 PURVIS",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "318.24",
+      "lat": "31.20917",
+      "lon": "-89.36550",
+      "mnet_id": "65",
+      "air_temp_max_f": 87.0,
+      "valid_time": "2026-05-10T19:00:00-0500",
+      "valid_time_utc": "2026-05-11T00:00:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 228
     },
     {
       "stid": "FRGM6",
@@ -535,7 +601,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 19
+      "count": 20
     },
     {
       "stid": "F8402",
@@ -557,29 +623,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
-    },
-    {
-      "stid": "F5707",
-      "name": "FW5707 Pineville",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "104.99",
-      "lat": "31.37983",
-      "lon": "-92.46767",
-      "mnet_id": "65",
-      "air_temp_max_f": 87.0,
-      "valid_time": "2026-05-10T15:30:00-0500",
-      "valid_time_utc": "2026-05-10T20:30:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 227
     },
     {
       "stid": "F1704",
@@ -601,7 +645,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "F1193",
@@ -623,7 +667,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 207
+      "count": 218
     },
     {
       "stid": "D6471",
@@ -645,7 +689,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 187
+      "count": 199
     },
     {
       "stid": "D4362",
@@ -667,7 +711,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 60
+      "count": 64
     },
     {
       "stid": "BLCM6",
@@ -689,7 +733,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 19
+      "count": 20
     },
     {
       "stid": "BENL1",
@@ -711,7 +755,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "AX220",
@@ -733,7 +777,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "AW025",
@@ -755,7 +799,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 109
+      "count": 115
     },
     {
       "stid": "AS718",
@@ -777,7 +821,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 206
+      "count": 208
     },
     {
       "stid": "2117W",
@@ -799,7 +843,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "KAPS",
@@ -821,7 +865,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 53
+      "count": 57
     },
     {
       "stid": "2057W",
@@ -843,7 +887,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1774W",
@@ -865,7 +909,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "LSU04",
@@ -887,7 +931,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "2161W",
@@ -909,7 +953,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1894W",
@@ -931,7 +975,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1683W",
@@ -953,7 +997,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 107
+      "count": 113
     },
     {
       "stid": "0904W",
@@ -975,7 +1019,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "UR373",
@@ -997,29 +1041,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 39
-    },
-    {
-      "stid": "UP883",
-      "name": "ROSA",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "45.0",
-      "lat": "30.75410",
-      "lon": "-92.00578",
-      "mnet_id": "64",
-      "air_temp_max_f": 86.0,
-      "valid_time": "2026-05-10T14:00:00-0500",
-      "valid_time_utc": "2026-05-10T19:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 15
+      "count": 41
     },
     {
       "stid": "UP272",
@@ -1063,7 +1085,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "RHCM6",
@@ -1085,7 +1107,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "NNHM6",
@@ -1107,7 +1129,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "MPAM6",
@@ -1129,7 +1151,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "KESF",
@@ -1151,7 +1173,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 241
+      "count": 255
     },
     {
       "stid": "KBXA",
@@ -1173,7 +1195,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "KARA",
@@ -1195,7 +1217,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 241
+      "count": 256
     },
     {
       "stid": "G6841",
@@ -1217,7 +1239,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 226
     },
     {
       "stid": "G6343",
@@ -1239,7 +1261,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 64
+      "count": 67
     },
     {
       "stid": "G5434",
@@ -1261,7 +1283,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G5379",
@@ -1283,29 +1305,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
-    },
-    {
-      "stid": "G3750",
-      "name": "GW3750 PURVIS",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "318.24",
-      "lat": "31.20917",
-      "lon": "-89.36550",
-      "mnet_id": "65",
-      "air_temp_max_f": 86.0,
-      "valid_time": "2026-05-10T17:15:00-0500",
-      "valid_time_utc": "2026-05-10T22:15:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 216
+      "count": 227
     },
     {
       "stid": "G2037",
@@ -1327,7 +1327,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 210
+      "count": 222
     },
     {
       "stid": "G1824",
@@ -1349,7 +1349,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "F9403",
@@ -1371,7 +1371,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "F6606",
@@ -1393,7 +1393,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "F4737",
@@ -1415,7 +1415,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 210
+      "count": 222
     },
     {
       "stid": "F0338",
@@ -1437,7 +1437,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 229
     },
     {
       "stid": "E7714",
@@ -1459,7 +1459,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 161
+      "count": 170
     },
     {
       "stid": "E6362",
@@ -1503,7 +1503,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 181
+      "count": 189
     },
     {
       "stid": "BDEM6",
@@ -1525,7 +1525,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 19
+      "count": 20
     },
     {
       "stid": "AV042",
@@ -1547,7 +1547,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 181
+      "count": 188
     },
     {
       "stid": "AS256",
@@ -1591,7 +1591,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "0902W",
@@ -1613,7 +1613,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "MSS38",
@@ -1635,7 +1635,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "MSS39",
@@ -1657,7 +1657,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "2158W",
@@ -1679,7 +1679,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "2156W",
@@ -1701,7 +1701,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1687W",
@@ -1723,7 +1723,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "0900W",
@@ -1745,7 +1745,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "KREG",
@@ -1767,7 +1767,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "MSS44",
@@ -1789,7 +1789,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
+    },
+    {
+      "stid": "PPTA1",
+      "name": "PPTA1",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "30.27917",
+      "lon": "-87.55611",
+      "mnet_id": "96",
+      "air_temp_max_f": 85.1,
+      "valid_time": "2026-05-10T17:00:00-0500",
+      "valid_time_utc": "2026-05-10T22:00:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 18
     },
     {
       "stid": "CADL1",
@@ -1811,7 +1833,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 211
+      "count": 223
     },
     {
       "stid": "1881W",
@@ -1833,7 +1855,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1311W",
@@ -1855,7 +1877,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "UP884",
@@ -1899,7 +1921,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "LM028",
@@ -1921,7 +1943,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 228
     },
     {
       "stid": "LKKM6",
@@ -1943,7 +1965,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "LAUM6",
@@ -1965,7 +1987,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "GCPPTA1",
@@ -1987,7 +2009,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "G6346",
@@ -2009,7 +2031,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G6344",
@@ -2031,7 +2053,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 71
+      "count": 75
     },
     {
       "stid": "G6059",
@@ -2053,7 +2075,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "G4772",
@@ -2075,7 +2097,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G2672",
@@ -2097,7 +2119,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G2297",
@@ -2119,7 +2141,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G0554",
@@ -2141,7 +2163,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 226
     },
     {
       "stid": "F9828",
@@ -2163,7 +2185,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 208
+      "count": 219
     },
     {
       "stid": "F7886",
@@ -2185,7 +2207,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 213
+      "count": 224
     },
     {
       "stid": "F7862",
@@ -2207,7 +2229,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 226
     },
     {
       "stid": "F5486",
@@ -2229,7 +2251,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "F4455",
@@ -2251,7 +2273,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "F1251",
@@ -2273,7 +2295,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "F1110",
@@ -2295,7 +2317,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "F0278",
@@ -2317,7 +2339,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "E1896",
@@ -2339,7 +2361,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 74
+      "count": 78
     },
     {
       "stid": "E1616",
@@ -2361,7 +2383,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "E1090",
@@ -2383,7 +2405,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "E1043",
@@ -2405,7 +2427,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "E0561",
@@ -2427,7 +2449,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "E0390",
@@ -2449,7 +2471,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 187
+      "count": 198
     },
     {
       "stid": "D8180",
@@ -2471,7 +2493,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 190
     },
     {
       "stid": "C2378",
@@ -2493,7 +2515,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 177
+      "count": 187
     },
     {
       "stid": "BCCM6",
@@ -2515,7 +2537,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "AX182",
@@ -2537,7 +2559,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 205
+      "count": 217
     },
     {
       "stid": "AW815",
@@ -2559,7 +2581,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 208
+      "count": 220
     },
     {
       "stid": "AW575",
@@ -2581,7 +2603,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 212
+      "count": 224
     },
     {
       "stid": "AV683",
@@ -2603,7 +2625,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 203
+      "count": 215
     },
     {
       "stid": "AR152",
@@ -2625,7 +2647,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 64
+      "count": 68
     },
     {
       "stid": "KPIB",
@@ -2647,7 +2669,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 255
+      "count": 269
     },
     {
       "stid": "KBTR",
@@ -2669,7 +2691,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 243
+      "count": 257
     },
     {
       "stid": "USA5",
@@ -2691,7 +2713,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1085
+      "count": 1145
     },
     {
       "stid": "2162W",
@@ -2713,7 +2735,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA7",
@@ -2735,7 +2757,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "MSS28",
@@ -2757,7 +2779,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "LSU05",
@@ -2779,7 +2801,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "LM012",
@@ -2801,7 +2823,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 229
     },
     {
       "stid": "LM008",
@@ -2823,29 +2845,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 216
-    },
-    {
-      "stid": "PPTA1",
-      "name": "PPTA1",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "30.27917",
-      "lon": "-87.55611",
-      "mnet_id": "96",
-      "air_temp_max_f": 84.6,
-      "valid_time": "2026-05-10T16:00:00-0500",
-      "valid_time_utc": "2026-05-10T21:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 17
+      "count": 228
     },
     {
       "stid": "KOPL",
@@ -2867,7 +2867,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "KHZR",
@@ -2889,7 +2889,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 53
+      "count": 56
     },
     {
       "stid": "LSU07",
@@ -2911,7 +2911,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "LM025",
@@ -2933,7 +2933,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 216
+      "count": 229
     },
     {
       "stid": "1208W",
@@ -2955,7 +2955,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "LM026",
@@ -2977,7 +2977,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 216
+      "count": 228
     },
     {
       "stid": "KMOB",
@@ -2999,7 +2999,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 246
+      "count": 260
     },
     {
       "stid": "KMJD",
@@ -3021,7 +3021,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 56
     },
     {
       "stid": "KMCB",
@@ -3043,7 +3043,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 240
+      "count": 254
     },
     {
       "stid": "KLFT",
@@ -3065,7 +3065,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 248
+      "count": 263
     },
     {
       "stid": "KHEZ",
@@ -3087,7 +3087,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 249
+      "count": 263
     },
     {
       "stid": "KHBG",
@@ -3109,7 +3109,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 244
+      "count": 258
     },
     {
       "stid": "K1R8",
@@ -3131,7 +3131,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 48
+      "count": 51
     },
     {
       "stid": "JAYF1",
@@ -3153,7 +3153,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "1972W",
@@ -3175,7 +3175,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "LM019",
@@ -3197,7 +3197,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 216
+      "count": 228
     },
     {
       "stid": "LM009",
@@ -3219,7 +3219,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 216
+      "count": 228
     },
     {
       "stid": "UP172",
@@ -3241,7 +3241,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 40
+      "count": 42
     },
     {
       "stid": "SHCM6",
@@ -3263,7 +3263,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "NWCL1",
@@ -3285,7 +3285,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 190
     },
     {
       "stid": "NDBCNWCL1",
@@ -3307,7 +3307,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
     },
     {
       "stid": "KNSE",
@@ -3329,7 +3329,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 13
+      "count": 14
     },
     {
       "stid": "KNDZ",
@@ -3351,7 +3351,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 12
+      "count": 14
     },
     {
       "stid": "KIYA",
@@ -3373,7 +3373,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "G6347",
@@ -3395,7 +3395,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G6342",
@@ -3417,7 +3417,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
     },
     {
       "stid": "G6029",
@@ -3439,7 +3439,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "G5906",
@@ -3461,7 +3461,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "G5750",
@@ -3483,7 +3483,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "G4878",
@@ -3505,7 +3505,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G2074",
@@ -3527,7 +3527,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 57
+      "count": 60
     },
     {
       "stid": "G1927",
@@ -3549,7 +3549,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G0610",
@@ -3571,7 +3571,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "E9083",
@@ -3593,7 +3593,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 205
+      "count": 217
     },
     {
       "stid": "E8473",
@@ -3615,7 +3615,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "E1604",
@@ -3637,7 +3637,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "D7368",
@@ -3659,7 +3659,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "D7066",
@@ -3681,7 +3681,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 939
+      "count": 993
     },
     {
       "stid": "CKWM6",
@@ -3703,7 +3703,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 19
+      "count": 20
     },
     {
       "stid": "C5236",
@@ -3725,7 +3725,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "C4185",
@@ -3747,7 +3747,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 229
     },
     {
       "stid": "C2220",
@@ -3769,7 +3769,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "BMTA1",
@@ -3791,7 +3791,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1085
+      "count": 1145
     },
     {
       "stid": "BBNL1",
@@ -3813,7 +3813,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "AX128",
@@ -3835,7 +3835,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "AW123",
@@ -3857,7 +3857,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 207
+      "count": 219
     },
     {
       "stid": "AU216",
@@ -3879,7 +3879,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 205
+      "count": 217
     },
     {
       "stid": "AU084",
@@ -3901,7 +3901,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 200
+      "count": 212
     },
     {
       "stid": "AT845",
@@ -3923,7 +3923,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 64
+      "count": 68
     },
     {
       "stid": "LM027",
@@ -3945,7 +3945,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 216
+      "count": 228
     },
     {
       "stid": "2166W",
@@ -3967,7 +3967,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA13",
@@ -3989,7 +3989,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1085
+      "count": 1145
     },
     {
       "stid": "USA11",
@@ -4011,7 +4011,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1085
+      "count": 1145
     },
     {
       "stid": "LSU03",
@@ -4033,7 +4033,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "MVSA1",
@@ -4055,7 +4055,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "1213W",
@@ -4077,7 +4077,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 61
+      "count": 66
     },
     {
       "stid": "1873W",
@@ -4099,7 +4099,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 107
+      "count": 113
     },
     {
       "stid": "SSXXQ",
@@ -4121,7 +4121,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 205
+      "count": 229
     },
     {
       "stid": "LSU01",
@@ -4143,7 +4143,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "KHDC",
@@ -4165,7 +4165,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 56
     },
     {
       "stid": "1826W",
@@ -4187,7 +4187,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "UR772",
@@ -4209,7 +4209,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 41
+      "count": 44
     },
     {
       "stid": "UR771",
@@ -4231,7 +4231,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 40
+      "count": 42
     },
     {
       "stid": "UP357",
@@ -4253,7 +4253,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 58
     },
     {
       "stid": "UP144",
@@ -4275,7 +4275,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 15
+      "count": 16
     },
     {
       "stid": "OBLA1",
@@ -4297,7 +4297,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 189
     },
     {
       "stid": "GRBM6",
@@ -4319,7 +4319,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "G7331",
@@ -4341,7 +4341,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G6440",
@@ -4363,7 +4363,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G6357",
@@ -4385,7 +4385,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G6345",
@@ -4407,7 +4407,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G3222",
@@ -4429,7 +4429,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G2684",
@@ -4451,7 +4451,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 229
     },
     {
       "stid": "G2175",
@@ -4473,7 +4473,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "G1930",
@@ -4495,7 +4495,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G1868",
@@ -4517,7 +4517,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "G0582",
@@ -4539,7 +4539,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "F6181",
@@ -4561,7 +4561,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "F5866",
@@ -4583,7 +4583,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "F4663",
@@ -4605,7 +4605,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "F0324",
@@ -4627,7 +4627,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "F0094",
@@ -4649,7 +4649,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "E2701",
@@ -4671,7 +4671,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "D5349",
@@ -4693,7 +4693,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 53
+      "count": 58
     },
     {
       "stid": "C7580",
@@ -4715,7 +4715,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 221
+      "count": 233
     },
     {
       "stid": "C6488",
@@ -4737,7 +4737,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 61
+      "count": 63
     },
     {
       "stid": "C1353",
@@ -4759,7 +4759,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 109
+      "count": 115
     },
     {
       "stid": "BONA1",
@@ -4781,7 +4781,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "AW259",
@@ -4803,7 +4803,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 208
+      "count": 220
     },
     {
       "stid": "AV585",
@@ -4825,7 +4825,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "AU112",
@@ -4847,7 +4847,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 185
+      "count": 196
     },
     {
       "stid": "1684W",
@@ -4869,7 +4869,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA24",
@@ -4891,7 +4891,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "KMSY",
@@ -4913,7 +4913,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 242
+      "count": 256
     },
     {
       "stid": "KLUL",
@@ -4935,7 +4935,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 56
     },
     {
       "stid": "TFBM6",
@@ -4957,7 +4957,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "NTC8737048",
@@ -4979,7 +4979,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 190
     },
     {
       "stid": "NDBCOBLA1",
@@ -5001,7 +5001,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "USA19",
@@ -5023,7 +5023,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1087
+      "count": 1147
     },
     {
       "stid": "1878W",
@@ -5045,7 +5045,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1206W",
@@ -5067,7 +5067,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "0172W",
@@ -5089,7 +5089,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA20",
@@ -5111,7 +5111,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "2248W",
@@ -5133,7 +5133,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1975W",
@@ -5155,7 +5155,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1885W",
@@ -5177,7 +5177,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "LSU11",
@@ -5199,7 +5199,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1085
+      "count": 1146
     },
     {
       "stid": "KPTN",
@@ -5221,7 +5221,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 239
+      "count": 255
     },
     {
       "stid": "KPQL",
@@ -5243,7 +5243,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 251
+      "count": 265
     },
     {
       "stid": "KPNS",
@@ -5265,7 +5265,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 238
+      "count": 252
     },
     {
       "stid": "KMTK",
@@ -5287,7 +5287,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 45
+      "count": 48
     },
     {
       "stid": "KHSA",
@@ -5331,7 +5331,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 247
+      "count": 261
     },
     {
       "stid": "KBFM",
@@ -5353,7 +5353,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 253
+      "count": 267
     },
     {
       "stid": "KASD",
@@ -5375,7 +5375,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 247
+      "count": 261
     },
     {
       "stid": "1602W",
@@ -5397,7 +5397,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA9",
@@ -5419,7 +5419,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "2216W",
@@ -5441,7 +5441,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1887W",
@@ -5463,7 +5463,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA8",
@@ -5485,7 +5485,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
+    },
+    {
+      "stid": "NDBCBYGL1",
+      "name": "8762482 - West Bank 1, Bayou Gauche, LA",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "29.789",
+      "lon": "-90.42",
+      "mnet_id": "286",
+      "air_temp_max_f": 82.2,
+      "valid_time": "2026-05-10T17:24:00-0500",
+      "valid_time_utc": "2026-05-10T22:24:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 79
     },
     {
       "stid": "KOPA1",
@@ -5507,7 +5529,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "BYGL1",
@@ -5529,7 +5551,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 190
     },
     {
       "stid": "2245W",
@@ -5551,7 +5573,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "2016W",
@@ -5573,7 +5595,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1201W",
@@ -5595,7 +5617,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "NORL1",
@@ -5617,7 +5639,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "UP866",
@@ -5639,7 +5661,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 39
+      "count": 41
     },
     {
       "stid": "PTOA1",
@@ -5661,7 +5683,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 189
     },
     {
       "stid": "MSS12",
@@ -5683,7 +5705,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "G7241",
@@ -5705,7 +5727,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "G4801",
@@ -5727,7 +5749,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 214
+      "count": 226
     },
     {
       "stid": "G3439",
@@ -5749,7 +5771,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 229
     },
     {
       "stid": "F9742",
@@ -5771,7 +5793,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "F7820",
@@ -5793,7 +5815,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "E6903",
@@ -5815,7 +5837,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "D9919",
@@ -5837,7 +5859,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 51
+      "count": 55
     },
     {
       "stid": "D2721",
@@ -5859,7 +5881,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 198
+      "count": 209
     },
     {
       "stid": "D2686",
@@ -5881,7 +5903,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 229
     },
     {
       "stid": "C5600",
@@ -5903,7 +5925,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 37
+      "count": 39
     },
     {
       "stid": "AW503",
@@ -5925,7 +5947,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 229
     },
     {
       "stid": "2242W",
@@ -5947,7 +5969,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "2020W",
@@ -5969,7 +5991,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1968W",
@@ -5991,7 +6013,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1875W",
@@ -6013,7 +6035,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA3",
@@ -6035,7 +6057,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1085
+      "count": 1145
+    },
+    {
+      "stid": "BRXA1",
+      "name": "USCRN SITE NEAR BREWTON 3NNE",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "187.0",
+      "lat": "31.14500",
+      "lon": "-87.05167",
+      "mnet_id": "123",
+      "air_temp_max_f": 81.8,
+      "valid_time": "2026-05-10T17:10:00-0500",
+      "valid_time_utc": "2026-05-10T22:10:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 217
     },
     {
       "stid": "1815W",
@@ -6057,29 +6101,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
-    },
-    {
-      "stid": "BRXA1",
-      "name": "USCRN SITE NEAR BREWTON 3NNE",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "187.0",
-      "lat": "31.14500",
-      "lon": "-87.05167",
-      "mnet_id": "123",
-      "air_temp_max_f": 81.7,
-      "valid_time": "2026-05-10T17:00:00-0500",
-      "valid_time_utc": "2026-05-10T22:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 205
+      "count": 114
     },
     {
       "stid": "1884W",
@@ -6101,7 +6123,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "PRDA1",
@@ -6123,7 +6145,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "NDBCPTOA1",
@@ -6145,7 +6167,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
     },
     {
       "stid": "FRPA1",
@@ -6167,7 +6189,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 210
+      "count": 222
     },
     {
       "stid": "2281W",
@@ -6189,7 +6211,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA10",
@@ -6211,7 +6233,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "1822W",
@@ -6233,7 +6255,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1203W",
@@ -6255,7 +6277,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "USA12",
@@ -6277,7 +6299,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "TS947",
@@ -6299,7 +6321,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "PCLF1",
@@ -6321,7 +6343,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 190
     },
     {
       "stid": "LSU08",
@@ -6343,7 +6365,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1146
     },
     {
       "stid": "KNEW",
@@ -6365,7 +6387,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 249
+      "count": 263
     },
     {
       "stid": "GHAA1",
@@ -6387,7 +6409,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "G6348",
@@ -6409,7 +6431,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G4508",
@@ -6431,7 +6453,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "G4271",
@@ -6453,7 +6475,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "G0043",
@@ -6475,7 +6497,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 226
     },
     {
       "stid": "F9380",
@@ -6497,7 +6519,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 215
+      "count": 227
     },
     {
       "stid": "F6464",
@@ -6519,7 +6541,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "D6888",
@@ -6541,7 +6563,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 175
+      "count": 187
     },
     {
       "stid": "D1458",
@@ -6563,7 +6585,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 61
+      "count": 65
     },
     {
       "stid": "AMRL1",
@@ -6585,7 +6607,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 190
     },
     {
       "stid": "1890W",
@@ -6607,7 +6629,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1819W",
@@ -6629,7 +6651,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1818W",
@@ -6651,7 +6673,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 104
+      "count": 110
     },
     {
       "stid": "USA4",
@@ -6673,7 +6695,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1086
+      "count": 1145
     },
     {
       "stid": "SSTRN",
@@ -6695,7 +6717,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 192
+      "count": 217
     },
     {
       "stid": "NDBCAMRL1",
@@ -6717,7 +6739,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 69
+      "count": 73
     },
     {
       "stid": "WKXA1",
@@ -6739,7 +6761,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "NDBCWKXA1",
@@ -6761,29 +6783,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 68
-    },
-    {
-      "stid": "NDBCBYGL1",
-      "name": "8762482 - West Bank 1, Bayou Gauche, LA",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.789",
-      "lon": "-90.42",
-      "mnet_id": "286",
-      "air_temp_max_f": 80.6,
-      "valid_time": "2026-05-10T16:54:00-0500",
-      "valid_time_utc": "2026-05-10T21:54:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 72
     },
     {
       "stid": "KJKA",
@@ -6805,7 +6805,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 32
+      "count": 33
     },
     {
       "stid": "KHUM",
@@ -6827,7 +6827,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 13
+      "count": 14
     },
     {
       "stid": "KGPT",
@@ -6849,7 +6849,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 246
+      "count": 260
     },
     {
       "stid": "1196W",
@@ -6871,7 +6871,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "0327W",
@@ -6893,7 +6893,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "UP390",
@@ -6915,7 +6915,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 42
+      "count": 44
     },
     {
       "stid": "TESL1",
@@ -6937,7 +6937,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 190
     },
     {
       "stid": "G2193",
@@ -6959,7 +6959,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "F4411",
@@ -6981,7 +6981,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 229
     },
     {
       "stid": "F1622",
@@ -7003,7 +7003,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 103
+      "count": 109
     },
     {
       "stid": "E5037",
@@ -7025,7 +7025,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 99
+      "count": 104
     },
     {
       "stid": "E3364",
@@ -7047,7 +7047,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "1824W",
@@ -7069,7 +7069,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 80
+      "count": 86
     },
     {
       "stid": "CEPM6",
@@ -7091,7 +7091,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 1087
+      "count": 1147
     },
     {
       "stid": "LSU10",
@@ -7113,7 +7113,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 641
+      "count": 696
     },
     {
       "stid": "1199W",
@@ -7135,7 +7135,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1871W",
@@ -7157,7 +7157,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "NDBCTESL1",
@@ -7179,7 +7179,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 69
+      "count": 71
     },
     {
       "stid": "NDBCPCLF1",
@@ -7201,7 +7201,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 79
     },
     {
       "stid": "NDBCFRWL1",
@@ -7223,7 +7223,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
     },
     {
       "stid": "LM030",
@@ -7245,7 +7245,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 217
+      "count": 228
     },
     {
       "stid": "KBIX",
@@ -7267,7 +7267,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 29
+      "count": 30
     },
     {
       "stid": "FRWL1",
@@ -7289,7 +7289,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 189
     },
     {
       "stid": "KGAO",
@@ -7311,7 +7311,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 56
     },
     {
       "stid": "1970W",
@@ -7333,7 +7333,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "UR391",
@@ -7355,7 +7355,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 37
+      "count": 39
     },
     {
       "stid": "SSGSP",
@@ -7377,7 +7377,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 201
+      "count": 225
     },
     {
       "stid": "PSTL1",
@@ -7399,7 +7399,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 189
     },
     {
       "stid": "MCGA1",
@@ -7421,7 +7421,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 190
     },
     {
       "stid": "MBPA1",
@@ -7443,7 +7443,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 189
     },
     {
       "stid": "KNBG",
@@ -7465,7 +7465,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "F3872",
@@ -7487,7 +7487,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 218
+      "count": 230
     },
     {
       "stid": "E6361",
@@ -7512,6 +7512,28 @@
       "count": 59
     },
     {
+      "stid": "COOPBLXM6",
+      "name": "BILOXI",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "10.0",
+      "lat": "30.393",
+      "lon": "-89.0008",
+      "mnet_id": "73",
+      "air_temp_max_f": 79.0,
+      "valid_time": "2026-05-10T19:00:00-0500",
+      "valid_time_utc": "2026-05-11T00:00:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 1
+    },
+    {
       "stid": "C9352",
       "name": "CW9352 Pensacola",
       "state": "FL",
@@ -7531,7 +7553,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 110
+      "count": 116
     },
     {
       "stid": "1896W",
@@ -7553,7 +7575,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "NDBCMBPA1",
@@ -7575,7 +7597,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 73
     },
     {
       "stid": "LM029",
@@ -7597,7 +7619,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 216
+      "count": 228
     },
     {
       "stid": "KSPR",
@@ -7619,7 +7641,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "KEKE",
@@ -7641,7 +7663,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "KCQF",
@@ -7663,7 +7685,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
+    },
+    {
+      "stid": "1825W",
+      "name": "NOFD Engine 31 - Venetian Isles",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "16.0",
+      "lat": "30.06540",
+      "lon": "-89.81363",
+      "mnet_id": "249",
+      "air_temp_max_f": 78.7,
+      "valid_time": "2026-05-10T18:30:00-0500",
+      "valid_time_utc": "2026-05-10T23:30:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 114
     },
     {
       "stid": "NDBCPSTL1",
@@ -7685,7 +7729,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 73
     },
     {
       "stid": "NDBCMCGA1",
@@ -7707,29 +7751,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 69
-    },
-    {
-      "stid": "EINL1",
-      "name": "North of Eugene Island",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "20.0",
-      "lat": "29.37306",
-      "lon": "-91.38389",
-      "mnet_id": "96",
-      "air_temp_max_f": 78.5,
-      "valid_time": "2026-05-10T17:00:00-0500",
-      "valid_time_utc": "2026-05-10T22:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
     },
     {
       "stid": "NDBCEINL1",
@@ -7744,14 +7766,36 @@
       "lat": "29.373",
       "lon": "-91.384",
       "mnet_id": "286",
-      "air_temp_max_f": 78.4,
-      "valid_time": "2026-05-10T17:00:00-0500",
-      "valid_time_utc": "2026-05-10T22:00:00+00:00",
+      "air_temp_max_f": 78.6,
+      "valid_time": "2026-05-10T17:24:00-0500",
+      "valid_time_utc": "2026-05-10T22:24:00+00:00",
       "period_start_local": "2026-05-10T00:00:00-05:00",
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
+    },
+    {
+      "stid": "EINL1",
+      "name": "North of Eugene Island",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "20.0",
+      "lat": "29.37306",
+      "lon": "-91.38389",
+      "mnet_id": "96",
+      "air_temp_max_f": 78.6,
+      "valid_time": "2026-05-10T17:24:00-0500",
+      "valid_time_utc": "2026-05-10T22:24:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 71
     },
     {
       "stid": "0325W",
@@ -7773,29 +7817,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
-    },
-    {
-      "stid": "1825W",
-      "name": "NOFD Engine 31 - Venetian Isles",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "16.0",
-      "lat": "30.06540",
-      "lon": "-89.81363",
-      "mnet_id": "249",
-      "air_temp_max_f": 78.2,
-      "valid_time": "2026-05-10T16:30:00-0500",
-      "valid_time_utc": "2026-05-10T21:30:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "KNPA",
@@ -7817,7 +7839,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
     },
     {
       "stid": "GCBSPA1",
@@ -7839,7 +7861,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 15
+      "count": 16
     },
     {
       "stid": "G0933",
@@ -7861,7 +7883,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 185
+      "count": 189
     },
     {
       "stid": "E8557",
@@ -7905,7 +7927,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 998
+      "count": 1055
     },
     {
       "stid": "2280W",
@@ -7927,7 +7949,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "1892W",
@@ -7949,7 +7971,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 41
+      "count": 47
     },
     {
       "stid": "NTC8762075",
@@ -7971,7 +7993,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 190
+    },
+    {
+      "stid": "NDBCSHBL1",
+      "name": "8761305 - Shell Beach, LA",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "29.868",
+      "lon": "-89.673",
+      "mnet_id": "286",
+      "air_temp_max_f": 77.4,
+      "valid_time": "2026-05-10T18:30:00-0500",
+      "valid_time_utc": "2026-05-10T23:30:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 79
     },
     {
       "stid": "NDBCGISL1",
@@ -7993,7 +8037,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
     },
     {
       "stid": "SSLYH",
@@ -8015,7 +8059,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 193
+      "count": 217
     },
     {
       "stid": "NDBCPTFL1",
@@ -8037,7 +8081,51 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 75
+      "count": 77
+    },
+    {
+      "stid": "SHBL1",
+      "name": "Shell Beach",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "29.86811",
+      "lon": "-89.67325",
+      "mnet_id": "122",
+      "air_temp_max_f": 77.0,
+      "valid_time": "2026-05-10T17:54:00-0500",
+      "valid_time_utc": "2026-05-10T22:54:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 190
+    },
+    {
+      "stid": "PILL1",
+      "name": "Pilottown",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "3.0",
+      "lat": "29.17830",
+      "lon": "-89.25830",
+      "mnet_id": "121",
+      "air_temp_max_f": 77.0,
+      "valid_time": "2026-05-10T18:30:00-0500",
+      "valid_time_utc": "2026-05-10T23:30:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 187
     },
     {
       "stid": "NDBCKIKT",
@@ -8059,7 +8147,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 53
+      "count": 57
     },
     {
       "stid": "KIKT",
@@ -8081,7 +8169,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 54
+      "count": 57
     },
     {
       "stid": "GISL1",
@@ -8103,7 +8191,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 190
     },
     {
       "stid": "E4624",
@@ -8125,7 +8213,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "NDBC42084",
@@ -8147,29 +8235,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 36
-    },
-    {
-      "stid": "SHBL1",
-      "name": "Shell Beach",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.86811",
-      "lon": "-89.67325",
-      "mnet_id": "122",
-      "air_temp_max_f": 76.6,
-      "valid_time": "2026-05-10T17:54:00-0500",
-      "valid_time_utc": "2026-05-10T22:54:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
+      "count": 37
     },
     {
       "stid": "GC42084",
@@ -8184,14 +8250,14 @@
       "lat": "28.988",
       "lon": "-89.649",
       "mnet_id": "315",
-      "air_temp_max_f": 76.6,
-      "valid_time": "2026-05-10T16:00:00-0600",
-      "valid_time_utc": "2026-05-10T22:00:00+00:00",
+      "air_temp_max_f": 76.8,
+      "valid_time": "2026-05-10T16:30:00-0600",
+      "valid_time_utc": "2026-05-10T22:30:00+00:00",
       "period_start_local": "2026-05-10T00:00:00-05:00",
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 17
+      "count": 18
     },
     {
       "stid": "1697W",
@@ -8213,7 +8279,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "NDBCPILL1",
@@ -8235,29 +8301,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 64
+      "count": 68
     },
     {
-      "stid": "PILL1",
-      "name": "Pilottown",
+      "stid": "BURL1",
+      "name": "Southwest Pass",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "3.0",
-      "lat": "29.17830",
-      "lon": "-89.25830",
-      "mnet_id": "121",
+      "elevation_ft": "0.0",
+      "lat": "28.90000",
+      "lon": "-89.43000",
+      "mnet_id": "96",
       "air_temp_max_f": 76.1,
-      "valid_time": "2026-05-10T14:48:00-0500",
-      "valid_time_utc": "2026-05-10T19:48:00+00:00",
+      "valid_time": "2026-05-10T18:00:00-0500",
+      "valid_time_utc": "2026-05-10T23:00:00+00:00",
       "period_start_local": "2026-05-10T00:00:00-05:00",
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 177
+      "count": 19
     },
     {
       "stid": "WYCM6",
@@ -8279,7 +8345,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 190
     },
     {
       "stid": "PTBM6",
@@ -8301,7 +8367,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 179
+      "count": 189
     },
     {
       "stid": "G5321",
@@ -8323,7 +8389,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 213
+      "count": 225
     },
     {
       "stid": "G0489",
@@ -8345,7 +8411,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 77
     },
     {
       "stid": "NTC8734383",
@@ -8367,29 +8433,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 177
-    },
-    {
-      "stid": "NDBCSHBL1",
-      "name": "8761305 - Shell Beach, LA",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.868",
-      "lon": "-89.673",
-      "mnet_id": "286",
-      "air_temp_max_f": 75.9,
-      "valid_time": "2026-05-10T16:00:00-0500",
-      "valid_time_utc": "2026-05-10T21:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 73
+      "count": 187
     },
     {
       "stid": "NDBCFRMA1",
@@ -8411,7 +8455,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 69
+      "count": 71
     },
     {
       "stid": "GCDPHA1",
@@ -8433,7 +8477,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 18
+      "count": 19
+    },
+    {
+      "stid": "FRMA1",
+      "name": "Fort Morgan",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "5.0",
+      "lat": "30.23445",
+      "lon": "-87.99361",
+      "mnet_id": "96",
+      "air_temp_max_f": 75.9,
+      "valid_time": "2026-05-10T17:24:00-0500",
+      "valid_time_utc": "2026-05-10T22:24:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 71
     },
     {
       "stid": "DPHA1",
@@ -8455,51 +8521,51 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 17
-    },
-    {
-      "stid": "BURL1",
-      "name": "Southwest Pass",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "28.90000",
-      "lon": "-89.43000",
-      "mnet_id": "96",
-      "air_temp_max_f": 75.9,
-      "valid_time": "2026-05-10T05:00:00-0500",
-      "valid_time_utc": "2026-05-10T10:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
       "count": 18
     },
     {
-      "stid": "FRMA1",
-      "name": "Fort Morgan",
+      "stid": "EFLA1",
+      "name": "E Range Front Light Visibility",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "5.0",
-      "lat": "30.23445",
-      "lon": "-87.99361",
+      "elevation_ft": "14.0",
+      "lat": "30.42861",
+      "lon": "-88.00972",
       "mnet_id": "96",
       "air_temp_max_f": 75.8,
-      "valid_time": "2026-05-10T17:00:00-0500",
-      "valid_time_utc": "2026-05-10T22:00:00+00:00",
+      "valid_time": "2026-05-10T17:24:00-0500",
+      "valid_time_utc": "2026-05-10T22:24:00+00:00",
       "period_start_local": "2026-05-10T00:00:00-05:00",
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
+    },
+    {
+      "stid": "NDBCEFLA1",
+      "name": "8734536 - E Range Front Light Visibility, AL",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "14.11",
+      "lat": "30.429",
+      "lon": "-88.01",
+      "mnet_id": "286",
+      "air_temp_max_f": 75.7,
+      "valid_time": "2026-05-10T17:24:00-0500",
+      "valid_time_utc": "2026-05-10T22:24:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 73
     },
     {
       "stid": "NDBCPTBM6",
@@ -8521,51 +8587,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
-    },
-    {
-      "stid": "NDBCEFLA1",
-      "name": "8734536 - E Range Front Light Visibility, AL",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "14.11",
-      "lat": "30.429",
-      "lon": "-88.01",
-      "mnet_id": "286",
-      "air_temp_max_f": 75.6,
-      "valid_time": "2026-05-10T14:00:00-0500",
-      "valid_time_utc": "2026-05-10T19:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
-    },
-    {
-      "stid": "EFLA1",
-      "name": "E Range Front Light Visibility",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "14.0",
-      "lat": "30.42861",
-      "lon": "-88.00972",
-      "mnet_id": "96",
-      "air_temp_max_f": 75.6,
-      "valid_time": "2026-05-10T14:00:00-0500",
-      "valid_time_utc": "2026-05-10T19:00:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 67
+      "count": 71
     },
     {
       "stid": "BSCA1",
@@ -8631,7 +8653,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 69
+      "count": 71
     },
     {
       "stid": "GDXM6",
@@ -8653,7 +8675,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 72
+      "count": 76
     },
     {
       "stid": "UP887",
@@ -8675,7 +8697,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 15
+      "count": 16
     },
     {
       "stid": "NDBCGDXM6",
@@ -8697,7 +8719,51 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 68
+      "count": 72
+    },
+    {
+      "stid": "NDBCDILA1",
+      "name": "8735180 - Dauphin Island, AL",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "23.29",
+      "lat": "30.25",
+      "lon": "-88.075",
+      "mnet_id": "286",
+      "air_temp_max_f": 75.0,
+      "valid_time": "2026-05-10T18:24:00-0500",
+      "valid_time_utc": "2026-05-10T23:24:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 73
+    },
+    {
+      "stid": "F7996",
+      "name": "FW7996 Perdido Key",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "8.96",
+      "lat": "30.32700",
+      "lon": "-87.36833",
+      "mnet_id": "65",
+      "air_temp_max_f": 75.0,
+      "valid_time": "2026-05-10T18:15:00-0500",
+      "valid_time_utc": "2026-05-10T23:15:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 115
     },
     {
       "stid": "DILA1",
@@ -8719,29 +8785,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 180
-    },
-    {
-      "stid": "NDBCDILA1",
-      "name": "8735180 - Dauphin Island, AL",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "23.29",
-      "lat": "30.25",
-      "lon": "-88.075",
-      "mnet_id": "286",
-      "air_temp_max_f": 74.7,
-      "valid_time": "2026-05-10T16:30:00-0500",
-      "valid_time_utc": "2026-05-10T21:30:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 69
+      "count": 190
     },
     {
       "stid": "GCKATA1",
@@ -8756,14 +8800,14 @@
       "lat": "30.2583",
       "lon": "-88.2131",
       "mnet_id": "315",
-      "air_temp_max_f": 74.7,
-      "valid_time": "2026-05-10T17:30:00-0500",
-      "valid_time_utc": "2026-05-10T22:30:00+00:00",
+      "air_temp_max_f": 74.9,
+      "valid_time": "2026-05-10T18:00:00-0500",
+      "valid_time_utc": "2026-05-10T23:00:00+00:00",
       "period_start_local": "2026-05-10T00:00:00-05:00",
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 22
+      "count": 24
     },
     {
       "stid": "KATA1",
@@ -8778,14 +8822,14 @@
       "lat": "30.25833",
       "lon": "-88.21305",
       "mnet_id": "96",
-      "air_temp_max_f": 74.5,
-      "valid_time": "2026-05-10T16:30:00-0500",
-      "valid_time_utc": "2026-05-10T21:30:00+00:00",
+      "air_temp_max_f": 74.7,
+      "valid_time": "2026-05-10T17:30:00-0500",
+      "valid_time_utc": "2026-05-10T22:30:00+00:00",
       "period_start_local": "2026-05-10T00:00:00-05:00",
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 20
+      "count": 22
     },
     {
       "stid": "NDBC42012",
@@ -8807,7 +8851,29 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 107
+      "count": 112
+    },
+    {
+      "stid": "GC42067",
+      "name": "42067 - USM-R1",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "30.043",
+      "lon": "-88.649",
+      "mnet_id": "315",
+      "air_temp_max_f": 74.1,
+      "valid_time": "2026-05-10T18:01:00-0500",
+      "valid_time_utc": "2026-05-10T23:01:00+00:00",
+      "period_start_local": "2026-05-10T00:00:00-05:00",
+      "period_end_local": "2026-05-11T00:00:00-05:00",
+      "period_start_utc": "2026-05-10T05:00:00+00:00",
+      "period_end_utc": "2026-05-11T05:00:00+00:00",
+      "count": 110
     },
     {
       "stid": "42012",
@@ -8832,28 +8898,6 @@
       "count": 3
     },
     {
-      "stid": "F7996",
-      "name": "FW7996 Perdido Key",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "8.96",
-      "lat": "30.32700",
-      "lon": "-87.36833",
-      "mnet_id": "65",
-      "air_temp_max_f": 74.0,
-      "valid_time": "2026-05-10T15:35:00-0500",
-      "valid_time_utc": "2026-05-10T20:35:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 109
-    },
-    {
       "stid": "42067",
       "name": "Buoy 42067",
       "state": "",
@@ -8873,29 +8917,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 32
-    },
-    {
-      "stid": "GC42067",
-      "name": "42067 - USM-R1",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "30.043",
-      "lon": "-88.649",
-      "mnet_id": "315",
-      "air_temp_max_f": 73.9,
-      "valid_time": "2026-05-10T16:01:00-0500",
-      "valid_time_utc": "2026-05-10T21:01:00+00:00",
-      "period_start_local": "2026-05-10T00:00:00-05:00",
-      "period_end_local": "2026-05-11T00:00:00-05:00",
-      "period_start_utc": "2026-05-10T05:00:00+00:00",
-      "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 104
+      "count": 35
     },
     {
       "stid": "NLOF1",
@@ -8917,7 +8939,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 16
+      "count": 17
     },
     {
       "stid": "COOPVLKL1",
@@ -9005,7 +9027,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 165
+      "count": 177
     },
     {
       "stid": "COOPPSAF1",
@@ -9049,7 +9071,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 71
+      "count": 75
     },
     {
       "stid": "USA23",
@@ -9159,7 +9181,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 108
+      "count": 114
     },
     {
       "stid": "UP875",
@@ -9181,7 +9203,7 @@
       "period_end_local": "2026-05-11T00:00:00-05:00",
       "period_start_utc": "2026-05-10T05:00:00+00:00",
       "period_end_utc": "2026-05-11T05:00:00+00:00",
-      "count": 39
+      "count": 41
     }
   ]
 }
