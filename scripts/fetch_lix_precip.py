@@ -110,8 +110,10 @@ def infer_default_end(now_utc: datetime | None = None) -> datetime:
     now_utc = now_utc or datetime.now(timezone.utc) 
     today_12z = now_utc.replace(hour=12, minute=0, second=0, microsecond=0) 
 
-    # Wait until 14:30 UTC so latest daily product has time to show up.
-    if now_utc >= today_12z + timedelta(hours=2, minutes=30):
+    # Start trying today's 12Z product at 13Z.
+    # The workflow runs several times in the morning, so early failures can be
+    # followed by later retries once water.noaa.gov posts the latest file.
+    if now_utc >= today_12z + timedelta(hours=1):
         return today_12z 
     return today_12z - timedelta(days=1) 
 
