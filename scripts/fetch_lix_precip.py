@@ -56,6 +56,9 @@ CITIES = [
     {"name": "New Orleans", "lat": 29.9511, "lon": -90.0715},
     {"name": "Gulfport",    "lat": 30.3674, "lon": -89.0928},
     {"name": "McComb",      "lat": 31.2438, "lon": -90.4532},
+    {"name": "Woodville",   "lat": 31.1046, "lon": -91.2993},
+    {"name": "Hammond",     "lat": 30.5044, "lon": -90.4612},
+    {"name": "Bogalusa",    "lat": 30.7910, "lon": -89.8487},
     {"name": "Houma",       "lat": 29.5958, "lon": -90.7195},
 ] 
 
