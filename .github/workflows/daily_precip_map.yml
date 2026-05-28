@@ -12,9 +12,10 @@ on:
         default: ''
   schedule:
   - cron: '05 13 * * *'
+  - cron: '15 13 * * *'
   - cron: '35 13 * * *'
   - cron: '05 14 * * *'
-  - cron: '35 14 * * *'
+  - cron: '15 14 * * *'
   - cron: '05 15 * * *'
 
 permissions:
