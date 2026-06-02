@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -79,24 +81,29 @@ jobs:
 
       - name: Commit archive outputs
         run: |
+          set -e
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add docs/archive/station/
-
-          if git diff --cached --quiet; then
+          if git diff --quiet -- docs/archive/station/ && git diff --cached --quiet -- docs/archive/station/; then
             echo "No archive changes to commit."
             exit 0
           fi
 
-          git stash push --include-untracked --message "archive-output-stash"
-          git pull --rebase origin main
-          git stash pop || true
+          mkdir -p /tmp/lix_station_archive_outputs
+          rsync -a --delete docs/archive/station/ /tmp/lix_station_archive_outputs/
+
+          git fetch origin main
+          git reset --hard origin/main
+
+          mkdir -p docs/archive/station
+          rsync -a /tmp/lix_station_archive_outputs/ docs/archive/station/
 
           git add docs/archive/station/
 
           if git diff --cached --quiet; then
-            echo "No archive changes to commit after rebase."
+            echo "No archive changes to commit after syncing latest main."
             exit 0
           fi
 
