@@ -46,10 +46,11 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "vars": "air_temp",
             "units": "english",
             "within": DEFAULT_RECENT_MINUTES,
+            "obtimezone": "utc",  # <-- ADD THIS LINE
         },
         "csv": "station_air_temp_latest.csv",
         "json": "station_air_temp_latest.json",
-    },
+     },
     "air_temp_daily_min": {
         "label": "Daily Minimum Temperature",
         "service": "timeseries",
