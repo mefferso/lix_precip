@@ -73,25 +73,31 @@ def download_urma_hour(dt: datetime) -> Path | None:
     dt = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
     date_str = dt.strftime("%Y%m%d")
     hour_str = dt.strftime("%H")
-    file_name = f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2_wexp"
-    url = f"https://nomads.ncep.noaa.gov/pub/data/nccf/com/urma/prod/urma2p5.{date_str}/{file_name}"
-    dest = RAW_DIR / f"urma_{date_str}{hour_str}.grb2"
-    if dest.exists() and dest.stat().st_size > 1_000_000:
-        return dest
-    try:
-        with requests.get(url, stream=True, timeout=60, headers={"User-Agent": "Mozilla/5.0"}) as r:
-            if r.status_code != 200:
-                print(f"URMA missing for {date_str} {hour_str}Z (status={r.status_code})")
-                return None
-            with open(dest, "wb") as f:
-                for chunk in r.iter_content(chunk_size=1024 * 1024):
-                    if chunk:
-                        f.write(chunk)
+    base_url = f"https://nomads.ncep.noaa.gov/pub/data/nccf/com/urma/prod/urma2p5.{date_str}"
+    candidates = [
+        ("prod", f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2", RAW_DIR / f"urma_{date_str}{hour_str}_prod.grb2"),
+        ("wexp", f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2_wexp", RAW_DIR / f"urma_{date_str}{hour_str}_wexp.grb2"),
+    ]
+    for label, file_name, dest in candidates:
         if dest.exists() and dest.stat().st_size > 1_000_000:
-            print(f"Downloaded URMA for {date_str} {hour_str}Z")
+            print(f"Using cached URMA {label} for {date_str} {hour_str}Z")
             return dest
-    except Exception as e:
-        print(f"URMA request failed for {date_str} {hour_str}Z: {e}")
+        url = f"{base_url}/{file_name}"
+        try:
+            with requests.get(url, stream=True, timeout=60, headers={"User-Agent": "Mozilla/5.0"}) as r:
+                if r.status_code != 200:
+                    print(f"URMA {label} missing for {date_str} {hour_str}Z (status={r.status_code})")
+                    continue
+                with open(dest, "wb") as f:
+                    for chunk in r.iter_content(chunk_size=1024 * 1024):
+                        if chunk:
+                            f.write(chunk)
+            if dest.exists() and dest.stat().st_size > 1_000_000:
+                print(f"Downloaded URMA {label} for {date_str} {hour_str}Z")
+                return dest
+            print(f"URMA {label} download too small for {date_str} {hour_str}Z")
+        except Exception as e:
+            print(f"URMA {label} request failed for {date_str} {hour_str}Z: {e}")
     return None
 
 def read_urma_temp_grid(path: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
@@ -116,8 +122,6 @@ def get_current_obs_time_info() -> dict[str, datetime] | None:
     if valid_times.empty:
         print("Current temp obs valid_time column had no usable timestamps.")
         return None
-
-    # Do NOT convert timestamps to raw integers here. That caused the bogus 1970 timestamp.
     median_utc = valid_times.iloc[len(valid_times) // 2].to_pydatetime()
     target_hour_utc = median_utc.replace(minute=0, second=0, microsecond=0)
     min_utc = valid_times.iloc[0].to_pydatetime()
@@ -143,7 +147,7 @@ def find_urma_temp_grid(candidates: list[datetime], label: str) -> tuple[datetim
             continue
         try:
             temp_f, lon, lat = read_urma_temp_grid(path)
-            print(f"Using URMA {label}: {dt.strftime('%Y%m%d %HZ')}")
+            print(f"Using URMA {label}: {dt.strftime('%Y%m%d %HZ')} from {path.name}")
             return dt, temp_f, lon, lat
         except Exception as e:
             print(f"Failed to decode URMA {label} grid {path.name}: {e}")
@@ -269,7 +273,7 @@ def download_mrms(dt: datetime) -> Path | None:
                         f.write(chunk)
         with gzip.open(dest_gz, "rb") as f_in:
             with open(dest_grib, "wb") as f_out:
-                shutil.copyfileobj(f_in, f_out)
+                shutil.copyfileobj(f_in)
         dest_gz.unlink()
         if dest_grib.exists() and dest_grib.stat().st_size > 1_000_000:
             print(f"Downloaded MRMS from AWS for {date_str} {hour_str}Z")
