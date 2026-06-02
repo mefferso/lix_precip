@@ -5,10 +5,11 @@ import csv
 import json
 import os
 import sys
+import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 from zoneinfo import ZoneInfo
 
 import requests
@@ -22,7 +23,10 @@ DEFAULT_BBOX = "-92.5,28.5,-87.0,31.8"  # LIX-ish; widen/narrow as needed
 DEFAULT_TIMEZONE = "America/Chicago"
 CENTRAL_TZ = ZoneInfo(DEFAULT_TIMEZONE)
 DEFAULT_RECENT_MINUTES = 90
-REQUEST_TIMEOUT = 180
+REQUEST_CONNECT_TIMEOUT = 20
+REQUEST_READ_TIMEOUT = 180
+REQUEST_RETRIES = 4
+REQUEST_BACKOFF_SECONDS = 12
 
 # Config-driven products so more variables can be added later without rewriting everything.
 PRODUCTS: dict[str, dict[str, Any]] = {
@@ -46,11 +50,11 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "vars": "air_temp",
             "units": "english",
             "within": DEFAULT_RECENT_MINUTES,
-            "obtimezone": "utc",  # <-- ADD THIS LINE
+            "obtimezone": "utc",
         },
         "csv": "station_air_temp_latest.csv",
         "json": "station_air_temp_latest.json",
-     },
+    },
     "air_temp_daily_min": {
         "label": "Daily Minimum Temperature",
         "service": "timeseries",
@@ -193,16 +197,36 @@ def request_json(service: str, params: dict[str, Any]) -> dict[str, Any]:
         **params,
     }
 
-    response = requests.get(url, params=query, timeout=REQUEST_TIMEOUT)
-    response.raise_for_status()
-    payload = response.json()
+    last_error: Exception | None = None
+    timeout = (REQUEST_CONNECT_TIMEOUT, REQUEST_READ_TIMEOUT)
 
-    summary = payload.get("SUMMARY", {})
-    code = str(summary.get("RESPONSE_CODE", ""))
-    if code not in {"1", "OK", "200"}:
-        raise RuntimeError(f"Synoptic {service} request failed: {summary}")
+    for attempt in range(1, REQUEST_RETRIES + 1):
+        try:
+            print(f"Synoptic {service} request attempt {attempt}/{REQUEST_RETRIES}...")
+            response = requests.get(url, params=query, timeout=timeout)
+            response.raise_for_status()
+            payload = response.json()
 
-    return payload
+            summary = payload.get("SUMMARY", {})
+            code = str(summary.get("RESPONSE_CODE", ""))
+            if code not in {"1", "OK", "200"}:
+                raise RuntimeError(f"Synoptic {service} request failed: {summary}")
+
+            return payload
+
+        except (requests.exceptions.RequestException, ValueError, RuntimeError) as e:
+            last_error = e
+            if attempt >= REQUEST_RETRIES:
+                break
+
+            sleep_seconds = REQUEST_BACKOFF_SECONDS * attempt
+            print(
+                f"Synoptic {service} request failed on attempt {attempt}/{REQUEST_RETRIES}: {e}. "
+                f"Retrying in {sleep_seconds} seconds..."
+            )
+            time.sleep(sleep_seconds)
+
+    raise RuntimeError(f"Synoptic {service} request failed after {REQUEST_RETRIES} attempts: {last_error}")
 
 
 def get_station_meta(station: dict[str, Any]) -> dict[str, Any]:
@@ -524,6 +548,49 @@ def build_daily_temp_extreme_product(product_key: str, end_utc: datetime) -> dic
     }
 
 
+def stale_product_summary(product_key: str, error: Exception) -> dict[str, Any] | None:
+    config = PRODUCTS[product_key]
+    csv_path = DOCS_DIR / config["csv"]
+    json_path = DOCS_DIR / config["json"]
+
+    if not csv_path.exists() or not json_path.exists():
+        return None
+
+    station_count = 0
+    try:
+        payload = json.loads(json_path.read_text(encoding="utf-8"))
+        station_count = int(payload.get("station_count") or len(payload.get("rows", [])) or 0)
+    except Exception:
+        try:
+            with csv_path.open("r", encoding="utf-8", newline="") as f:
+                station_count = max(sum(1 for _ in f) - 1, 0)
+        except Exception:
+            station_count = 0
+
+    print(
+        f"WARNING: using existing {product_key} files because the fresh Synoptic request failed: {error}"
+    )
+
+    return {
+        "label": config["label"],
+        "csv": csv_path.name,
+        "json": json_path.name,
+        "station_count": station_count,
+        "stale": True,
+        "warning": f"Fresh Synoptic request failed; reused previous files. Error: {error}",
+    }
+
+
+def build_or_reuse_existing(product_key: str, builder: Callable[[], dict[str, Any]]) -> dict[str, Any]:
+    try:
+        return builder()
+    except Exception as e:
+        stale = stale_product_summary(product_key, e)
+        if stale is not None:
+            return stale
+        raise
+
+
 def write_manifest(window: TimeWindow, outputs: dict[str, Any]) -> None:
     manifest = {
         "generated_utc": utc_now().isoformat(),
@@ -540,15 +607,16 @@ def main() -> None:
     window = build_time_window(end_utc)
 
     outputs: dict[str, Any] = {}
-    outputs["precip_24h"] = build_precip_product(window)
-    outputs["air_temp_latest"] = build_latest_product("air_temp_latest")
-    outputs["air_temp_daily_min"] = build_daily_temp_extreme_product("air_temp_daily_min", end_utc)
-    outputs["air_temp_daily_max"] = build_daily_temp_extreme_product("air_temp_daily_max", end_utc)
+    outputs["precip_24h"] = build_or_reuse_existing("precip_24h", lambda: build_precip_product(window))
+    outputs["air_temp_latest"] = build_or_reuse_existing("air_temp_latest", lambda: build_latest_product("air_temp_latest"))
+    outputs["air_temp_daily_min"] = build_or_reuse_existing("air_temp_daily_min", lambda: build_daily_temp_extreme_product("air_temp_daily_min", end_utc))
+    outputs["air_temp_daily_max"] = build_or_reuse_existing("air_temp_daily_max", lambda: build_daily_temp_extreme_product("air_temp_daily_max", end_utc))
     write_manifest(window, outputs)
 
     print("Finished building LIX station observation products.")
     for key, info in outputs.items():
-        print(f"- {key}: {info['station_count']} stations -> {info['csv']}")
+        stale_note = " (reused previous files)" if info.get("stale") else ""
+        print(f"- {key}: {info['station_count']} stations -> {info['csv']}{stale_note}")
 
 
 if __name__ == "__main__":
