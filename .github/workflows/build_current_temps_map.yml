@@ -1,12 +1,13 @@
-name: Build current temps map
+name: Build current station obs maps
 
 on:
   push:
     paths:
       - 'scripts/fetch_lix_obs.py'
       - 'scripts/build_lix_obs_maps.py'
+      - 'scripts/build_4panel.py'
       - 'data/manual_station_excludes.json'
-      - '.github/workflows/build_lix_obs.yml'
+      - '.github/workflows/build_current_temps_map.yml'
       - 'docs/obs_qc.html'
   workflow_dispatch:
     inputs:
@@ -31,6 +32,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -65,20 +68,46 @@ jobs:
 
       - name: Stitch 4-panel image
         run: |
-          python scripts/build_4panel.py      
+          python scripts/build_4panel.py
 
-      - name: Commit updated outputs
+      - name: Commit updated station products
         run: |
+          set -e
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add docs/
+          mkdir -p /tmp/lix_station_products/docs
+
+          find docs -maxdepth 1 -type f \( \
+            -name 'station_*_latest.csv' -o \
+            -name 'station_*_latest.json' -o \
+            -name 'lix_station_*_latest.png' -o \
+            -name 'latest_station_maps.json' -o \
+            -name 'lix_4panel_latest.png' \
+          \) -exec cp -p {} /tmp/lix_station_products/docs/ \;
+
+          if [ -z "$(find /tmp/lix_station_products/docs -type f -print -quit)" ]; then
+            echo "No station product files were generated."
+            exit 0
+          fi
+
+          git fetch origin main
+          git reset --hard origin/main
+
+          cp -p /tmp/lix_station_products/docs/* docs/
+
+          git add \
+            docs/station_*_latest.csv \
+            docs/station_*_latest.json \
+            docs/lix_station_*_latest.png \
+            docs/latest_station_maps.json \
+            docs/lix_4panel_latest.png
 
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No station product changes to commit."
             exit 0
           fi
 
           git commit -m "Update LIX station products"
-          git pull --rebase origin main
           git push origin main
