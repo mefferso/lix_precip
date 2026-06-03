@@ -51,8 +51,8 @@ TARGET_CRS = 3857
 TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 LOCAL_TZ = ZoneInfo("America/Chicago")
 OBS_WINDOW_END_LOCAL_HOUR = 6
-CURRENT_URMA_MATCH_LAG_HOURS = 8
-CURRENT_URMA_FALLBACK_LOOKBACK_HOURS = 24
+CURRENT_GRID_MATCH_LAG_HOURS = 4
+CURRENT_GRID_FALLBACK_LOOKBACK_HOURS = 8
 
 CITIES = [
     {"name": "Baton Rouge", "lat": 30.4515, "lon": -91.0},
@@ -64,43 +64,44 @@ CITIES = [
 TEMP_COLORS = ["#4b4aa7", "#6e9ad0", "#67c6e5", "#1db4b0", "#007f5f", "#3aa655", "#8ccf7e", "#c7e9ad", "#f2e788", "#f2c66d", "#f59d3d", "#f04e37", "#cc1f1a"]
 DATASETS: dict[str, dict[str, Any]] = {
     "precip_24h": {"label": "24 Hour Rainfall", "csv": "station_precip_24h_latest.csv", "value_col": "precip_in", "units": "Inches", "title_suffix": "24 Hour Rainfall", "png": "lix_station_precip_24h_latest.png", "levels": [0.01, 0.10, 0.25, 0.50, 0.75, 1.00, 1.50, 2.00, 2.50, 3.00, 4.00, 5.00, 6.00, 8.00, 10.00, 15.00, 30.00], "colors": ["#67c6e5", "#6e9ad0", "#4b4aa7", "#57ea58", "#52b852", "#4d8c50", "#eceb59", "#efd27a", "#eda24f", "#ff4b4b", "#c7484d", "#a44a50", "#e43ee0", "#9362d6", "#d9d9d9", "#bcbcbc"], "value_fmt": "{:.2f}", "tri_edge_km": 95.0, "neighbor_radius_km": 90.0, "neighbor_min": 3, "buddy_threshold": 4.0, "desc": "MRMS 24-Hour Pass 2 QPE Gridded Background + Station Observations"},
-    "air_temp_latest": {"label": "Current Temperature", "csv": "station_air_temp_latest.csv", "value_col": "air_temp_f", "units": "Degrees F", "title_suffix": "Current Temperatures", "png": "lix_station_air_temp_latest.png", "levels": [35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100], "colors": TEMP_COLORS, "value_fmt": "{:.0f}", "tri_edge_km": 95.0, "neighbor_radius_km": 90.0, "neighbor_min": 3, "buddy_threshold": 12.0, "desc": "URMA Gridded Background Matched to Current Station Observation Time"},
+    "air_temp_latest": {"label": "Current Temperature", "csv": "station_air_temp_latest.csv", "value_col": "air_temp_f", "units": "Degrees F", "title_suffix": "Current Temperatures", "png": "lix_station_air_temp_latest.png", "levels": [35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100], "colors": TEMP_COLORS, "value_fmt": "{:.0f}", "tri_edge_km": 95.0, "neighbor_radius_km": 90.0, "neighbor_min": 3, "buddy_threshold": 12.0, "desc": "RTMA Gridded Background Matched to Current Station Observation Time"},
     "air_temp_daily_min": {"label": "Daily Minimum Temperature", "csv": "station_air_temp_daily_min_latest.csv", "value_col": "air_temp_min_f", "units": "Degrees F", "title_suffix": "24 Hour Low Temperatures", "png": "lix_station_air_temp_daily_min_latest.png", "levels": [35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90], "colors": TEMP_COLORS[:11], "value_fmt": "{:.0f}", "tri_edge_km": 95.0, "neighbor_radius_km": 90.0, "neighbor_min": 3, "buddy_threshold": 12.0, "desc": "URMA 24-Hour Gridded Minimum + Station Observations"},
     "air_temp_daily_max": {"label": "Daily Maximum Temperature", "csv": "station_air_temp_daily_max_latest.csv", "value_col": "air_temp_max_f", "units": "Degrees F", "title_suffix": "24 Hour High Temperatures", "png": "lix_station_air_temp_daily_max_latest.png", "levels": [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100], "colors": TEMP_COLORS[:12], "value_fmt": "{:.0f}", "tri_edge_km": 95.0, "neighbor_radius_km": 90.0, "neighbor_min": 3, "buddy_threshold": 12.0, "desc": "URMA 24-Hour Gridded Maximum + Station Observations"},
 }
 
-def download_urma_hour(dt: datetime) -> Path | None:
+def download_grid_hour(dt: datetime, model: str = "urma") -> Path | None:
     dt = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
     date_str = dt.strftime("%Y%m%d")
     hour_str = dt.strftime("%H")
-    base_url = f"https://nomads.ncep.noaa.gov/pub/data/nccf/com/urma/prod/urma2p5.{date_str}"
+    model = model.lower().strip()
+    base_url = f"https://nomads.ncep.noaa.gov/pub/data/nccf/com/{model}/prod/{model}2p5.{date_str}"
     candidates = [
-        ("prod", f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2", RAW_DIR / f"urma_{date_str}{hour_str}_prod.grb2"),
-        ("wexp", f"urma2p5.t{hour_str}z.2dvaranl_ndfd.grb2_wexp", RAW_DIR / f"urma_{date_str}{hour_str}_wexp.grb2"),
+        ("prod", f"{model}2p5.t{hour_str}z.2dvaranl_ndfd.grb2", RAW_DIR / f"{model}_{date_str}{hour_str}_prod.grb2"),
+        ("wexp", f"{model}2p5.t{hour_str}z.2dvaranl_ndfd.grb2_wexp", RAW_DIR / f"{model}_{date_str}{hour_str}_wexp.grb2"),
     ]
     for label, file_name, dest in candidates:
         if dest.exists() and dest.stat().st_size > 1_000_000:
-            print(f"Using cached URMA {label} for {date_str} {hour_str}Z")
+            print(f"Using cached {model.upper()} {label} for {date_str} {hour_str}Z")
             return dest
         url = f"{base_url}/{file_name}"
         try:
-            with requests.get(url, stream=True, timeout=60, headers={"User-Agent": "Mozilla/5.0"}) as r:
+            with requests.get(url, stream=True, timeout=45, headers={"User-Agent": "Mozilla/5.0"}) as r:
                 if r.status_code != 200:
-                    print(f"URMA {label} missing for {date_str} {hour_str}Z (status={r.status_code})")
+                    print(f"{model.upper()} {label} missing for {date_str} {hour_str}Z (status={r.status_code})")
                     continue
                 with open(dest, "wb") as f:
                     for chunk in r.iter_content(chunk_size=1024 * 1024):
                         if chunk:
                             f.write(chunk)
             if dest.exists() and dest.stat().st_size > 1_000_000:
-                print(f"Downloaded URMA {label} for {date_str} {hour_str}Z")
+                print(f"Downloaded {model.upper()} {label} for {date_str} {hour_str}Z")
                 return dest
-            print(f"URMA {label} download too small for {date_str} {hour_str}Z")
+            print(f"{model.upper()} {label} download too small for {date_str} {hour_str}Z")
         except Exception as e:
-            print(f"URMA {label} request failed for {date_str} {hour_str}Z: {e}")
+            print(f"{model.upper()} {label} request failed for {date_str} {hour_str}Z: {e}")
     return None
 
-def read_urma_temp_grid(path: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def read_temp_grid(path: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     ds = xr.open_dataset(path, engine="cfgrib", backend_kwargs={"indexpath": ""})
     temp_f = (ds["t2m"].values.astype(float) - 273.15) * 1.8 + 32.0
     lon = ds.longitude.values
@@ -111,7 +112,7 @@ def read_urma_temp_grid(path: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray]
 def get_current_obs_time_info() -> dict[str, datetime] | None:
     csv_path = DOCS_DIR / DATASETS["air_temp_latest"]["csv"]
     if not csv_path.exists():
-        print(f"Current temp CSV missing; cannot timestep-match URMA: {csv_path}")
+        print(f"Current temp CSV missing; cannot timestep-match RTMA: {csv_path}")
         return None
     try:
         df = pd.read_csv(csv_path, usecols=["valid_time"])
@@ -126,7 +127,7 @@ def get_current_obs_time_info() -> dict[str, datetime] | None:
     target_hour_utc = median_utc.replace(minute=0, second=0, microsecond=0)
     min_utc = valid_times.iloc[0].to_pydatetime()
     max_utc = valid_times.iloc[-1].to_pydatetime()
-    print("Current temp obs times: " f"median={median_utc.strftime('%Y%m%d %H:%MZ')}, " f"range={min_utc.strftime('%Y%m%d %H:%MZ')} to {max_utc.strftime('%Y%m%d %H:%MZ')}, " f"target URMA hour={target_hour_utc.strftime('%Y%m%d %HZ')}")
+    print("Current temp obs times: " f"median={median_utc.strftime('%Y%m%d %H:%MZ')}, " f"range={min_utc.strftime('%Y%m%d %H:%MZ')} to {max_utc.strftime('%Y%m%d %H:%MZ')}, " f"target RTMA hour={target_hour_utc.strftime('%Y%m%d %HZ')}")
     return {"median_utc": median_utc, "target_hour_utc": target_hour_utc, "min_utc": min_utc, "max_utc": max_utc}
 
 def unique_hours(hours: list[datetime]) -> list[datetime]:
@@ -140,17 +141,17 @@ def unique_hours(hours: list[datetime]) -> list[datetime]:
         out.append(hr)
     return out
 
-def find_urma_temp_grid(candidates: list[datetime], label: str) -> tuple[datetime, np.ndarray, np.ndarray, np.ndarray] | None:
+def find_temp_grid(candidates: list[datetime], label: str, model: str = "urma") -> tuple[datetime, np.ndarray, np.ndarray, np.ndarray] | None:
     for dt in unique_hours(candidates):
-        path = download_urma_hour(dt)
+        path = download_grid_hour(dt, model=model)
         if not path:
             continue
         try:
-            temp_f, lon, lat = read_urma_temp_grid(path)
-            print(f"Using URMA {label}: {dt.strftime('%Y%m%d %HZ')} from {path.name}")
+            temp_f, lon, lat = read_temp_grid(path)
+            print(f"Using {model.upper()} {label}: {dt.strftime('%Y%m%d %HZ')} from {path.name}")
             return dt, temp_f, lon, lat
         except Exception as e:
-            print(f"Failed to decode URMA {label} grid {path.name}: {e}")
+            print(f"Failed to decode {model.upper()} {label} grid {path.name}: {e}")
     return None
 
 def get_latest_daily_temp_windows(now_utc: datetime) -> dict[str, dict[str, datetime]]:
@@ -178,15 +179,15 @@ def build_urma_extreme(window: dict[str, datetime], mode: str) -> tuple[np.ndarr
     print(f"URMA {mode} window: {window['start_local'].strftime('%Y-%m-%d %H:%M %Z')} to {window['end_local'].strftime('%Y-%m-%d %H:%M %Z')} ({start_utc.strftime('%Y%m%d %HZ')} to {end_utc.strftime('%Y%m%d %HZ')})")
     dt = start_utc
     while dt <= end_utc:
-        path = download_urma_hour(dt)
+        path = download_grid_hour(dt, model="urma")
         if path:
             try:
-                temp_f, lon, lat = read_urma_temp_grid(path)
+                temp_f, lon, lat = read_temp_grid(path)
                 grids.append(temp_f)
                 if lon_ref is None or lat_ref is None:
                     lon_ref, lat_ref = lon, lat
             except Exception as e:
-                print(f"Failed to decode daily URMA grid {path.name}: {e}")
+                print(f"Failed to decode URMA daily grid {path.name}: {e}")
         dt += timedelta(hours=1)
     print(f"Successfully retrieved {len(grids)} URMA hourly grids for {mode}.")
     if len(grids) < 6 or lon_ref is None or lat_ref is None:
@@ -205,19 +206,21 @@ def process_urma() -> dict[str, Any]:
         result["air_temp_latest_obs_target_utc"] = obs_info["target_hour_utc"]
         result["air_temp_latest_obs_min_utc"] = obs_info["min_utc"]
         result["air_temp_latest_obs_max_utc"] = obs_info["max_utc"]
-    matched_candidates = [target_dt - timedelta(hours=lag) for lag in range(CURRENT_URMA_MATCH_LAG_HOURS + 1)]
-    fallback_candidates = [now_utc - timedelta(hours=lag) for lag in range(CURRENT_URMA_FALLBACK_LOOKBACK_HOURS + 1)]
-    current_grid = find_urma_temp_grid(matched_candidates + fallback_candidates, "current temp")
+    matched_candidates = [target_dt - timedelta(hours=lag) for lag in range(CURRENT_GRID_MATCH_LAG_HOURS + 1)]
+    fallback_candidates = [now_utc - timedelta(hours=lag) for lag in range(CURRENT_GRID_FALLBACK_LOOKBACK_HOURS + 1)]
+    current_grid = find_temp_grid(matched_candidates + fallback_candidates, "current temp", model="rtma")
     lon_for_xy = None
     lat_for_xy = None
     if current_grid:
         current_dt, current_f, lon_for_xy, lat_for_xy = current_grid
         result["air_temp_latest"] = current_f
         result["air_temp_latest_valid_utc"] = current_dt
-        result["air_temp_latest_urma_lag_hours"] = round((target_dt - current_dt).total_seconds() / 3600.0, 1)
+        result["air_temp_latest_grid_model"] = "RTMA"
+        result["air_temp_latest_grid_lag_hours"] = round((target_dt - current_dt).total_seconds() / 3600.0, 1)
     else:
-        print("URMA current temp unavailable after matched and fallback searches; current map will show station labels only.")
-        result["air_temp_latest_urma_unavailable"] = True
+        print("RTMA current temp unavailable after matched and fallback searches; current map will show station labels only.")
+        result["air_temp_latest_grid_model"] = "RTMA"
+        result["air_temp_latest_grid_unavailable"] = True
     windows = get_latest_daily_temp_windows(now_utc)
     try:
         max_f, lon_max, lat_max = build_urma_extreme(windows["air_temp_daily_max"], "max")
@@ -273,7 +276,7 @@ def download_mrms(dt: datetime) -> Path | None:
                         f.write(chunk)
         with gzip.open(dest_gz, "rb") as f_in:
             with open(dest_grib, "wb") as f_out:
-                shutil.copyfileobj(f_in)
+                shutil.copyfileobj(f_in, f_out)
         dest_gz.unlink()
         if dest_grib.exists() and dest_grib.stat().st_size > 1_000_000:
             print(f"Downloaded MRMS from AWS for {date_str} {hour_str}Z")
@@ -548,11 +551,12 @@ def build_dynamic_title(dataset_key: str, config: dict[str, Any], grid_data: dic
     grid_data = grid_data or {}
     if dataset_key == "air_temp_latest":
         obs_utc = grid_data.get("air_temp_latest_obs_median_utc") or grid_data.get("air_temp_latest_obs_target_utc")
-        urma_utc = grid_data.get("air_temp_latest_valid_utc")
-        if isinstance(obs_utc, datetime) and isinstance(urma_utc, datetime):
-            return f"Current Temperatures - Obs {format_ampm_tz(obs_utc)} / URMA {format_ampm_tz(urma_utc)}"
+        grid_utc = grid_data.get("air_temp_latest_valid_utc")
+        grid_model = grid_data.get("air_temp_latest_grid_model", "RTMA")
+        if isinstance(obs_utc, datetime) and isinstance(grid_utc, datetime):
+            return f"Current Temperatures - Obs {format_ampm_tz(obs_utc)} / {grid_model} {format_ampm_tz(grid_utc)}"
         if isinstance(obs_utc, datetime):
-            return f"Current Temperatures - Obs {format_ampm_tz(obs_utc)} / URMA Unavailable"
+            return f"Current Temperatures - Obs {format_ampm_tz(obs_utc)} / {grid_model} Unavailable"
         return "Current Temperatures - Latest Obs"
     if dataset_key in ("air_temp_daily_min", "air_temp_daily_max"):
         now_utc = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
@@ -608,7 +612,7 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
         if tri is not None and len(used) >= 3:
             ax.tricontourf(tri, used[value_col].to_numpy(dtype=float).copy(), levels=levels, cmap=cmap, norm=norm, extend="both", zorder=0)
     else:
-        print("Skipping current temperature station-contour fallback; URMA was unavailable, so background remains blank.")
+        print("Skipping current temperature station-contour fallback; RTMA was unavailable, so background remains blank.")
     outside_geom = geo.plot_domain.geometry.iloc[0].difference(geo.lix.geometry.union_all())
     gpd.GeoDataFrame(geometry=[outside_geom], crs=geo.plot_domain.crs).plot(ax=ax, facecolor="white", edgecolor="none", alpha=0.30, zorder=2)
     geo.counties.plot(ax=ax, facecolor="none", edgecolor="#9a9a9a", linewidth=0.55, zorder=3)
@@ -642,11 +646,11 @@ def plot_dataset(dataset_key: str, config: dict[str, Any], geo: GeoContext, manu
 def main() -> None:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     manual = load_manual_excludes()
-    print("Initiating URMA Grid Processing...")
+    print("Initiating RTMA/URMA Grid Processing...")
     try:
         urma_data = process_urma()
     except Exception as e:
-        print(f"URMA FETCH FAILED: {e}")
+        print(f"RTMA/URMA FETCH FAILED: {e}")
         urma_data = {}
     print("Initiating MRMS Grid Processing...")
     mrms_ok = True
@@ -661,7 +665,7 @@ def main() -> None:
         grid_data["precip_24h"] = mrms_data["precip_24h"]
         grid_data["precip_24h_x"] = mrms_data["x"]
         grid_data["precip_24h_y"] = mrms_data["y"]
-    manifest: dict[str, Any] = {"regions": {key: {"label": value["label"], "bbox": value["bbox"]} for key, value in REGIONS.items()}, "maps": {}, "current_temperature_timing": {key: value.isoformat() if isinstance(value, datetime) else value for key, value in grid_data.items() if key.startswith("air_temp_latest_") and key.endswith("_utc")}}
+    manifest: dict[str, Any] = {"regions": {key: {"label": value["label"], "bbox": value["bbox"]} for key, value in REGIONS.items()}, "maps": {}, "current_temperature_timing": {key: value.isoformat() if isinstance(value, datetime) else value for key, value in grid_data.items() if key.startswith("air_temp_latest_") and (key.endswith("_utc") or key.endswith("_model") or key.endswith("_hours"))}}
     for dataset_key, config in DATASETS.items():
         if dataset_key == "precip_24h" and not mrms_ok:
             for _, region_config in REGIONS.items():
