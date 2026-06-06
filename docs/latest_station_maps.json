@@ -59,9 +59,9 @@
     "precip_24h": {
       "image": "lix_station_precip_24h_latest.png",
       "csv": "station_precip_24h_latest.csv",
-      "station_count": 360,
-      "used_in_contours": 360,
-      "excluded": 0,
+      "station_count": 392,
+      "used_in_contours": 291,
+      "excluded": 101,
       "region": "full",
       "region_label": "Full LIX Area",
       "status": "ok",
@@ -77,9 +77,9 @@
     "air_temp_latest": {
       "image": "lix_station_air_temp_latest.png",
       "csv": "station_air_temp_latest.csv",
-      "station_count": 389,
-      "used_in_contours": 383,
-      "excluded": 6,
+      "station_count": 395,
+      "used_in_contours": 388,
+      "excluded": 7,
       "region": "full",
       "region_label": "Full LIX Area",
       "status": "ok",
@@ -95,9 +95,9 @@
     "air_temp_daily_min": {
       "image": "lix_station_air_temp_daily_min_latest.png",
       "csv": "station_air_temp_daily_min_latest.csv",
-      "station_count": 413,
-      "used_in_contours": 402,
-      "excluded": 11,
+      "station_count": 406,
+      "used_in_contours": 399,
+      "excluded": 7,
       "region": "full",
       "region_label": "Full LIX Area",
       "status": "ok",
@@ -130,12 +130,12 @@
     }
   },
   "current_temperature_timing": {
-    "air_temp_latest_obs_median_utc": "2026-06-06T12:10:00+00:00",
-    "air_temp_latest_obs_target_utc": "2026-06-06T12:00:00+00:00",
-    "air_temp_latest_obs_min_utc": "2026-06-06T11:00:00+00:00",
-    "air_temp_latest_obs_max_utc": "2026-06-06T12:20:00+00:00",
-    "air_temp_latest_valid_utc": "2026-06-06T11:00:00+00:00",
+    "air_temp_latest_obs_median_utc": "2026-06-06T14:45:00+00:00",
+    "air_temp_latest_obs_target_utc": "2026-06-06T14:00:00+00:00",
+    "air_temp_latest_obs_min_utc": "2026-06-06T13:30:00+00:00",
+    "air_temp_latest_obs_max_utc": "2026-06-06T14:53:00+00:00",
+    "air_temp_latest_valid_utc": "2026-06-06T14:00:00+00:00",
     "air_temp_latest_grid_model": "RTMA",
-    "air_temp_latest_grid_lag_hours": 1.0
+    "air_temp_latest_grid_lag_hours": 0.0
   }
 }
