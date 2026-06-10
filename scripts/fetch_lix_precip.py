@@ -283,10 +283,10 @@ def plot_map(
 ) -> None:
     minx, miny, maxx, maxy = plot_domain.total_bounds 
 
-    fig = plt.figure(figsize=(16, 11.5), facecolor="#f2f2f2") 
+    fig = plt.figure(figsize=(13, 11.5), facecolor="#f2f2f2")
 
     # Header block
-    ax_head = fig.add_axes([0.03, 0.84, 0.94, 0.13]) 
+    ax_head = fig.add_axes([0.025, 0.84, 0.95, 0.13])
     ax_head.set_facecolor("white") 
     for s in ax_head.spines.values(): 
         s.set_linewidth(1.8) 
@@ -308,7 +308,8 @@ def plot_map(
     )
 
     # Main map
-    ax = fig.add_axes([0.03, 0.07, 0.78, 0.75]) 
+    ax = fig.add_axes([0.025, 0.07, 0.735, 0.77])
+    ax.set_anchor("W")
     ax.set_facecolor("white") 
     for s in ax.spines.values(): 
         s.set_linewidth(1.8) 
@@ -419,7 +420,7 @@ def plot_map(
     ax.set_yticks([]) 
 
     # Legend panel
-    ax_leg = fig.add_axes([0.82, 0.07, 0.15, 0.75]) 
+    ax_leg = fig.add_axes([0.762, 0.07, 0.213, 0.77])
     ax_leg.set_facecolor("white") 
     for s in ax_leg.spines.values(): 
         s.set_linewidth(1.8) 
@@ -461,7 +462,13 @@ def plot_map(
     ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left") 
 
     png_path = OUT_DIR / f"lix_{period_key}_precip_latest.png"
-    fig.savefig(png_path, dpi=170, bbox_inches="tight") 
+    fig.savefig(
+        png_path,
+        dpi=170,
+        bbox_inches="tight",
+        pad_inches=0.03,
+        facecolor=fig.get_facecolor(),
+    )
     plt.close(fig) 
 
 
