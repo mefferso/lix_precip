@@ -106,7 +106,7 @@ AREAS = {
         "label": "New Orleans Metro",
         "bbox": (-90.70, 29.50, -89.50, 30.25),
         "cities": [
-            {"name": "New Orleans", "lat": 29.9511, "lon": -90.0715},
+            {"name": "French Quarter", "lat": 29.9511, "lon": -90.0715},
             {"name": "Kenner",      "lat": 29.9941, "lon": -90.2417},
             {"name": "LaPlace",     "lat": 30.0666, "lon": -90.4801},
             {"name": "Destrehan",   "lat": 29.9432, "lon": -90.3534},
@@ -116,15 +116,18 @@ AREAS = {
             {"name": "Avondale",      "lat": 29.90, "lon": -90.19},
             {"name": "Des Allemands",      "lat": 29.83, "lon": -90.43},
             {"name": "New Orleans East Area",      "lat": 30.07, "lon": -89.93},
-            {"name": "Myrtl Grove",      "lat": 29.63, "lon": -89.95},
+            {"name": "Myrtle Grove",      "lat": 29.63, "lon": -89.95},
             {"name": "Lafitte",      "lat": 29.69, "lon": -90.10},
             {"name": "Larose",      "lat": 29.57, "lon": -90.37},
             {"name": "Yscloskey",      "lat": 29.84, "lon": -89.69},
+            {"name": "Lockport",      "lat": 29.65517188, "lon": 90.53193954},
+            {"name": "Raceland",      "lat": 29.72, "lon": -90.60},
+            {"name": "Norco",      "lat": 30.00, "lon": -90.41},
         ],
     },
     "southwest_ms": {
         "label": "Southwest MS",
-        "bbox": (-91.55, 30.70, -89.65, 31.95),
+        "bbox": (-91.64, 30.73, -89.82, 31.92)
         "cities": [
             {"name": "Woodville",   "lat": 31.1046, "lon": -91.2993},
             {"name": "Liberty",     "lat": 31.1582, "lon": -90.8126},
@@ -140,12 +143,11 @@ AREAS = {
         "label": "Coastal MS",
         "bbox": (-89.85, 29.95, -88.25, 30.91),
         "cities": [
-            {"name": "Bay St. Louis", "lat": 30.3088, "lon": -89.3301},
             {"name": "Diamondhead",   "lat": 30.3946, "lon": -89.3639},
             {"name": "Pass Christian",    "lat": 30.32, "lon": -89.24},
             {"name": "Gulfport",      "lat": 30.3674, "lon": -89.0928},
             {"name": "Biloxi",        "lat": 30.3960, "lon": -88.8853},
-            {"name": "Ocean Springs", "lat": 30.4113, "lon": -88.8278},
+            {"name": "Waveland", "lat": 30.29, "lon": -89.39},
             {"name": "Pascagoula",    "lat": 30.3658, "lon": -88.5561},
             {"name": "Saucier",    "lat": 30.63, "lon": -89.14},
             {"name": "Lyman",    "lat": 30.50, "lon": -89.13},
