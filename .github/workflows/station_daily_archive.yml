@@ -55,6 +55,10 @@ jobs:
           pip install -r requirements.txt
           pip install 'herbie-data[extras]' s3fs
 
+      - name: Patch station map layout
+        run: |
+          python scripts/patch_station_map_layout.py
+
       - name: Build station daily archive
         env:
           SYNOPTIC_TOKEN: ${{ secrets.SYNOPTIC_TOKEN }}
