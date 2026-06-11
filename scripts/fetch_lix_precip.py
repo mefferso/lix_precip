@@ -125,15 +125,21 @@ AREAS = {
     },
     "coastal_ms": {
         "label": "Coastal MS",
-        "bbox": (-89.65, 29.95, -88.25, 31.15),
+        "bbox": (-89.85, 29.95, -88.25, 30.91),
         "cities": [
             {"name": "Bay St. Louis", "lat": 30.3088, "lon": -89.3301},
             {"name": "Diamondhead",   "lat": 30.3946, "lon": -89.3639},
-            {"name": "Long Beach",    "lat": 30.3505, "lon": -89.1528},
+            {"name": "Pass Christian",    "lat": 30.32, "lon": -89.24},
             {"name": "Gulfport",      "lat": 30.3674, "lon": -89.0928},
             {"name": "Biloxi",        "lat": 30.3960, "lon": -88.8853},
             {"name": "Ocean Springs", "lat": 30.4113, "lon": -88.8278},
             {"name": "Pascagoula",    "lat": 30.3658, "lon": -88.5561},
+            {"name": "Saucier",    "lat": 30.63, "lon": -89.14},
+            {"name": "Lyman",    "lat": 30.50, "lon": -89.13},
+            {"name": "Vancleave",    "lat": 30.54, "lon": -88.67},
+            {"name": "Wade",    "lat": 30.64, "lon": -88.57},
+            {"name": "Pearlington",    "lat": 30.24, "lon": -89.60},
+            {"name": "Picayune",    "lat": 30.53, "lon": -89.68},
         ],
     },
     "northshore": {
