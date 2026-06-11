@@ -86,6 +86,10 @@ AREAS = {
             {"name": "Donaldsonville",  "lat": 30.1010, "lon": -90.9929},
             {"name": "New Roads",       "lat": 30.7016, "lon": -91.4365},
             {"name": "St. Francisville", "lat": 30.7799, "lon": -91.3765},
+            {"name": "Grosse Tete", "lat": 30.42, "lon": -91.43},
+            {"name": "White Hall", "lat": 30.30, "lon": -90.70},
+            {"name": "Montpelier", "lat": 30.68, "lon": -90.65},
+            {"name": "Clinton", "lat": 30.86, "lon": -91.01},
         ],
     },
     "new_orleans_metro": {
