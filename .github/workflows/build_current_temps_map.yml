@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/fetch_lix_obs.py'
       - 'scripts/build_lix_obs_maps.py'
+      - 'scripts/patch_station_map_layout.py'
       - 'scripts/build_4panel.py'
       - 'data/manual_station_excludes.json'
       - '.github/workflows/build_current_temps_map.yml'
@@ -61,6 +62,10 @@ jobs:
           else
             python scripts/fetch_lix_obs.py
           fi
+
+      - name: Patch station map layout
+        run: |
+          python scripts/patch_station_map_layout.py
 
       - name: Build station PNG maps
         run: |
