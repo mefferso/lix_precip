@@ -76,7 +76,7 @@ AREAS = {
     },
     "baton_rouge_metro": {
         "label": "Baton Rouge Metro",
-        "bbox": (-91.95, 30.00, -90.65, 30.85),
+        "bbox": (-91.85, 30.00, -90.56, 31.00),
         "cities": [
             {"name": "Baton Rouge",     "lat": 30.4515, "lon": -91.1871},
             {"name": "Zachary",         "lat": 30.6485, "lon": -91.1565},
