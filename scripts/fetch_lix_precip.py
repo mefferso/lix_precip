@@ -38,7 +38,7 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 LOCAL_TZ = ZoneInfo("America/Chicago")
 FULL_AREA_KEY = "full"
 
-# Zoomed-in plot extent centered on LIX (LA/MS)
+# Full LIX plot extent
 PLOT_BBOX = (-92.5, 28.5, -88.0, 32.0)
 
 # Wider extent for the index (locator) map
@@ -66,6 +66,8 @@ FULL_AREA_CITIES = [
     {"name": "Houma",       "lat": 29.5958, "lon": -90.7195},
 ]
 
+# Zoomed areas intentionally keep city samples sparse. Too many nearby towns make
+# the labels fight each other and turn the map into meteorological spaghetti.
 AREAS = {
     FULL_AREA_KEY: {
         "label": "Full LIX Area",
@@ -74,34 +76,26 @@ AREAS = {
     },
     "baton_rouge_metro": {
         "label": "Baton Rouge Metro",
-        "bbox": (-91.85, 29.85, -90.75, 31.15),
+        "bbox": (-91.95, 30.00, -90.65, 30.85),
         "cities": [
             {"name": "Baton Rouge",     "lat": 30.4515, "lon": -91.1871},
-            {"name": "Port Allen",      "lat": 30.4521, "lon": -91.2101},
             {"name": "Zachary",         "lat": 30.6485, "lon": -91.1565},
-            {"name": "Baker",           "lat": 30.5882, "lon": -91.1682},
             {"name": "Denham Springs",  "lat": 30.4869, "lon": -90.9562},
-            {"name": "Livingston",      "lat": 30.5021, "lon": -90.7479},
             {"name": "Gonzales",        "lat": 30.2385, "lon": -90.9201},
-            {"name": "Prairieville",    "lat": 30.3020, "lon": -90.9721},
             {"name": "Plaquemine",      "lat": 30.2891, "lon": -91.2343},
             {"name": "Donaldsonville",  "lat": 30.1010, "lon": -90.9929},
             {"name": "New Roads",       "lat": 30.7016, "lon": -91.4365},
             {"name": "St. Francisville", "lat": 30.7799, "lon": -91.3765},
-            {"name": "Clinton",         "lat": 30.8657, "lon": -91.0157},
         ],
     },
     "new_orleans_metro": {
         "label": "New Orleans Metro",
-        "bbox": (-90.65, 29.55, -89.55, 30.35),
+        "bbox": (-90.70, 29.50, -89.50, 30.25),
         "cities": [
             {"name": "New Orleans", "lat": 29.9511, "lon": -90.0715},
-            {"name": "Metairie",    "lat": 29.9841, "lon": -90.1529},
             {"name": "Kenner",      "lat": 29.9941, "lon": -90.2417},
             {"name": "LaPlace",     "lat": 30.0666, "lon": -90.4801},
-            {"name": "Reserve",     "lat": 30.0538, "lon": -90.5518},
             {"name": "Destrehan",   "lat": 29.9432, "lon": -90.3534},
-            {"name": "Marrero",     "lat": 29.8994, "lon": -90.1003},
             {"name": "Chalmette",   "lat": 29.9427, "lon": -89.9634},
             {"name": "Belle Chasse", "lat": 29.8549, "lon": -89.9906},
             {"name": "Violet",      "lat": 29.8958, "lon": -89.8978},
@@ -109,45 +103,36 @@ AREAS = {
     },
     "southwest_ms": {
         "label": "Southwest MS",
-        "bbox": (-91.75, 30.80, -89.55, 31.85),
+        "bbox": (-91.70, 30.80, -89.45, 31.85),
         "cities": [
-            {"name": "McComb",      "lat": 31.2438, "lon": -90.4532},
-            {"name": "Summit",      "lat": 31.2838, "lon": -90.4687},
-            {"name": "Magnolia",    "lat": 31.1432, "lon": -90.4587},
-            {"name": "Tylertown",   "lat": 31.1160, "lon": -90.1426},
-            {"name": "Liberty",     "lat": 31.1582, "lon": -90.8126},
-            {"name": "Gloster",     "lat": 31.1977, "lon": -91.0212},
-            {"name": "Centreville", "lat": 31.0896, "lon": -91.0682},
             {"name": "Woodville",   "lat": 31.1046, "lon": -91.2993},
+            {"name": "Liberty",     "lat": 31.1582, "lon": -90.8126},
+            {"name": "McComb",      "lat": 31.2438, "lon": -90.4532},
+            {"name": "Tylertown",   "lat": 31.1160, "lon": -90.1426},
             {"name": "Poplarville", "lat": 30.8402, "lon": -89.5342},
         ],
     },
     "coastal_ms": {
         "label": "Coastal MS",
-        "bbox": (-89.75, 30.10, -88.25, 30.75),
+        "bbox": (-89.65, 29.95, -88.25, 31.15),
         "cities": [
             {"name": "Bay St. Louis", "lat": 30.3088, "lon": -89.3301},
-            {"name": "Waveland",      "lat": 30.2869, "lon": -89.3762},
             {"name": "Diamondhead",   "lat": 30.3946, "lon": -89.3639},
             {"name": "Long Beach",    "lat": 30.3505, "lon": -89.1528},
             {"name": "Gulfport",      "lat": 30.3674, "lon": -89.0928},
             {"name": "Biloxi",        "lat": 30.3960, "lon": -88.8853},
-            {"name": "D'Iberville",   "lat": 30.4263, "lon": -88.8909},
             {"name": "Ocean Springs", "lat": 30.4113, "lon": -88.8278},
             {"name": "Pascagoula",    "lat": 30.3658, "lon": -88.5561},
         ],
     },
     "northshore": {
         "label": "Northshore of Lake Pontchartrain",
-        "bbox": (-90.75, 29.95, -89.45, 30.85),
+        "bbox": (-90.75, 29.95, -89.45, 30.95),
         "cities": [
             {"name": "Hammond",       "lat": 30.5044, "lon": -90.4612},
-            {"name": "Ponchatoula",   "lat": 30.4388, "lon": -90.4415},
             {"name": "Madisonville",  "lat": 30.4030, "lon": -90.1617},
-            {"name": "Mandeville",    "lat": 30.3583, "lon": -90.0656},
             {"name": "Covington",     "lat": 30.4755, "lon": -90.1009},
-            {"name": "Abita Springs", "lat": 30.4785, "lon": -90.0376},
-            {"name": "Lacombe",       "lat": 30.3135, "lon": -89.9434},
+            {"name": "Mandeville",    "lat": 30.3583, "lon": -90.0656},
             {"name": "Slidell",       "lat": 30.2752, "lon": -89.7812},
             {"name": "Pearl River",   "lat": 30.3760, "lon": -89.7484},
             {"name": "Franklinton",   "lat": 30.8471, "lon": -90.1531},
@@ -397,6 +382,7 @@ def plot_map(
     area_bbox: tuple[float, float, float, float],
 ) -> None:
     minx, miny, maxx, maxy = plot_domain.total_bounds
+    is_zoomed = area_key != FULL_AREA_KEY
 
     fig = plt.figure(figsize=(13, 11.5), facecolor="#f2f2f2")
 
@@ -409,8 +395,8 @@ def plot_map(
     ax_head.set_xticks([])
     ax_head.set_yticks([])
 
-    area_prefix = "" if area_key == FULL_AREA_KEY else f"{area_label} — "
-    header_fontsize = 18 if area_key == FULL_AREA_KEY else 16
+    area_prefix = "" if not is_zoomed else f"{area_label} — "
+    header_fontsize = 18 if not is_zoomed else 16
 
     ax_head.text(0.5, 0.78, SUBTITLE, ha="center", va="center", fontsize=24, fontweight="bold")
     ax_head.text(0.5, 0.60, "Data Source: water.noaa.gov", ha="center", va="center", fontsize=17, fontweight="bold")
@@ -425,9 +411,11 @@ def plot_map(
         fontweight="bold",
     )
 
-    # Main map
+    # Main map. Keep the axes box fixed and allow the data to fill it so zoomed
+    # maps do not collapse into a tiny strip with giant gray margins.
     ax = fig.add_axes([0.025, 0.07, 0.757, 0.77])
     ax.set_anchor("W")
+    ax.set_aspect("auto")
     ax.set_facecolor("white")
     for s in ax.spines.values():
         s.set_linewidth(1.8)
@@ -440,6 +428,7 @@ def plot_map(
         cmap=CMAP,
         norm=norm,
         interpolation="bilinear",
+        aspect="auto",
         zorder=0,
     )
 
@@ -450,13 +439,8 @@ def plot_map(
     outside_gdf = gpd.GeoDataFrame(geometry=[outside_geom], crs=plot_domain.crs)
     outside_gdf.plot(ax=ax, facecolor="white", edgecolor="none", alpha=0.40, zorder=1)
 
-    # County outlines over the top
     counties.plot(ax=ax, facecolor="none", edgecolor="#b7b7b7", linewidth=0.55, zorder=2)
-
-    # State outlines
     states.plot(ax=ax, facecolor="none", edgecolor="#555555", linewidth=1.5, zorder=3)
-
-    # LIX boundary bold
     lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4)
 
     # North Arrow
@@ -482,7 +466,7 @@ def plot_map(
     states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=0.8, zorder=1)
     lix.plot(ax=ax_in, facecolor="#ff9900", edgecolor="black", linewidth=1.2, zorder=2)
 
-    if area_key != FULL_AREA_KEY:
+    if is_zoomed:
         area_outline = gpd.GeoDataFrame(geometry=[box(*area_bbox)], crs=4326).to_crs(plot_domain.crs)
         area_outline.boundary.plot(ax=ax_in, color="#d00000", linewidth=1.8, zorder=4)
 
@@ -509,6 +493,9 @@ def plot_map(
     # City dots, sampling, and labels
     rx_min, rx_max, ry_min, ry_max = raster_extent_3857
     height, width = raster_arr.shape
+    label_offset = (maxy - miny) * (0.012 if is_zoomed else 0.015)
+    city_fontsize = 9.5 if is_zoomed else 11
+    marker_size = 4.5 if is_zoomed else 5
 
     for _, row in cities.iterrows():
         x, y = row.geometry.x, row.geometry.y
@@ -528,16 +515,17 @@ def plot_map(
 
         label_text = f"{row['name']}\n{val_str}\""
 
-        ax.plot(x, y, 'o', color='white', markeredgecolor='black', markersize=5, zorder=5)
+        ax.plot(x, y, 'o', color='white', markeredgecolor='black', markersize=marker_size, zorder=5)
         ax.text(
-            x, y + 8000, label_text,
-            color='black', fontsize=11, fontweight='bold', ha='center', va='bottom',
+            x, y + label_offset, label_text,
+            color='black', fontsize=city_fontsize, fontweight='bold', ha='center', va='bottom',
             path_effects=[pe.withStroke(linewidth=2.5, foreground="white")],
             zorder=6
         )
 
     ax.set_xlim(minx, maxx)
     ax.set_ylim(miny, maxy)
+    ax.set_aspect("auto")
     ax.set_xticks([])
     ax.set_yticks([])
 
@@ -552,19 +540,15 @@ def plot_map(
 
     ax_leg.text(0.5, 0.96, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold")
 
-    # Dynamically build labels from the provided levels array
     labels = []
     for i in range(len(levels) - 1):
         if i == len(levels) - 2:
-            # The top bucket gets a "Greater than" label
             labels.append(f"Greater than {levels[i]:g}")
         else:
             labels.append(f"{levels[i]:g} to {levels[i+1]:g}")
 
-    # Reverse labels to map correctly from top-to-bottom layout
     labels = labels[::-1]
 
-    # Adjusted y0 and dy to fix bottom clipping
     y0 = 0.86
     dy = 0.041
     for i, (label, color) in enumerate(zip(labels, COLORS[::-1])):
@@ -574,7 +558,6 @@ def plot_map(
         )
         ax_leg.text(0.36, y - 0.003, label, fontsize=10, va="center", ha="left")
 
-    # Missing data patch
     y = y0 - len(labels) * dy
     ax_leg.add_patch(
         plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color="#8f8f8f", transform=ax_leg.transAxes, clip_on=False)
@@ -619,7 +602,6 @@ def main() -> None:
             days = period_info.get("days", 1)
             noaa_str = period_info["noaa_str"]
 
-            # Generate dynamic levels for this specific period
             levels = get_dynamic_levels(period_key, days)
             norm = BoundaryNorm(levels, CMAP.N, clip=False)
 
@@ -640,17 +622,14 @@ def main() -> None:
                 )
 
                 if days == 1:
-                    # Standard single-file fetch (1day, mtd, ytd)
                     tif_path = fetch_stageiv_qpe(window.end, noaa_str)
                     raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path, area_bbox)
                     source_tif_name = tif_path.name
                 else:
-                    # Multi-day fetch and sum
                     sum_arr = None
                     raster_extent_3857 = None
 
                     for i in range(days):
-                        # Step back one day at a time
                         day_dt = window.end - timedelta(days=i)
                         tif_path = fetch_stageiv_qpe(day_dt, noaa_str)
                         arr, ext = read_raster_for_plotting(tif_path, area_bbox)
@@ -659,7 +638,6 @@ def main() -> None:
                             sum_arr = arr
                             raster_extent_3857 = ext
                         else:
-                            # Safely sum arrays while preserving NaN (missing data) transparent rendering
                             all_nan = np.isnan(sum_arr) & np.isnan(arr)
                             sum_arr = np.nansum([sum_arr, arr], axis=0)
                             sum_arr[all_nan] = np.nan
