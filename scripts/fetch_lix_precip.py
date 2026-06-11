@@ -76,7 +76,7 @@ AREAS = {
     },
     "baton_rouge_metro": {
         "label": "Baton Rouge Metro",
-        "bbox": (-91.85, 30.00, -90.56, 31.00),
+        "bbox": (-91.85, 30.00, -90.45, 31.05),
         "cities": [
             {"name": "Baton Rouge",     "lat": 30.4515, "lon": -91.1871},
             {"name": "Zachary",         "lat": 30.6485, "lon": -91.1565},
@@ -103,6 +103,13 @@ AREAS = {
             {"name": "Chalmette",   "lat": 29.9427, "lon": -89.9634},
             {"name": "Belle Chasse", "lat": 29.8549, "lon": -89.9906},
             {"name": "Violet",      "lat": 29.8958, "lon": -89.8978},
+            {"name": "Avondale",      "lat": 29.90, "lon": -90.19},
+            {"name": "Des Allemands",      "lat": 29.83, "lon": -90.43},
+            {"name": "New Orleans East Area",      "lat": 30.07, "lon": -89.93},
+            {"name": "Myrtl Grove",      "lat": 29.63, "lon": -89.95},
+            {"name": "Lafitte",      "lat": 29.69, "lon": -90.10},
+            {"name": "Larose",      "lat": 29.57, "lon": -90.37},
+            {"name": "Yscloskey",      "lat": 29.84, "lon": -89.69},
         ],
     },
     "southwest_ms": {
