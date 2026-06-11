@@ -7,6 +7,7 @@ import zipfile
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import geopandas as gpd
 import matplotlib.pyplot as plt
@@ -34,16 +35,19 @@ RAW_DIR.mkdir(parents=True, exist_ok=True)
 SHAPE_DIR.mkdir(parents=True, exist_ok=True)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
+LOCAL_TZ = ZoneInfo("America/Chicago")
+FULL_AREA_KEY = "full"
+
 # Zoomed-in plot extent centered on LIX (LA/MS)
-PLOT_BBOX = (-92.5, 28.5, -88.0, 32.0) 
+PLOT_BBOX = (-92.5, 28.5, -88.0, 32.0)
 
 # Wider extent for the index (locator) map
-INDEX_BBOX = (-95.0, 28.5, -84.0, 35.0) 
+INDEX_BBOX = (-95.0, 28.5, -84.0, 35.0)
 
-CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip" 
-COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip" 
-STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/County/s_16ap26.zip" 
-TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana" 
+CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
+COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
+STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/County/s_16ap26.zip"
+TITLE_OFFICE = "National Weather Service New Orleans/Baton Rouge Louisiana"
 SUBTITLE = "Estimated Rainfall"
 
 DESCRIPTION = (
@@ -51,7 +55,7 @@ DESCRIPTION = (
     "Rainfall shading is from official NWPS / RFC Stage IV multi-sensor QPE."
 )
 
-CITIES = [
+FULL_AREA_CITIES = [
     {"name": "Baton Rouge", "lat": 30.4515, "lon": -91.1871},
     {"name": "New Orleans", "lat": 29.9511, "lon": -90.0715},
     {"name": "Gulfport",    "lat": 30.3674, "lon": -89.0928},
@@ -60,7 +64,97 @@ CITIES = [
     {"name": "Hammond",     "lat": 30.5044, "lon": -90.4612},
     {"name": "Bogalusa",    "lat": 30.7910, "lon": -89.8487},
     {"name": "Houma",       "lat": 29.5958, "lon": -90.7195},
-] 
+]
+
+AREAS = {
+    FULL_AREA_KEY: {
+        "label": "Full LIX Area",
+        "bbox": PLOT_BBOX,
+        "cities": FULL_AREA_CITIES,
+    },
+    "baton_rouge_metro": {
+        "label": "Baton Rouge Metro",
+        "bbox": (-91.85, 29.85, -90.75, 31.15),
+        "cities": [
+            {"name": "Baton Rouge",     "lat": 30.4515, "lon": -91.1871},
+            {"name": "Port Allen",      "lat": 30.4521, "lon": -91.2101},
+            {"name": "Zachary",         "lat": 30.6485, "lon": -91.1565},
+            {"name": "Baker",           "lat": 30.5882, "lon": -91.1682},
+            {"name": "Denham Springs",  "lat": 30.4869, "lon": -90.9562},
+            {"name": "Livingston",      "lat": 30.5021, "lon": -90.7479},
+            {"name": "Gonzales",        "lat": 30.2385, "lon": -90.9201},
+            {"name": "Prairieville",    "lat": 30.3020, "lon": -90.9721},
+            {"name": "Plaquemine",      "lat": 30.2891, "lon": -91.2343},
+            {"name": "Donaldsonville",  "lat": 30.1010, "lon": -90.9929},
+            {"name": "New Roads",       "lat": 30.7016, "lon": -91.4365},
+            {"name": "St. Francisville", "lat": 30.7799, "lon": -91.3765},
+            {"name": "Clinton",         "lat": 30.8657, "lon": -91.0157},
+        ],
+    },
+    "new_orleans_metro": {
+        "label": "New Orleans Metro",
+        "bbox": (-90.65, 29.55, -89.55, 30.35),
+        "cities": [
+            {"name": "New Orleans", "lat": 29.9511, "lon": -90.0715},
+            {"name": "Metairie",    "lat": 29.9841, "lon": -90.1529},
+            {"name": "Kenner",      "lat": 29.9941, "lon": -90.2417},
+            {"name": "LaPlace",     "lat": 30.0666, "lon": -90.4801},
+            {"name": "Reserve",     "lat": 30.0538, "lon": -90.5518},
+            {"name": "Destrehan",   "lat": 29.9432, "lon": -90.3534},
+            {"name": "Marrero",     "lat": 29.8994, "lon": -90.1003},
+            {"name": "Chalmette",   "lat": 29.9427, "lon": -89.9634},
+            {"name": "Belle Chasse", "lat": 29.8549, "lon": -89.9906},
+            {"name": "Violet",      "lat": 29.8958, "lon": -89.8978},
+        ],
+    },
+    "southwest_ms": {
+        "label": "Southwest MS",
+        "bbox": (-91.75, 30.80, -89.55, 31.85),
+        "cities": [
+            {"name": "McComb",      "lat": 31.2438, "lon": -90.4532},
+            {"name": "Summit",      "lat": 31.2838, "lon": -90.4687},
+            {"name": "Magnolia",    "lat": 31.1432, "lon": -90.4587},
+            {"name": "Tylertown",   "lat": 31.1160, "lon": -90.1426},
+            {"name": "Liberty",     "lat": 31.1582, "lon": -90.8126},
+            {"name": "Gloster",     "lat": 31.1977, "lon": -91.0212},
+            {"name": "Centreville", "lat": 31.0896, "lon": -91.0682},
+            {"name": "Woodville",   "lat": 31.1046, "lon": -91.2993},
+            {"name": "Poplarville", "lat": 30.8402, "lon": -89.5342},
+        ],
+    },
+    "coastal_ms": {
+        "label": "Coastal MS",
+        "bbox": (-89.75, 30.10, -88.25, 30.75),
+        "cities": [
+            {"name": "Bay St. Louis", "lat": 30.3088, "lon": -89.3301},
+            {"name": "Waveland",      "lat": 30.2869, "lon": -89.3762},
+            {"name": "Diamondhead",   "lat": 30.3946, "lon": -89.3639},
+            {"name": "Long Beach",    "lat": 30.3505, "lon": -89.1528},
+            {"name": "Gulfport",      "lat": 30.3674, "lon": -89.0928},
+            {"name": "Biloxi",        "lat": 30.3960, "lon": -88.8853},
+            {"name": "D'Iberville",   "lat": 30.4263, "lon": -88.8909},
+            {"name": "Ocean Springs", "lat": 30.4113, "lon": -88.8278},
+            {"name": "Pascagoula",    "lat": 30.3658, "lon": -88.5561},
+        ],
+    },
+    "northshore": {
+        "label": "Northshore of Lake Pontchartrain",
+        "bbox": (-90.75, 29.95, -89.45, 30.85),
+        "cities": [
+            {"name": "Hammond",       "lat": 30.5044, "lon": -90.4612},
+            {"name": "Ponchatoula",   "lat": 30.4388, "lon": -90.4415},
+            {"name": "Madisonville",  "lat": 30.4030, "lon": -90.1617},
+            {"name": "Mandeville",    "lat": 30.3583, "lon": -90.0656},
+            {"name": "Covington",     "lat": 30.4755, "lon": -90.1009},
+            {"name": "Abita Springs", "lat": 30.4785, "lon": -90.0376},
+            {"name": "Lacombe",       "lat": 30.3135, "lon": -89.9434},
+            {"name": "Slidell",       "lat": 30.2752, "lon": -89.7812},
+            {"name": "Pearl River",   "lat": 30.3760, "lon": -89.7484},
+            {"name": "Franklinton",   "lat": 30.8471, "lon": -90.1531},
+            {"name": "Bogalusa",      "lat": 30.7910, "lon": -89.8487},
+        ],
+    },
+}
 
 # Mapping keys to NOAA's exact filename strings and readable titles
 PERIODS = {
@@ -81,180 +175,192 @@ PERIODS = {
 # 16 Colors for the colormap.
 COLORS = [
     "#67c6e5",  # 0.01 to 0.1 (Base example)
-    "#6e9ad0",  
-    "#4b4aa7",  
-    "#57ea58",  
-    "#52b852",  
-    "#4d8c50",  
-    "#eceb59",  
-    "#efd27a",  
-    "#eda24f",  
-    "#ff4b4b",  
-    "#c7484d",  
-    "#a44a50",  
-    "#e43ee0",  
-    "#9362d6",  
-    "#d9d9d9",  
+    "#6e9ad0",
+    "#4b4aa7",
+    "#57ea58",
+    "#52b852",
+    "#4d8c50",
+    "#eceb59",
+    "#efd27a",
+    "#eda24f",
+    "#ff4b4b",
+    "#c7484d",
+    "#a44a50",
+    "#e43ee0",
+    "#9362d6",
+    "#d9d9d9",
     "#bcbcbc",  # Highest tier
-] 
+]
 
-CMAP = ListedColormap(COLORS) 
-CMAP.set_under((1, 1, 1, 0))   # <0.01 transparent 
-CMAP.set_bad("#8f8f8f")        # missing data gray 
+CMAP = ListedColormap(COLORS)
+CMAP.set_under((1, 1, 1, 0))   # <0.01 transparent
+CMAP.set_bad("#8f8f8f")        # missing data gray
 
 
 @dataclass
 class TimeWindow:
-    start: datetime 
-    end: datetime 
+    start: datetime
+    end: datetime
 
 
 def infer_default_end(now_utc: datetime | None = None) -> datetime:
-    now_utc = now_utc or datetime.now(timezone.utc) 
-    today_12z = now_utc.replace(hour=12, minute=0, second=0, microsecond=0) 
+    now_utc = now_utc or datetime.now(timezone.utc)
+    today_12z = now_utc.replace(hour=12, minute=0, second=0, microsecond=0)
 
     # Start trying today's 12Z product at 13Z.
     # The workflow runs several times in the morning, so early failures can be
     # followed by later retries once water.noaa.gov posts the latest file.
     if now_utc >= today_12z + timedelta(hours=1):
-        return today_12z 
-    return today_12z - timedelta(days=1) 
+        return today_12z
+    return today_12z - timedelta(days=1)
 
 
 def parse_end_arg() -> datetime:
-    if len(sys.argv) > 1: 
-        return datetime.strptime(sys.argv[1], "%Y%m%d%H%M").replace(tzinfo=timezone.utc) 
-    return infer_default_end() 
+    if len(sys.argv) > 1:
+        return datetime.strptime(sys.argv[1], "%Y%m%d%H%M").replace(tzinfo=timezone.utc)
+    return infer_default_end()
 
 
 def build_time_window(end_dt: datetime) -> TimeWindow:
-    return TimeWindow(start=end_dt - timedelta(hours=24), end=end_dt) 
+    return TimeWindow(start=end_dt - timedelta(hours=24), end=end_dt)
 
 
 def format_local_end(dt: datetime) -> str:
-    local_dt = dt.astimezone(timezone(timedelta(hours=-5)))
-    hour = local_dt.strftime("%-I%p").lower()
+    local_dt = dt.astimezone(LOCAL_TZ)
+    hour = local_dt.strftime("%I%p").lstrip("0").lower()
     return f"{hour} {local_dt.month}/{local_dt.day}/{local_dt.year}"
 
 
+def precip_output_name(period_key: str, area_key: str) -> str:
+    if area_key == FULL_AREA_KEY:
+        return f"lix_{period_key}_precip_latest.png"
+    return f"lix_{period_key}_precip_{area_key}_latest.png"
+
+
 def download_if_missing(url: str, dest: Path) -> Path:
-    if dest.exists(): 
-        return dest 
-    print(f"Downloading: {url}") 
-    r = requests.get(url, timeout=180) 
-    r.raise_for_status() 
-    dest.write_bytes(r.content) 
-    return dest 
+    if dest.exists():
+        return dest
+    print(f"Downloading: {url}")
+    r = requests.get(url, timeout=180)
+    r.raise_for_status()
+    dest.write_bytes(r.content)
+    return dest
 
 
 def unzip(zip_path: Path, out_dir: Path) -> Path:
-    out_dir.mkdir(parents=True, exist_ok=True) 
-    with zipfile.ZipFile(zip_path) as zf: 
-        zf.extractall(out_dir) 
+    out_dir.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(zip_path) as zf:
+        zf.extractall(out_dir)
 
-    shp_files = list(out_dir.glob("*.shp")) 
-    if not shp_files: 
-        raise FileNotFoundError(f"No .shp found in {zip_path}") 
-    return shp_files[0] 
+    shp_files = list(out_dir.glob("*.shp"))
+    if not shp_files:
+        raise FileNotFoundError(f"No .shp found in {zip_path}")
+    return shp_files[0]
 
 
 def load_shapes() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame, gpd.GeoDataFrame]:
-    cwa_zip = download_if_missing(CWA_URL, RAW_DIR / "w_16ap26.zip") 
-    county_zip = download_if_missing(COUNTY_URL, RAW_DIR / "c_16ap26.zip") 
-    state_zip = download_if_missing(STATE_URL, RAW_DIR / "s_16ap26.zip") 
+    cwa_zip = download_if_missing(CWA_URL, RAW_DIR / "w_16ap26.zip")
+    county_zip = download_if_missing(COUNTY_URL, RAW_DIR / "c_16ap26.zip")
+    state_zip = download_if_missing(STATE_URL, RAW_DIR / "s_16ap26.zip")
 
-    cwa_shp = unzip(cwa_zip, SHAPE_DIR / "cwa") 
-    county_shp = unzip(county_zip, SHAPE_DIR / "county") 
-    state_shp = unzip(state_zip, SHAPE_DIR / "state") 
+    cwa_shp = unzip(cwa_zip, SHAPE_DIR / "cwa")
+    county_shp = unzip(county_zip, SHAPE_DIR / "county")
+    state_shp = unzip(state_zip, SHAPE_DIR / "state")
 
-    cwa = gpd.read_file(cwa_shp) 
-    counties = gpd.read_file(county_shp) 
-    states = gpd.read_file(state_shp) 
-    
-    return cwa, counties, states 
+    cwa = gpd.read_file(cwa_shp)
+    counties = gpd.read_file(county_shp)
+    states = gpd.read_file(state_shp)
+
+    return cwa, counties, states
 
 
 def stageiv_archive_url(end_dt: datetime, noaa_str: str) -> str:
-    y = end_dt.strftime("%Y") 
-    m = end_dt.strftime("%m") 
-    d = end_dt.strftime("%d") 
-    ymd = end_dt.strftime("%Y%m%d") 
+    y = end_dt.strftime("%Y")
+    m = end_dt.strftime("%m")
+    d = end_dt.strftime("%d")
+    ymd = end_dt.strftime("%Y%m%d")
     return f"https://water.noaa.gov/resources/downloads/precip/stageIV/{y}/{m}/{d}/nws_precip_{noaa_str}_{ymd}_conus.tif"
 
 
 def fetch_stageiv_qpe(end_dt: datetime, noaa_str: str) -> Path:
-    # Always pull from the archive structure, even for the current day, 
+    # Always pull from the archive structure, even for the current day,
     # to maintain consistent multi-day file naming conventions.
     tif_url = stageiv_archive_url(end_dt, noaa_str)
     tif_path = RAW_DIR / f"nws_precip_{noaa_str}_{end_dt.strftime('%Y%m%d')}_conus.tif"
 
     path = download_if_missing(tif_url, tif_path)
-    print(f"Used source raster: {path}") 
+    print(f"Used source raster: {path}")
     return path
 
 
-def prepare_geodata(cwa: gpd.GeoDataFrame, counties: gpd.GeoDataFrame, states: gpd.GeoDataFrame):
-    lix = cwa[cwa["CWA"] == "LIX"].copy() 
-    if lix.empty: 
-        raise RuntimeError("Could not find CWA=LIX in CWA shapefile.") 
+def prepare_geodata(
+    cwa: gpd.GeoDataFrame,
+    counties: gpd.GeoDataFrame,
+    states: gpd.GeoDataFrame,
+    plot_bbox: tuple[float, float, float, float],
+    city_points: list[dict[str, float | str]],
+):
+    lix = cwa[cwa["CWA"] == "LIX"].copy()
+    if lix.empty:
+        raise RuntimeError("Could not find CWA=LIX in CWA shapefile.")
 
-    counties = counties.to_crs(4326) 
-    states = states.to_crs(4326) 
-    lix = lix.to_crs(4326) 
+    counties = counties.to_crs(4326)
+    states = states.to_crs(4326)
+    lix = lix.to_crs(4326)
 
-    plot_bounds = box(*PLOT_BBOX) 
-    index_bounds = box(*INDEX_BBOX) 
-    
-    counties = counties[counties.intersects(plot_bounds)].copy() 
-    states = states[states.intersects(index_bounds)].copy() 
-    counties["in_lix"] = counties["CWA"].astype(str).str[:3].eq("LIX") 
+    plot_bounds = box(*plot_bbox)
+    index_bounds = box(*INDEX_BBOX)
 
-    plot_domain = gpd.GeoDataFrame(geometry=[plot_bounds], crs=4326) 
+    counties = counties[counties.intersects(plot_bounds)].copy()
+    states = states[states.intersects(index_bounds)].copy()
+    counties["in_lix"] = counties["CWA"].astype(str).str[:3].eq("LIX")
+
+    plot_domain = gpd.GeoDataFrame(geometry=[plot_bounds], crs=4326)
 
     cities_gdf = gpd.GeoDataFrame(
-        CITIES, 
-        geometry=gpd.points_from_xy([c["lon"] for c in CITIES], [c["lat"] for c in CITIES]), 
-        crs=4326 
+        city_points,
+        geometry=gpd.points_from_xy([c["lon"] for c in city_points], [c["lat"] for c in city_points]),
+        crs=4326,
+    )
+    cities_gdf = cities_gdf[cities_gdf.intersects(plot_bounds)].copy()
+
+    target_crs = 3857
+    return (
+        lix.to_crs(target_crs),
+        counties.to_crs(target_crs),
+        states.to_crs(target_crs),
+        plot_domain.to_crs(target_crs),
+        cities_gdf.to_crs(target_crs),
     )
 
-    target_crs = 3857 
-    return (
-        lix.to_crs(target_crs), 
-        counties.to_crs(target_crs), 
-        states.to_crs(target_crs), 
-        plot_domain.to_crs(target_crs), 
-        cities_gdf.to_crs(target_crs), 
-    ) 
 
+def read_raster_for_plotting(tif_path: Path, plot_bbox: tuple[float, float, float, float]):
+    target_crs = "EPSG:3857"
 
-def read_raster_for_plotting(tif_path: Path):
-    target_crs = "EPSG:3857" 
+    plot_box_4326 = gpd.GeoDataFrame(geometry=[box(*plot_bbox)], crs=4326)
+    plot_box_3857 = plot_box_4326.to_crs(target_crs)
+    xmin, ymin, xmax, ymax = plot_box_3857.total_bounds
 
-    plot_box_4326 = gpd.GeoDataFrame(geometry=[box(*PLOT_BBOX)], crs=4326) 
-    plot_box_3857 = plot_box_4326.to_crs(target_crs) 
-    xmin, ymin, xmax, ymax = plot_box_3857.total_bounds 
+    with rasterio.open(tif_path) as src:
+        with WarpedVRT(src, crs=target_crs, resampling=Resampling.bilinear) as vrt:
+            requested_window = from_bounds(xmin, ymin, xmax, ymax, transform=vrt.transform)
+            requested_window = requested_window.round_offsets().round_lengths()
 
-    with rasterio.open(tif_path) as src: 
-        with WarpedVRT(src, crs=target_crs, resampling=Resampling.bilinear) as vrt: # Changed from Resampling.nearest
-    # ... rest of the code 
-            requested_window = from_bounds(xmin, ymin, xmax, ymax, transform=vrt.transform) 
-            requested_window = requested_window.round_offsets().round_lengths() 
+            full_window = Window(0, 0, vrt.width, vrt.height)
+            window = requested_window.intersection(full_window)
 
-            full_window = Window(0, 0, vrt.width, vrt.height) 
-            window = requested_window.intersection(full_window) 
+            arr = vrt.read(1, window=window).astype(np.float32)
 
-            arr = vrt.read(1, window=window).astype(np.float32) 
+            nodata_value = vrt.nodata
+            if nodata_value is not None and not np.isnan(nodata_value):
+                arr = np.where(arr == nodata_value, np.nan, arr)
 
-            nodata_value = vrt.nodata 
-            if nodata_value is not None and not np.isnan(nodata_value): 
-                arr = np.where(arr == nodata_value, np.nan, arr) 
+            arr = np.where(arr < 0, np.nan, arr)
 
-            arr = np.where(arr < 0, np.nan, arr) 
+            left, bottom, right, top = window_bounds(window, vrt.transform)
 
-            left, bottom, right, top = window_bounds(window, vrt.transform) 
-
-    extent_3857 = [left, right, bottom, top] 
-    return arr, extent_3857 
+    extent_3857 = [left, right, bottom, top]
+    return arr, extent_3857
 
 
 def get_dynamic_levels(period_key: str, days: int) -> list[float]:
@@ -285,156 +391,166 @@ def plot_map(
     period_key: str,
     period_title: str,
     levels: list[float],
-    norm: BoundaryNorm
+    norm: BoundaryNorm,
+    area_key: str,
+    area_label: str,
+    area_bbox: tuple[float, float, float, float],
 ) -> None:
-    minx, miny, maxx, maxy = plot_domain.total_bounds 
+    minx, miny, maxx, maxy = plot_domain.total_bounds
 
     fig = plt.figure(figsize=(13, 11.5), facecolor="#f2f2f2")
 
     # Header block
     ax_head = fig.add_axes([0.025, 0.84, 0.95, 0.13])
-    ax_head.set_facecolor("white") 
-    for s in ax_head.spines.values(): 
-        s.set_linewidth(1.8) 
-        s.set_color("black") 
-    ax_head.set_xticks([]) 
-    ax_head.set_yticks([]) 
+    ax_head.set_facecolor("white")
+    for s in ax_head.spines.values():
+        s.set_linewidth(1.8)
+        s.set_color("black")
+    ax_head.set_xticks([])
+    ax_head.set_yticks([])
 
-    ax_head.text(0.5, 0.78, SUBTITLE, ha="center", va="center", fontsize=24, fontweight="bold") 
-    ax_head.text(0.5, 0.60, "Data Source: water.noaa.gov", ha="center", va="center", fontsize=17, fontweight="bold") 
-    ax_head.text(0.5, 0.34, TITLE_OFFICE, ha="center", va="center", fontsize=17, fontweight="bold") 
+    area_prefix = "" if area_key == FULL_AREA_KEY else f"{area_label} — "
+    header_fontsize = 18 if area_key == FULL_AREA_KEY else 16
+
+    ax_head.text(0.5, 0.78, SUBTITLE, ha="center", va="center", fontsize=24, fontweight="bold")
+    ax_head.text(0.5, 0.60, "Data Source: water.noaa.gov", ha="center", va="center", fontsize=17, fontweight="bold")
+    ax_head.text(0.5, 0.34, TITLE_OFFICE, ha="center", va="center", fontsize=17, fontweight="bold")
     ax_head.text(
-        0.5, 
-        0.14, 
-        f"{period_title} Precipitation Ending {format_local_end(window.end)}",
-        ha="center", 
-        va="center", 
-        fontsize=18, 
-        fontweight="bold", 
+        0.5,
+        0.14,
+        f"{area_prefix}{period_title} Precipitation Ending {format_local_end(window.end)}",
+        ha="center",
+        va="center",
+        fontsize=header_fontsize,
+        fontweight="bold",
     )
 
     # Main map
     ax = fig.add_axes([0.025, 0.07, 0.757, 0.77])
     ax.set_anchor("W")
-    ax.set_facecolor("white") 
-    for s in ax.spines.values(): 
-        s.set_linewidth(1.8) 
-        s.set_color("black") 
+    ax.set_facecolor("white")
+    for s in ax.spines.values():
+        s.set_linewidth(1.8)
+        s.set_color("black")
 
     ax.imshow(
-        raster_arr, 
-        extent=raster_extent_3857, 
-        origin="upper", 
-        cmap=CMAP, 
-        norm=norm, 
-        interpolation="bilinear",  # Changed from "nearest" to "bilinear" 
-        zorder=0, 
+        raster_arr,
+        extent=raster_extent_3857,
+        origin="upper",
+        cmap=CMAP,
+        norm=norm,
+        interpolation="bilinear",
+        zorder=0,
     )
 
     # Fade everything outside LIX, but keep raster visible underneath.
-    plot_box_geom = plot_domain.geometry.iloc[0] 
-    lix_union = lix.geometry.union_all() 
-    outside_geom = plot_box_geom.difference(lix_union) 
-    outside_gdf = gpd.GeoDataFrame(geometry=[outside_geom], crs=plot_domain.crs) 
-    outside_gdf.plot(ax=ax, facecolor="white", edgecolor="none", alpha=0.40, zorder=1) 
+    plot_box_geom = plot_domain.geometry.iloc[0]
+    lix_union = lix.geometry.union_all()
+    outside_geom = plot_box_geom.difference(lix_union)
+    outside_gdf = gpd.GeoDataFrame(geometry=[outside_geom], crs=plot_domain.crs)
+    outside_gdf.plot(ax=ax, facecolor="white", edgecolor="none", alpha=0.40, zorder=1)
 
     # County outlines over the top
-    counties.plot(ax=ax, facecolor="none", edgecolor="#b7b7b7", linewidth=0.55, zorder=2) 
-    
+    counties.plot(ax=ax, facecolor="none", edgecolor="#b7b7b7", linewidth=0.55, zorder=2)
+
     # State outlines
-    states.plot(ax=ax, facecolor="none", edgecolor="#555555", linewidth=1.5, zorder=3) 
+    states.plot(ax=ax, facecolor="none", edgecolor="#555555", linewidth=1.5, zorder=3)
 
     # LIX boundary bold
-    lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4) 
+    lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4)
 
-    # North Arrow 
+    # North Arrow
     ax.text(
-        0.04, 0.14, 'N', 
-        ha='center', va='center', fontsize=26, fontweight='bold', 
-        transform=ax.transAxes, zorder=10,  
-        path_effects=[pe.withStroke(linewidth=4, foreground="white")] 
+        0.04, 0.14, 'N',
+        ha='center', va='center', fontsize=26, fontweight='bold',
+        transform=ax.transAxes, zorder=10,
+        path_effects=[pe.withStroke(linewidth=4, foreground="white")]
     )
     ax.annotate(
-        '', xy=(0.04, 0.11), xytext=(0.04, 0.03), 
-        arrowprops=dict(facecolor='black', edgecolor='white', width=8, headwidth=20, headlength=18), 
-        xycoords='axes fraction', textcoords='axes fraction', zorder=10 
+        '', xy=(0.04, 0.11), xytext=(0.04, 0.03),
+        arrowprops=dict(facecolor='black', edgecolor='white', width=8, headwidth=20, headlength=18),
+        xycoords='axes fraction', textcoords='axes fraction', zorder=10
     )
 
     # Inset Map (Locator Map)
-    ax_in = ax.inset_axes([0.00, 0.788, 0.24, 0.24]) 
-    ax_in.set_facecolor("#d4e6f1") 
-    for s in ax_in.spines.values(): 
-        s.set_linewidth(1.5) 
-        s.set_color("black") 
-    
-    states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=0.8, zorder=1) 
-    lix.plot(ax=ax_in, facecolor="#ff9900", edgecolor="black", linewidth=1.2, zorder=2) 
-    
+    ax_in = ax.inset_axes([0.00, 0.788, 0.24, 0.24])
+    ax_in.set_facecolor("#d4e6f1")
+    for s in ax_in.spines.values():
+        s.set_linewidth(1.5)
+        s.set_color("black")
+
+    states.plot(ax=ax_in, facecolor="#f0f0f0", edgecolor="#555555", linewidth=0.8, zorder=1)
+    lix.plot(ax=ax_in, facecolor="#ff9900", edgecolor="black", linewidth=1.2, zorder=2)
+
+    if area_key != FULL_AREA_KEY:
+        area_outline = gpd.GeoDataFrame(geometry=[box(*area_bbox)], crs=4326).to_crs(plot_domain.crs)
+        area_outline.boundary.plot(ax=ax_in, color="#d00000", linewidth=1.8, zorder=4)
+
     lbls = gpd.GeoDataFrame(
-        {"name": ["LA", "MS", "AL", "TX", "AR"]}, 
-        geometry=gpd.points_from_xy([-92.2, -89.6, -86.8, -94.2, -92.5], [31.2, 32.8, 32.8, 31.5, 34.5]), 
-        crs=4326 
-    ).to_crs(plot_domain.crs) 
-    
-    for _, row in lbls.iterrows(): 
+        {"name": ["LA", "MS", "AL", "TX", "AR"]},
+        geometry=gpd.points_from_xy([-92.2, -89.6, -86.8, -94.2, -92.5], [31.2, 32.8, 32.8, 31.5, 34.5]),
+        crs=4326
+    ).to_crs(plot_domain.crs)
+
+    for _, row in lbls.iterrows():
         ax_in.text(
-            row.geometry.x, row.geometry.y, row['name'],  
-            ha='center', va='center', fontsize=9, fontweight='bold', color='#444444', zorder=3 
-        ) 
-        
-    index_domain = gpd.GeoDataFrame(geometry=[box(*INDEX_BBOX)], crs=4326).to_crs(plot_domain.crs) 
-    inx_minx, inx_miny, inx_maxx, inx_maxy = index_domain.total_bounds 
-    
-    ax_in.set_xlim(inx_minx, inx_maxx) 
-    ax_in.set_ylim(inx_miny, inx_maxy) 
-    ax_in.set_xticks([]) 
-    ax_in.set_yticks([]) 
-
-    # City dots, sampling, and labels
-    rx_min, rx_max, ry_min, ry_max = raster_extent_3857 
-    height, width = raster_arr.shape 
-
-    for idx, row in cities.iterrows(): 
-        x, y = row.geometry.x, row.geometry.y 
-        val_str = "0.00" 
-        
-        if rx_min <= x <= rx_max and ry_min <= y <= ry_max: 
-            col_idx = int((x - rx_min) / (rx_max - rx_min) * width) 
-            row_idx = int((ry_max - y) / (ry_max - ry_min) * height) 
-            
-            col_idx = max(0, min(col_idx, width - 1)) 
-            row_idx = max(0, min(row_idx, height - 1)) 
-            
-            val = raster_arr[row_idx, col_idx] 
-            
-            if np.isfinite(val) and val > 0: 
-                val_str = f"{val:.2f}" 
-            
-        label_text = f"{row['name']}\n{val_str}\"" 
-        
-        ax.plot(x, y, 'o', color='white', markeredgecolor='black', markersize=5, zorder=5) 
-        ax.text(
-            x, y + 8000, label_text, 
-            color='black', fontsize=11, fontweight='bold', ha='center', va='bottom', 
-            path_effects=[pe.withStroke(linewidth=2.5, foreground="white")], 
-            zorder=6 
+            row.geometry.x, row.geometry.y, row['name'],
+            ha='center', va='center', fontsize=9, fontweight='bold', color='#444444', zorder=3
         )
 
-    ax.set_xlim(minx, maxx) 
-    ax.set_ylim(miny, maxy) 
-    ax.set_xticks([]) 
-    ax.set_yticks([]) 
+    index_domain = gpd.GeoDataFrame(geometry=[box(*INDEX_BBOX)], crs=4326).to_crs(plot_domain.crs)
+    inx_minx, inx_miny, inx_maxx, inx_maxy = index_domain.total_bounds
+
+    ax_in.set_xlim(inx_minx, inx_maxx)
+    ax_in.set_ylim(inx_miny, inx_maxy)
+    ax_in.set_xticks([])
+    ax_in.set_yticks([])
+
+    # City dots, sampling, and labels
+    rx_min, rx_max, ry_min, ry_max = raster_extent_3857
+    height, width = raster_arr.shape
+
+    for _, row in cities.iterrows():
+        x, y = row.geometry.x, row.geometry.y
+        val_str = "0.00"
+
+        if rx_min <= x <= rx_max and ry_min <= y <= ry_max:
+            col_idx = int((x - rx_min) / (rx_max - rx_min) * width)
+            row_idx = int((ry_max - y) / (ry_max - ry_min) * height)
+
+            col_idx = max(0, min(col_idx, width - 1))
+            row_idx = max(0, min(row_idx, height - 1))
+
+            val = raster_arr[row_idx, col_idx]
+
+            if np.isfinite(val) and val > 0:
+                val_str = f"{val:.2f}"
+
+        label_text = f"{row['name']}\n{val_str}\""
+
+        ax.plot(x, y, 'o', color='white', markeredgecolor='black', markersize=5, zorder=5)
+        ax.text(
+            x, y + 8000, label_text,
+            color='black', fontsize=11, fontweight='bold', ha='center', va='bottom',
+            path_effects=[pe.withStroke(linewidth=2.5, foreground="white")],
+            zorder=6
+        )
+
+    ax.set_xlim(minx, maxx)
+    ax.set_ylim(miny, maxy)
+    ax.set_xticks([])
+    ax.set_yticks([])
 
     # Legend panel
     ax_leg = fig.add_axes([0.782, 0.07, 0.193, 0.77])
-    ax_leg.set_facecolor("white") 
-    for s in ax_leg.spines.values(): 
-        s.set_linewidth(1.8) 
-        s.set_color("black") 
-    ax_leg.set_xticks([]) 
-    ax_leg.set_yticks([]) 
+    ax_leg.set_facecolor("white")
+    for s in ax_leg.spines.values():
+        s.set_linewidth(1.8)
+        s.set_color("black")
+    ax_leg.set_xticks([])
+    ax_leg.set_yticks([])
 
-    ax_leg.text(0.5, 0.96, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold") 
+    ax_leg.text(0.5, 0.96, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold")
 
     # Dynamically build labels from the provided levels array
     labels = []
@@ -444,28 +560,28 @@ def plot_map(
             labels.append(f"Greater than {levels[i]:g}")
         else:
             labels.append(f"{levels[i]:g} to {levels[i+1]:g}")
-            
+
     # Reverse labels to map correctly from top-to-bottom layout
     labels = labels[::-1]
 
     # Adjusted y0 and dy to fix bottom clipping
-    y0 = 0.86 
-    dy = 0.041 
-    for i, (label, color) in enumerate(zip(labels, COLORS[::-1])): 
-        y = y0 - i * dy 
+    y0 = 0.86
+    dy = 0.041
+    for i, (label, color) in enumerate(zip(labels, COLORS[::-1])):
+        y = y0 - i * dy
         ax_leg.add_patch(
-            plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color=color, transform=ax_leg.transAxes, clip_on=False) 
-        ) 
-        ax_leg.text(0.36, y - 0.003, label, fontsize=10, va="center", ha="left") 
+            plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color=color, transform=ax_leg.transAxes, clip_on=False)
+        )
+        ax_leg.text(0.36, y - 0.003, label, fontsize=10, va="center", ha="left")
 
     # Missing data patch
-    y = y0 - len(labels) * dy 
+    y = y0 - len(labels) * dy
     ax_leg.add_patch(
-        plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color="#8f8f8f", transform=ax_leg.transAxes, clip_on=False) 
+        plt.Rectangle((0.10, y - 0.016), 0.20, 0.026, color="#8f8f8f", transform=ax_leg.transAxes, clip_on=False)
     )
-    ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left") 
+    ax_leg.text(0.36, y - 0.003, "Missing data", fontsize=10, va="center", ha="left")
 
-    png_path = OUT_DIR / f"lix_{period_key}_precip_latest.png"
+    png_path = OUT_DIR / precip_output_name(period_key, area_key)
     fig.savefig(
         png_path,
         dpi=170,
@@ -473,11 +589,11 @@ def plot_map(
         pad_inches=0.03,
         facecolor=fig.get_facecolor(),
     )
-    plt.close(fig) 
+    plt.close(fig)
 
 
-def write_outputs(window: TimeWindow, generated_maps: dict[str, dict[str, str]]) -> None:
-    json_path = OUT_DIR / "latest.json" 
+def write_outputs(window: TimeWindow, generated_maps: dict[str, dict[str, object]]) -> None:
+    json_path = OUT_DIR / "latest.json"
 
     data = {
         "start_utc": window.start.isoformat(),
@@ -485,16 +601,15 @@ def write_outputs(window: TimeWindow, generated_maps: dict[str, dict[str, str]])
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "maps": generated_maps
     }
-    
-    json_path.write_text(json.dumps(data, indent=2), encoding="utf-8") 
+
+    json_path.write_text(json.dumps(data, indent=2), encoding="utf-8")
 
 
 def main() -> None:
-    end_dt = parse_end_arg() 
-    window = build_time_window(end_dt) 
+    end_dt = parse_end_arg()
+    window = build_time_window(end_dt)
 
-    cwa, counties, states = load_shapes() 
-    lix, counties_p, states_p, plot_domain, cities_p = prepare_geodata(cwa, counties, states) 
+    cwa, counties, states = load_shapes()
 
     generated_maps = {}
 
@@ -508,46 +623,76 @@ def main() -> None:
             levels = get_dynamic_levels(period_key, days)
             norm = BoundaryNorm(levels, CMAP.N, clip=False)
 
-            if days == 1:
-                # Standard single-file fetch (1day, mtd, ytd)
-                tif_path = fetch_stageiv_qpe(window.end, noaa_str)
-                raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path)
-                source_tif_name = tif_path.name
-            else:
-                # Multi-day fetch and sum
-                sum_arr = None
-                raster_extent_3857 = None
-                
-                for i in range(days):
-                    # Step back one day at a time
-                    day_dt = window.end - timedelta(days=i)
-                    tif_path = fetch_stageiv_qpe(day_dt, noaa_str)
-                    arr, ext = read_raster_for_plotting(tif_path)
-
-                    if sum_arr is None:
-                        sum_arr = arr
-                        raster_extent_3857 = ext
-                    else:
-                        # Safely sum arrays while preserving NaN (missing data) transparent rendering
-                        all_nan = np.isnan(sum_arr) & np.isnan(arr)
-                        sum_arr = np.nansum([sum_arr, arr], axis=0)
-                        sum_arr[all_nan] = np.nan
-                
-                raster_arr = sum_arr
-                source_tif_name = f"Calculated_{days}day_sum"
-
-            # Pass the dynamically generated levels and norm to the plot function
-            plot_map(
-                window, lix, counties_p, states_p, plot_domain, cities_p, 
-                raster_arr, raster_extent_3857, period_key, period_info["title"],
-                levels, norm
-            )
-            
+            source_tif_name = None
             generated_maps[period_key] = {
-                "image": f"lix_{period_key}_precip_latest.png",
-                "source_tif": source_tif_name
+                "image": precip_output_name(period_key, FULL_AREA_KEY),
+                "source_tif": None,
+                "areas": {},
             }
-            print(f"Saved map to {OUT_DIR / f'lix_{period_key}_precip_latest.png'}")
+
+            for area_key, area_info in AREAS.items():
+                print(f"  Area: {area_info['label']}")
+                area_bbox = area_info["bbox"]
+                area_cities = area_info["cities"]
+
+                lix, counties_p, states_p, plot_domain, cities_p = prepare_geodata(
+                    cwa, counties, states, area_bbox, area_cities
+                )
+
+                if days == 1:
+                    # Standard single-file fetch (1day, mtd, ytd)
+                    tif_path = fetch_stageiv_qpe(window.end, noaa_str)
+                    raster_arr, raster_extent_3857 = read_raster_for_plotting(tif_path, area_bbox)
+                    source_tif_name = tif_path.name
+                else:
+                    # Multi-day fetch and sum
+                    sum_arr = None
+                    raster_extent_3857 = None
+
+                    for i in range(days):
+                        # Step back one day at a time
+                        day_dt = window.end - timedelta(days=i)
+                        tif_path = fetch_stageiv_qpe(day_dt, noaa_str)
+                        arr, ext = read_raster_for_plotting(tif_path, area_bbox)
+
+                        if sum_arr is None:
+                            sum_arr = arr
+                            raster_extent_3857 = ext
+                        else:
+                            # Safely sum arrays while preserving NaN (missing data) transparent rendering
+                            all_nan = np.isnan(sum_arr) & np.isnan(arr)
+                            sum_arr = np.nansum([sum_arr, arr], axis=0)
+                            sum_arr[all_nan] = np.nan
+
+                    raster_arr = sum_arr
+                    source_tif_name = f"Calculated_{days}day_sum"
+
+                plot_map(
+                    window,
+                    lix,
+                    counties_p,
+                    states_p,
+                    plot_domain,
+                    cities_p,
+                    raster_arr,
+                    raster_extent_3857,
+                    period_key,
+                    period_info["title"],
+                    levels,
+                    norm,
+                    area_key,
+                    area_info["label"],
+                    area_bbox,
+                )
+
+                image_name = precip_output_name(period_key, area_key)
+                generated_maps[period_key]["areas"][area_key] = {
+                    "label": area_info["label"],
+                    "image": image_name,
+                }
+                print(f"  Saved map to {OUT_DIR / image_name}")
+
+            generated_maps[period_key]["source_tif"] = source_tif_name
 
         except Exception as e:
             print(f"Skipping {period_key}: {e}")
