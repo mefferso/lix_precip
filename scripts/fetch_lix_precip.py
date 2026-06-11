@@ -114,13 +114,16 @@ AREAS = {
     },
     "southwest_ms": {
         "label": "Southwest MS",
-        "bbox": (-91.70, 30.80, -89.45, 31.85),
+        "bbox": (-91.70, 30.80, -89.75, 31.61),
         "cities": [
             {"name": "Woodville",   "lat": 31.1046, "lon": -91.2993},
             {"name": "Liberty",     "lat": 31.1582, "lon": -90.8126},
             {"name": "McComb",      "lat": 31.2438, "lon": -90.4532},
             {"name": "Tylertown",   "lat": 31.1160, "lon": -90.1426},
             {"name": "Poplarville", "lat": 30.8402, "lon": -89.5342},
+            {"name": "Osyka", "lat": 31.01, "lon": -90.47},
+            {"name": "Crosby", "lat": 31.28, "lon": -91.06},
+            {"name": "Centreville", "lat": 31.08, "lon": -91.07},
         ],
     },
     "coastal_ms": {
