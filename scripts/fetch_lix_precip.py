@@ -64,7 +64,7 @@ CITIES = [
 
 # Mapping keys to NOAA's exact filename strings and readable titles
 PERIODS = {
-    "24h": {"noaa_str": "1day", "days": 1, "title": "24 Hour"},
+    "24h": {"noaa_str": "1day", "days": 1, "title": "24-hr"},
     "2d":  {"noaa_str": "1day", "days": 2, "title": "2-Day"},
     "3d":  {"noaa_str": "1day", "days": 3, "title": "3-Day"},
     "4d":  {"noaa_str": "1day", "days": 4, "title": "4-Day"},
@@ -129,6 +129,12 @@ def parse_end_arg() -> datetime:
 
 def build_time_window(end_dt: datetime) -> TimeWindow:
     return TimeWindow(start=end_dt - timedelta(hours=24), end=end_dt) 
+
+
+def format_local_end(dt: datetime) -> str:
+    local_dt = dt.astimezone(timezone(timedelta(hours=-5)))
+    hour = local_dt.strftime("%-I%p").lower()
+    return f"{hour} {local_dt.month}/{local_dt.day}/{local_dt.year}"
 
 
 def download_if_missing(url: str, dest: Path) -> Path:
@@ -300,7 +306,7 @@ def plot_map(
     ax_head.text(
         0.5, 
         0.14, 
-        f"{period_title} Precipitation Ending {window.end.strftime('%HZ %m-%d-%Y')}",
+        f"{period_title} Precipitation Ending {format_local_end(window.end)}",
         ha="center", 
         va="center", 
         fontsize=18, 
