@@ -127,7 +127,7 @@ AREAS = {
     },
     "southwest_ms": {
         "label": "Southwest MS",
-        "bbox": (-91.64, 30.73, -89.82, 31.92)
+        "bbox": (-91.64, 30.73, -89.82, 31.92),
         "cities": [
             {"name": "Woodville",   "lat": 31.1046, "lon": -91.2993},
             {"name": "Liberty",     "lat": 31.1582, "lon": -90.8126},
