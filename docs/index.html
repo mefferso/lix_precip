@@ -45,6 +45,13 @@
       font-size: 15px;
     }
 
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
     .controls label {
       font-weight: bold;
       display: block;
@@ -118,6 +125,11 @@
         align-items: stretch;
       }
 
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .links {
         flex-direction: column;
         align-items: flex-start;
@@ -144,22 +156,35 @@
         </div>
 
         <div class="controls">
-          <label for="mapSelector">Select Rainfall Map:</label>
+          <div>
+            <label for="periodSelector">Rainfall Period:</label>
+            <select id="periodSelector">
+              <option value="24h">24-hr Rainfall</option>
+              <option value="2d">2-Day Rainfall</option>
+              <option value="3d">3-Day Rainfall</option>
+              <option value="4d">4-Day Rainfall</option>
+              <option value="5d">5-Day Rainfall</option>
+              <option value="6d">6-Day Rainfall</option>
+              <option value="7d">7-Day Rainfall</option>
+              <option value="10d">10-Day Rainfall</option>
+              <option value="14d">14-Day Rainfall</option>
+              <option value="30d">30-Day Rainfall</option>
+              <option value="mtd">Month-to-Date Rainfall</option>
+              <option value="ytd">Year-to-Date Rainfall</option>
+            </select>
+          </div>
 
-          <select id="mapSelector">
-            <option value="lix_24h_precip_latest.png">24 Hour Rainfall</option>
-            <option value="lix_2d_precip_latest.png">2-Day Rainfall</option>
-            <option value="lix_3d_precip_latest.png">3-Day Rainfall</option>
-            <option value="lix_4d_precip_latest.png">4-Day Rainfall</option>
-            <option value="lix_5d_precip_latest.png">5-Day Rainfall</option>
-            <option value="lix_6d_precip_latest.png">6-Day Rainfall</option>
-            <option value="lix_7d_precip_latest.png">7-Day Rainfall</option>
-            <option value="lix_10d_precip_latest.png">10-Day Rainfall</option>
-            <option value="lix_14d_precip_latest.png">14-Day Rainfall</option>
-            <option value="lix_30d_precip_latest.png">30-Day Rainfall</option>
-            <option value="lix_mtd_precip_latest.png">Month-to-Date Rainfall</option>
-            <option value="lix_ytd_precip_latest.png">Year-to-Date Rainfall</option>
-          </select>
+          <div>
+            <label for="areaSelector">Map Area:</label>
+            <select id="areaSelector">
+              <option value="full">Full LIX Area</option>
+              <option value="baton_rouge_metro">Baton Rouge Metro</option>
+              <option value="new_orleans_metro">New Orleans Metro</option>
+              <option value="southwest_ms">Southwest MS</option>
+              <option value="coastal_ms">Coastal MS</option>
+              <option value="northshore">Northshore of Lake Pontchartrain</option>
+            </select>
+          </div>
         </div>
 
         <div class="button-group">
@@ -190,21 +215,36 @@
   </main>
 
   <script>
-    const selector = document.getElementById('mapSelector');
+    const periodSelector = document.getElementById('periodSelector');
+    const areaSelector = document.getElementById('areaSelector');
     const mapImage = document.getElementById('precipMap');
     const downloadPngLink = document.getElementById('downloadPngLink');
-  
-    function setMapImage(filename) {
+
+    function getMapFilename(period, area) {
+      if (area === 'full') {
+        return `lix_${period}_precip_latest.png`;
+      }
+
+      return `lix_${period}_precip_${area}_latest.png`;
+    }
+
+    function setMapImage() {
+      const period = periodSelector.value;
+      const area = areaSelector.value;
+      const filename = getMapFilename(period, area);
+      const periodLabel = periodSelector.options[periodSelector.selectedIndex].text;
+      const areaLabel = areaSelector.options[areaSelector.selectedIndex].text;
+
       downloadPngLink.href = filename;
       downloadPngLink.download = filename;
+      mapImage.alt = `${areaLabel} ${periodLabel} precipitation map`;
       mapImage.src = filename + '?t=' + Date.now();
     }
-  
-    selector.addEventListener('change', function () {
-      setMapImage(this.value);
-    });
-  
-    setMapImage(selector.value);
+
+    periodSelector.addEventListener('change', setMapImage);
+    areaSelector.addEventListener('change', setMapImage);
+
+    setMapImage();
   </script>
 </body>
 </html>
