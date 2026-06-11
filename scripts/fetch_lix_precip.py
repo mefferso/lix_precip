@@ -434,9 +434,7 @@ def plot_map(
     ax_leg.set_xticks([]) 
     ax_leg.set_yticks([]) 
 
-    ax_leg.text(0.5, 0.96, f"{period_title}\nrainfall ending:", ha="center", va="top", fontsize=15, fontweight="bold")
-    ax_leg.text(0.5, 0.88, window.end.strftime("%Y/%m/%d\n%H00 UTC"), ha="center", va="top", fontsize=16) 
-    ax_leg.text(0.5, 0.80, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold") 
+    ax_leg.text(0.5, 0.96, "Rainfall\n(Inches)", ha="center", va="top", fontsize=16, fontweight="bold") 
 
     # Dynamically build labels from the provided levels array
     labels = []
@@ -451,7 +449,7 @@ def plot_map(
     labels = labels[::-1]
 
     # Adjusted y0 and dy to fix bottom clipping
-    y0 = 0.73 
+    y0 = 0.86 
     dy = 0.041 
     for i, (label, color) in enumerate(zip(labels, COLORS[::-1])): 
         y = y0 - i * dy 
