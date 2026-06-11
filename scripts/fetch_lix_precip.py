@@ -127,7 +127,7 @@ AREAS = {
     },
     "northshore": {
         "label": "Northshore of Lake Pontchartrain",
-        "bbox": (-90.75, 29.95, -89.45, 30.95),
+        "bbox": (-90.56, 30.15, -89.55, 31.00),
         "cities": [
             {"name": "Hammond",       "lat": 30.5044, "lon": -90.4612},
             {"name": "Madisonville",  "lat": 30.4030, "lon": -90.1617},
