@@ -141,6 +141,10 @@ AREAS = {
             {"name": "Pearl River",   "lat": 30.3760, "lon": -89.7484},
             {"name": "Franklinton",   "lat": 30.8471, "lon": -90.1531},
             {"name": "Bogalusa",      "lat": 30.7910, "lon": -89.8487},
+            {"name": "Amite", "lat": 30.73, "lon": -90.51}, 
+            {"name": "Bush", "lat": 30.61, "lon": -89.90},
+            {"name": "Folsom", "lat": 30.63, "lon": -90.20},
+            {"name": "Ponchatoula", "lat": 30.43, "lon": -90.44},
         ],
     },
 }
