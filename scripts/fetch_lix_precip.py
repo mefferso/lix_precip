@@ -420,7 +420,7 @@ def plot_map(
     ax.set_yticks([]) 
 
     # Legend panel
-    ax_leg = fig.add_axes([0.785, 0.07, 0.193, 0.77])
+    ax_leg = fig.add_axes([0.782, 0.07, 0.193, 0.77])
     ax_leg.set_facecolor("white") 
     for s in ax_leg.spines.values(): 
         s.set_linewidth(1.8) 
