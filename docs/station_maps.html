@@ -40,8 +40,8 @@
   <script>
     const DATASET_META={precip_24h:{label:"24 Hour Rainfall",archived:true},air_temp_latest:{label:"Current Temperatures",archived:false},air_temp_daily_min:{label:"24 Hour Low Temperatures",archived:true},air_temp_daily_max:{label:"24 Hour High Temperatures",archived:true}};
     const DATASET_ORDER=["precip_24h","air_temp_latest","air_temp_daily_min","air_temp_daily_max"];
-    const REGION_META={full:{label:"Full LIX Area"},baton_rouge_metro:{label:"Baton Rouge Metro"},new_orleans_metro:{label:"New Orleans Metro"},southwest_ms:{label:"Southwest MS"},coastal_ms:{label:"Coastal MS"},northshore:{label:"Northshore of Lake Pontchartrain"}};
-    const REGION_ORDER=["full","baton_rouge_metro","new_orleans_metro","southwest_ms","coastal_ms","northshore"];
+    const REGION_META={full:{label:"Full LIX Area"},baton_rouge_metro:{label:"Baton Rouge Metro"},new_orleans_metro:{label:"New Orleans Metro"},southwest_ms:{label:"Southwest MS"},coastal_la:{label:"Coastal LA"},coastal_ms:{label:"Coastal MS"},northshore:{label:"Northshore of Lake Pontchartrain"}};
+    const REGION_ORDER=["full","baton_rouge_metro","new_orleans_metro","southwest_ms","coastal_la","coastal_ms","northshore"];
     const selector=document.getElementById("mapSelector"),regionSelector=document.getElementById("regionSelector"),dateSelector=document.getElementById("dateSelector"),dateHint=document.getElementById("dateHint"),mapImage=document.getElementById("stationMap"),mapStatus=document.getElementById("mapStatus"),downloadPngLink=document.getElementById("downloadPngLink");
     let latestManifestData=null,archiveManifestData=null,availableArchiveDates=[];
     function showStatus(message){mapImage.style.display="none";mapImage.removeAttribute("src");downloadPngLink.href="#";downloadPngLink.removeAttribute("download");mapStatus.textContent=message;mapStatus.style.display="block"}
