@@ -141,7 +141,7 @@ AREAS = {
     },
     "coastal_la": {
         "label": "Coastal LA",
-        "bbox": (-91.2, 28.95, -89.6, 29.91),
+        "bbox": (-91.25, 29.05, -89.90, 30.00),
         "cities": [
             {"name": "Houma",   "lat": 29.58, "lon": -90.71},
             {"name": "Montegut",    "lat": 29.47, "lon": -90.57},
