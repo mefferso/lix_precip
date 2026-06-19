@@ -74,6 +74,11 @@ REGIONS: dict[str, dict[str, Any]] = {
         "bbox": (-91.25, 30.80, -89.75, 31.85),
         "suffix": "_southwest_ms",
     },
+    "coastal_la": {
+    "label": "Coastal LA",
+    "bbox": (-91.05, 29.05, -89.70, 30.00),
+    "suffix": "_coastal_la",
+},
     "coastal_ms": {
         "label": "Coastal MS",
         "bbox": (-89.75, 30.05, -88.25, 30.70),
