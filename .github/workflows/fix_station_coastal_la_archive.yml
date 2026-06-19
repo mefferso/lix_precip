@@ -112,10 +112,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/fix_station_coastal_la_archive.yml
           git add scripts/build_lix_obs_maps.py scripts/build_lix_obs_archive_maps.py scripts/build_station_daily_archive.py docs/station_maps.html docs/archive/station/
+          git status --short
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
           git commit -m "Fix Coastal LA station archive maps"
-          git pull --rebase origin main
           git push origin main
