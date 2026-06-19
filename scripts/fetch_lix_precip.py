@@ -146,7 +146,7 @@ AREAS = {
             {"name": "Houma",   "lat": 29.58, "lon": -90.71},
             {"name": "Montegut",    "lat": 29.47, "lon": -90.57},
             {"name": "Cocodrie",    "lat": 29.24, "lon": -90.66},
-            {"name": "Raceland",    "lat": 29.47, "lon": -90.57},
+            {"name": "Raceland",    "lat": 29.74, "lon": -90.57},
             {"name": "Thibodaux",    "lat": 29.79, "lon": -90.82},
             {"name": "Larose",    "lat": 29.57, "lon": -90.39},
             {"name": "Galliano",    "lat": 29.43, "lon": -90.31},
