@@ -139,6 +139,21 @@ AREAS = {
             {"name": "Centreville", "lat": 31.08, "lon": -91.07},
         ],
     },
+    "coastal_la": {
+        "label": "Coastal LA",
+        "bbox": (-91.2, 28.95, -89.6, 29.91),
+        "cities": [
+            {"name": "Houma",   "lat": 29.58, "lon": -90.71},
+            {"name": "Montegut",    "lat": 29.47, "lon": -90.57},
+            {"name": "Cocodrie",    "lat": 29.24, "lon": -90.66},
+            {"name": "Raceland",    "lat": 29.47, "lon": -90.57},
+            {"name": "Thibodaux",    "lat": 29.79, "lon": -90.82},
+            {"name": "Larose",    "lat": 29.57, "lon": -90.39},
+            {"name": "Galliano",    "lat": 29.43, "lon": -90.31},
+            {"name": "Leeville",    "lat": 29.24, "lon": -90.21},
+            {"name": "Grand Isle",    "lat": 29.23, "lon": -90.01},            
+        ],
+    },
     "coastal_ms": {
         "label": "Coastal MS",
         "bbox": (-89.85, 29.95, -88.25, 30.91),
