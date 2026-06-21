@@ -44,6 +44,13 @@ PLOT_BBOX = (-92.5, 28.5, -88.0, 32.0)
 # Wider extent for the index (locator) map
 INDEX_BBOX = (-95.0, 28.5, -84.0, 35.0)
 
+DEFAULT_LOCATOR_INSET_BOUNDS = [0.00, 0.788, 0.24, 0.24]
+LOCATOR_INSET_BOUNDS_BY_AREA = {
+    "baton_rouge_metro": [0.00, 0.00, 0.24, 0.24],
+    "new_orleans_metro": [0.76, 0.00, 0.24, 0.24],
+    "coastal_ms": [0.76, 0.788, 0.24, 0.24],
+}
+
 CWA_URL = "https://www.weather.gov/source/gis/Shapefiles/WSOM/w_16ap26.zip"
 COUNTY_URL = "https://www.weather.gov/source/gis/Shapefiles/County/c_16ap26.zip"
 STATE_URL = "https://www.weather.gov/source/gis/Shapefiles/County/s_16ap26.zip"
@@ -495,20 +502,22 @@ def plot_map(
     lix.boundary.plot(ax=ax, color="black", linewidth=2.5, zorder=4)
 
     # North Arrow
+    north_arrow_x = 0.30 if area_key == "baton_rouge_metro" else 0.04
     ax.text(
-        0.04, 0.14, 'N',
+        north_arrow_x, 0.14, 'N',
         ha='center', va='center', fontsize=26, fontweight='bold',
         transform=ax.transAxes, zorder=10,
         path_effects=[pe.withStroke(linewidth=4, foreground="white")]
     )
     ax.annotate(
-        '', xy=(0.04, 0.11), xytext=(0.04, 0.03),
+        '', xy=(north_arrow_x, 0.11), xytext=(north_arrow_x, 0.03),
         arrowprops=dict(facecolor='black', edgecolor='white', width=8, headwidth=20, headlength=18),
         xycoords='axes fraction', textcoords='axes fraction', zorder=10
     )
 
     # Inset Map (Locator Map)
-    ax_in = ax.inset_axes([0.00, 0.788, 0.24, 0.24])
+    locator_bounds = LOCATOR_INSET_BOUNDS_BY_AREA.get(area_key, DEFAULT_LOCATOR_INSET_BOUNDS)
+    ax_in = ax.inset_axes(locator_bounds)
     ax_in.set_facecolor("#d4e6f1")
     for s in ax_in.spines.values():
         s.set_linewidth(1.5)
