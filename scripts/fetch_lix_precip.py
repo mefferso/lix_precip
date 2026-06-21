@@ -47,7 +47,7 @@ INDEX_BBOX = (-95.0, 28.5, -84.0, 35.0)
 DEFAULT_LOCATOR_INSET_BOUNDS = [0.00, 0.788, 0.24, 0.24]
 LOCATOR_INSET_BOUNDS_BY_AREA = {
     "baton_rouge_metro": [0.00, 0.00, 0.24, 0.24],
-    "new_orleans_metro": [0.76, 0.00, 0.24, 0.24],
+    "new_orleans_metro": [0.76, -0.03, 0.24, 0.24],
     "coastal_ms": [0.76, 0.788, 0.24, 0.24],
 }
 
