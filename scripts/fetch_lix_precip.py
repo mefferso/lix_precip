@@ -107,6 +107,9 @@ AREAS = {
             {"name": "Livingston", "lat": 30.50, "lon": -90.74},
             {"name": "Albany", "lat": 30.51, "lon": -90.59},
             {"name": "White Castle", "lat": 30.16, "lon": -91.15},
+            {"name": "Simmesport", "lat": 30.98, "lon": -91.82},
+            {"name": "Batchelor", "lat": 30.84, "lon": -91.66},
+            {"name": "Lettsworth", "lat": 30.93, "lon": -91.70},
         ],
     },
     "new_orleans_metro": {
