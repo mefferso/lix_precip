@@ -68,8 +68,8 @@
     "precip_24h": {
       "image": "lix_station_precip_24h_latest.png",
       "csv": "station_precip_24h_latest.csv",
-      "station_count": 357,
-      "used_in_contours": 357,
+      "station_count": 387,
+      "used_in_contours": 387,
       "excluded": 0,
       "region": "full",
       "region_label": "Full LIX Area",
@@ -87,8 +87,8 @@
     "air_temp_latest": {
       "image": "lix_station_air_temp_latest.png",
       "csv": "station_air_temp_latest.csv",
-      "station_count": 385,
-      "used_in_contours": 380,
+      "station_count": 386,
+      "used_in_contours": 381,
       "excluded": 5,
       "region": "full",
       "region_label": "Full LIX Area",
@@ -106,8 +106,8 @@
     "air_temp_daily_min": {
       "image": "lix_station_air_temp_daily_min_latest.png",
       "csv": "station_air_temp_daily_min_latest.csv",
-      "station_count": 410,
-      "used_in_contours": 404,
+      "station_count": 411,
+      "used_in_contours": 405,
       "excluded": 6,
       "region": "full",
       "region_label": "Full LIX Area",
@@ -143,11 +143,11 @@
     }
   },
   "current_temperature_timing": {
-    "air_temp_latest_obs_median_utc": "2026-06-25T15:10:00+00:00",
-    "air_temp_latest_obs_target_utc": "2026-06-25T15:00:00+00:00",
-    "air_temp_latest_obs_min_utc": "2026-06-25T13:54:00+00:00",
-    "air_temp_latest_obs_max_utc": "2026-06-25T15:17:00+00:00",
-    "air_temp_latest_valid_utc": "2026-06-25T14:00:00+00:00",
+    "air_temp_latest_obs_median_utc": "2026-06-25T17:18:00+00:00",
+    "air_temp_latest_obs_target_utc": "2026-06-25T17:00:00+00:00",
+    "air_temp_latest_obs_min_utc": "2026-06-25T16:00:00+00:00",
+    "air_temp_latest_obs_max_utc": "2026-06-25T17:27:00+00:00",
+    "air_temp_latest_valid_utc": "2026-06-25T16:00:00+00:00",
     "air_temp_latest_grid_model": "RTMA",
     "air_temp_latest_grid_lag_hours": 1.0
   }
