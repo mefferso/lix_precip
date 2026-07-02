@@ -68,9 +68,9 @@
     "precip_24h": {
       "image": "lix_station_precip_24h_latest.png",
       "csv": "station_precip_24h_latest.csv",
-      "station_count": 384,
-      "used_in_contours": 268,
-      "excluded": 116,
+      "station_count": 375,
+      "used_in_contours": 233,
+      "excluded": 142,
       "region": "full",
       "region_label": "Full LIX Area",
       "status": "ok",
@@ -87,9 +87,9 @@
     "air_temp_latest": {
       "image": "lix_station_air_temp_latest.png",
       "csv": "station_air_temp_latest.csv",
-      "station_count": 384,
-      "used_in_contours": 379,
-      "excluded": 5,
+      "station_count": 377,
+      "used_in_contours": 368,
+      "excluded": 9,
       "region": "full",
       "region_label": "Full LIX Area",
       "status": "ok",
@@ -125,9 +125,9 @@
     "air_temp_daily_max": {
       "image": "lix_station_air_temp_daily_max_latest.png",
       "csv": "station_air_temp_daily_max_latest.csv",
-      "station_count": 410,
-      "used_in_contours": 391,
-      "excluded": 19,
+      "station_count": 402,
+      "used_in_contours": 387,
+      "excluded": 15,
       "region": "full",
       "region_label": "Full LIX Area",
       "status": "ok",
@@ -143,12 +143,12 @@
     }
   },
   "current_temperature_timing": {
-    "air_temp_latest_obs_median_utc": "2026-07-02T19:45:00+00:00",
-    "air_temp_latest_obs_target_utc": "2026-07-02T19:00:00+00:00",
-    "air_temp_latest_obs_min_utc": "2026-07-02T18:30:00+00:00",
-    "air_temp_latest_obs_max_utc": "2026-07-02T19:53:00+00:00",
-    "air_temp_latest_valid_utc": "2026-07-02T19:00:00+00:00",
+    "air_temp_latest_obs_median_utc": "2026-07-02T21:27:00+00:00",
+    "air_temp_latest_obs_target_utc": "2026-07-02T21:00:00+00:00",
+    "air_temp_latest_obs_min_utc": "2026-07-02T20:30:00+00:00",
+    "air_temp_latest_obs_max_utc": "2026-07-02T21:32:00+00:00",
+    "air_temp_latest_valid_utc": "2026-07-02T20:00:00+00:00",
     "air_temp_latest_grid_model": "RTMA",
-    "air_temp_latest_grid_lag_hours": 0.0
+    "air_temp_latest_grid_lag_hours": 1.0
   }
 }
