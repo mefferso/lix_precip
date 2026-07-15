@@ -5,8 +5,8 @@
   "period_end_local": "2026-07-16T00:00:00-05:00",
   "period_start_utc": "2026-07-15T05:00:00+00:00",
   "period_end_utc": "2026-07-16T05:00:00+00:00",
-  "generated_utc": "2026-07-15T21:19:49.237365+00:00",
-  "station_count": 404,
+  "generated_utc": "2026-07-15T22:21:26.886846+00:00",
+  "station_count": 405,
   "csv": "station_air_temp_daily_max_latest.csv",
   "rows": [
     {
@@ -44,14 +44,36 @@
       "lat": "30.88467",
       "lon": "-92.12814",
       "mnet_id": "64",
-      "air_temp_max_f": 102.0,
-      "valid_time": "2026-07-15T14:48:00-0500",
-      "valid_time_utc": "2026-07-15T19:48:00+00:00",
+      "air_temp_max_f": 107.0,
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 36
+      "count": 39
+    },
+    {
+      "stid": "KAPS",
+      "name": "Port of South Louisiana Executive Regional Airport",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "7.0",
+      "lat": "30.08747",
+      "lon": "-90.58283",
+      "mnet_id": "1",
+      "air_temp_max_f": 100.0,
+      "valid_time": "2026-07-15T16:55:00-0500",
+      "valid_time_utc": "2026-07-15T21:55:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 47
     },
     {
       "stid": "1881W",
@@ -73,29 +95,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "KAPS",
-      "name": "Port of South Louisiana Executive Regional Airport",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "7.0",
-      "lat": "30.08747",
-      "lon": "-90.58283",
-      "mnet_id": "1",
-      "air_temp_max_f": 98.6,
-      "valid_time": "2026-07-15T13:15:00-0500",
-      "valid_time_utc": "2026-07-15T18:15:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 44
+      "count": 103
     },
     {
       "stid": "UP368",
@@ -110,14 +110,14 @@
       "lat": "31.11893",
       "lon": "-92.40583",
       "mnet_id": "64",
-      "air_temp_max_f": 97.0,
-      "valid_time": "2026-07-15T14:08:00-0500",
-      "valid_time_utc": "2026-07-15T19:08:00+00:00",
+      "air_temp_max_f": 98.0,
+      "valid_time": "2026-07-15T16:24:00-0500",
+      "valid_time_utc": "2026-07-15T21:24:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 37
+      "count": 39
     },
     {
       "stid": "F1704",
@@ -139,7 +139,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "E1090",
@@ -161,7 +161,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 190
+      "count": 202
     },
     {
       "stid": "AT845",
@@ -183,7 +183,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "AS256",
+      "name": "KF4IRC Mobile",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "31.99",
+      "lat": "30.668",
+      "lon": "-88.1145",
+      "mnet_id": "65",
+      "air_temp_max_f": 97.0,
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 61
     },
     {
       "stid": "2016W",
@@ -205,7 +227,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "2020W",
@@ -220,14 +242,14 @@
       "lat": "29.88464",
       "lon": "-90.34422",
       "mnet_id": "249",
-      "air_temp_max_f": 96.4,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
+      "air_temp_max_f": 96.7,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "UP867",
@@ -249,7 +271,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 13
+      "count": 14
     },
     {
       "stid": "UP866",
@@ -271,7 +293,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 36
+      "count": 39
     },
     {
       "stid": "OBLA1",
@@ -293,7 +315,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 170
     },
     {
       "stid": "GCPPTA1",
@@ -315,7 +337,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 17
     },
     {
       "stid": "G6346",
@@ -337,7 +359,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 65
+      "count": 69
     },
     {
       "stid": "G6345",
@@ -359,7 +381,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 31
+      "count": 35
     },
     {
       "stid": "F0094",
@@ -381,7 +403,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "E8473",
@@ -403,7 +425,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "C2378",
@@ -425,29 +447,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 157
-    },
-    {
-      "stid": "AS256",
-      "name": "KF4IRC Mobile",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "31.99",
-      "lat": "30.668",
-      "lon": "-88.1145",
-      "mnet_id": "65",
-      "air_temp_max_f": 96.0,
-      "valid_time": "2026-07-15T15:50:00-0500",
-      "valid_time_utc": "2026-07-15T20:50:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 57
+      "count": 167
     },
     {
       "stid": "PPTA1",
@@ -469,7 +469,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 15
+      "count": 16
+    },
+    {
+      "stid": "1890W",
+      "name": "Municipal Yacht Harbor - Lakefront",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "3.0",
+      "lat": "30.02836",
+      "lon": "-90.11563",
+      "mnet_id": "249",
+      "air_temp_max_f": 95.9,
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "NGC11",
@@ -484,14 +506,14 @@
       "lat": "29.96887",
       "lon": "-90.21775",
       "mnet_id": "295",
-      "air_temp_max_f": 95.4,
-      "valid_time": "2026-07-15T14:15:00-0500",
-      "valid_time_utc": "2026-07-15T19:15:00+00:00",
+      "air_temp_max_f": 95.5,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 64
+      "count": 69
     },
     {
       "stid": "NDBCOBLA1",
@@ -506,14 +528,14 @@
       "lat": "30.705",
       "lon": "-88.04",
       "mnet_id": "286",
-      "air_temp_max_f": 95.4,
-      "valid_time": "2026-07-15T13:54:00-0500",
-      "valid_time_utc": "2026-07-15T18:54:00+00:00",
+      "air_temp_max_f": 95.5,
+      "valid_time": "2026-07-15T15:48:00-0500",
+      "valid_time_utc": "2026-07-15T20:48:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
+      "count": 104
     },
     {
       "stid": "1972W",
@@ -535,7 +557,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "1885W",
+      "name": "NOFD Rescue Squad 7 - Treme",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "10.0",
+      "lat": "29.96268",
+      "lon": "-90.07154",
+      "mnet_id": "249",
+      "air_temp_max_f": 95.1,
+      "valid_time": "2026-07-15T16:20:00-0500",
+      "valid_time_utc": "2026-07-15T21:20:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "G7241",
@@ -557,7 +601,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "G6440",
@@ -579,7 +623,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "G6347",
+      "name": "GW6347 SLIDELL",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "16.4",
+      "lat": "30.29883",
+      "lon": "-89.75800",
+      "mnet_id": "65",
+      "air_temp_max_f": 95.0,
+      "valid_time": "2026-07-15T16:45:00-0500",
+      "valid_time_utc": "2026-07-15T21:45:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 70
     },
     {
       "stid": "G5218",
@@ -601,7 +667,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G2037",
@@ -623,7 +689,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 191
+      "count": 203
     },
     {
       "stid": "F6606",
@@ -645,7 +711,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "E9083",
+      "name": "W4NDF-13 METAIRIE",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "9.0",
+      "lat": "29.98114",
+      "lon": "-90.19902",
+      "mnet_id": "65",
+      "air_temp_max_f": 95.0,
+      "valid_time": "2026-07-15T16:59:00-0500",
+      "valid_time_utc": "2026-07-15T21:59:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 205
     },
     {
       "stid": "E6903",
@@ -667,7 +755,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "E1043",
@@ -689,7 +777,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "D8180",
+      "name": "DW8180 Pace",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "43.0",
+      "lat": "30.58917",
+      "lon": "-87.15283",
+      "mnet_id": "65",
+      "air_temp_max_f": 95.0,
+      "valid_time": "2026-07-15T16:55:00-0500",
+      "valid_time_utc": "2026-07-15T21:55:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 177
+    },
+    {
+      "stid": "D7066",
+      "name": "DW7066 Pensacola",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "108.27",
+      "lat": "30.46217",
+      "lon": "-87.19167",
+      "mnet_id": "65",
+      "air_temp_max_f": 95.0,
+      "valid_time": "2026-07-15T16:18:00-0500",
+      "valid_time_utc": "2026-07-15T21:18:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 849
     },
     {
       "stid": "D4135",
@@ -711,7 +843,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 153
+      "count": 164
     },
     {
       "stid": "AV775",
@@ -733,29 +865,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
-    },
-    {
-      "stid": "1885W",
-      "name": "NOFD Rescue Squad 7 - Treme",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "10.0",
-      "lat": "29.96268",
-      "lon": "-90.07154",
-      "mnet_id": "249",
-      "air_temp_max_f": 95.0,
-      "valid_time": "2026-07-15T16:00:00-0500",
-      "valid_time_utc": "2026-07-15T21:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 205
     },
     {
       "stid": "2117W",
@@ -777,7 +887,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "KBIX",
@@ -821,7 +931,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
     },
     {
       "stid": "K0R4",
@@ -843,7 +953,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 46
+      "count": 49
+    },
+    {
+      "stid": "0904W",
+      "name": "Pace High School",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "131.0",
+      "lat": "30.61265",
+      "lon": "-87.15355",
+      "mnet_id": "249",
+      "air_temp_max_f": 94.4,
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
+    },
+    {
+      "stid": "2245W",
+      "name": "City Equipment Maintenance - Desire",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "33.0",
+      "lat": "29.99992",
+      "lon": "-90.03133",
+      "mnet_id": "249",
+      "air_temp_max_f": 94.3,
+      "valid_time": "2026-07-15T16:20:00-0500",
+      "valid_time_utc": "2026-07-15T21:20:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "1683W",
@@ -865,7 +1019,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "1975W",
+      "name": "NOFD Engine 12 - Gentilly/Milneburg",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "7.0",
+      "lat": "30.01622",
+      "lon": "-90.05172",
+      "mnet_id": "249",
+      "air_temp_max_f": 94.2,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "1871W",
@@ -887,7 +1063,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "0902W",
@@ -909,7 +1085,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "USA5",
@@ -931,7 +1107,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1035
     },
     {
       "stid": "1968W",
@@ -953,7 +1129,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "UP878",
@@ -975,7 +1151,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 37
+      "count": 39
     },
     {
       "stid": "RHCM6",
@@ -997,7 +1173,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 17
+      "count": 18
+    },
+    {
+      "stid": "NNHM6",
+      "name": "HANCOCK",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "98.0",
+      "lat": "30.451110",
+      "lon": "-89.454440",
+      "mnet_id": "2",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T17:09:00-0500",
+      "valid_time_utc": "2026-07-15T22:09:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 18
+    },
+    {
+      "stid": "G7632",
+      "name": "GW7632 PORT ALLEN",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "9.84",
+      "lat": "30.46767",
+      "lon": "-91.26617",
+      "mnet_id": "65",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 205
     },
     {
       "stid": "G6357",
@@ -1019,29 +1239,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "G6347",
-      "name": "GW6347 SLIDELL",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "16.4",
-      "lat": "30.29883",
-      "lon": "-89.75800",
-      "mnet_id": "65",
-      "air_temp_max_f": 94.0,
-      "valid_time": "2026-07-15T15:45:00-0500",
-      "valid_time_utc": "2026-07-15T20:45:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G6343",
@@ -1063,7 +1261,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G6059",
@@ -1085,7 +1283,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "G5906",
+      "name": "GW5906 EDGARD",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "24.41",
+      "lat": "30.04533",
+      "lon": "-90.56333",
+      "mnet_id": "65",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T16:26:00-0500",
+      "valid_time_utc": "2026-07-15T21:26:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 206
     },
     {
       "stid": "G5379",
@@ -1107,7 +1327,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "G1868",
@@ -1129,7 +1349,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 154
+      "count": 165
     },
     {
       "stid": "F9742",
@@ -1151,7 +1371,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
+    },
+    {
+      "stid": "F7886",
+      "name": "FW7886 BATON ROUGE",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "22.8",
+      "lat": "30.33122",
+      "lon": "-91.12713",
+      "mnet_id": "65",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T17:10:00-0500",
+      "valid_time_utc": "2026-07-15T22:10:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 203
     },
     {
       "stid": "F7671",
@@ -1173,7 +1415,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "F6181",
+      "name": "FW6181 Mandeville",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "16.44",
+      "lat": "30.38783",
+      "lon": "-90.06633",
+      "mnet_id": "65",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T16:45:00-0500",
+      "valid_time_utc": "2026-07-15T21:45:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 70
+    },
+    {
+      "stid": "F5707",
+      "name": "FW5707 Pineville",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "104.99",
+      "lat": "31.37983",
+      "lon": "-92.46767",
+      "mnet_id": "65",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T17:01:00-0500",
+      "valid_time_utc": "2026-07-15T22:01:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 70
     },
     {
       "stid": "F4455",
@@ -1195,7 +1481,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "F1193",
+      "name": "FW1193 St. Gabriel",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "16.0",
+      "lat": "30.30833",
+      "lon": "-91.101",
+      "mnet_id": "65",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T16:41:00-0500",
+      "valid_time_utc": "2026-07-15T21:41:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 198
     },
     {
       "stid": "F1110",
@@ -1217,29 +1525,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "E9083",
-      "name": "W4NDF-13 METAIRIE",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "9.0",
-      "lat": "29.98114",
-      "lon": "-90.19902",
-      "mnet_id": "65",
-      "air_temp_max_f": 94.0,
-      "valid_time": "2026-07-15T14:17:00-0500",
-      "valid_time_utc": "2026-07-15T19:17:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 70
     },
     {
       "stid": "E1604",
@@ -1261,51 +1547,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "D8180",
-      "name": "DW8180 Pace",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "43.0",
-      "lat": "30.58917",
-      "lon": "-87.15283",
-      "mnet_id": "65",
-      "air_temp_max_f": 94.0,
-      "valid_time": "2026-07-15T14:40:00-0500",
-      "valid_time_utc": "2026-07-15T19:40:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 165
-    },
-    {
-      "stid": "D7066",
-      "name": "DW7066 Pensacola",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "108.27",
-      "lat": "30.46217",
-      "lon": "-87.19167",
-      "mnet_id": "65",
-      "air_temp_max_f": 94.0,
-      "valid_time": "2026-07-15T14:55:00-0500",
-      "valid_time_utc": "2026-07-15T19:55:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 800
+      "count": 70
     },
     {
       "stid": "D6471",
@@ -1327,7 +1569,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 190
+      "count": 201
     },
     {
       "stid": "D4362",
@@ -1349,7 +1591,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 57
+      "count": 59
+    },
+    {
+      "stid": "C7580",
+      "name": "CW7580 Gramercy",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "8.63",
+      "lat": "30.06333",
+      "lon": "-90.69917",
+      "mnet_id": "65",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T16:41:00-0500",
+      "valid_time_utc": "2026-07-15T21:41:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 211
+    },
+    {
+      "stid": "C5600",
+      "name": "KG5FQT Paulina",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "6.0",
+      "lat": "30.03957",
+      "lon": "-90.71437",
+      "mnet_id": "65",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 35
     },
     {
       "stid": "BYGL1",
@@ -1371,7 +1657,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 170
+    },
+    {
+      "stid": "BCCM6",
+      "name": "BOGUE CHITTO",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "126.0",
+      "lat": "30.661940",
+      "lon": "-89.795560",
+      "mnet_id": "2",
+      "air_temp_max_f": 94.0,
+      "valid_time": "2026-07-15T17:12:00-0500",
+      "valid_time_utc": "2026-07-15T22:12:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 18
     },
     {
       "stid": "AW575",
@@ -1393,51 +1701,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 187
+      "count": 199
     },
     {
-      "stid": "2245W",
-      "name": "City Equipment Maintenance - Desire",
-      "state": "LA",
-      "country": "US",
+      "stid": "NDBCMBPA1",
+      "name": "8736163 - Middle Bay Port, Mobile Bay, AL",
+      "state": null,
+      "country": null,
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "33.0",
-      "lat": "29.99992",
-      "lon": "-90.03133",
-      "mnet_id": "249",
-      "air_temp_max_f": 94.0,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
+      "elevation_ft": "11.15",
+      "lat": "30.527",
+      "lon": "-88.086",
+      "mnet_id": "286",
+      "air_temp_max_f": 93.7,
+      "valid_time": "2026-07-15T15:42:00-0500",
+      "valid_time_utc": "2026-07-15T20:42:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "0904W",
-      "name": "Pace High School",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "131.0",
-      "lat": "30.61265",
-      "lon": "-87.15355",
-      "mnet_id": "249",
-      "air_temp_max_f": 94.0,
-      "valid_time": "2026-07-15T15:00:00-0500",
-      "valid_time_utc": "2026-07-15T20:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
     },
     {
       "stid": "1884W",
@@ -1459,7 +1745,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "1774W",
@@ -1481,7 +1767,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "1089W",
@@ -1503,7 +1789,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "2156W",
+      "name": "Addis VFW Hall",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "52.0",
+      "lat": "30.35007",
+      "lon": "-91.26724",
+      "mnet_id": "249",
+      "air_temp_max_f": 93.3,
+      "valid_time": "2026-07-15T16:20:00-0500",
+      "valid_time_utc": "2026-07-15T21:20:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "SSXXQ",
@@ -1528,6 +1836,28 @@
       "count": 188
     },
     {
+      "stid": "KPIB",
+      "name": "Hattiesburg/Laurel, Hattiesburg-Laurel Regional Airport",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "299.0",
+      "lat": "31.46667",
+      "lon": "-89.33333",
+      "mnet_id": "1",
+      "air_temp_max_f": 93.2,
+      "valid_time": "2026-07-15T16:20:00-0500",
+      "valid_time_utc": "2026-07-15T21:20:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 225
+    },
+    {
       "stid": "KBXA",
       "name": "Bogalusa, George R Carr Memorial Air Field",
       "state": "LA",
@@ -1547,7 +1877,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 46
+      "count": 50
     },
     {
       "stid": "KBFM",
@@ -1569,7 +1899,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 212
+      "count": 225
     },
     {
       "stid": "2248W",
@@ -1591,7 +1921,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "MVSA1",
@@ -1613,51 +1943,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
-    },
-    {
-      "stid": "1975W",
-      "name": "NOFD Engine 12 - Gentilly/Milneburg",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "7.0",
-      "lat": "30.01622",
-      "lon": "-90.05172",
-      "mnet_id": "249",
-      "air_temp_max_f": 93.1,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "1890W",
-      "name": "Municipal Yacht Harbor - Lakefront",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "3.0",
-      "lat": "30.02836",
-      "lon": "-90.11563",
-      "mnet_id": "249",
-      "air_temp_max_f": 93.1,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 1036
     },
     {
       "stid": "1887W",
@@ -1679,7 +1965,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "UP390",
@@ -1701,7 +1987,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 38
+      "count": 41
     },
     {
       "stid": "UP357",
@@ -1723,7 +2009,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 35
+      "count": 37
     },
     {
       "stid": "UP161",
@@ -1745,7 +2031,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 38
+      "count": 40
+    },
+    {
+      "stid": "TS947",
+      "name": "SELA PORTABLE",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "3.0",
+      "lat": "30.109000",
+      "lon": "-89.857830",
+      "mnet_id": "2",
+      "air_temp_max_f": 93.0,
+      "valid_time": "2026-07-15T16:34:00-0500",
+      "valid_time_utc": "2026-07-15T21:34:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 17
     },
     {
       "stid": "SHCM6",
@@ -1767,7 +2075,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 17
     },
     {
       "stid": "SFPL1",
@@ -1811,29 +2119,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 18
     },
     {
-      "stid": "G7632",
-      "name": "GW7632 PORT ALLEN",
+      "stid": "G7409",
+      "name": "GW7409 PINEVILLE",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "9.84",
-      "lat": "30.46767",
-      "lon": "-91.26617",
+      "elevation_ft": "157.48",
+      "lat": "31.40633",
+      "lon": "-92.46217",
       "mnet_id": "65",
       "air_temp_max_f": 93.0,
-      "valid_time": "2026-07-15T16:04:00-0500",
-      "valid_time_utc": "2026-07-15T21:04:00+00:00",
+      "valid_time": "2026-07-15T16:40:00-0500",
+      "valid_time_utc": "2026-07-15T21:40:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 206
     },
     {
       "stid": "G6990",
@@ -1855,7 +2163,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
+    },
+    {
+      "stid": "G6344",
+      "name": "GW6344 BUSH",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "88.58",
+      "lat": "30.60533",
+      "lon": "-89.94750",
+      "mnet_id": "65",
+      "air_temp_max_f": 93.0,
+      "valid_time": "2026-07-15T16:45:00-0500",
+      "valid_time_utc": "2026-07-15T21:45:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 70
     },
     {
       "stid": "G6243",
@@ -1877,29 +2207,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "G5906",
-      "name": "GW5906 EDGARD",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "24.41",
-      "lat": "30.04533",
-      "lon": "-90.56333",
-      "mnet_id": "65",
-      "air_temp_max_f": 93.0,
-      "valid_time": "2026-07-15T13:34:00-0500",
-      "valid_time_utc": "2026-07-15T18:34:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 70
     },
     {
       "stid": "G5825",
@@ -1921,7 +2229,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "G5674",
@@ -1943,7 +2251,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 47
+      "count": 51
     },
     {
       "stid": "G5294",
@@ -1965,7 +2273,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "G2074",
@@ -1987,7 +2295,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 64
+      "count": 68
     },
     {
       "stid": "G0582",
@@ -2009,7 +2317,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "G0043",
@@ -2031,7 +2339,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "F9828",
@@ -2053,7 +2361,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 205
     },
     {
       "stid": "F9403",
@@ -2075,29 +2383,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
-    },
-    {
-      "stid": "F7886",
-      "name": "FW7886 BATON ROUGE",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "22.8",
-      "lat": "30.33122",
-      "lon": "-91.12713",
-      "mnet_id": "65",
-      "air_temp_max_f": 93.0,
-      "valid_time": "2026-07-15T12:27:00-0500",
-      "valid_time_utc": "2026-07-15T17:27:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 191
+      "count": 205
     },
     {
       "stid": "F7862",
@@ -2119,29 +2405,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
-    },
-    {
-      "stid": "F6181",
-      "name": "FW6181 Mandeville",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "16.44",
-      "lat": "30.38783",
-      "lon": "-90.06633",
-      "mnet_id": "65",
-      "air_temp_max_f": 93.0,
-      "valid_time": "2026-07-15T16:00:00-0500",
-      "valid_time_utc": "2026-07-15T21:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 205
     },
     {
       "stid": "F4663",
@@ -2163,7 +2427,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "E3364",
@@ -2185,51 +2449,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
-      "stid": "C7580",
-      "name": "CW7580 Gramercy",
-      "state": "LA",
+      "stid": "E0390",
+      "name": "EW0390 Calvert",
+      "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "8.63",
-      "lat": "30.06333",
-      "lon": "-90.69917",
+      "elevation_ft": "52.4",
+      "lat": "31.14667",
+      "lon": "-87.99883",
       "mnet_id": "65",
       "air_temp_max_f": 93.0,
-      "valid_time": "2026-07-15T16:15:00-0500",
-      "valid_time_utc": "2026-07-15T21:15:00+00:00",
+      "valid_time": "2026-07-15T16:22:00-0500",
+      "valid_time_utc": "2026-07-15T21:22:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 198
-    },
-    {
-      "stid": "C5600",
-      "name": "KG5FQT Paulina",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "6.0",
-      "lat": "30.03957",
-      "lon": "-90.71437",
-      "mnet_id": "65",
-      "air_temp_max_f": 93.0,
-      "valid_time": "2026-07-15T16:00:00-0500",
-      "valid_time_utc": "2026-07-15T21:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 33
+      "count": 190
     },
     {
       "stid": "C5236",
@@ -2251,7 +2493,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "C4185",
@@ -2273,7 +2515,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
+    },
+    {
+      "stid": "C3916",
+      "name": "CW3916 Belle Chasse",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "-1.0",
+      "lat": "29.84250",
+      "lon": "-90.00300",
+      "mnet_id": "65",
+      "air_temp_max_f": 93.0,
+      "valid_time": "2026-07-15T17:01:00-0500",
+      "valid_time_utc": "2026-07-15T22:01:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 70
     },
     {
       "stid": "BONA1",
@@ -2317,7 +2581,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 98
+      "count": 104
+    },
+    {
+      "stid": "AV521",
+      "name": "W5IC East Baton Rouge Parish      LA US",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "27.62",
+      "lat": "30.40400",
+      "lon": "-91.08467",
+      "mnet_id": "65",
+      "air_temp_max_f": 93.0,
+      "valid_time": "2026-07-15T16:47:00-0500",
+      "valid_time_utc": "2026-07-15T21:47:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 183
     },
     {
       "stid": "2057W",
@@ -2339,7 +2625,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 96
+      "count": 102
     },
     {
       "stid": "1815W",
@@ -2357,6 +2643,28 @@
       "air_temp_max_f": 92.8,
       "valid_time": "2026-07-15T14:30:00-0500",
       "valid_time_utc": "2026-07-15T19:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
+    },
+    {
+      "stid": "0900W",
+      "name": "Jay High School",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "282.0",
+      "lat": "30.94114",
+      "lon": "-87.15685",
+      "mnet_id": "249",
+      "air_temp_max_f": 92.8,
+      "valid_time": "2026-07-15T17:10:00-0500",
+      "valid_time_utc": "2026-07-15T22:10:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
@@ -2383,7 +2691,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "2158W",
@@ -2405,7 +2713,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "1479W",
+      "name": "FSWN Santa Rosa Allentown",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "213.0",
+      "lat": "30.78287",
+      "lon": "-87.09209",
+      "mnet_id": "249",
+      "air_temp_max_f": 92.7,
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "2242W",
@@ -2427,29 +2757,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
-      "stid": "2156W",
-      "name": "Addis VFW Hall",
+      "stid": "1819W",
+      "name": "Loyola University New Orleans - Uptown/Audubon",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "52.0",
-      "lat": "30.35007",
-      "lon": "-91.26724",
+      "elevation_ft": "30.0",
+      "lat": "29.93707",
+      "lon": "-90.11992",
       "mnet_id": "249",
-      "air_temp_max_f": 92.4,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
+      "air_temp_max_f": 92.6,
+      "valid_time": "2026-07-15T16:40:00-0500",
+      "valid_time_utc": "2026-07-15T21:40:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "1873W",
@@ -2471,29 +2801,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "1479W",
-      "name": "FSWN Santa Rosa Allentown",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "213.0",
-      "lat": "30.78287",
-      "lon": "-87.09209",
-      "mnet_id": "249",
-      "air_temp_max_f": 92.4,
-      "valid_time": "2026-07-15T14:50:00-0500",
-      "valid_time_utc": "2026-07-15T19:50:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "2162W",
@@ -2515,29 +2823,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "0900W",
-      "name": "Jay High School",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "282.0",
-      "lat": "30.94114",
-      "lon": "-87.15685",
-      "mnet_id": "249",
-      "air_temp_max_f": 92.3,
-      "valid_time": "2026-07-15T15:50:00-0500",
-      "valid_time_utc": "2026-07-15T20:50:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 91
+      "count": 103
     },
     {
       "stid": "1894W",
@@ -2559,7 +2845,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "1687W",
@@ -2581,7 +2867,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "USA7",
@@ -2603,7 +2889,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1035
     },
     {
       "stid": "TFBM6",
@@ -2647,7 +2933,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 45
+      "count": 49
     },
     {
       "stid": "1826W",
@@ -2669,7 +2955,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "1818W",
+      "name": "SWBNO East Bank Water Treatment - Lower 9th Ward",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "13.0",
+      "lat": "29.97728",
+      "lon": "-89.99746",
+      "mnet_id": "249",
+      "air_temp_max_f": 92.1,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "USA12",
@@ -2691,7 +2999,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1035
     },
     {
       "stid": "UP883",
@@ -2709,6 +3017,28 @@
       "air_temp_max_f": 92.0,
       "valid_time": "2026-07-15T15:16:00-0500",
       "valid_time_utc": "2026-07-15T20:16:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 16
+    },
+    {
+      "stid": "UP862",
+      "name": "CHNYVL",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "69.0",
+      "lat": "30.99376",
+      "lon": "-92.25709",
+      "mnet_id": "64",
+      "air_temp_max_f": 92.0,
+      "valid_time": "2026-07-15T16:28:00-0500",
+      "valid_time_utc": "2026-07-15T21:28:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
@@ -2735,29 +3065,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 17
+      "count": 18
     },
     {
-      "stid": "NNHM6",
-      "name": "HANCOCK",
-      "state": "MS",
+      "stid": "MCGA1",
+      "name": "Coast Guard Sector Mobile",
+      "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "98.0",
-      "lat": "30.451110",
-      "lon": "-89.454440",
-      "mnet_id": "2",
+      "elevation_ft": "13.0",
+      "lat": "30.64830",
+      "lon": "-88.05830",
+      "mnet_id": "121",
       "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T12:09:00-0500",
-      "valid_time_utc": "2026-07-15T17:09:00+00:00",
+      "valid_time": "2026-07-15T16:54:00-0500",
+      "valid_time_utc": "2026-07-15T21:54:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 17
+      "count": 170
     },
     {
       "stid": "GRBM6",
@@ -2782,28 +3112,6 @@
       "count": 15
     },
     {
-      "stid": "G7409",
-      "name": "GW7409 PINEVILLE",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "157.48",
-      "lat": "31.40633",
-      "lon": "-92.46217",
-      "mnet_id": "65",
-      "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T14:25:00-0500",
-      "valid_time_utc": "2026-07-15T19:25:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 195
-    },
-    {
       "stid": "G7331",
       "name": "GW7331 FOLEY",
       "state": "AL",
@@ -2823,29 +3131,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
-      "stid": "G6344",
-      "name": "GW6344 BUSH",
-      "state": "LA",
+      "stid": "G5434",
+      "name": "GW5434 EASTABUCHIE",
+      "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "88.58",
-      "lat": "30.60533",
-      "lon": "-89.94750",
+      "elevation_ft": "190.0",
+      "lat": "31.45250",
+      "lon": "-89.28433",
       "mnet_id": "65",
       "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T14:45:00-0500",
-      "valid_time_utc": "2026-07-15T19:45:00+00:00",
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 69
     },
     {
       "stid": "G4878",
@@ -2867,7 +3175,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G4801",
@@ -2889,7 +3197,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 188
+      "count": 198
     },
     {
       "stid": "G2672",
@@ -2911,7 +3219,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G2175",
@@ -2933,7 +3241,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "G1930",
@@ -2955,7 +3263,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "F8402",
+      "name": "FW8402 Youngsville",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "25.39",
+      "lat": "30.11383",
+      "lon": "-92.01083",
+      "mnet_id": "65",
+      "air_temp_max_f": 92.0,
+      "valid_time": "2026-07-15T16:39:00-0500",
+      "valid_time_utc": "2026-07-15T21:39:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 200
     },
     {
       "stid": "F6464",
@@ -2977,29 +3307,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "F5707",
-      "name": "FW5707 Pineville",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "104.99",
-      "lat": "31.37983",
-      "lon": "-92.46767",
-      "mnet_id": "65",
-      "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T13:30:00-0500",
-      "valid_time_utc": "2026-07-15T18:30:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "F5486",
@@ -3021,7 +3329,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 187
+      "count": 199
+    },
+    {
+      "stid": "F4737",
+      "name": "FW4737 Nokomis",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "240.03",
+      "lat": "31.02712",
+      "lon": "-87.59266",
+      "mnet_id": "65",
+      "air_temp_max_f": 92.0,
+      "valid_time": "2026-07-15T16:29:00-0500",
+      "valid_time_utc": "2026-07-15T21:29:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 202
     },
     {
       "stid": "F0324",
@@ -3043,7 +3373,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "E7714",
@@ -3065,7 +3395,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 136
+      "count": 143
+    },
+    {
+      "stid": "E1896",
+      "name": "EW1896 Jay",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "246.0",
+      "lat": "30.94917",
+      "lon": "-87.13217",
+      "mnet_id": "65",
+      "air_temp_max_f": 92.0,
+      "valid_time": "2026-07-15T16:45:00-0500",
+      "valid_time_utc": "2026-07-15T21:45:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 70
     },
     {
       "stid": "E1616",
@@ -3087,7 +3439,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "E0561",
@@ -3109,29 +3461,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "E0390",
-      "name": "EW0390 Calvert",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "52.4",
-      "lat": "31.14667",
-      "lon": "-87.99883",
-      "mnet_id": "65",
-      "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T14:56:00-0500",
-      "valid_time_utc": "2026-07-15T19:56:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 181
+      "count": 70
     },
     {
       "stid": "D2721",
@@ -3153,7 +3483,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "C6488",
@@ -3175,7 +3505,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 57
+      "count": 61
     },
     {
       "stid": "C1353",
@@ -3197,29 +3527,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 98
+      "count": 104
     },
     {
-      "stid": "BCCM6",
-      "name": "BOGUE CHITTO",
+      "stid": "BDEM6",
+      "name": "BUDE",
       "state": "MS",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "126.0",
-      "lat": "30.661940",
-      "lon": "-89.795560",
+      "elevation_ft": "447.0",
+      "lat": "31.410560",
+      "lon": "-90.846670",
       "mnet_id": "2",
       "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T14:12:00-0500",
-      "valid_time_utc": "2026-07-15T19:12:00+00:00",
+      "valid_time": "2026-07-15T17:05:00-0500",
+      "valid_time_utc": "2026-07-15T22:05:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 17
+      "count": 18
     },
     {
       "stid": "BBNL1",
@@ -3241,7 +3571,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 17
     },
     {
       "stid": "AX220",
@@ -3263,7 +3593,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
+    },
+    {
+      "stid": "AX182",
+      "name": "KD5VOO BATON ROUGE",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "236.22",
+      "lat": "30.51533",
+      "lon": "-91.06350",
+      "mnet_id": "65",
+      "air_temp_max_f": 92.0,
+      "valid_time": "2026-07-15T16:56:00-0500",
+      "valid_time_utc": "2026-07-15T21:56:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 206
     },
     {
       "stid": "AX128",
@@ -3285,29 +3637,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "AV521",
-      "name": "W5IC East Baton Rouge Parish      LA US",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "27.62",
-      "lat": "30.40400",
-      "lon": "-91.08467",
-      "mnet_id": "65",
-      "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T15:06:00-0500",
-      "valid_time_utc": "2026-07-15T20:06:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 173
+      "count": 70
     },
     {
       "stid": "AR152",
@@ -3329,51 +3659,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 55
-    },
-    {
-      "stid": "1819W",
-      "name": "Loyola University New Orleans - Uptown/Audubon",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "30.0",
-      "lat": "29.93707",
-      "lon": "-90.11992",
-      "mnet_id": "249",
-      "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T13:50:00-0500",
-      "valid_time_utc": "2026-07-15T18:50:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "1818W",
-      "name": "SWBNO East Bank Water Treatment - Lower 9th Ward",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "13.0",
-      "lat": "29.97728",
-      "lon": "-89.99746",
-      "mnet_id": "249",
-      "air_temp_max_f": 92.0,
-      "valid_time": "2026-07-15T15:40:00-0500",
-      "valid_time_utc": "2026-07-15T20:40:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 59
     },
     {
       "stid": "NGC41",
@@ -3417,7 +3703,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 15
+      "count": 16
     },
     {
       "stid": "KMSY",
@@ -3439,7 +3725,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
     },
     {
       "stid": "KGPT",
@@ -3461,7 +3747,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
+    },
+    {
+      "stid": "2281W",
+      "name": "NORDC Norman Playground - Old Aurora",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "33.0",
+      "lat": "29.91992",
+      "lon": "-89.99820",
+      "mnet_id": "249",
+      "air_temp_max_f": 91.9,
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "2166W",
@@ -3483,7 +3791,95 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "2161W",
+      "name": "Erwinville Community Center",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "72.0",
+      "lat": "30.54203",
+      "lon": "-91.36364",
+      "mnet_id": "249",
+      "air_temp_max_f": 91.9,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
+    },
+    {
+      "stid": "1199W",
+      "name": "Pensacola High School",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "69.0",
+      "lat": "30.43479",
+      "lon": "-87.22465",
+      "mnet_id": "249",
+      "air_temp_max_f": 91.9,
+      "valid_time": "2026-07-15T16:40:00-0500",
+      "valid_time_utc": "2026-07-15T21:40:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
+    },
+    {
+      "stid": "KLUL",
+      "name": "LAUREL/NOBLE FIELD",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "240.0",
+      "lat": "31.67",
+      "lon": "-89.17",
+      "mnet_id": "1",
+      "air_temp_max_f": 91.8,
+      "valid_time": "2026-07-15T16:55:00-0500",
+      "valid_time_utc": "2026-07-15T21:55:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 50
+    },
+    {
+      "stid": "1313W",
+      "name": "Alex Box Stadium",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "36.0",
+      "lat": "30.40666",
+      "lon": "-91.18750",
+      "mnet_id": "249",
+      "air_temp_max_f": 91.8,
+      "valid_time": "2026-07-15T16:40:00-0500",
+      "valid_time_utc": "2026-07-15T21:40:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "1208W",
@@ -3505,7 +3901,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "USA4",
@@ -3521,35 +3917,13 @@
       "lon": "-88.09930",
       "mnet_id": "3011",
       "air_temp_max_f": 91.7,
-      "valid_time": "2026-07-15T15:54:00-0500",
-      "valid_time_utc": "2026-07-15T20:54:00+00:00",
+      "valid_time": "2026-07-15T16:27:00-0500",
+      "valid_time_utc": "2026-07-15T21:27:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
-    },
-    {
-      "stid": "2281W",
-      "name": "NORDC Norman Playground - Old Aurora",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "33.0",
-      "lat": "29.91992",
-      "lon": "-89.99820",
-      "mnet_id": "249",
-      "air_temp_max_f": 91.7,
-      "valid_time": "2026-07-15T14:40:00-0500",
-      "valid_time_utc": "2026-07-15T19:40:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 1035
     },
     {
       "stid": "1875W",
@@ -3571,29 +3945,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "1199W",
-      "name": "Pensacola High School",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "69.0",
-      "lat": "30.43479",
-      "lon": "-87.22465",
-      "mnet_id": "249",
-      "air_temp_max_f": 91.7,
-      "valid_time": "2026-07-15T15:50:00-0500",
-      "valid_time_utc": "2026-07-15T20:50:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "USA3",
@@ -3615,7 +3967,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1035
     },
     {
       "stid": "KREG",
@@ -3637,7 +3989,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 45
+      "count": 48
     },
     {
       "stid": "GCLUML1",
@@ -3659,29 +4011,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 46
-    },
-    {
-      "stid": "2161W",
-      "name": "Erwinville Community Center",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "72.0",
-      "lat": "30.54203",
-      "lon": "-91.36364",
-      "mnet_id": "249",
-      "air_temp_max_f": 91.6,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 50
     },
     {
       "stid": "LSU08",
@@ -3703,7 +4033,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 750
+      "count": 810
     },
     {
       "stid": "LM029",
@@ -3725,7 +4055,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 206
     },
     {
       "stid": "AESM6",
@@ -3747,29 +4077,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 970
+      "count": 1030
     },
     {
-      "stid": "NDBCMBPA1",
-      "name": "8736163 - Middle Bay Port, Mobile Bay, AL",
-      "state": null,
-      "country": null,
+      "stid": "1684W",
+      "name": "FSWN Escambia Beulah Fire Station",
+      "state": "FL",
+      "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "11.15",
-      "lat": "30.527",
-      "lon": "-88.086",
-      "mnet_id": "286",
-      "air_temp_max_f": 91.4,
-      "valid_time": "2026-07-15T13:24:00-0500",
-      "valid_time_utc": "2026-07-15T18:24:00+00:00",
+      "elevation_ft": "131.0",
+      "lat": "30.53630",
+      "lon": "-87.39425",
+      "mnet_id": "249",
+      "air_temp_max_f": 91.5,
+      "valid_time": "2026-07-15T16:40:00-0500",
+      "valid_time_utc": "2026-07-15T21:40:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
+      "count": 103
+    },
+    {
+      "stid": "1311W",
+      "name": "Tiger Stadium",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "52.0",
+      "lat": "30.41192",
+      "lon": "-91.18376",
+      "mnet_id": "249",
+      "air_temp_max_f": 91.5,
+      "valid_time": "2026-07-15T17:00:00-0500",
+      "valid_time_utc": "2026-07-15T22:00:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 92
     },
     {
       "stid": "KPQL",
@@ -3791,7 +4143,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
     },
     {
       "stid": "KPNS",
@@ -3813,29 +4165,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
     },
     {
-      "stid": "KPIB",
-      "name": "Hattiesburg/Laurel, Hattiesburg-Laurel Regional Airport",
-      "state": "MS",
+      "stid": "KNEW",
+      "name": "New Orleans, New Orleans Lakefront Airport",
+      "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "299.0",
-      "lat": "31.46667",
-      "lon": "-89.33333",
+      "elevation_ft": "7.0",
+      "lat": "30.04944",
+      "lon": "-90.02889",
       "mnet_id": "1",
       "air_temp_max_f": 91.4,
-      "valid_time": "2026-07-15T15:30:00-0500",
-      "valid_time_utc": "2026-07-15T20:30:00+00:00",
+      "valid_time": "2026-07-15T16:40:00-0500",
+      "valid_time_utc": "2026-07-15T21:40:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 212
+      "count": 224
     },
     {
       "stid": "KMTK",
@@ -3857,7 +4209,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 41
+      "count": 44
     },
     {
       "stid": "KMOB",
@@ -3879,7 +4231,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
     },
     {
       "stid": "KLFT",
@@ -3901,7 +4253,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
     },
     {
       "stid": "KHSA",
@@ -3945,7 +4297,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
+    },
+    {
+      "stid": "KBTR",
+      "name": "Baton Rouge, Baton Rouge Metropolitan, Ryan Field",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "69.0",
+      "lat": "30.53722",
+      "lon": "-91.14694",
+      "mnet_id": "1",
+      "air_temp_max_f": 91.4,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 224
     },
     {
       "stid": "KASD",
@@ -3967,7 +4341,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
     },
     {
       "stid": "K1R8",
@@ -3989,7 +4363,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 37
+      "count": 40
     },
     {
       "stid": "JAYF1",
@@ -4011,7 +4385,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "LSU01",
+      "name": "BenHur",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "20.0",
+      "lat": "30.36437",
+      "lon": "-91.16726",
+      "mnet_id": "256",
+      "air_temp_max_f": 91.3,
+      "valid_time": "2026-07-15T16:59:00-0500",
+      "valid_time_utc": "2026-07-15T21:59:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 1036
     },
     {
       "stid": "1970W",
@@ -4033,7 +4429,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "1824W",
+      "name": "SWBNO West Bank Water Treatment - English Turn",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "10.0",
+      "lat": "29.90704",
+      "lon": "-89.96619",
+      "mnet_id": "249",
+      "air_temp_max_f": 91.3,
+      "valid_time": "2026-07-15T17:10:00-0500",
+      "valid_time_utc": "2026-07-15T22:10:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 83
     },
     {
       "stid": "1196W",
@@ -4055,7 +4473,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "USA1",
+      "name": "USA West",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "170.0",
+      "lat": "30.69440",
+      "lon": "-88.19440",
+      "mnet_id": "3011",
+      "air_temp_max_f": 91.2,
+      "valid_time": "2026-07-15T16:19:00-0500",
+      "valid_time_utc": "2026-07-15T21:19:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 1035
+    },
+    {
+      "stid": "NDBCMCGA1",
+      "name": "8736897 - Coast Guard Sector Mobile, AL",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "7.22",
+      "lat": "30.649",
+      "lon": "-88.058",
+      "mnet_id": "286",
+      "air_temp_max_f": 91.2,
+      "valid_time": "2026-07-15T16:24:00-0500",
+      "valid_time_utc": "2026-07-15T21:24:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 104
     },
     {
       "stid": "LSU10",
@@ -4077,51 +4539,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 928
+      "count": 988
     },
     {
-      "stid": "1824W",
-      "name": "SWBNO West Bank Water Treatment - English Turn",
+      "stid": "NORL1",
+      "name": "MISSISSIPPI RIVER AT CARROLLTON GAGE AT NEW ORLEANS",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "10.0",
-      "lat": "29.90704",
-      "lon": "-89.96619",
-      "mnet_id": "249",
+      "elevation_ft": "20.0",
+      "lat": "29.93472",
+      "lon": "-90.13611",
+      "mnet_id": "106",
       "air_temp_max_f": 91.1,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
+      "valid_time": "2026-07-15T16:00:00-0500",
+      "valid_time_utc": "2026-07-15T21:00:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 77
-    },
-    {
-      "stid": "USA1",
-      "name": "USA West",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "170.0",
-      "lat": "30.69440",
-      "lon": "-88.19440",
-      "mnet_id": "3011",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T16:07:00-0500",
-      "valid_time_utc": "2026-07-15T21:07:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 17
     },
     {
       "stid": "UR373",
@@ -4143,7 +4583,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 37
+      "count": 39
     },
     {
       "stid": "UP884",
@@ -4187,7 +4627,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 19
+      "count": 20
     },
     {
       "stid": "UP213",
@@ -4212,28 +4652,6 @@
       "count": 14
     },
     {
-      "stid": "TS947",
-      "name": "SELA PORTABLE",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "3.0",
-      "lat": "30.109000",
-      "lon": "-89.857830",
-      "mnet_id": "2",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T15:34:00-0500",
-      "valid_time_utc": "2026-07-15T20:34:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
-    },
-    {
       "stid": "PSTL1",
       "name": "Pilots Station East",
       "state": "LA",
@@ -4253,7 +4671,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 170
     },
     {
       "stid": "PCLF1",
@@ -4275,7 +4693,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 170
+    },
+    {
+      "stid": "NDBCPTOA1",
+      "name": "8737005 - Pinto Island, AL",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "14.11",
+      "lat": "30.671",
+      "lon": "-88.031",
+      "mnet_id": "286",
+      "air_temp_max_f": 91.0,
+      "valid_time": "2026-07-15T16:00:00-0500",
+      "valid_time_utc": "2026-07-15T21:00:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 104
     },
     {
       "stid": "NDBCPSTL1",
@@ -4297,7 +4737,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 94
+      "count": 101
     },
     {
       "stid": "MPAM6",
@@ -4319,29 +4759,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 17
-    },
-    {
-      "stid": "MCGA1",
-      "name": "Coast Guard Sector Mobile",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "13.0",
-      "lat": "30.64830",
-      "lon": "-88.05830",
-      "mnet_id": "121",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T15:42:00-0500",
-      "valid_time_utc": "2026-07-15T20:42:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 18
     },
     {
       "stid": "LM025",
@@ -4363,7 +4781,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 207
     },
     {
       "stid": "KNDZ",
@@ -4385,7 +4803,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 17
     },
     {
       "stid": "KNBG",
@@ -4407,7 +4825,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 17
     },
     {
       "stid": "KESF",
@@ -4429,7 +4847,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
     },
     {
       "stid": "G6841",
@@ -4451,7 +4869,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 206
     },
     {
       "stid": "G6342",
@@ -4473,7 +4891,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G6029",
@@ -4495,7 +4913,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "G5750",
@@ -4517,29 +4935,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
-    },
-    {
-      "stid": "G5434",
-      "name": "GW5434 EASTABUCHIE",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "190.0",
-      "lat": "31.45250",
-      "lon": "-89.28433",
-      "mnet_id": "65",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T15:45:00-0500",
-      "valid_time_utc": "2026-07-15T20:45:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 65
+      "count": 205
     },
     {
       "stid": "G4772",
@@ -4561,7 +4957,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G4271",
@@ -4583,7 +4979,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "G3222",
@@ -4605,7 +5001,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G1824",
@@ -4627,7 +5023,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G0610",
@@ -4649,7 +5045,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "G0093",
@@ -4671,7 +5067,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 156
+      "count": 165
     },
     {
       "stid": "F9380",
@@ -4693,29 +5089,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
-    },
-    {
-      "stid": "F8402",
-      "name": "FW8402 Youngsville",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "25.39",
-      "lat": "30.11383",
-      "lon": "-92.01083",
-      "mnet_id": "65",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T13:57:00-0500",
-      "valid_time_utc": "2026-07-15T18:57:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 188
+      "count": 205
     },
     {
       "stid": "F7820",
@@ -4737,29 +5111,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
-    },
-    {
-      "stid": "F4737",
-      "name": "FW4737 Nokomis",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "240.03",
-      "lat": "31.02712",
-      "lon": "-87.59266",
-      "mnet_id": "65",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T15:09:00-0500",
-      "valid_time_utc": "2026-07-15T20:09:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 190
+      "count": 205
     },
     {
       "stid": "F1622",
@@ -4781,29 +5133,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 92
-    },
-    {
-      "stid": "F1193",
-      "name": "FW1193 St. Gabriel",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "16.0",
-      "lat": "30.30833",
-      "lon": "-91.101",
-      "mnet_id": "65",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T16:06:00-0500",
-      "valid_time_utc": "2026-07-15T21:06:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 188
+      "count": 97
     },
     {
       "stid": "E6361",
@@ -4825,29 +5155,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "E1896",
-      "name": "EW1896 Jay",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "246.0",
-      "lat": "30.94917",
-      "lon": "-87.13217",
-      "mnet_id": "65",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T15:00:00-0500",
-      "valid_time_utc": "2026-07-15T20:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "CKWM6",
@@ -4870,28 +5178,6 @@
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
       "count": 16
-    },
-    {
-      "stid": "C3916",
-      "name": "CW3916 Belle Chasse",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "-1.0",
-      "lat": "29.84250",
-      "lon": "-90.00300",
-      "mnet_id": "65",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T15:16:00-0500",
-      "valid_time_utc": "2026-07-15T20:16:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
     },
     {
       "stid": "BLCM6",
@@ -4938,50 +5224,6 @@
       "count": 15
     },
     {
-      "stid": "BDEM6",
-      "name": "BUDE",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "447.0",
-      "lat": "31.410560",
-      "lon": "-90.846670",
-      "mnet_id": "2",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T15:05:00-0500",
-      "valid_time_utc": "2026-07-15T20:05:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 17
-    },
-    {
-      "stid": "AX182",
-      "name": "KD5VOO BATON ROUGE",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "236.22",
-      "lat": "30.51533",
-      "lon": "-91.06350",
-      "mnet_id": "65",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T13:09:00-0500",
-      "valid_time_utc": "2026-07-15T18:09:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
-    },
-    {
       "stid": "AW815",
       "name": "AI5BL WAYNESSBORO",
       "state": "MS",
@@ -5001,7 +5243,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 205
     },
     {
       "stid": "AV683",
@@ -5023,7 +5265,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "AV585",
@@ -5045,7 +5287,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "AS718",
@@ -5067,29 +5309,95 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
-      "stid": "1684W",
-      "name": "FSWN Escambia Beulah Fire Station",
+      "stid": "USA13",
+      "name": "Atmore",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "285.0",
+      "lat": "31.01560",
+      "lon": "-87.44510",
+      "mnet_id": "3011",
+      "air_temp_max_f": 90.9,
+      "valid_time": "2026-07-15T17:00:00-0500",
+      "valid_time_utc": "2026-07-15T22:00:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 1036
+    },
+    {
+      "stid": "BMTA1",
+      "name": "Bay Minette FS",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "269.0",
+      "lat": "30.88040",
+      "lon": "-87.78140",
+      "mnet_id": "3011",
+      "air_temp_max_f": 90.9,
+      "valid_time": "2026-07-15T16:16:00-0500",
+      "valid_time_utc": "2026-07-15T21:16:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 1035
+    },
+    {
+      "stid": "1213W",
+      "name": "Pace Fire Rescue Station 4",
       "state": "FL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "131.0",
-      "lat": "30.53630",
-      "lon": "-87.39425",
+      "elevation_ft": "190.0",
+      "lat": "30.69987",
+      "lon": "-87.18477",
       "mnet_id": "249",
-      "air_temp_max_f": 91.0,
-      "valid_time": "2026-07-15T15:40:00-0500",
-      "valid_time_utc": "2026-07-15T20:40:00+00:00",
+      "air_temp_max_f": 90.9,
+      "valid_time": "2026-07-15T17:00:00-0500",
+      "valid_time_utc": "2026-07-15T22:00:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 67
+    },
+    {
+      "stid": "0172W",
+      "name": "UWF Pace Library",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "79.0",
+      "lat": "30.55007",
+      "lon": "-87.21730",
+      "mnet_id": "249",
+      "air_temp_max_f": 90.9,
+      "valid_time": "2026-07-15T16:20:00-0500",
+      "valid_time_utc": "2026-07-15T21:20:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
     },
     {
       "stid": "USA19",
@@ -5111,51 +5419,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1035
     },
     {
-      "stid": "BMTA1",
-      "name": "Bay Minette FS",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "269.0",
-      "lat": "30.88040",
-      "lon": "-87.78140",
-      "mnet_id": "3011",
-      "air_temp_max_f": 90.8,
-      "valid_time": "2026-07-15T16:15:00-0500",
-      "valid_time_utc": "2026-07-15T21:15:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
-    },
-    {
-      "stid": "1313W",
-      "name": "Alex Box Stadium",
+      "stid": "1878W",
+      "name": "NOPD Stables - City Park",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "36.0",
-      "lat": "30.40666",
-      "lon": "-91.18750",
+      "elevation_ft": "10.0",
+      "lat": "30.00485",
+      "lon": "-90.09718",
       "mnet_id": "249",
       "air_temp_max_f": 90.8,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "1201W",
@@ -5177,7 +5463,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "0327W",
@@ -5199,7 +5485,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "NDBCPCLF1",
@@ -5221,7 +5507,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
+      "count": 104
     },
     {
       "stid": "LSU05",
@@ -5243,11 +5529,11 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1036
     },
     {
-      "stid": "1878W",
-      "name": "NOPD Stables - City Park",
+      "stid": "1822W",
+      "name": "SWBNO Pumping Station - Little Woods",
       "state": "LA",
       "country": "US",
       "county": "",
@@ -5255,17 +5541,39 @@
       "nwszone": "",
       "timezone": "America/Chicago",
       "elevation_ft": "10.0",
-      "lat": "30.00485",
-      "lon": "-90.09718",
+      "lat": "30.05864",
+      "lon": "-89.96675",
       "mnet_id": "249",
       "air_temp_max_f": 90.6,
-      "valid_time": "2026-07-15T14:40:00-0500",
-      "valid_time_utc": "2026-07-15T19:40:00+00:00",
+      "valid_time": "2026-07-15T17:10:00-0500",
+      "valid_time_utc": "2026-07-15T22:10:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
+    },
+    {
+      "stid": "1602W",
+      "name": "UWF Sports Complex",
+      "state": "FL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "89.0",
+      "lat": "30.54068",
+      "lon": "-87.20447",
+      "mnet_id": "249",
+      "air_temp_max_f": 90.6,
+      "valid_time": "2026-07-15T16:40:00-0500",
+      "valid_time_utc": "2026-07-15T21:40:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 102
     },
     {
       "stid": "0402W",
@@ -5287,29 +5595,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
-      "stid": "USA13",
-      "name": "Atmore",
-      "state": "AL",
+      "stid": "LSU04",
+      "name": "DeanLee",
+      "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "285.0",
-      "lat": "31.01560",
-      "lon": "-87.44510",
-      "mnet_id": "3011",
+      "elevation_ft": "72.0",
+      "lat": "31.17697",
+      "lon": "-92.40604",
+      "mnet_id": "256",
       "air_temp_max_f": 90.5,
-      "valid_time": "2026-07-15T15:21:00-0500",
-      "valid_time_utc": "2026-07-15T20:21:00+00:00",
+      "valid_time": "2026-07-15T17:14:00-0500",
+      "valid_time_utc": "2026-07-15T22:14:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
+      "count": 1035
     },
     {
       "stid": "KGAO",
@@ -5331,29 +5639,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 47
-    },
-    {
-      "stid": "1213W",
-      "name": "Pace Fire Rescue Station 4",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "190.0",
-      "lat": "30.69987",
-      "lon": "-87.18477",
-      "mnet_id": "249",
-      "air_temp_max_f": 90.5,
-      "valid_time": "2026-07-15T16:00:00-0500",
-      "valid_time_utc": "2026-07-15T21:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 50
     },
     {
       "stid": "1206W",
@@ -5375,51 +5661,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
-      "stid": "0172W",
-      "name": "UWF Pace Library",
+      "stid": "1203W",
+      "name": "Pine Forest High School",
       "state": "FL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "79.0",
-      "lat": "30.55007",
-      "lon": "-87.21730",
-      "mnet_id": "249",
-      "air_temp_max_f": 90.5,
-      "valid_time": "2026-07-15T14:50:00-0500",
-      "valid_time_utc": "2026-07-15T19:50:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "1602W",
-      "name": "UWF Sports Complex",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "89.0",
-      "lat": "30.54068",
-      "lon": "-87.20447",
+      "elevation_ft": "112.0",
+      "lat": "30.48807",
+      "lon": "-87.29538",
       "mnet_id": "249",
       "air_temp_max_f": 90.4,
-      "valid_time": "2026-07-15T15:30:00-0500",
-      "valid_time_utc": "2026-07-15T20:30:00+00:00",
+      "valid_time": "2026-07-15T17:00:00-0500",
+      "valid_time_utc": "2026-07-15T22:00:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 96
+      "count": 103
     },
     {
       "stid": "USA20",
@@ -5441,7 +5705,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 927
+      "count": 988
     },
     {
       "stid": "NDBCPILL1",
@@ -5463,51 +5727,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "NDBCMCGA1",
-      "name": "8736897 - Coast Guard Sector Mobile, AL",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "7.22",
-      "lat": "30.649",
-      "lon": "-88.058",
-      "mnet_id": "286",
-      "air_temp_max_f": 90.3,
-      "valid_time": "2026-07-15T15:00:00-0500",
-      "valid_time_utc": "2026-07-15T20:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "1203W",
-      "name": "Pine Forest High School",
-      "state": "FL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "112.0",
-      "lat": "30.48807",
-      "lon": "-87.29538",
-      "mnet_id": "249",
-      "air_temp_max_f": 90.3,
-      "valid_time": "2026-07-15T15:50:00-0500",
-      "valid_time_utc": "2026-07-15T20:50:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
     },
     {
       "stid": "LM009",
@@ -5529,29 +5749,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 206
     },
     {
-      "stid": "NORL1",
-      "name": "MISSISSIPPI RIVER AT CARROLLTON GAGE AT NEW ORLEANS",
-      "state": "LA",
+      "stid": "USA11",
+      "name": "Loxley",
+      "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "20.0",
-      "lat": "29.93472",
-      "lon": "-90.13611",
-      "mnet_id": "106",
+      "elevation_ft": "184.0",
+      "lat": "30.64030",
+      "lon": "-87.73150",
+      "mnet_id": "3011",
       "air_temp_max_f": 90.1,
-      "valid_time": "2026-07-15T15:00:00-0500",
-      "valid_time_utc": "2026-07-15T20:00:00+00:00",
+      "valid_time": "2026-07-15T16:49:00-0500",
+      "valid_time_utc": "2026-07-15T21:49:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 1036
     },
     {
       "stid": "USA8",
@@ -5573,29 +5793,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1035
     },
     {
-      "stid": "USA11",
-      "name": "Loxley",
+      "stid": "USA24",
+      "name": "Poarch Creek",
       "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "184.0",
-      "lat": "30.64030",
-      "lon": "-87.73150",
+      "elevation_ft": "294.0",
+      "lat": "31.09210",
+      "lon": "-87.54350",
       "mnet_id": "3011",
       "air_temp_max_f": 90.0,
-      "valid_time": "2026-07-15T15:22:00-0500",
-      "valid_time_utc": "2026-07-15T20:22:00+00:00",
+      "valid_time": "2026-07-15T16:36:00-0500",
+      "valid_time_utc": "2026-07-15T21:36:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
+      "count": 1036
+    },
+    {
+      "stid": "UR772",
+      "name": "MARIN2",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "36.0",
+      "lat": "30.47829",
+      "lon": "-91.50878",
+      "mnet_id": "64",
+      "air_temp_max_f": 90.0,
+      "valid_time": "2026-07-15T16:21:00-0500",
+      "valid_time_utc": "2026-07-15T21:21:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 41
     },
     {
       "stid": "UR771",
@@ -5617,29 +5859,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 35
-    },
-    {
-      "stid": "UP862",
-      "name": "CHNYVL",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "69.0",
-      "lat": "30.99376",
-      "lon": "-92.25709",
-      "mnet_id": "64",
-      "air_temp_max_f": 90.0,
-      "valid_time": "2026-07-15T14:27:00-0500",
-      "valid_time_utc": "2026-07-15T19:27:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 13
+      "count": 37
     },
     {
       "stid": "TESL1",
@@ -5661,7 +5881,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 170
     },
     {
       "stid": "PILL1",
@@ -5683,29 +5903,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
-    },
-    {
-      "stid": "NDBCPTOA1",
-      "name": "8737005 - Pinto Island, AL",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "14.11",
-      "lat": "30.671",
-      "lon": "-88.031",
-      "mnet_id": "286",
-      "air_temp_max_f": 90.0,
-      "valid_time": "2026-07-15T13:54:00-0500",
-      "valid_time_utc": "2026-07-15T18:54:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 170
     },
     {
       "stid": "KPTN",
@@ -5727,29 +5925,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 79
-    },
-    {
-      "stid": "KNEW",
-      "name": "New Orleans, New Orleans Lakefront Airport",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "7.0",
-      "lat": "30.04944",
-      "lon": "-90.02889",
-      "mnet_id": "1",
-      "air_temp_max_f": 90.0,
-      "valid_time": "2026-07-15T15:53:00-0500",
-      "valid_time_utc": "2026-07-15T20:53:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 92
     },
     {
       "stid": "GHAA1",
@@ -5771,7 +5947,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 17
     },
     {
       "stid": "G6348",
@@ -5793,7 +5969,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G5321",
@@ -5815,7 +5991,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 195
+      "count": 207
     },
     {
       "stid": "G3750",
@@ -5837,7 +6013,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "G3439",
@@ -5859,7 +6035,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "G2684",
@@ -5881,7 +6057,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "G2297",
@@ -5903,7 +6079,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G2193",
@@ -5925,7 +6101,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 59
+      "count": 63
     },
     {
       "stid": "G1927",
@@ -5947,7 +6123,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 69
     },
     {
       "stid": "G0554",
@@ -5969,7 +6145,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "F3872",
@@ -5991,7 +6167,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "E2701",
@@ -6013,7 +6189,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "D9919",
@@ -6035,7 +6211,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 58
+      "count": 62
     },
     {
       "stid": "D7368",
@@ -6057,7 +6233,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "D1458",
@@ -6079,7 +6255,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
+    },
+    {
+      "stid": "C2220",
+      "name": "CW2220 Kaplan",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "16.4",
+      "lat": "30.00720",
+      "lon": "-92.29422",
+      "mnet_id": "65",
+      "air_temp_max_f": 90.0,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 70
     },
     {
       "stid": "AW503",
@@ -6101,7 +6299,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 206
     },
     {
       "stid": "AW259",
@@ -6123,7 +6321,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 205
     },
     {
       "stid": "AV042",
@@ -6145,7 +6343,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 158
+      "count": 167
+    },
+    {
+      "stid": "AU084",
+      "name": "N5PA Ellisville",
+      "state": "MS",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "269.03",
+      "lat": "31.62283",
+      "lon": "-89.23383",
+      "mnet_id": "65",
+      "air_temp_max_f": 90.0,
+      "valid_time": "2026-07-15T16:45:00-0500",
+      "valid_time_utc": "2026-07-15T21:45:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 208
     },
     {
       "stid": "AT538",
@@ -6167,51 +6387,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
-      "stid": "1311W",
-      "name": "Tiger Stadium",
+      "stid": "AMRL1",
+      "name": "LAWMA",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "52.0",
-      "lat": "30.41192",
-      "lon": "-91.18376",
-      "mnet_id": "249",
+      "elevation_ft": "3.0",
+      "lat": "29.44958",
+      "lon": "-91.33811",
+      "mnet_id": "122",
       "air_temp_max_f": 90.0,
-      "valid_time": "2026-07-15T16:10:00-0500",
-      "valid_time_utc": "2026-07-15T21:10:00+00:00",
+      "valid_time": "2026-07-15T16:00:00-0500",
+      "valid_time_utc": "2026-07-15T21:00:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 87
-    },
-    {
-      "stid": "LSU04",
-      "name": "DeanLee",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "72.0",
-      "lat": "31.17697",
-      "lon": "-92.40604",
-      "mnet_id": "256",
-      "air_temp_max_f": 89.9,
-      "valid_time": "2026-07-15T14:09:00-0500",
-      "valid_time_utc": "2026-07-15T19:09:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 170
     },
     {
       "stid": "SSLYH",
@@ -6255,7 +6453,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
+    },
+    {
+      "stid": "NDBCAMRL1",
+      "name": "8764227 - LAWMA, Amerada Pass, LA",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "29.45",
+      "lon": "-91.338",
+      "mnet_id": "286",
+      "air_temp_max_f": 89.8,
+      "valid_time": "2026-07-15T16:00:00-0500",
+      "valid_time_utc": "2026-07-15T21:00:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 104
     },
     {
       "stid": "1892W",
@@ -6277,29 +6497,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "LSU01",
-      "name": "BenHur",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "20.0",
-      "lat": "30.36437",
-      "lon": "-91.16726",
-      "mnet_id": "256",
-      "air_temp_max_f": 89.7,
-      "valid_time": "2026-07-15T16:14:00-0500",
-      "valid_time_utc": "2026-07-15T21:14:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
+      "count": 103
     },
     {
       "stid": "KMCB",
@@ -6321,7 +6519,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 210
+      "count": 223
     },
     {
       "stid": "KJKA",
@@ -6343,7 +6541,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 27
+      "count": 28
+    },
+    {
+      "stid": "KHUM",
+      "name": "Houma-Terrebonne Airport",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "3.0",
+      "lat": "29.56341",
+      "lon": "-90.66283",
+      "mnet_id": "1",
+      "air_temp_max_f": 89.6,
+      "valid_time": "2026-07-15T16:47:00-0500",
+      "valid_time_utc": "2026-07-15T21:47:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 12
     },
     {
       "stid": "KGZH",
@@ -6365,29 +6585,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 227
-    },
-    {
-      "stid": "KBTR",
-      "name": "Baton Rouge, Baton Rouge Metropolitan, Ryan Field",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "69.0",
-      "lat": "30.53722",
-      "lon": "-91.14694",
-      "mnet_id": "1",
-      "air_temp_max_f": 89.6,
-      "valid_time": "2026-07-15T12:00:00-0500",
-      "valid_time_utc": "2026-07-15T17:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 240
     },
     {
       "stid": "KARA",
@@ -6409,7 +6607,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 211
+      "count": 224
+    },
+    {
+      "stid": "LM026",
+      "name": "ULM_VILP",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "70.0",
+      "lat": "30.65821",
+      "lon": "-92.27666",
+      "mnet_id": "313",
+      "air_temp_max_f": 89.5,
+      "valid_time": "2026-07-15T16:15:00-0500",
+      "valid_time_utc": "2026-07-15T21:15:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 206
     },
     {
       "stid": "FRPA1",
@@ -6453,7 +6673,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
       "stid": "SSGSP",
@@ -6500,48 +6720,48 @@
       "count": 16
     },
     {
-      "stid": "KLUL",
-      "name": "LAUREL/NOBLE FIELD",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "240.0",
-      "lat": "31.67",
-      "lon": "-89.17",
-      "mnet_id": "1",
-      "air_temp_max_f": 89.4,
-      "valid_time": "2026-07-15T13:55:00-0500",
-      "valid_time_utc": "2026-07-15T18:55:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 46
-    },
-    {
-      "stid": "1822W",
-      "name": "SWBNO Pumping Station - Little Woods",
+      "stid": "KIYA",
+      "name": "Abbeville Chris Crusta Memorial Airport",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "10.0",
-      "lat": "30.05864",
-      "lon": "-89.96675",
-      "mnet_id": "249",
+      "elevation_ft": "16.0",
+      "lat": "29.97578",
+      "lon": "-92.08422",
+      "mnet_id": "1",
       "air_temp_max_f": 89.4,
-      "valid_time": "2026-07-15T15:50:00-0500",
-      "valid_time_utc": "2026-07-15T20:50:00+00:00",
+      "valid_time": "2026-07-15T16:15:00-0500",
+      "valid_time_utc": "2026-07-15T21:15:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 52
+    },
+    {
+      "stid": "LM030",
+      "name": "ULM_CHAL",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "6.0007",
+      "lat": "29.97033",
+      "lon": "-89.95386",
+      "mnet_id": "313",
+      "air_temp_max_f": 89.3,
+      "valid_time": "2026-07-15T17:05:00-0500",
+      "valid_time_utc": "2026-07-15T22:05:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 207
     },
     {
       "stid": "LM008",
@@ -6563,7 +6783,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 206
     },
     {
       "stid": "CADL1",
@@ -6585,7 +6805,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 187
+      "count": 199
     },
     {
       "stid": "1896W",
@@ -6607,29 +6827,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 96
-    },
-    {
-      "stid": "USA24",
-      "name": "Poarch Creek",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "294.0",
-      "lat": "31.09210",
-      "lon": "-87.54350",
-      "mnet_id": "3011",
-      "air_temp_max_f": 89.1,
-      "valid_time": "2026-07-15T14:56:00-0500",
-      "valid_time_utc": "2026-07-15T19:56:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
+      "count": 102
     },
     {
       "stid": "KNPA",
@@ -6651,7 +6849,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 17
     },
     {
       "stid": "KNBJ",
@@ -6673,7 +6871,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 11
+      "count": 12
     },
     {
       "stid": "WYCM6",
@@ -6695,29 +6893,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 170
     },
     {
-      "stid": "UR772",
-      "name": "MARIN2",
+      "stid": "NWCL1",
+      "name": "New Canal Station",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "36.0",
-      "lat": "30.47829",
-      "lon": "-91.50878",
-      "mnet_id": "64",
+      "elevation_ft": "7.0",
+      "lat": "30.02717",
+      "lon": "-90.11342",
+      "mnet_id": "122",
       "air_temp_max_f": 89.0,
-      "valid_time": "2026-07-15T15:28:00-0500",
-      "valid_time_utc": "2026-07-15T20:28:00+00:00",
+      "valid_time": "2026-07-15T16:24:00-0500",
+      "valid_time_utc": "2026-07-15T21:24:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 38
+      "count": 165
+    },
+    {
+      "stid": "LSU03",
+      "name": "Crowley",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "23.0",
+      "lat": "30.24761",
+      "lon": "-92.34761",
+      "mnet_id": "256",
+      "air_temp_max_f": 89.0,
+      "valid_time": "2026-07-15T17:04:00-0500",
+      "valid_time_utc": "2026-07-15T22:04:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 1036
     },
     {
       "stid": "LM019",
@@ -6739,7 +6959,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
+      "count": 206
     },
     {
       "stid": "LAUM6",
@@ -6783,7 +7003,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 158
+      "count": 168
     },
     {
       "stid": "G4508",
@@ -6805,7 +7025,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "G0933",
@@ -6827,7 +7047,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 154
+      "count": 167
     },
     {
       "stid": "F0278",
@@ -6849,7 +7069,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "D2686",
@@ -6871,7 +7091,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 208
     },
     {
       "stid": "C9352",
@@ -6893,29 +7113,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 98
-    },
-    {
-      "stid": "C2220",
-      "name": "CW2220 Kaplan",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "16.4",
-      "lat": "30.00720",
-      "lon": "-92.29422",
-      "mnet_id": "65",
-      "air_temp_max_f": 89.0,
-      "valid_time": "2026-07-15T15:45:00-0500",
-      "valid_time_utc": "2026-07-15T20:45:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 104
     },
     {
       "stid": "AW123",
@@ -6937,29 +7135,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
-    },
-    {
-      "stid": "AMRL1",
-      "name": "LAWMA",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "3.0",
-      "lat": "29.44958",
-      "lon": "-91.33811",
-      "mnet_id": "122",
-      "air_temp_max_f": 89.0,
-      "valid_time": "2026-07-15T14:00:00-0500",
-      "valid_time_utc": "2026-07-15T19:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 205
     },
     {
       "stid": "KOPA1",
@@ -7003,7 +7179,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 48
+      "count": 52
     },
     {
       "stid": "USA9",
@@ -7025,7 +7201,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1035
     },
     {
       "stid": "LSU07",
@@ -7047,51 +7223,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
+      "count": 1036
     },
     {
-      "stid": "LSU03",
-      "name": "Crowley",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "23.0",
-      "lat": "30.24761",
-      "lon": "-92.34761",
-      "mnet_id": "256",
-      "air_temp_max_f": 88.8,
-      "valid_time": "2026-07-15T15:41:00-0500",
-      "valid_time_utc": "2026-07-15T20:41:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
-    },
-    {
-      "stid": "NDBCAMRL1",
-      "name": "8764227 - LAWMA, Amerada Pass, LA",
+      "stid": "NDBCNWCL1",
+      "name": "8761927 - New Canal Station, LA",
       "state": null,
       "country": null,
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.45",
-      "lon": "-91.338",
+      "elevation_ft": "5.58",
+      "lat": "30.027",
+      "lon": "-90.113",
       "mnet_id": "286",
       "air_temp_max_f": 88.7,
-      "valid_time": "2026-07-15T14:00:00-0500",
-      "valid_time_utc": "2026-07-15T19:00:00+00:00",
+      "valid_time": "2026-07-15T16:24:00-0500",
+      "valid_time_utc": "2026-07-15T21:24:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
+      "count": 101
     },
     {
       "stid": "LSU11",
@@ -7113,29 +7267,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 973
-    },
-    {
-      "stid": "KIYA",
-      "name": "Abbeville Chris Crusta Memorial Airport",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "16.0",
-      "lat": "29.97578",
-      "lon": "-92.08422",
-      "mnet_id": "1",
-      "air_temp_max_f": 88.7,
-      "valid_time": "2026-07-15T13:55:00-0500",
-      "valid_time_utc": "2026-07-15T18:55:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 48
+      "count": 1033
     },
     {
       "stid": "SSTRN",
@@ -7179,51 +7311,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
-    },
-    {
-      "stid": "LM026",
-      "name": "ULM_VILP",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "70.0",
-      "lat": "30.65821",
-      "lon": "-92.27666",
-      "mnet_id": "313",
-      "air_temp_max_f": 88.5,
-      "valid_time": "2026-07-15T16:00:00-0500",
-      "valid_time_utc": "2026-07-15T21:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 193
-    },
-    {
-      "stid": "LM030",
-      "name": "ULM_CHAL",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "6.0007",
-      "lat": "29.97033",
-      "lon": "-89.95386",
-      "mnet_id": "313",
-      "air_temp_max_f": 88.4,
-      "valid_time": "2026-07-15T16:05:00-0500",
-      "valid_time_utc": "2026-07-15T21:05:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 104
     },
     {
       "stid": "YLBA1",
@@ -7245,7 +7333,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 976
+      "count": 1036
     },
     {
       "stid": "USA10",
@@ -7267,7 +7355,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 975
+      "count": 1035
     },
     {
       "stid": "LM012",
@@ -7289,7 +7377,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 207
     },
     {
       "stid": "BRXA1",
@@ -7314,26 +7402,26 @@
       "count": 181
     },
     {
-      "stid": "NWCL1",
-      "name": "New Canal Station",
+      "stid": "SHBL1",
+      "name": "Shell Beach",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "7.0",
-      "lat": "30.02717",
-      "lon": "-90.11342",
+      "elevation_ft": "0.0",
+      "lat": "29.86811",
+      "lon": "-89.67325",
       "mnet_id": "122",
       "air_temp_max_f": 88.0,
-      "valid_time": "2026-07-15T15:24:00-0500",
-      "valid_time_utc": "2026-07-15T20:24:00+00:00",
+      "valid_time": "2026-07-15T16:48:00-0500",
+      "valid_time_utc": "2026-07-15T21:48:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 155
+      "count": 170
     },
     {
       "stid": "NDBCWKXA1",
@@ -7399,7 +7487,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "E4624",
@@ -7421,29 +7509,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
-    },
-    {
-      "stid": "AU084",
-      "name": "N5PA Ellisville",
-      "state": "MS",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "269.03",
-      "lat": "31.62283",
-      "lon": "-89.23383",
-      "mnet_id": "65",
-      "air_temp_max_f": 88.0,
-      "valid_time": "2026-07-15T16:05:00-0500",
-      "valid_time_utc": "2026-07-15T21:05:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 196
+      "count": 70
     },
     {
       "stid": "WKXA1",
@@ -7487,29 +7553,73 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 207
     },
     {
-      "stid": "NDBCNWCL1",
-      "name": "8761927 - New Canal Station, LA",
+      "stid": "NDBCGISL1",
+      "name": "8761724 - Grand Isle, LA",
       "state": null,
       "country": null,
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "5.58",
-      "lat": "30.027",
-      "lon": "-90.113",
+      "elevation_ft": "8.86",
+      "lat": "29.265",
+      "lon": "-89.958",
       "mnet_id": "286",
       "air_temp_max_f": 87.8,
-      "valid_time": "2026-07-15T15:30:00-0500",
+      "valid_time": "2026-07-15T15:48:00-0500",
+      "valid_time_utc": "2026-07-15T20:48:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 104
+    },
+    {
+      "stid": "NDBC42084",
+      "name": "Southwest Pass Entrance W, LA (256)",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "Etc/GMT+6",
+      "elevation_ft": "0.0",
+      "lat": "28.988",
+      "lon": "-89.649",
+      "mnet_id": "286",
+      "air_temp_max_f": 87.8,
+      "valid_time": "2026-07-15T14:30:00-0600",
       "valid_time_utc": "2026-07-15T20:30:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 94
+      "count": 34
+    },
+    {
+      "stid": "LM028",
+      "name": "ULM_CLIN",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "241.001",
+      "lat": "30.84559",
+      "lon": "-90.98049",
+      "mnet_id": "313",
+      "air_temp_max_f": 87.8,
+      "valid_time": "2026-07-15T16:50:00-0500",
+      "valid_time_utc": "2026-07-15T21:50:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 207
     },
     {
       "stid": "KSPR",
@@ -7531,29 +7641,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 48
+      "count": 52
     },
     {
-      "stid": "KHUM",
-      "name": "Houma-Terrebonne Airport",
+      "stid": "KOPL",
+      "name": "Opelousas St Landry Parish Airport",
       "state": "LA",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "3.0",
-      "lat": "29.56341",
-      "lon": "-90.66283",
+      "elevation_ft": "75.0",
+      "lat": "30.55840",
+      "lon": "-92.09940",
       "mnet_id": "1",
       "air_temp_max_f": 87.8,
-      "valid_time": "2026-07-15T10:47:00-0500",
-      "valid_time_utc": "2026-07-15T15:47:00+00:00",
+      "valid_time": "2026-07-15T16:15:00-0500",
+      "valid_time_utc": "2026-07-15T21:15:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 11
+      "count": 51
     },
     {
       "stid": "KHEZ",
@@ -7575,7 +7685,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 210
+      "count": 223
     },
     {
       "stid": "KEKE",
@@ -7597,7 +7707,29 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 48
+      "count": 52
+    },
+    {
+      "stid": "GC42084",
+      "name": "42084 - Southwest Pass Entrance W, LA (CDIP 256)",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "Etc/GMT+6",
+      "elevation_ft": "0.0",
+      "lat": "28.988",
+      "lon": "-89.649",
+      "mnet_id": "315",
+      "air_temp_max_f": 87.8,
+      "valid_time": "2026-07-15T14:30:00-0600",
+      "valid_time_utc": "2026-07-15T20:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 16
     },
     {
       "stid": "1584W",
@@ -7619,20 +7751,20 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 103
     },
     {
-      "stid": "NDBCGISL1",
-      "name": "8761724 - Grand Isle, LA",
+      "stid": "NDBCEINL1",
+      "name": "8764314 - North of Eugene Island, LA",
       "state": null,
       "country": null,
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "8.86",
-      "lat": "29.265",
-      "lon": "-89.958",
+      "elevation_ft": "19.68",
+      "lat": "29.373",
+      "lon": "-91.384",
       "mnet_id": "286",
       "air_temp_max_f": 87.6,
       "valid_time": "2026-07-15T15:24:00-0500",
@@ -7641,7 +7773,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
     },
     {
       "stid": "EINL1",
@@ -7663,7 +7795,51 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
+    },
+    {
+      "stid": "42084",
+      "name": "Southwest Pass Entrance W",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "Etc/GMT+6",
+      "elevation_ft": null,
+      "lat": "28.988",
+      "lon": "-89.649",
+      "mnet_id": "96",
+      "air_temp_max_f": 87.6,
+      "valid_time": "2026-07-15T15:30:00-0600",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 1
+    },
+    {
+      "stid": "NDBCSHBL1",
+      "name": "8761305 - Shell Beach, LA",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "29.868",
+      "lon": "-89.673",
+      "mnet_id": "286",
+      "air_temp_max_f": 87.4,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 104
     },
     {
       "stid": "NDBCGDXM6",
@@ -7688,28 +7864,6 @@
       "count": 61
     },
     {
-      "stid": "KOPL",
-      "name": "Opelousas St Landry Parish Airport",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "75.0",
-      "lat": "30.55840",
-      "lon": "-92.09940",
-      "mnet_id": "1",
-      "air_temp_max_f": 87.4,
-      "valid_time": "2026-07-15T15:55:00-0500",
-      "valid_time_utc": "2026-07-15T20:55:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 47
-    },
-    {
       "stid": "GDXM6",
       "name": "NERRS METEOROLOGICAL SITE AT GRAND BAY NEAR MOSS POINT 8SE",
       "state": "MS",
@@ -7732,72 +7886,6 @@
       "count": 60
     },
     {
-      "stid": "NDBC42084",
-      "name": "Southwest Pass Entrance W, LA (256)",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "Etc/GMT+6",
-      "elevation_ft": "0.0",
-      "lat": "28.988",
-      "lon": "-89.649",
-      "mnet_id": "286",
-      "air_temp_max_f": 87.3,
-      "valid_time": "2026-07-15T14:00:00-0600",
-      "valid_time_utc": "2026-07-15T20:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 31
-    },
-    {
-      "stid": "NDBCSHBL1",
-      "name": "8761305 - Shell Beach, LA",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.868",
-      "lon": "-89.673",
-      "mnet_id": "286",
-      "air_temp_max_f": 87.1,
-      "valid_time": "2026-07-15T14:30:00-0500",
-      "valid_time_utc": "2026-07-15T19:30:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "GC42084",
-      "name": "42084 - Southwest Pass Entrance W, LA (CDIP 256)",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "Etc/GMT+6",
-      "elevation_ft": "0.0",
-      "lat": "28.988",
-      "lon": "-89.649",
-      "mnet_id": "315",
-      "air_temp_max_f": 87.1,
-      "valid_time": "2026-07-15T11:30:00-0600",
-      "valid_time_utc": "2026-07-15T17:30:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 15
-    },
-    {
       "stid": "1697W",
       "name": "FSWN Escambia Pensacola Beach",
       "state": "FL",
@@ -7817,7 +7905,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
+      "count": 101
     },
     {
       "stid": "UR391",
@@ -7839,7 +7927,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 38
+      "count": 40
     },
     {
       "stid": "UP144",
@@ -7864,28 +7952,6 @@
       "count": 17
     },
     {
-      "stid": "SHBL1",
-      "name": "Shell Beach",
-      "state": "LA",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "29.86811",
-      "lon": "-89.67325",
-      "mnet_id": "122",
-      "air_temp_max_f": 87.0,
-      "valid_time": "2026-07-15T13:06:00-0500",
-      "valid_time_utc": "2026-07-15T18:06:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
-    },
-    {
       "stid": "G0489",
       "name": "GW0489 Pensacola",
       "state": "FL",
@@ -7905,7 +7971,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 66
+      "count": 70
     },
     {
       "stid": "F7996",
@@ -7949,7 +8015,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 206
     },
     {
       "stid": "NDBCPTFL1",
@@ -7971,29 +8037,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
-    },
-    {
-      "stid": "NDBCEINL1",
-      "name": "8764314 - North of Eugene Island, LA",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "19.68",
-      "lat": "29.373",
-      "lon": "-91.384",
-      "mnet_id": "286",
-      "air_temp_max_f": 86.9,
-      "valid_time": "2026-07-15T12:30:00-0500",
-      "valid_time_utc": "2026-07-15T17:30:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
+      "count": 104
     },
     {
       "stid": "BURL1",
@@ -8018,26 +8062,26 @@
       "count": 16
     },
     {
-      "stid": "LM028",
-      "name": "ULM_CLIN",
-      "state": "LA",
+      "stid": "GCDPHA1",
+      "name": "DISL - Dauphin Island, AL",
+      "state": "AL",
       "country": "US",
       "county": "",
       "cwa": "",
       "nwszone": "",
       "timezone": "America/Chicago",
-      "elevation_ft": "241.001",
-      "lat": "30.84559",
-      "lon": "-90.98049",
-      "mnet_id": "313",
+      "elevation_ft": "0.0",
+      "lat": "30.2513",
+      "lon": "-88.0778",
+      "mnet_id": "315",
       "air_temp_max_f": 86.8,
-      "valid_time": "2026-07-15T15:35:00-0500",
-      "valid_time_utc": "2026-07-15T20:35:00+00:00",
+      "valid_time": "2026-07-15T16:00:00-0500",
+      "valid_time_utc": "2026-07-15T21:00:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 194
+      "count": 17
     },
     {
       "stid": "NDBCEFLA1",
@@ -8059,7 +8103,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
+      "count": 104
     },
     {
       "stid": "EFLA1",
@@ -8081,7 +8125,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
     },
     {
       "stid": "DPHA1",
@@ -8096,36 +8140,36 @@
       "lat": "30.25139",
       "lon": "-88.07777",
       "mnet_id": "96",
-      "air_temp_max_f": 86.4,
-      "valid_time": "2026-07-15T15:00:00-0500",
-      "valid_time_utc": "2026-07-15T20:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 15
-    },
-    {
-      "stid": "GCDPHA1",
-      "name": "DISL - Dauphin Island, AL",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "30.2513",
-      "lon": "-88.0778",
-      "mnet_id": "315",
-      "air_temp_max_f": 86.3,
-      "valid_time": "2026-07-15T15:00:00-0500",
-      "valid_time_utc": "2026-07-15T20:00:00+00:00",
+      "air_temp_max_f": 86.7,
+      "valid_time": "2026-07-15T16:00:00-0500",
+      "valid_time_utc": "2026-07-15T21:00:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
       "count": 16
+    },
+    {
+      "stid": "NDBCDILA1",
+      "name": "8735180 - Dauphin Island, AL",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "23.29",
+      "lat": "30.25",
+      "lon": "-88.075",
+      "mnet_id": "286",
+      "air_temp_max_f": 86.2,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 104
     },
     {
       "stid": "NDBCKIKT",
@@ -8147,7 +8191,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 29
+      "count": 31
     },
     {
       "stid": "KIKT",
@@ -8169,7 +8213,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 29
+      "count": 33
     },
     {
       "stid": "KCQF",
@@ -8191,7 +8235,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 46
+      "count": 50
     },
     {
       "stid": "FRWL1",
@@ -8213,7 +8257,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
+      "count": 170
     },
     {
       "stid": "DILA1",
@@ -8235,29 +8279,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 160
-    },
-    {
-      "stid": "NDBCDILA1",
-      "name": "8735180 - Dauphin Island, AL",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "23.29",
-      "lat": "30.25",
-      "lon": "-88.075",
-      "mnet_id": "286",
-      "air_temp_max_f": 85.8,
-      "valid_time": "2026-07-15T13:00:00-0500",
-      "valid_time_utc": "2026-07-15T18:00:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 95
+      "count": 170
     },
     {
       "stid": "NDBCFRWL1",
@@ -8272,14 +8294,14 @@
       "lat": "29.552",
       "lon": "-92.305",
       "mnet_id": "286",
-      "air_temp_max_f": 85.6,
-      "valid_time": "2026-07-15T13:30:00-0500",
-      "valid_time_utc": "2026-07-15T18:30:00+00:00",
+      "air_temp_max_f": 85.8,
+      "valid_time": "2026-07-15T15:42:00-0500",
+      "valid_time_utc": "2026-07-15T20:42:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
     },
     {
       "stid": "NDBCFRMA1",
@@ -8294,14 +8316,14 @@
       "lat": "30.234",
       "lon": "-87.994",
       "mnet_id": "286",
-      "air_temp_max_f": 85.3,
-      "valid_time": "2026-07-15T14:30:00-0500",
-      "valid_time_utc": "2026-07-15T19:30:00+00:00",
+      "air_temp_max_f": 85.5,
+      "valid_time": "2026-07-15T15:54:00-0500",
+      "valid_time_utc": "2026-07-15T20:54:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
     },
     {
       "stid": "FRMA1",
@@ -8316,14 +8338,14 @@
       "lat": "30.23445",
       "lon": "-87.99361",
       "mnet_id": "96",
-      "air_temp_max_f": 85.3,
-      "valid_time": "2026-07-15T14:30:00-0500",
-      "valid_time_utc": "2026-07-15T19:30:00+00:00",
+      "air_temp_max_f": 85.5,
+      "valid_time": "2026-07-15T15:54:00-0500",
+      "valid_time_utc": "2026-07-15T20:54:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 97
+      "count": 104
     },
     {
       "stid": "NTC8734383",
@@ -8348,6 +8370,28 @@
       "count": 79
     },
     {
+      "stid": "NDBCPTBM6",
+      "name": "8741003 - Petit Bois Island, Port of Pascagoula, MS",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": null,
+      "lat": "30.213",
+      "lon": "-88.505",
+      "mnet_id": "286",
+      "air_temp_max_f": 84.9,
+      "valid_time": "2026-07-15T16:30:00-0500",
+      "valid_time_utc": "2026-07-15T21:30:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 103
+    },
+    {
       "stid": "KATA1",
       "name": "KATA1",
       "state": "AL",
@@ -8367,7 +8411,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
+      "count": 18
     },
     {
       "stid": "GCKATA1",
@@ -8389,51 +8433,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 16
-    },
-    {
-      "stid": "NDBCPTBM6",
-      "name": "8741003 - Petit Bois Island, Port of Pascagoula, MS",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": null,
-      "lat": "30.213",
-      "lon": "-88.505",
-      "mnet_id": "286",
-      "air_temp_max_f": 84.6,
-      "valid_time": "2026-07-15T15:24:00-0500",
-      "valid_time_utc": "2026-07-15T20:24:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 96
-    },
-    {
-      "stid": "NDBC42012",
-      "name": "ORANGE BEACH - 44 NM SE of Mobile, AL",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "Etc/GMT+6",
-      "elevation_ft": "0.0",
-      "lat": "30.06",
-      "lon": "-87.548",
-      "mnet_id": "286",
-      "air_temp_max_f": 83.7,
-      "valid_time": "2026-07-15T13:50:00-0600",
-      "valid_time_utc": "2026-07-15T19:50:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 93
+      "count": 18
     },
     {
       "stid": "GC42067",
@@ -8448,14 +8448,58 @@
       "lat": "30.043",
       "lon": "-88.649",
       "mnet_id": "315",
-      "air_temp_max_f": 83.7,
-      "valid_time": "2026-07-15T14:11:00-0500",
-      "valid_time_utc": "2026-07-15T19:11:00+00:00",
+      "air_temp_max_f": 84.4,
+      "valid_time": "2026-07-15T15:01:00-0500",
+      "valid_time_utc": "2026-07-15T20:01:00+00:00",
       "period_start_local": "2026-07-15T00:00:00-05:00",
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 37
+      "count": 42
+    },
+    {
+      "stid": "NDBC42012",
+      "name": "ORANGE BEACH - 44 NM SE of Mobile, AL",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "Etc/GMT+6",
+      "elevation_ft": "0.0",
+      "lat": "30.06",
+      "lon": "-87.548",
+      "mnet_id": "286",
+      "air_temp_max_f": 83.8,
+      "valid_time": "2026-07-15T15:40:00-0600",
+      "valid_time_utc": "2026-07-15T21:40:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 101
+    },
+    {
+      "stid": "42012",
+      "name": "Buoy 42012",
+      "state": "",
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "30.10000",
+      "lon": "-87.60000",
+      "mnet_id": "96",
+      "air_temp_max_f": 83.7,
+      "valid_time": "2026-07-15T16:20:00-0500",
+      "valid_time_utc": "2026-07-15T21:20:00+00:00",
+      "period_start_local": "2026-07-15T00:00:00-05:00",
+      "period_end_local": "2026-07-16T00:00:00-05:00",
+      "period_start_utc": "2026-07-15T05:00:00+00:00",
+      "period_end_utc": "2026-07-16T05:00:00+00:00",
+      "count": 3
     },
     {
       "stid": "AT261",
@@ -8477,29 +8521,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 937
-    },
-    {
-      "stid": "42012",
-      "name": "Buoy 42012",
-      "state": "",
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "0.0",
-      "lat": "30.10000",
-      "lon": "-87.60000",
-      "mnet_id": "96",
-      "air_temp_max_f": 81.7,
-      "valid_time": "2026-07-15T04:40:00-0500",
-      "valid_time_utc": "2026-07-15T09:40:00+00:00",
-      "period_start_local": "2026-07-15T00:00:00-05:00",
-      "period_end_local": "2026-07-16T00:00:00-05:00",
-      "period_start_utc": "2026-07-15T05:00:00+00:00",
-      "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 1
+      "count": 995
     },
     {
       "stid": "PTBM6",
@@ -8543,7 +8565,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 11
+      "count": 12
     },
     {
       "stid": "D6888",
@@ -8741,7 +8763,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 15
+      "count": 16
     },
     {
       "stid": "COOPJCKA1",
@@ -8851,7 +8873,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 33
+      "count": 36
     },
     {
       "stid": "UP172",
@@ -8873,7 +8895,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 33
+      "count": 35
     },
     {
       "stid": "UP875",
@@ -8895,7 +8917,7 @@
       "period_end_local": "2026-07-16T00:00:00-05:00",
       "period_start_utc": "2026-07-15T05:00:00+00:00",
       "period_end_utc": "2026-07-16T05:00:00+00:00",
-      "count": 35
+      "count": 37
     }
   ]
 }
