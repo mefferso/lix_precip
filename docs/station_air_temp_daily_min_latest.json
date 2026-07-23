@@ -5,7 +5,7 @@
   "period_end_local": "2026-07-23T00:00:00-05:00",
   "period_start_utc": "2026-07-22T05:00:00+00:00",
   "period_end_utc": "2026-07-23T05:00:00+00:00",
-  "generated_utc": "2026-07-23T09:41:33.442468+00:00",
+  "generated_utc": "2026-07-23T12:07:39.671434+00:00",
   "station_count": 405,
   "csv": "station_air_temp_daily_min_latest.csv",
   "rows": [
@@ -846,28 +846,6 @@
       "count": 337
     },
     {
-      "stid": "PRDA1",
-      "name": "PERDIDO RIV FARMS",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "299.0",
-      "lat": "31.10923",
-      "lon": "-87.55277",
-      "mnet_id": "29",
-      "air_temp_min_f": 75.2,
-      "valid_time": "2026-07-22T04:00:00-0500",
-      "valid_time_utc": "2026-07-22T09:00:00+00:00",
-      "period_start_local": "2026-07-22T00:00:00-05:00",
-      "period_end_local": "2026-07-23T00:00:00-05:00",
-      "period_start_utc": "2026-07-22T05:00:00+00:00",
-      "period_end_utc": "2026-07-23T05:00:00+00:00",
-      "count": 24
-    },
-    {
       "stid": "LM028",
       "name": "ULM_CLIN",
       "state": "LA",
@@ -910,6 +888,28 @@
       "period_start_utc": "2026-07-22T05:00:00+00:00",
       "period_end_utc": "2026-07-23T05:00:00+00:00",
       "count": 143
+    },
+    {
+      "stid": "PRDA1",
+      "name": "PERDIDO RIV FARMS",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "299.0",
+      "lat": "31.10923",
+      "lon": "-87.55277",
+      "mnet_id": "29",
+      "air_temp_min_f": 75.4,
+      "valid_time": "2026-07-22T04:00:00-0500",
+      "valid_time_utc": "2026-07-22T09:00:00+00:00",
+      "period_start_local": "2026-07-22T00:00:00-05:00",
+      "period_end_local": "2026-07-23T00:00:00-05:00",
+      "period_start_utc": "2026-07-22T05:00:00+00:00",
+      "period_end_utc": "2026-07-23T05:00:00+00:00",
+      "count": 24
     },
     {
       "stid": "0900W",
@@ -1107,7 +1107,7 @@
       "period_end_local": "2026-07-23T00:00:00-05:00",
       "period_start_utc": "2026-07-22T05:00:00+00:00",
       "period_end_utc": "2026-07-23T05:00:00+00:00",
-      "count": 22
+      "count": 23
     },
     {
       "stid": "KNSE",
