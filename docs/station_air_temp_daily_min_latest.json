@@ -5,8 +5,8 @@
   "period_end_local": "2026-08-04T00:00:00-05:00",
   "period_start_utc": "2026-08-03T05:00:00+00:00",
   "period_end_utc": "2026-08-04T05:00:00+00:00",
-  "generated_utc": "2026-08-04T09:55:54.211188+00:00",
-  "station_count": 409,
+  "generated_utc": "2026-08-04T12:24:19.919172+00:00",
+  "station_count": 410,
   "csv": "station_air_temp_daily_min_latest.csv",
   "rows": [
     {
@@ -2562,6 +2562,28 @@
       "count": 143
     },
     {
+      "stid": "KOPA1",
+      "name": "KOPTIS FARMS",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "135.0",
+      "lat": "30.52380",
+      "lon": "-87.69797",
+      "mnet_id": "29",
+      "air_temp_min_f": 70.7,
+      "valid_time": "2026-08-03T04:00:00-0500",
+      "valid_time_utc": "2026-08-03T09:00:00+00:00",
+      "period_start_local": "2026-08-03T00:00:00-05:00",
+      "period_end_local": "2026-08-04T00:00:00-05:00",
+      "period_start_utc": "2026-08-03T05:00:00+00:00",
+      "period_end_utc": "2026-08-04T05:00:00+00:00",
+      "count": 24
+    },
+    {
       "stid": "CADL1",
       "name": "USCRN SITE AT UNIVERSITY OF LOUISIANA AT LAFAYETTE - CADE FARM NEAR LAFAYETTE 13SE",
       "state": "LA",
@@ -2582,28 +2604,6 @@
       "period_start_utc": "2026-08-03T05:00:00+00:00",
       "period_end_utc": "2026-08-04T05:00:00+00:00",
       "count": 288
-    },
-    {
-      "stid": "KOPA1",
-      "name": "KOPTIS FARMS",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "135.0",
-      "lat": "30.52380",
-      "lon": "-87.69797",
-      "mnet_id": "29",
-      "air_temp_min_f": 70.9,
-      "valid_time": "2026-08-03T04:00:00-0500",
-      "valid_time_utc": "2026-08-03T09:00:00+00:00",
-      "period_start_local": "2026-08-03T00:00:00-05:00",
-      "period_end_local": "2026-08-04T00:00:00-05:00",
-      "period_start_utc": "2026-08-03T05:00:00+00:00",
-      "period_end_utc": "2026-08-04T05:00:00+00:00",
-      "count": 24
     },
     {
       "stid": "AW575",
@@ -3307,7 +3307,7 @@
       "period_end_local": "2026-08-04T00:00:00-05:00",
       "period_start_utc": "2026-08-03T05:00:00+00:00",
       "period_end_utc": "2026-08-04T05:00:00+00:00",
-      "count": 23
+      "count": 24
     },
     {
       "stid": "1089W",
@@ -6630,6 +6630,28 @@
       "period_start_utc": "2026-08-03T05:00:00+00:00",
       "period_end_utc": "2026-08-04T05:00:00+00:00",
       "count": 28
+    },
+    {
+      "stid": "USA25",
+      "name": "Mobile",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "184.0",
+      "lat": "30.69",
+      "lon": "-88.2",
+      "mnet_id": "3011",
+      "air_temp_min_f": 75.2,
+      "valid_time": "2026-08-03T23:46:00-0500",
+      "valid_time_utc": "2026-08-04T04:46:00+00:00",
+      "period_start_local": "2026-08-03T00:00:00-05:00",
+      "period_end_local": "2026-08-04T00:00:00-05:00",
+      "period_start_utc": "2026-08-03T05:00:00+00:00",
+      "period_end_utc": "2026-08-04T05:00:00+00:00",
+      "count": 685
     },
     {
       "stid": "2158W",
