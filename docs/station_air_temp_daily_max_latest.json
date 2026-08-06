@@ -5,8 +5,8 @@
   "period_end_local": "2026-08-06T00:00:00-05:00",
   "period_start_utc": "2026-08-05T05:00:00+00:00",
   "period_end_utc": "2026-08-06T05:00:00+00:00",
-  "generated_utc": "2026-08-06T06:52:02.473602+00:00",
-  "station_count": 419,
+  "generated_utc": "2026-08-06T10:03:59.305648+00:00",
+  "station_count": 421,
   "csv": "station_air_temp_daily_max_latest.csv",
   "rows": [
     {
@@ -8304,6 +8304,28 @@
       "count": 14
     },
     {
+      "stid": "GCBSCA1",
+      "name": "BSCA - Station Bon Secour, LA",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "30.3288",
+      "lon": "-87.8293",
+      "mnet_id": "315",
+      "air_temp_max_f": 87.5,
+      "valid_time": "2026-08-05T19:00:00-0500",
+      "valid_time_utc": "2026-08-06T00:00:00+00:00",
+      "period_start_local": "2026-08-05T00:00:00-05:00",
+      "period_end_local": "2026-08-06T00:00:00-05:00",
+      "period_start_utc": "2026-08-05T05:00:00+00:00",
+      "period_end_utc": "2026-08-06T05:00:00+00:00",
+      "count": 13
+    },
+    {
       "stid": "EFLA1",
       "name": "E Range Front Light Visibility",
       "state": "AL",
@@ -8324,6 +8346,28 @@
       "period_start_utc": "2026-08-05T05:00:00+00:00",
       "period_end_utc": "2026-08-06T05:00:00+00:00",
       "count": 109
+    },
+    {
+      "stid": "BSCA1",
+      "name": "Bon Secour",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": null,
+      "lat": "30.32889",
+      "lon": "-87.82916",
+      "mnet_id": "96",
+      "air_temp_max_f": 87.5,
+      "valid_time": "2026-08-05T19:00:00-0500",
+      "valid_time_utc": "2026-08-06T00:00:00+00:00",
+      "period_start_local": "2026-08-05T00:00:00-05:00",
+      "period_end_local": "2026-08-06T00:00:00-05:00",
+      "period_start_utc": "2026-08-05T05:00:00+00:00",
+      "period_end_utc": "2026-08-06T05:00:00+00:00",
+      "count": 6
     },
     {
       "stid": "NDBCEFLA1",
