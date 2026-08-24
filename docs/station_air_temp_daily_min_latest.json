@@ -5,7 +5,7 @@
   "period_end_local": "2026-08-24T00:00:00-05:00",
   "period_start_utc": "2026-08-23T05:00:00+00:00",
   "period_end_utc": "2026-08-24T05:00:00+00:00",
-  "generated_utc": "2026-08-24T05:07:06.058141+00:00",
+  "generated_utc": "2026-08-24T05:59:06.982460+00:00",
   "station_count": 392,
   "csv": "station_air_temp_daily_min_latest.csv",
   "rows": [
@@ -161,7 +161,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 277
+      "count": 288
     },
     {
       "stid": "KGZH",
@@ -1525,7 +1525,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 282
+      "count": 288
     },
     {
       "stid": "LM019",
@@ -1547,7 +1547,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 287
+      "count": 288
     },
     {
       "stid": "AT261",
@@ -2339,7 +2339,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 287
+      "count": 288
     },
     {
       "stid": "AESM6",
@@ -2361,7 +2361,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 590
+      "count": 605
     },
     {
       "stid": "MSS44",
@@ -2892,6 +2892,28 @@
       "count": 96
     },
     {
+      "stid": "MCGA1",
+      "name": "Coast Guard Sector Mobile",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "13.0",
+      "lat": "30.64830",
+      "lon": "-88.05830",
+      "mnet_id": "121",
+      "air_temp_min_f": 76.0,
+      "valid_time": "2026-08-23T23:54:00-0500",
+      "valid_time_utc": "2026-08-24T04:54:00+00:00",
+      "period_start_local": "2026-08-23T00:00:00-05:00",
+      "period_end_local": "2026-08-24T00:00:00-05:00",
+      "period_start_utc": "2026-08-23T05:00:00+00:00",
+      "period_end_utc": "2026-08-24T05:00:00+00:00",
+      "count": 240
+    },
+    {
       "stid": "SHCM6",
       "name": "MS SANDHILL CRANE - FTS",
       "state": "MS",
@@ -3043,7 +3065,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 283
+      "count": 288
     },
     {
       "stid": "LM025",
@@ -3109,7 +3131,29 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 287
+      "count": 288
+    },
+    {
+      "stid": "NDBCMCGA1",
+      "name": "8736897 - Coast Guard Sector Mobile, AL",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "7.22",
+      "lat": "30.649",
+      "lon": "-88.058",
+      "mnet_id": "286",
+      "air_temp_min_f": 76.3,
+      "valid_time": "2026-08-23T23:54:00-0500",
+      "valid_time_utc": "2026-08-24T04:54:00+00:00",
+      "period_start_local": "2026-08-23T00:00:00-05:00",
+      "period_end_local": "2026-08-24T00:00:00-05:00",
+      "period_start_utc": "2026-08-23T05:00:00+00:00",
+      "period_end_utc": "2026-08-24T05:00:00+00:00",
+      "count": 171
     },
     {
       "stid": "1894W",
@@ -3706,28 +3750,6 @@
       "count": 24
     },
     {
-      "stid": "MCGA1",
-      "name": "Coast Guard Sector Mobile",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "13.0",
-      "lat": "30.64830",
-      "lon": "-88.05830",
-      "mnet_id": "121",
-      "air_temp_min_f": 77.0,
-      "valid_time": "2026-08-23T23:42:00-0500",
-      "valid_time_utc": "2026-08-24T04:42:00+00:00",
-      "period_start_local": "2026-08-23T00:00:00-05:00",
-      "period_end_local": "2026-08-24T00:00:00-05:00",
-      "period_start_utc": "2026-08-23T05:00:00+00:00",
-      "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
-    },
-    {
       "stid": "UR772",
       "name": "MARIN2",
       "state": "LA",
@@ -3791,7 +3813,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 268
+      "count": 287
     },
     {
       "stid": "NDBCGDXM6",
@@ -3813,7 +3835,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 91
+      "count": 94
     },
     {
       "stid": "GDXM6",
@@ -3882,6 +3904,28 @@
       "count": 143
     },
     {
+      "stid": "NDBCMBPA1",
+      "name": "8736163 - Middle Bay Port, Mobile Bay, AL",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "11.15",
+      "lat": "30.527",
+      "lon": "-88.086",
+      "mnet_id": "286",
+      "air_temp_min_f": 77.7,
+      "valid_time": "2026-08-23T23:54:00-0500",
+      "valid_time_utc": "2026-08-24T04:54:00+00:00",
+      "period_start_local": "2026-08-23T00:00:00-05:00",
+      "period_end_local": "2026-08-24T00:00:00-05:00",
+      "period_start_utc": "2026-08-23T05:00:00+00:00",
+      "period_end_utc": "2026-08-24T05:00:00+00:00",
+      "count": 171
+    },
+    {
       "stid": "NDBCWKXA1",
       "name": "Safe Harbor Met Station, Weeks Bay Reserve, AL",
       "state": "AL",
@@ -3901,7 +3945,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 91
+      "count": 94
     },
     {
       "stid": "WKXA1",
@@ -3945,7 +3989,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 1393
+      "count": 1438
     },
     {
       "stid": "0172W",
@@ -4740,6 +4784,28 @@
       "count": 312
     },
     {
+      "stid": "NDBCOBLA1",
+      "name": "8737048 - Mobile State Docks, AL",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "9.84",
+      "lat": "30.705",
+      "lon": "-88.04",
+      "mnet_id": "286",
+      "air_temp_min_f": 78.8,
+      "valid_time": "2026-08-23T23:36:00-0500",
+      "valid_time_utc": "2026-08-24T04:36:00+00:00",
+      "period_start_local": "2026-08-23T00:00:00-05:00",
+      "period_end_local": "2026-08-24T00:00:00-05:00",
+      "period_start_utc": "2026-08-23T05:00:00+00:00",
+      "period_end_utc": "2026-08-24T05:00:00+00:00",
+      "count": 170
+    },
+    {
       "stid": "1196W",
       "name": "Escambia High School",
       "state": "FL",
@@ -4957,7 +5023,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "UP368",
@@ -5114,6 +5180,28 @@
       "count": 143
     },
     {
+      "stid": "NDBCPTOA1",
+      "name": "8737005 - Pinto Island, AL",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "14.11",
+      "lat": "30.671",
+      "lon": "-88.031",
+      "mnet_id": "286",
+      "air_temp_min_f": 79.3,
+      "valid_time": "2026-08-23T23:48:00-0500",
+      "valid_time_utc": "2026-08-24T04:48:00+00:00",
+      "period_start_local": "2026-08-23T00:00:00-05:00",
+      "period_end_local": "2026-08-24T00:00:00-05:00",
+      "period_start_utc": "2026-08-23T05:00:00+00:00",
+      "period_end_utc": "2026-08-24T05:00:00+00:00",
+      "count": 171
+    },
+    {
       "stid": "LSU05",
       "name": "Iberia",
       "state": "LA",
@@ -5155,7 +5243,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 166
+      "count": 172
     },
     {
       "stid": "0402W",
@@ -5178,28 +5266,6 @@
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
       "count": 142
-    },
-    {
-      "stid": "NDBCMCGA1",
-      "name": "8736897 - Coast Guard Sector Mobile, AL",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "7.22",
-      "lat": "30.649",
-      "lon": "-88.058",
-      "mnet_id": "286",
-      "air_temp_min_f": 79.7,
-      "valid_time": "2026-08-23T23:00:00-0500",
-      "valid_time_utc": "2026-08-24T04:00:00+00:00",
-      "period_start_local": "2026-08-23T00:00:00-05:00",
-      "period_end_local": "2026-08-24T00:00:00-05:00",
-      "period_start_utc": "2026-08-23T05:00:00+00:00",
-      "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
     },
     {
       "stid": "1824W",
@@ -5265,7 +5331,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 269
+      "count": 287
     },
     {
       "stid": "2016W",
@@ -5397,7 +5463,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "C5600",
@@ -5815,7 +5881,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "1313W",
@@ -5881,7 +5947,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 25
+      "count": 26
     },
     {
       "stid": "NDBCBYGL1",
@@ -5903,7 +5969,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
     },
     {
       "stid": "NDBCTESL1",
@@ -5925,51 +5991,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
-    },
-    {
-      "stid": "NDBCMBPA1",
-      "name": "8736163 - Middle Bay Port, Mobile Bay, AL",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "11.15",
-      "lat": "30.527",
-      "lon": "-88.086",
-      "mnet_id": "286",
-      "air_temp_min_f": 80.4,
-      "valid_time": "2026-08-23T06:30:00-0500",
-      "valid_time_utc": "2026-08-23T11:30:00+00:00",
-      "period_start_local": "2026-08-23T00:00:00-05:00",
-      "period_end_local": "2026-08-24T00:00:00-05:00",
-      "period_start_utc": "2026-08-23T05:00:00+00:00",
-      "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
-    },
-    {
-      "stid": "NDBCOBLA1",
-      "name": "8737048 - Mobile State Docks, AL",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "9.84",
-      "lat": "30.705",
-      "lon": "-88.04",
-      "mnet_id": "286",
-      "air_temp_min_f": 80.4,
-      "valid_time": "2026-08-23T23:00:00-0500",
-      "valid_time_utc": "2026-08-24T04:00:00+00:00",
-      "period_start_local": "2026-08-23T00:00:00-05:00",
-      "period_end_local": "2026-08-24T00:00:00-05:00",
-      "period_start_utc": "2026-08-23T05:00:00+00:00",
-      "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
     },
     {
       "stid": "LSU11",
@@ -6104,28 +6126,6 @@
       "count": 312
     },
     {
-      "stid": "NDBCPTOA1",
-      "name": "8737005 - Pinto Island, AL",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "14.11",
-      "lat": "30.671",
-      "lon": "-88.031",
-      "mnet_id": "286",
-      "air_temp_min_f": 80.8,
-      "valid_time": "2026-08-23T23:00:00-0500",
-      "valid_time_utc": "2026-08-24T04:00:00+00:00",
-      "period_start_local": "2026-08-23T00:00:00-05:00",
-      "period_end_local": "2026-08-24T00:00:00-05:00",
-      "period_start_utc": "2026-08-23T05:00:00+00:00",
-      "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
-    },
-    {
       "stid": "NDBCWYCM6",
       "name": "8747437 - Bay Waveland Yacht Club, MS",
       "state": "MS",
@@ -6145,7 +6145,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
     },
     {
       "stid": "SSLYH",
@@ -6167,7 +6167,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 268
+      "count": 287
     },
     {
       "stid": "2281W",
@@ -6343,7 +6343,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "G2074",
@@ -6453,7 +6453,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 238
+      "count": 240
     },
     {
       "stid": "1311W",
@@ -6497,7 +6497,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
     },
     {
       "stid": "NGC11",
@@ -6541,7 +6541,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
     },
     {
       "stid": "2280W",
@@ -6915,7 +6915,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 166
+      "count": 172
     },
     {
       "stid": "NLOF1",
@@ -6959,7 +6959,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "SHBL1",
@@ -6981,7 +6981,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "UP213",
@@ -7597,7 +7597,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 163
+      "count": 168
     },
     {
       "stid": "2242W",
@@ -7641,7 +7641,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "COOPSISL1",
@@ -7688,6 +7688,28 @@
       "count": 96
     },
     {
+      "stid": "EFLA1",
+      "name": "E Range Front Light Visibility",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "14.0",
+      "lat": "30.42861",
+      "lon": "-88.00972",
+      "mnet_id": "96",
+      "air_temp_min_f": 84.0,
+      "valid_time": "2026-08-23T23:42:00-0500",
+      "valid_time_utc": "2026-08-24T04:42:00+00:00",
+      "period_start_local": "2026-08-23T00:00:00-05:00",
+      "period_end_local": "2026-08-24T00:00:00-05:00",
+      "period_start_utc": "2026-08-23T05:00:00+00:00",
+      "period_end_utc": "2026-08-24T05:00:00+00:00",
+      "count": 171
+    },
+    {
       "stid": "GCLUML1",
       "name": "LUMCON 101 - Marne Center, LA",
       "state": "LA",
@@ -7707,7 +7729,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 74
+      "count": 76
     },
     {
       "stid": "GISL1",
@@ -7729,7 +7751,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "KNEW",
@@ -7773,7 +7795,29 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
+    },
+    {
+      "stid": "NDBCEFLA1",
+      "name": "8734536 - E Range Front Light Visibility, AL",
+      "state": null,
+      "country": null,
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "14.11",
+      "lat": "30.429",
+      "lon": "-88.01",
+      "mnet_id": "286",
+      "air_temp_min_f": 84.0,
+      "valid_time": "2026-08-23T23:42:00-0500",
+      "valid_time_utc": "2026-08-24T04:42:00+00:00",
+      "period_start_local": "2026-08-23T00:00:00-05:00",
+      "period_end_local": "2026-08-24T00:00:00-05:00",
+      "period_start_utc": "2026-08-23T05:00:00+00:00",
+      "period_end_utc": "2026-08-24T05:00:00+00:00",
+      "count": 171
     },
     {
       "stid": "NDBCPTFL1",
@@ -7795,7 +7839,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
     },
     {
       "stid": "NWCL1",
@@ -7817,7 +7861,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 237
+      "count": 238
     },
     {
       "stid": "NDBCGISL1",
@@ -7839,7 +7883,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 170
     },
     {
       "stid": "1822W",
@@ -7864,50 +7908,6 @@
       "count": 143
     },
     {
-      "stid": "NDBCEFLA1",
-      "name": "8734536 - E Range Front Light Visibility, AL",
-      "state": null,
-      "country": null,
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "14.11",
-      "lat": "30.429",
-      "lon": "-88.01",
-      "mnet_id": "286",
-      "air_temp_min_f": 84.7,
-      "valid_time": "2026-08-23T05:54:00-0500",
-      "valid_time_utc": "2026-08-23T10:54:00+00:00",
-      "period_start_local": "2026-08-23T00:00:00-05:00",
-      "period_end_local": "2026-08-24T00:00:00-05:00",
-      "period_start_utc": "2026-08-23T05:00:00+00:00",
-      "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
-    },
-    {
-      "stid": "EFLA1",
-      "name": "E Range Front Light Visibility",
-      "state": "AL",
-      "country": "US",
-      "county": "",
-      "cwa": "",
-      "nwszone": "",
-      "timezone": "America/Chicago",
-      "elevation_ft": "14.0",
-      "lat": "30.42861",
-      "lon": "-88.00972",
-      "mnet_id": "96",
-      "air_temp_min_f": 84.8,
-      "valid_time": "2026-08-23T05:54:00-0500",
-      "valid_time_utc": "2026-08-23T10:54:00+00:00",
-      "period_start_local": "2026-08-23T00:00:00-05:00",
-      "period_end_local": "2026-08-24T00:00:00-05:00",
-      "period_start_utc": "2026-08-23T05:00:00+00:00",
-      "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
-    },
-    {
       "stid": "DILA1",
       "name": "Dauphin Island",
       "state": "AL",
@@ -7927,7 +7927,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 239
+      "count": 240
     },
     {
       "stid": "NDBCDILA1",
@@ -7949,7 +7949,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 170
     },
     {
       "stid": "GCDPHA1",
@@ -7993,7 +7993,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 13
+      "count": 14
     },
     {
       "stid": "GCKATA1",
@@ -8081,7 +8081,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
     },
     {
       "stid": "NDBC42012",
@@ -8103,7 +8103,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 141
+      "count": 143
     },
     {
       "stid": "NDBCFRMA1",
@@ -8125,7 +8125,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 170
     },
     {
       "stid": "NTC8734383",
@@ -8213,7 +8213,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 60
+      "count": 62
     },
     {
       "stid": "KSPR",
@@ -8301,7 +8301,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 71
+      "count": 72
     },
     {
       "stid": "PSTL1",
@@ -8323,7 +8323,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 238
+      "count": 240
     },
     {
       "stid": "42012",
@@ -8367,7 +8367,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 171
     },
     {
       "stid": "NDBCEINL1",
@@ -8389,7 +8389,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 165
+      "count": 170
     },
     {
       "stid": "NDBCPSTL1",
@@ -8411,7 +8411,7 @@
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 166
+      "count": 172
     },
     {
       "stid": "GCBSCA1",
@@ -8624,14 +8624,14 @@
       "lat": "30.27917",
       "lon": "-87.55611",
       "mnet_id": "96",
-      "air_temp_min_f": 95.7,
-      "valid_time": "2026-08-23T22:00:00-0500",
-      "valid_time_utc": "2026-08-24T03:00:00+00:00",
+      "air_temp_min_f": 95.6,
+      "valid_time": "2026-08-23T23:00:00-0500",
+      "valid_time_utc": "2026-08-24T04:00:00+00:00",
       "period_start_local": "2026-08-23T00:00:00-05:00",
       "period_end_local": "2026-08-24T00:00:00-05:00",
       "period_start_utc": "2026-08-23T05:00:00+00:00",
       "period_end_utc": "2026-08-24T05:00:00+00:00",
-      "count": 7
+      "count": 8
     }
   ]
 }
