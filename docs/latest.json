@@ -1,11 +1,11 @@
 {
-  "start_utc": "2026-08-30T12:00:00+00:00",
-  "end_utc": "2026-08-31T12:00:00+00:00",
-  "generated_utc": "2026-08-31T20:56:29.642583+00:00",
+  "start_utc": "2026-08-31T12:00:00+00:00",
+  "end_utc": "2026-09-01T12:00:00+00:00",
+  "generated_utc": "2026-09-01T17:33:08.734815+00:00",
   "maps": {
     "24h": {
       "image": "lix_24h_precip_latest.png",
-      "source_tif": "nws_precip_1day_20260831_conus.tif",
+      "source_tif": "nws_precip_1day_20260901_conus.tif",
       "areas": {
         "full": {
           "label": "Full LIX Area",
@@ -345,7 +345,7 @@
     },
     "mtd": {
       "image": "lix_mtd_precip_latest.png",
-      "source_tif": "nws_precip_mtd_20260831_conus.tif",
+      "source_tif": "nws_precip_mtd_20260901_conus.tif",
       "areas": {
         "full": {
           "label": "Full LIX Area",
@@ -379,7 +379,7 @@
     },
     "ytd": {
       "image": "lix_ytd_precip_latest.png",
-      "source_tif": "nws_precip_ytd_20260831_conus.tif",
+      "source_tif": "nws_precip_ytd_20260901_conus.tif",
       "areas": {
         "full": {
           "label": "Full LIX Area",
