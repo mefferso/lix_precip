@@ -5,8 +5,8 @@
   "period_end_local": "2026-09-17T00:00:00-05:00",
   "period_start_utc": "2026-09-16T05:00:00+00:00",
   "period_end_utc": "2026-09-17T05:00:00+00:00",
-  "generated_utc": "2026-09-17T08:23:56.711742+00:00",
-  "station_count": 397,
+  "generated_utc": "2026-09-17T13:39:28.769681+00:00",
+  "station_count": 399,
   "csv": "station_air_temp_daily_min_latest.csv",
   "rows": [
     {
@@ -8742,6 +8742,50 @@
       "period_start_utc": "2026-09-16T05:00:00+00:00",
       "period_end_utc": "2026-09-17T05:00:00+00:00",
       "count": 17
+    },
+    {
+      "stid": "GCMHPA1",
+      "name": "MHPA - Meaher Park, AL",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "0.0",
+      "lat": "30.6671",
+      "lon": "-87.9365",
+      "mnet_id": "315",
+      "air_temp_min_f": 90.1,
+      "valid_time": "2026-09-16T16:00:00-0500",
+      "valid_time_utc": "2026-09-16T21:00:00+00:00",
+      "period_start_local": "2026-09-16T00:00:00-05:00",
+      "period_end_local": "2026-09-17T00:00:00-05:00",
+      "period_start_utc": "2026-09-16T05:00:00+00:00",
+      "period_end_utc": "2026-09-17T05:00:00+00:00",
+      "count": 1
+    },
+    {
+      "stid": "MHPA1",
+      "name": "Meaher Park",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "10.0",
+      "lat": "30.67000",
+      "lon": "-87.94000",
+      "mnet_id": "96",
+      "air_temp_min_f": 90.2,
+      "valid_time": "2026-09-16T16:00:00-0500",
+      "valid_time_utc": "2026-09-16T21:00:00+00:00",
+      "period_start_local": "2026-09-16T00:00:00-05:00",
+      "period_end_local": "2026-09-17T00:00:00-05:00",
+      "period_start_utc": "2026-09-16T05:00:00+00:00",
+      "period_end_utc": "2026-09-17T05:00:00+00:00",
+      "count": 1
     }
   ]
 }
