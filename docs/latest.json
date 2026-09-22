@@ -1,7 +1,7 @@
 {
   "start_utc": "2026-09-21T12:00:00+00:00",
   "end_utc": "2026-09-22T12:00:00+00:00",
-  "generated_utc": "2026-09-22T18:11:03.780377+00:00",
+  "generated_utc": "2026-09-22T18:58:26.975524+00:00",
   "maps": {
     "24h": {
       "image": "lix_24h_precip_latest.png",
@@ -39,48 +39,309 @@
     },
     "2d": {
       "image": "lix_2d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_2day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_2d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_2d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_2d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_2d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_2d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_2d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_2d_precip_northshore_latest.png"
+        }
+      }
     },
     "3d": {
       "image": "lix_3d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_3day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_3d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_3d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_3d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_3d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_3d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_3d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_3d_precip_northshore_latest.png"
+        }
+      }
     },
     "4d": {
       "image": "lix_4d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_4day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_4d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_4d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_4d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_4d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_4d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_4d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_4d_precip_northshore_latest.png"
+        }
+      }
     },
     "5d": {
       "image": "lix_5d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_5day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_5d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_5d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_5d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_5d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_5d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_5d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_5d_precip_northshore_latest.png"
+        }
+      }
     },
     "6d": {
       "image": "lix_6d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_6day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_6d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_6d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_6d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_6d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_6d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_6d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_6d_precip_northshore_latest.png"
+        }
+      }
     },
     "7d": {
       "image": "lix_7d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_7day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_7d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_7d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_7d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_7d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_7d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_7d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_7d_precip_northshore_latest.png"
+        }
+      }
     },
     "10d": {
       "image": "lix_10d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_10day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_10d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_10d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_10d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_10d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_10d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_10d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_10d_precip_northshore_latest.png"
+        }
+      }
     },
     "14d": {
       "image": "lix_14d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_14day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_14d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_14d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_14d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_14d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_14d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_14d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_14d_precip_northshore_latest.png"
+        }
+      }
     },
     "30d": {
       "image": "lix_30d_precip_latest.png",
-      "source_tif": null,
-      "areas": {}
+      "source_tif": "Calculated_30day_sum",
+      "areas": {
+        "full": {
+          "label": "Full LIX Area",
+          "image": "lix_30d_precip_latest.png"
+        },
+        "baton_rouge_metro": {
+          "label": "Baton Rouge Metro",
+          "image": "lix_30d_precip_baton_rouge_metro_latest.png"
+        },
+        "new_orleans_metro": {
+          "label": "New Orleans Metro",
+          "image": "lix_30d_precip_new_orleans_metro_latest.png"
+        },
+        "southwest_ms": {
+          "label": "Southwest MS",
+          "image": "lix_30d_precip_southwest_ms_latest.png"
+        },
+        "coastal_la": {
+          "label": "Coastal LA",
+          "image": "lix_30d_precip_coastal_la_latest.png"
+        },
+        "coastal_ms": {
+          "label": "Coastal MS",
+          "image": "lix_30d_precip_coastal_ms_latest.png"
+        },
+        "northshore": {
+          "label": "Northshore of Lake Pontchartrain",
+          "image": "lix_30d_precip_northshore_latest.png"
+        }
+      }
     },
     "mtd": {
       "image": "lix_mtd_precip_latest.png",
