@@ -5,8 +5,8 @@
   "period_end_local": "2026-10-27T00:00:00-05:00",
   "period_start_utc": "2026-10-26T05:00:00+00:00",
   "period_end_utc": "2026-10-27T05:00:00+00:00",
-  "generated_utc": "2026-10-27T06:28:59.241814+00:00",
-  "station_count": 421,
+  "generated_utc": "2026-10-27T13:18:24.938285+00:00",
+  "station_count": 423,
   "csv": "station_air_temp_daily_max_latest.csv",
   "rows": [
     {
@@ -3791,7 +3791,7 @@
       "period_end_local": "2026-10-27T00:00:00-05:00",
       "period_start_utc": "2026-10-26T05:00:00+00:00",
       "period_end_utc": "2026-10-27T05:00:00+00:00",
-      "count": 283
+      "count": 287
     },
     {
       "stid": "NDBCKVOA",
@@ -6739,7 +6739,7 @@
       "period_end_local": "2026-10-27T00:00:00-05:00",
       "period_start_utc": "2026-10-26T05:00:00+00:00",
       "period_end_utc": "2026-10-27T05:00:00+00:00",
-      "count": 283
+      "count": 287
     },
     {
       "stid": "JAYF1",
@@ -9065,6 +9065,50 @@
       "lon": "-91.0278",
       "mnet_id": "74",
       "air_temp_max_f": 57.0,
+      "valid_time": "2026-10-26T07:00:00-0500",
+      "valid_time_utc": "2026-10-26T12:00:00+00:00",
+      "period_start_local": "2026-10-26T00:00:00-05:00",
+      "period_end_local": "2026-10-27T00:00:00-05:00",
+      "period_start_utc": "2026-10-26T05:00:00+00:00",
+      "period_end_utc": "2026-10-27T05:00:00+00:00",
+      "count": 1
+    },
+    {
+      "stid": "COOPBNKL1",
+      "name": "BUNKIE",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "80.0",
+      "lat": "30.95",
+      "lon": "-92.17",
+      "mnet_id": "74",
+      "air_temp_max_f": 53.0,
+      "valid_time": "2026-10-26T08:00:00-0500",
+      "valid_time_utc": "2026-10-26T13:00:00+00:00",
+      "period_start_local": "2026-10-26T00:00:00-05:00",
+      "period_end_local": "2026-10-27T00:00:00-05:00",
+      "period_start_utc": "2026-10-26T05:00:00+00:00",
+      "period_end_utc": "2026-10-27T05:00:00+00:00",
+      "count": 1
+    },
+    {
+      "stid": "COOPATMA1",
+      "name": "ATMORE",
+      "state": "AL",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "300.0",
+      "lat": "31.182",
+      "lon": "-87.439",
+      "mnet_id": "74",
+      "air_temp_max_f": 53.0,
       "valid_time": "2026-10-26T07:00:00-0500",
       "valid_time_utc": "2026-10-26T12:00:00+00:00",
       "period_start_local": "2026-10-26T00:00:00-05:00",
