@@ -5,8 +5,8 @@
   "period_end_local": "2026-10-31T00:00:00-05:00",
   "period_start_utc": "2026-10-30T05:00:00+00:00",
   "period_end_utc": "2026-10-31T05:00:00+00:00",
-  "generated_utc": "2026-10-31T12:47:10.364340+00:00",
-  "station_count": 425,
+  "generated_utc": "2026-10-31T17:50:45.145144+00:00",
+  "station_count": 426,
   "csv": "station_air_temp_daily_max_latest.csv",
   "rows": [
     {
@@ -3374,6 +3374,28 @@
       "period_start_utc": "2026-10-30T05:00:00+00:00",
       "period_end_utc": "2026-10-31T05:00:00+00:00",
       "count": 96
+    },
+    {
+      "stid": "LM041",
+      "name": "ULM_THIB",
+      "state": "LA",
+      "country": "US",
+      "county": "",
+      "cwa": "",
+      "nwszone": "",
+      "timezone": "America/Chicago",
+      "elevation_ft": "4.0",
+      "lat": "29.76198",
+      "lon": "-90.77234",
+      "mnet_id": "313",
+      "air_temp_max_f": 80.9,
+      "valid_time": "2026-10-30T14:45:00-0500",
+      "valid_time_utc": "2026-10-30T19:45:00+00:00",
+      "period_start_local": "2026-10-30T00:00:00-05:00",
+      "period_end_local": "2026-10-31T00:00:00-05:00",
+      "period_start_utc": "2026-10-30T05:00:00+00:00",
+      "period_end_utc": "2026-10-31T05:00:00+00:00",
+      "count": 159
     },
     {
       "stid": "0900W",
